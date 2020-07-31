@@ -1,6 +1,6 @@
 ﻿namespace AlimentosDC.SIGEPAC.UI.Inicio
 {
-    partial class Inicio
+    partial class FrmPrincipal
     {
         /// <summary>
         /// Required designer variable.
@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Inicio";
+            this.Text = "FrmPrincipal";
         }
 
         #endregion
