@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlimentosDC.SIGEPAC.DAL", "
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlimentosDC.SIGEPAC.EN", "AlimentosDC.SIGEPAC.EN\AlimentosDC.SIGEPAC.EN.csproj", "{94900832-77A1-4DE8-AA09-968FB6814FAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlimentosDC.SIGEPAC.UI.Inicio", "AlimentosDC.SIGEPAC.UI.Inicio\AlimentosDC.SIGEPAC.UI.Inicio.csproj", "{985D9F83-B825-4E16-B47E-3FC11858587E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlimentosDC.SIGEPAC.UI", "AlimentosDC.SIGEPAC.UI\AlimentosDC.SIGEPAC.UI.csproj", "{5FF23DB3-637F-457B-9AA3-AECBCD858C5B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{94900832-77A1-4DE8-AA09-968FB6814FAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{94900832-77A1-4DE8-AA09-968FB6814FAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{94900832-77A1-4DE8-AA09-968FB6814FAB}.Release|Any CPU.Build.0 = Release|Any CPU
-		{985D9F83-B825-4E16-B47E-3FC11858587E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{985D9F83-B825-4E16-B47E-3FC11858587E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{985D9F83-B825-4E16-B47E-3FC11858587E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{985D9F83-B825-4E16-B47E-3FC11858587E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5FF23DB3-637F-457B-9AA3-AECBCD858C5B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5FF23DB3-637F-457B-9AA3-AECBCD858C5B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5FF23DB3-637F-457B-9AA3-AECBCD858C5B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5FF23DB3-637F-457B-9AA3-AECBCD858C5B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

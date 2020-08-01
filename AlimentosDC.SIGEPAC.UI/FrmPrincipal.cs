@@ -8,7 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AlimentosDC.SIGEPAC.UI.Inicio
+namespace AlimentosDC.SIGEPAC.UI
 {
     public partial class FrmPrincipal : Form
     {

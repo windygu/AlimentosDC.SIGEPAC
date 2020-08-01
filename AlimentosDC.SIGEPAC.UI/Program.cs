@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace AlimentosDC.SIGEPAC.UI.Inicio
+namespace AlimentosDC.SIGEPAC.UI
 {
     static class Program
     {
+        /// <summary>
+        /// Punto de entrada principal para la aplicación.
+        /// </summary>
         [STAThread]
         static void Main()
         {
