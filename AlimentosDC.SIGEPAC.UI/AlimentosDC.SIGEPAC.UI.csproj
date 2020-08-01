@@ -37,6 +37,9 @@
       <HintPath>..\packages\ControlzEx.4.3.2\lib\net45\ControlzEx.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="DevComponents.DotNetBar2">
+      <HintPath>..\..\Sistema de Ventas C# y Sql by Start Tec\Sistema de Ventas C# y Sql by Start Tec\Sistema de Ventas\Capa de Presentacion\bin\Debug\DevComponents.DotNetBar2.dll</HintPath>
+    </Reference>
     <Reference Include="MahApps.Metro, Version=2.0.0.0, Culture=neutral, PublicKeyToken=51482d6f650b2b3f, processorArchitecture=MSIL">
       <HintPath>..\packages\MahApps.Metro.2.1.1\lib\net452\MahApps.Metro.dll</HintPath>
       <Private>True</Private>

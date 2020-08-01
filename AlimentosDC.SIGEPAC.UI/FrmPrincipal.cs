@@ -7,10 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using DevComponents.DotNetBar.Metro;
+using DevComponents.DotNetBar;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
-    public partial class FrmPrincipal : Form
+    public partial class FrmPrincipal : MetroForm
     {
         public FrmPrincipal()
         {
