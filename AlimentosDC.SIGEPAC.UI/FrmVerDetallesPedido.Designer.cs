@@ -59,6 +59,7 @@
             this.btnEditarDetallePedido.TabIndex = 24;
             this.btnEditarDetallePedido.Text = "Editar";
             this.btnEditarDetallePedido.UseVisualStyleBackColor = true;
+            this.btnEditarDetallePedido.Click += new System.EventHandler(this.btnEditarDetallePedido_Click);
             // 
             // btnNuevoDetallePedido
             // 
@@ -69,6 +70,7 @@
             this.btnNuevoDetallePedido.TabIndex = 21;
             this.btnNuevoDetallePedido.Text = "Nuevo";
             this.btnNuevoDetallePedido.UseVisualStyleBackColor = true;
+            this.btnNuevoDetallePedido.Click += new System.EventHandler(this.btnNuevoDetallePedido_Click);
             // 
             // dgvListadoDetallesPedido
             // 
