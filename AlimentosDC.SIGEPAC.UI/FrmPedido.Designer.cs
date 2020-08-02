@@ -32,8 +32,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.btnBuscarCliente = new System.Windows.Forms.Button();
-            this.txtNombreClientePedido = new System.Windows.Forms.TextBox();
             this.txtDuiClientePedido = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.txtNumeroPedido = new System.Windows.Forms.TextBox();
@@ -50,17 +48,19 @@
             this.btnEditarDetallePedido = new System.Windows.Forms.Button();
             this.btnEliminarDetallePedido = new System.Windows.Forms.Button();
             this.btnGuardarPedido = new System.Windows.Forms.Button();
-            this.btnCancelarPedido = new System.Windows.Forms.Button();
+            this.btnCerrar = new System.Windows.Forms.Button();
             this.label8 = new System.Windows.Forms.Label();
-            this.dggListadoDetallesPedido = new System.Windows.Forms.DataGridView();
+            this.dgvListadoDetallesPedido = new System.Windows.Forms.DataGridView();
+            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.btnNuevoPedido = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dggListadoDetallesPedido)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDetallesPedido)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 25);
+            this.label1.Location = new System.Drawing.Point(347, 28);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 17);
             this.label1.TabIndex = 0;
@@ -69,7 +69,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(233, 25);
+            this.label2.Location = new System.Drawing.Point(16, 28);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 17);
             this.label2.TabIndex = 1;
@@ -77,8 +77,7 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.btnBuscarCliente);
-            this.groupBox1.Controls.Add(this.txtNombreClientePedido);
+            this.groupBox1.Controls.Add(this.comboBox1);
             this.groupBox1.Controls.Add(this.txtDuiClientePedido);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
@@ -90,27 +89,10 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cliente";
             // 
-            // btnBuscarCliente
-            // 
-            this.btnBuscarCliente.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnBuscarCliente.Location = new System.Drawing.Point(558, 18);
-            this.btnBuscarCliente.Name = "btnBuscarCliente";
-            this.btnBuscarCliente.Size = new System.Drawing.Size(100, 30);
-            this.btnBuscarCliente.TabIndex = 3;
-            this.btnBuscarCliente.Text = "Buscar";
-            this.btnBuscarCliente.UseVisualStyleBackColor = true;
-            // 
-            // txtNombreClientePedido
-            // 
-            this.txtNombreClientePedido.Location = new System.Drawing.Point(291, 22);
-            this.txtNombreClientePedido.Name = "txtNombreClientePedido";
-            this.txtNombreClientePedido.Size = new System.Drawing.Size(242, 23);
-            this.txtNombreClientePedido.TabIndex = 4;
-            // 
             // txtDuiClientePedido
             // 
             this.txtDuiClientePedido.BackColor = System.Drawing.Color.White;
-            this.txtDuiClientePedido.Location = new System.Drawing.Point(51, 22);
+            this.txtDuiClientePedido.Location = new System.Drawing.Point(388, 25);
             this.txtDuiClientePedido.Name = "txtDuiClientePedido";
             this.txtDuiClientePedido.Size = new System.Drawing.Size(163, 23);
             this.txtDuiClientePedido.TabIndex = 3;
@@ -169,7 +151,7 @@
             this.txtDireccionEntregaPedido.Location = new System.Drawing.Point(409, 187);
             this.txtDireccionEntregaPedido.Multiline = true;
             this.txtDireccionEntregaPedido.Name = "txtDireccionEntregaPedido";
-            this.txtDireccionEntregaPedido.Size = new System.Drawing.Size(299, 52);
+            this.txtDireccionEntregaPedido.Size = new System.Drawing.Size(299, 50);
             this.txtDireccionEntregaPedido.TabIndex = 11;
             // 
             // label7
@@ -221,9 +203,9 @@
             this.label13.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label13.Location = new System.Drawing.Point(9, 237);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(106, 19);
+            this.label13.Size = new System.Drawing.Size(128, 19);
             this.label13.TabIndex = 18;
-            this.label13.Text = "Detalles pedido:";
+            this.label13.Text = "Detalles del pedido:";
             // 
             // btnNuevoDetallePedido
             // 
@@ -234,6 +216,7 @@
             this.btnNuevoDetallePedido.TabIndex = 11;
             this.btnNuevoDetallePedido.Text = "Nuevo";
             this.btnNuevoDetallePedido.UseVisualStyleBackColor = true;
+            this.btnNuevoDetallePedido.Click += new System.EventHandler(this.btnNuevoDetallePedido_Click);
             // 
             // btnEditarDetallePedido
             // 
@@ -244,6 +227,7 @@
             this.btnEditarDetallePedido.TabIndex = 19;
             this.btnEditarDetallePedido.Text = "Editar";
             this.btnEditarDetallePedido.UseVisualStyleBackColor = true;
+            this.btnEditarDetallePedido.Click += new System.EventHandler(this.btnEditarDetallePedido_Click);
             // 
             // btnEliminarDetallePedido
             // 
@@ -258,22 +242,23 @@
             // btnGuardarPedido
             // 
             this.btnGuardarPedido.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarPedido.Location = new System.Drawing.Point(488, 467);
+            this.btnGuardarPedido.Location = new System.Drawing.Point(549, 474);
             this.btnGuardarPedido.Name = "btnGuardarPedido";
             this.btnGuardarPedido.Size = new System.Drawing.Size(100, 30);
             this.btnGuardarPedido.TabIndex = 25;
             this.btnGuardarPedido.Text = "Guardar";
             this.btnGuardarPedido.UseVisualStyleBackColor = true;
             // 
-            // btnCancelarPedido
+            // btnCerrar
             // 
-            this.btnCancelarPedido.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelarPedido.Location = new System.Drawing.Point(608, 467);
-            this.btnCancelarPedido.Name = "btnCancelarPedido";
-            this.btnCancelarPedido.Size = new System.Drawing.Size(100, 30);
-            this.btnCancelarPedido.TabIndex = 24;
-            this.btnCancelarPedido.Text = "Cancelar";
-            this.btnCancelarPedido.UseVisualStyleBackColor = true;
+            this.btnCerrar.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrar.Location = new System.Drawing.Point(669, 474);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(100, 30);
+            this.btnCerrar.TabIndex = 24;
+            this.btnCerrar.Text = "Cerrar";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // label8
             // 
@@ -285,23 +270,43 @@
             this.label8.TabIndex = 26;
             this.label8.Text = "Nuevo pedido";
             // 
-            // dggListadoDetallesPedido
+            // dgvListadoDetallesPedido
             // 
-            this.dggListadoDetallesPedido.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dggListadoDetallesPedido.Location = new System.Drawing.Point(14, 267);
-            this.dggListadoDetallesPedido.Name = "dggListadoDetallesPedido";
-            this.dggListadoDetallesPedido.Size = new System.Drawing.Size(635, 175);
-            this.dggListadoDetallesPedido.TabIndex = 27;
+            this.dgvListadoDetallesPedido.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvListadoDetallesPedido.Location = new System.Drawing.Point(14, 267);
+            this.dgvListadoDetallesPedido.Name = "dgvListadoDetallesPedido";
+            this.dgvListadoDetallesPedido.Size = new System.Drawing.Size(635, 175);
+            this.dgvListadoDetallesPedido.TabIndex = 27;
+            // 
+            // comboBox1
+            // 
+            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.comboBox1.FormattingEnabled = true;
+            this.comboBox1.Location = new System.Drawing.Point(78, 25);
+            this.comboBox1.Name = "comboBox1";
+            this.comboBox1.Size = new System.Drawing.Size(240, 25);
+            this.comboBox1.TabIndex = 5;
+            // 
+            // btnNuevoPedido
+            // 
+            this.btnNuevoPedido.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevoPedido.Location = new System.Drawing.Point(431, 474);
+            this.btnNuevoPedido.Name = "btnNuevoPedido";
+            this.btnNuevoPedido.Size = new System.Drawing.Size(100, 30);
+            this.btnNuevoPedido.TabIndex = 28;
+            this.btnNuevoPedido.Text = "Nuevo";
+            this.btnNuevoPedido.UseVisualStyleBackColor = true;
             // 
             // FrmPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(781, 516);
-            this.Controls.Add(this.dggListadoDetallesPedido);
+            this.Controls.Add(this.btnNuevoPedido);
+            this.Controls.Add(this.dgvListadoDetallesPedido);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.btnGuardarPedido);
-            this.Controls.Add(this.btnCancelarPedido);
+            this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnEliminarDetallePedido);
             this.Controls.Add(this.btnEditarDetallePedido);
             this.Controls.Add(this.btnNuevoDetallePedido);
@@ -319,11 +324,13 @@
             this.Controls.Add(this.groupBox1);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FrmPedido";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mantenimiento Pedidos";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dggListadoDetallesPedido)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDetallesPedido)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -334,8 +341,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.Button btnBuscarCliente;
-        private System.Windows.Forms.TextBox txtNombreClientePedido;
         private System.Windows.Forms.TextBox txtDuiClientePedido;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtNumeroPedido;
@@ -352,8 +357,10 @@
         private System.Windows.Forms.Button btnEditarDetallePedido;
         private System.Windows.Forms.Button btnEliminarDetallePedido;
         private System.Windows.Forms.Button btnGuardarPedido;
-        private System.Windows.Forms.Button btnCancelarPedido;
+        private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.DataGridView dggListadoDetallesPedido;
+        private System.Windows.Forms.DataGridView dgvListadoDetallesPedido;
+        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.Button btnNuevoPedido;
     }
 }

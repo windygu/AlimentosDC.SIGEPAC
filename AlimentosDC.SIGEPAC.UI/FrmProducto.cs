@@ -18,5 +18,10 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             InitializeComponent();
         }
+
+        private void btnCancelarProducto_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
     }
 }

@@ -35,7 +35,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.btnGuardarMarca = new System.Windows.Forms.Button();
-            this.btnCancelarMarca = new System.Windows.Forms.Button();
+            this.btnCerrar = new System.Windows.Forms.Button();
+            this.btnNuevaMarca = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtNombreMarca
@@ -79,38 +80,51 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(130, 9);
+            this.label8.Location = new System.Drawing.Point(111, 9);
             this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(185, 37);
+            this.label8.Size = new System.Drawing.Size(220, 37);
             this.label8.TabIndex = 27;
-            this.label8.Text = "Nueva marca";
+            this.label8.Text = "Registrar marca";
+            this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnGuardarMarca
             // 
             this.btnGuardarMarca.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarMarca.Location = new System.Drawing.Point(209, 175);
+            this.btnGuardarMarca.Location = new System.Drawing.Point(218, 175);
             this.btnGuardarMarca.Name = "btnGuardarMarca";
             this.btnGuardarMarca.Size = new System.Drawing.Size(100, 30);
             this.btnGuardarMarca.TabIndex = 29;
             this.btnGuardarMarca.Text = "Registrar";
             this.btnGuardarMarca.UseVisualStyleBackColor = true;
             // 
-            // btnCancelarMarca
+            // btnCerrar
             // 
-            this.btnCancelarMarca.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelarMarca.Location = new System.Drawing.Point(333, 175);
-            this.btnCancelarMarca.Name = "btnCancelarMarca";
-            this.btnCancelarMarca.Size = new System.Drawing.Size(100, 30);
-            this.btnCancelarMarca.TabIndex = 30;
-            this.btnCancelarMarca.Text = "Cancelar";
-            this.btnCancelarMarca.UseVisualStyleBackColor = true;
+            this.btnCerrar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrar.Location = new System.Drawing.Point(333, 175);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(100, 30);
+            this.btnCerrar.TabIndex = 30;
+            this.btnCerrar.Text = "Cerrar";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
+            // btnNuevaMarca
+            // 
+            this.btnNuevaMarca.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevaMarca.Location = new System.Drawing.Point(103, 175);
+            this.btnNuevaMarca.Name = "btnNuevaMarca";
+            this.btnNuevaMarca.Size = new System.Drawing.Size(100, 30);
+            this.btnNuevaMarca.TabIndex = 31;
+            this.btnNuevaMarca.Text = "Nuevo";
+            this.btnNuevaMarca.UseVisualStyleBackColor = true;
             // 
             // FrmMarca
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(445, 217);
-            this.Controls.Add(this.btnCancelarMarca);
+            this.Controls.Add(this.btnNuevaMarca);
+            this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnGuardarMarca);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.txtComentarioMarca);
@@ -119,7 +133,10 @@
             this.Controls.Add(this.label3);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FrmMarca";
+            this.RightToLeftLayout = true;
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mantenimiento Marcas";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -134,6 +151,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnGuardarMarca;
-        private System.Windows.Forms.Button btnCancelarMarca;
+        private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Button btnNuevaMarca;
     }
 }

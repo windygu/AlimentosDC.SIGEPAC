@@ -25,5 +25,26 @@ namespace AlimentosDC.SIGEPAC.UI
             fm.Owner = this;
             fm.ShowDialog();
         }
+
+        private void btnProductos_Click(object sender, EventArgs e)
+        {
+            FrmProductos listadoProductos = new FrmProductos();
+            listadoProductos.Owner = this;
+            listadoProductos.ShowDialog();
+        }
+
+        private void btnClientes_Click(object sender, EventArgs e)
+        {
+            FrmClientes listadoClientes = new FrmClientes();
+            listadoClientes.Owner = this;
+            listadoClientes.ShowDialog();
+        }
+
+        private void btnMarcas_Click(object sender, EventArgs e)
+        {
+            FrmMarcas listadoMarcas = new FrmMarcas();
+            listadoMarcas.Owner = this;
+            listadoMarcas.ShowDialog();
+        }
     }
 }

@@ -41,32 +41,34 @@
             // btnEliminarPedido
             // 
             this.btnEliminarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarPedido.Location = new System.Drawing.Point(628, 13);
+            this.btnEliminarPedido.Location = new System.Drawing.Point(688, 13);
             this.btnEliminarPedido.Name = "btnEliminarPedido";
             this.btnEliminarPedido.Size = new System.Drawing.Size(100, 30);
-            this.btnEliminarPedido.TabIndex = 18;
+            this.btnEliminarPedido.TabIndex = 2;
             this.btnEliminarPedido.Text = "Eliminar";
             this.btnEliminarPedido.UseVisualStyleBackColor = true;
             // 
             // btnEditarPedido
             // 
             this.btnEditarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarPedido.Location = new System.Drawing.Point(504, 13);
+            this.btnEditarPedido.Location = new System.Drawing.Point(549, 13);
             this.btnEditarPedido.Name = "btnEditarPedido";
             this.btnEditarPedido.Size = new System.Drawing.Size(100, 30);
-            this.btnEditarPedido.TabIndex = 17;
+            this.btnEditarPedido.TabIndex = 1;
             this.btnEditarPedido.Text = "Editar";
             this.btnEditarPedido.UseVisualStyleBackColor = true;
+            this.btnEditarPedido.Click += new System.EventHandler(this.btnEditarPedido_Click);
             // 
             // btnNuevoPedido
             // 
             this.btnNuevoPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoPedido.Location = new System.Drawing.Point(374, 15);
+            this.btnNuevoPedido.Location = new System.Drawing.Point(413, 14);
             this.btnNuevoPedido.Name = "btnNuevoPedido";
             this.btnNuevoPedido.Size = new System.Drawing.Size(100, 30);
-            this.btnNuevoPedido.TabIndex = 16;
+            this.btnNuevoPedido.TabIndex = 0;
             this.btnNuevoPedido.Text = "Nuevo";
             this.btnNuevoPedido.UseVisualStyleBackColor = true;
+            this.btnNuevoPedido.Click += new System.EventHandler(this.btnNuevoPedido_Click);
             // 
             // lblMarcaAguaCliente
             // 
@@ -85,7 +87,7 @@
             this.txtBuscarCliente.Location = new System.Drawing.Point(13, 16);
             this.txtBuscarCliente.Name = "txtBuscarCliente";
             this.txtBuscarCliente.Size = new System.Drawing.Size(322, 27);
-            this.txtBuscarCliente.TabIndex = 14;
+            this.txtBuscarCliente.TabIndex = 3;
             this.txtBuscarCliente.WordWrap = false;
             // 
             // dgvListadoClientes
@@ -93,14 +95,14 @@
             this.dgvListadoClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListadoClientes.Location = new System.Drawing.Point(13, 63);
             this.dgvListadoClientes.Name = "dgvListadoClientes";
-            this.dgvListadoClientes.Size = new System.Drawing.Size(960, 449);
+            this.dgvListadoClientes.Size = new System.Drawing.Size(859, 386);
             this.dgvListadoClientes.TabIndex = 13;
             // 
             // FrmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 521);
+            this.ClientSize = new System.Drawing.Size(884, 461);
             this.Controls.Add(this.btnEliminarPedido);
             this.Controls.Add(this.btnEditarPedido);
             this.Controls.Add(this.btnNuevoPedido);
@@ -109,7 +111,9 @@
             this.Controls.Add(this.dgvListadoClientes);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FrmClientes";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CLIENTES";
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoClientes)).EndInit();
             this.ResumeLayout(false);

@@ -41,7 +41,7 @@
             // btnEliminarMarca
             // 
             this.btnEliminarMarca.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarMarca.Location = new System.Drawing.Point(625, 5);
+            this.btnEliminarMarca.Location = new System.Drawing.Point(605, 7);
             this.btnEliminarMarca.Name = "btnEliminarMarca";
             this.btnEliminarMarca.Size = new System.Drawing.Size(100, 30);
             this.btnEliminarMarca.TabIndex = 30;
@@ -51,12 +51,13 @@
             // btnEditarMarca
             // 
             this.btnEditarMarca.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarMarca.Location = new System.Drawing.Point(501, 5);
+            this.btnEditarMarca.Location = new System.Drawing.Point(489, 8);
             this.btnEditarMarca.Name = "btnEditarMarca";
             this.btnEditarMarca.Size = new System.Drawing.Size(100, 30);
             this.btnEditarMarca.TabIndex = 29;
             this.btnEditarMarca.Text = "Editar";
             this.btnEditarMarca.UseVisualStyleBackColor = true;
+            this.btnEditarMarca.Click += new System.EventHandler(this.btnEditarMarca_Click);
             // 
             // btnNuevaMarca
             // 
@@ -67,6 +68,7 @@
             this.btnNuevaMarca.TabIndex = 28;
             this.btnNuevaMarca.Text = "Nuevo";
             this.btnNuevaMarca.UseVisualStyleBackColor = true;
+            this.btnNuevaMarca.Click += new System.EventHandler(this.btnNuevaMarca_Click);
             // 
             // lblMarcaAguaMarca
             // 
@@ -93,14 +95,14 @@
             this.dgvListadoMarcas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListadoMarcas.Location = new System.Drawing.Point(10, 55);
             this.dgvListadoMarcas.Name = "dgvListadoMarcas";
-            this.dgvListadoMarcas.Size = new System.Drawing.Size(715, 449);
+            this.dgvListadoMarcas.Size = new System.Drawing.Size(715, 275);
             this.dgvListadoMarcas.TabIndex = 25;
             // 
             // FrmMarcas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(737, 517);
+            this.ClientSize = new System.Drawing.Size(734, 341);
             this.Controls.Add(this.btnEliminarMarca);
             this.Controls.Add(this.btnEditarMarca);
             this.Controls.Add(this.btnNuevaMarca);
@@ -109,7 +111,9 @@
             this.Controls.Add(this.dgvListadoMarcas);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FrmMarcas";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MARCAS";
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoMarcas)).EndInit();
             this.ResumeLayout(false);

@@ -41,7 +41,7 @@
             // btnEliminarProducto
             // 
             this.btnEliminarProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarProducto.Location = new System.Drawing.Point(628, 12);
+            this.btnEliminarProducto.Location = new System.Drawing.Point(623, 12);
             this.btnEliminarProducto.Name = "btnEliminarProducto";
             this.btnEliminarProducto.Size = new System.Drawing.Size(100, 30);
             this.btnEliminarProducto.TabIndex = 12;
@@ -51,22 +51,24 @@
             // btnEditarProducto
             // 
             this.btnEditarProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarProducto.Location = new System.Drawing.Point(504, 12);
+            this.btnEditarProducto.Location = new System.Drawing.Point(501, 12);
             this.btnEditarProducto.Name = "btnEditarProducto";
             this.btnEditarProducto.Size = new System.Drawing.Size(100, 30);
             this.btnEditarProducto.TabIndex = 11;
             this.btnEditarProducto.Text = "Editar";
             this.btnEditarProducto.UseVisualStyleBackColor = true;
+            this.btnEditarProducto.Click += new System.EventHandler(this.btnEditarProducto_Click);
             // 
             // btnNuevoProducto
             // 
             this.btnNuevoProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoProducto.Location = new System.Drawing.Point(374, 14);
+            this.btnNuevoProducto.Location = new System.Drawing.Point(376, 13);
             this.btnNuevoProducto.Name = "btnNuevoProducto";
             this.btnNuevoProducto.Size = new System.Drawing.Size(100, 30);
             this.btnNuevoProducto.TabIndex = 10;
             this.btnNuevoProducto.Text = "Nuevo";
             this.btnNuevoProducto.UseVisualStyleBackColor = true;
+            this.btnNuevoProducto.Click += new System.EventHandler(this.btnNuevoProducto_Click);
             // 
             // lblMarcaAguaProductos
             // 
@@ -93,14 +95,14 @@
             this.dgvListadoProductos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListadoProductos.Location = new System.Drawing.Point(13, 62);
             this.dgvListadoProductos.Name = "dgvListadoProductos";
-            this.dgvListadoProductos.Size = new System.Drawing.Size(960, 449);
+            this.dgvListadoProductos.Size = new System.Drawing.Size(759, 340);
             this.dgvListadoProductos.TabIndex = 7;
             // 
             // FrmProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(984, 521);
+            this.ClientSize = new System.Drawing.Size(784, 411);
             this.Controls.Add(this.btnEliminarProducto);
             this.Controls.Add(this.btnEditarProducto);
             this.Controls.Add(this.btnNuevoProducto);
@@ -109,7 +111,9 @@
             this.Controls.Add(this.dgvListadoProductos);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
             this.Name = "FrmProductos";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "PRODUCTOS";
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoProductos)).EndInit();
             this.ResumeLayout(false);

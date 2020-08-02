@@ -18,5 +18,19 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             InitializeComponent();
         }
+
+        private void btnNuevoProducto_Click(object sender, EventArgs e)
+        {
+            FrmProducto mantenimientoProductos = new FrmProducto();
+            mantenimientoProductos.Owner = this;
+            mantenimientoProductos.ShowDialog();
+        }
+
+        private void btnEditarProducto_Click(object sender, EventArgs e)
+        {
+            FrmProducto mantenimientoProductos = new FrmProducto();
+            mantenimientoProductos.Owner = this;
+            mantenimientoProductos.ShowDialog();
+        }
     }
 }

@@ -18,5 +18,19 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             InitializeComponent();
         }
+
+        private void btnNuevaMarca_Click(object sender, EventArgs e)
+        {
+            FrmMarca mantenimientoMarcas = new FrmMarca();
+            mantenimientoMarcas.Owner = this;
+            mantenimientoMarcas.ShowDialog();
+        }
+
+        private void btnEditarMarca_Click(object sender, EventArgs e)
+        {
+            FrmMarca mantenimientoMarcas = new FrmMarca();
+            mantenimientoMarcas.Owner = this;
+            mantenimientoMarcas.ShowDialog();
+        }
     }
 }
