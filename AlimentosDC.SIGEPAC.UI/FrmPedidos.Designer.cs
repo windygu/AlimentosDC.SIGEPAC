@@ -29,92 +29,104 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPedidos));
-            this.dataGridView1 = new System.Windows.Forms.DataGridView();
-            this.txtBuscar = new System.Windows.Forms.TextBox();
+            this.dgvListadoPedidos = new System.Windows.Forms.DataGridView();
+            this.txtBuscarPedido = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.btnNuevoPedido = new System.Windows.Forms.Button();
+            this.btnEditarPedido = new System.Windows.Forms.Button();
+            this.btnEliminarPedido = new System.Windows.Forms.Button();
+            this.btnVerDetallePedido = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListadoPedidos)).BeginInit();
             this.SuspendLayout();
             // 
-            // dataGridView1
+            // dgvListadoPedidos
             // 
-            this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridView1.Location = new System.Drawing.Point(12, 48);
-            this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(960, 461);
-            this.dataGridView1.TabIndex = 0;
+            this.dgvListadoPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvListadoPedidos.Location = new System.Drawing.Point(12, 48);
+            this.dgvListadoPedidos.Name = "dgvListadoPedidos";
+            this.dgvListadoPedidos.Size = new System.Drawing.Size(960, 461);
+            this.dgvListadoPedidos.TabIndex = 0;
             // 
-            // txtBuscar
+            // txtBuscarPedido
             // 
-            this.txtBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscar.Location = new System.Drawing.Point(12, 4);
-            this.txtBuscar.Name = "txtBuscar";
-            this.txtBuscar.Size = new System.Drawing.Size(322, 23);
-            this.txtBuscar.TabIndex = 1;
-            this.txtBuscar.WordWrap = false;
+            this.txtBuscarPedido.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscarPedido.Location = new System.Drawing.Point(12, 1);
+            this.txtBuscarPedido.Name = "txtBuscarPedido";
+            this.txtBuscarPedido.Size = new System.Drawing.Size(322, 27);
+            this.txtBuscarPedido.TabIndex = 1;
+            this.txtBuscarPedido.WordWrap = false;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Gray;
-            this.label1.Location = new System.Drawing.Point(15, 6);
+            this.label1.Location = new System.Drawing.Point(14, 5);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(215, 19);
+            this.label1.Size = new System.Drawing.Size(223, 19);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Buscar por nombre, apellido o ID";
+            this.label1.Text = "Buscar por número de pedido o ID";
             // 
-            // button1
+            // btnNuevoPedido
             // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(385, 1);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(90, 30);
-            this.button1.TabIndex = 3;
-            this.button1.Text = "Nuevo";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.btnNuevoPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevoPedido.Location = new System.Drawing.Point(373, 0);
+            this.btnNuevoPedido.Name = "btnNuevoPedido";
+            this.btnNuevoPedido.Size = new System.Drawing.Size(100, 30);
+            this.btnNuevoPedido.TabIndex = 3;
+            this.btnNuevoPedido.Text = "Nuevo";
+            this.btnNuevoPedido.UseVisualStyleBackColor = true;
+            this.btnNuevoPedido.Click += new System.EventHandler(this.button1_Click);
             // 
-            // button2
+            // btnEditarPedido
             // 
-            this.button2.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button2.Location = new System.Drawing.Point(506, 1);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(90, 30);
-            this.button2.TabIndex = 4;
-            this.button2.Text = "Editar";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnEditarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditarPedido.Location = new System.Drawing.Point(620, 0);
+            this.btnEditarPedido.Name = "btnEditarPedido";
+            this.btnEditarPedido.Size = new System.Drawing.Size(100, 30);
+            this.btnEditarPedido.TabIndex = 4;
+            this.btnEditarPedido.Text = "Editar";
+            this.btnEditarPedido.UseVisualStyleBackColor = true;
             // 
-            // button3
+            // btnEliminarPedido
             // 
-            this.button3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(624, 1);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(90, 30);
-            this.button3.TabIndex = 5;
-            this.button3.Text = "Eliminar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnEliminarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarPedido.Location = new System.Drawing.Point(746, 0);
+            this.btnEliminarPedido.Name = "btnEliminarPedido";
+            this.btnEliminarPedido.Size = new System.Drawing.Size(100, 30);
+            this.btnEliminarPedido.TabIndex = 5;
+            this.btnEliminarPedido.Text = "Eliminar";
+            this.btnEliminarPedido.UseVisualStyleBackColor = true;
+            // 
+            // btnVerDetallePedido
+            // 
+            this.btnVerDetallePedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerDetallePedido.Location = new System.Drawing.Point(495, 0);
+            this.btnVerDetallePedido.Name = "btnVerDetallePedido";
+            this.btnVerDetallePedido.Size = new System.Drawing.Size(100, 30);
+            this.btnVerDetallePedido.TabIndex = 6;
+            this.btnVerDetallePedido.Text = "Ver detalle";
+            this.btnVerDetallePedido.UseVisualStyleBackColor = true;
             // 
             // FrmPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(984, 521);
-            this.Controls.Add(this.button3);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnVerDetallePedido);
+            this.Controls.Add(this.btnEliminarPedido);
+            this.Controls.Add(this.btnEditarPedido);
+            this.Controls.Add(this.btnNuevoPedido);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.txtBuscar);
-            this.Controls.Add(this.dataGridView1);
+            this.Controls.Add(this.txtBuscarPedido);
+            this.Controls.Add(this.dgvListadoPedidos);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.Name = "FrmPedidos";
             this.Tag = "";
             this.Text = "Pedidos";
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvListadoPedidos)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -122,11 +134,12 @@
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dataGridView1;
-        private System.Windows.Forms.TextBox txtBuscar;
+        private System.Windows.Forms.DataGridView dgvListadoPedidos;
+        private System.Windows.Forms.TextBox txtBuscarPedido;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnNuevoPedido;
+        private System.Windows.Forms.Button btnEditarPedido;
+        private System.Windows.Forms.Button btnEliminarPedido;
+        private System.Windows.Forms.Button btnVerDetallePedido;
     }
 }
