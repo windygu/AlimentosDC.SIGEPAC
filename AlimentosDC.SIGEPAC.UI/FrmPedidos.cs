@@ -19,11 +19,26 @@ namespace AlimentosDC.SIGEPAC.UI
             InitializeComponent();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+
+        private void btnVerDetallePedido_Click(object sender, EventArgs e)
         {
-            FrmPedido fp = new FrmPedido();
-            fp.Owner = this;
-            fp.ShowDialog();
+            FrmVerDetallesPedido vdp = new FrmVerDetallesPedido();
+            vdp.Owner = this;
+            vdp.ShowDialog();
+        }
+
+        private void btnNuevoPedido_Click(object sender, EventArgs e)
+        {
+            FrmPedido p = new FrmPedido();
+            p.Owner = this;
+            p.ShowDialog();
+        }
+
+        private void btnEditarPedido_Click(object sender, EventArgs e)
+        {
+            FrmPedido p = new FrmPedido();
+            p.Owner = this;
+            p.ShowDialog();
         }
     }
 }

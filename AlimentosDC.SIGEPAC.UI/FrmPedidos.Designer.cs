@@ -76,7 +76,7 @@
             this.btnNuevoPedido.TabIndex = 3;
             this.btnNuevoPedido.Text = "Nuevo";
             this.btnNuevoPedido.UseVisualStyleBackColor = true;
-            this.btnNuevoPedido.Click += new System.EventHandler(this.button1_Click);
+            this.btnNuevoPedido.Click += new System.EventHandler(this.btnNuevoPedido_Click);
             // 
             // btnEditarPedido
             // 
@@ -87,6 +87,7 @@
             this.btnEditarPedido.TabIndex = 4;
             this.btnEditarPedido.Text = "Editar";
             this.btnEditarPedido.UseVisualStyleBackColor = true;
+            this.btnEditarPedido.Click += new System.EventHandler(this.btnEditarPedido_Click);
             // 
             // btnEliminarPedido
             // 
@@ -107,6 +108,7 @@
             this.btnVerDetallePedido.TabIndex = 6;
             this.btnVerDetallePedido.Text = "Ver detalle";
             this.btnVerDetallePedido.UseVisualStyleBackColor = true;
+            this.btnVerDetallePedido.Click += new System.EventHandler(this.btnVerDetallePedido_Click);
             // 
             // FrmPedidos
             // 
