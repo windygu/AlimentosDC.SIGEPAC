@@ -12,18 +12,18 @@ using DevComponents.DotNetBar;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
-    public partial class FrmPrincipal : MetroForm
+    public partial class FrmPedidos : MetroForm
     {
-        public FrmPrincipal()
+        public FrmPedidos()
         {
             InitializeComponent();
         }
 
-        private void btnPedidos_Click(object sender, EventArgs e)
+        private void button1_Click(object sender, EventArgs e)
         {
-            FrmPedidos fm = new FrmPedidos();
-            fm.Owner = this;
-            fm.ShowDialog();
+            FrmPedido fp = new FrmPedido();
+            fp.Owner = this;
+            fp.ShowDialog();
         }
     }
 }

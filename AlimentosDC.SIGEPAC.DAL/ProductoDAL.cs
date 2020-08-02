@@ -12,27 +12,29 @@ namespace AlimentosDC.SIGEPAC.DAL
     {
         public static int Guardar(Producto pProducto)
         {
-            string consulta = @"INSERT INTO Producto (IdMarca, Nombre, Descripcion, Precio) 
-            values (@IdMarca, @Nombre, @Descripcion, @Precio)";
+            string consulta = @"INSERT INTO Producto (IdMarca, Nombre, Descripcion, Precio, Stock) 
+            values (@IdMarca, @Nombre, @Descripcion, @Precio, @Stock)";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
             comando.Parameters.AddWithValue("@IdMarca", pProducto.IdMarca);
             comando.Parameters.AddWithValue("@Nombre", pProducto.Nombre);
             comando.Parameters.AddWithValue("@Descripcion", pProducto.Descripcion);
             comando.Parameters.AddWithValue("@Precio", pProducto.Precio);
+            comando.Parameters.AddWithValue("@Stock", pProducto.Stock);
             return ComunDB.EjecutarComando(comando);
         }
 
         public static int Modificar(Producto pProducto)
         {
             string consulta = @"UPDATE Producto SET IdMarca = @IdMarca, Nombre = @Nombre, 
-            Descripcion = @Descripcion, Precio = @Precio WHERE Id = @Id;";
+            Descripcion = @Descripcion, Precio = @Precio, Stock = @Stock WHERE Id = @Id;";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
             comando.Parameters.AddWithValue("@IdMarca", pProducto.IdMarca);
             comando.Parameters.AddWithValue("@Nombre", pProducto.Nombre);
             comando.Parameters.AddWithValue("@Descripcion", pProducto.Descripcion);
             comando.Parameters.AddWithValue("@Precio", pProducto.Precio);
+            comando.Parameters.AddWithValue("@Stock", pProducto.Stock);
             return ComunDB.EjecutarComando(comando);
         }
 
@@ -47,7 +49,7 @@ namespace AlimentosDC.SIGEPAC.DAL
 
         public static List<Producto> ObtenerTodos()
         {
-            string consulta = @"SELECT TOP 500 pr.Id, pr.IdMarca, pr.Nombre, pr.Descripcion, pr.Precio FROM Producto pr";
+            string consulta = @"SELECT TOP 500 pr.Id, pr.IdMarca, pr.Nombre, pr.Descripcion, pr.Precio, pr.Stock FROM Producto pr";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
             SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
@@ -60,6 +62,7 @@ namespace AlimentosDC.SIGEPAC.DAL
                 producto.Nombre = reader.GetString(2);
                 producto.Descripcion = reader.GetString(3);
                 producto.Precio = reader.GetFloat(4);
+                producto.Stock = reader.GetInt32(5);
                 listaProductos.Add(producto);
             }
             return listaProductos;
@@ -67,7 +70,7 @@ namespace AlimentosDC.SIGEPAC.DAL
 
         public static Producto BuscarPorId(int pId)
         {
-            string consulta = @"SELECT pr.Id, pr.IdMarca, pr.Nombre, pr.Descripcion, pr.Precio FROM Producto pr WHERE Id = @Id";
+            string consulta = @"SELECT pr.Id, pr.IdMarca, pr.Nombre, pr.Descripcion, pr.Precio, pr.Stock FROM Producto pr WHERE Id = @Id";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
             comando.Parameters.AddWithValue("@Id", pId);
@@ -80,6 +83,7 @@ namespace AlimentosDC.SIGEPAC.DAL
                 producto.Nombre = reader.GetString(2);
                 producto.Descripcion = reader.GetString(3);
                 producto.Precio = reader.GetFloat(4);
+                producto.Stock = reader.GetInt32(5);
             }
             return producto;
         }

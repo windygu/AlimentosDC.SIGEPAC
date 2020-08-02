@@ -13,5 +13,6 @@ namespace AlimentosDC.SIGEPAC.EN
         public string Nombre { get; set; }
         public string Descripcion { get; set; }
         public float Precio { get; set; }
+        public int Stock { get; set; }
     }
 }
