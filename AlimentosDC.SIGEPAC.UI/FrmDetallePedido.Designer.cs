@@ -29,29 +29,20 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDetallePedido));
-            this.txtSubtotal = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtPrecioUnitario = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
-            this.txtDescripcionPedido = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnCerrarDetallePedido = new System.Windows.Forms.Button();
             this.btnAgregarDetallePedido = new System.Windows.Forms.Button();
             this.btnNuevoDetallePedido = new System.Windows.Forms.Button();
             this.cmbProducto = new System.Windows.Forms.ComboBox();
+            this.lblSubTotal = new System.Windows.Forms.Label();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
-            // 
-            // txtSubtotal
-            // 
-            this.txtSubtotal.BackColor = System.Drawing.Color.White;
-            this.txtSubtotal.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtSubtotal.Location = new System.Drawing.Point(16, 171);
-            this.txtSubtotal.Name = "txtSubtotal";
-            this.txtSubtotal.Size = new System.Drawing.Size(210, 25);
-            this.txtSubtotal.TabIndex = 21;
             // 
             // label12
             // 
@@ -69,6 +60,7 @@
             this.txtPrecioUnitario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrecioUnitario.Location = new System.Drawing.Point(267, 43);
             this.txtPrecioUnitario.Name = "txtPrecioUnitario";
+            this.txtPrecioUnitario.ReadOnly = true;
             this.txtPrecioUnitario.Size = new System.Drawing.Size(210, 25);
             this.txtPrecioUnitario.TabIndex = 19;
             // 
@@ -90,6 +82,8 @@
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(210, 25);
             this.txtCantidad.TabIndex = 17;
+            this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
+            this.txtCantidad.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCantidad_KeyDown);
             // 
             // label10
             // 
@@ -100,14 +94,6 @@
             this.label10.Size = new System.Drawing.Size(67, 19);
             this.label10.TabIndex = 16;
             this.label10.Text = "Cantidad:";
-            // 
-            // txtDescripcionPedido
-            // 
-            this.txtDescripcionPedido.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcionPedido.Location = new System.Drawing.Point(16, 107);
-            this.txtDescripcionPedido.Name = "txtDescripcionPedido";
-            this.txtDescripcionPedido.Size = new System.Drawing.Size(210, 25);
-            this.txtDescripcionPedido.TabIndex = 15;
             // 
             // label8
             // 
@@ -169,22 +155,42 @@
             this.cmbProducto.Size = new System.Drawing.Size(210, 25);
             this.cmbProducto.TabIndex = 25;
             // 
+            // lblSubTotal
+            // 
+            this.lblSubTotal.AutoSize = true;
+            this.lblSubTotal.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubTotal.Location = new System.Drawing.Point(74, 148);
+            this.lblSubTotal.Name = "lblSubTotal";
+            this.lblSubTotal.Size = new System.Drawing.Size(54, 21);
+            this.lblSubTotal.TabIndex = 26;
+            this.lblSubTotal.Text = "$ 0.00";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(16, 107);
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(210, 25);
+            this.textBox1.TabIndex = 27;
+            // 
             // FrmDetallePedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(489, 271);
+            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.lblSubTotal);
             this.Controls.Add(this.cmbProducto);
             this.Controls.Add(this.btnNuevoDetallePedido);
             this.Controls.Add(this.btnAgregarDetallePedido);
             this.Controls.Add(this.btnCerrarDetallePedido);
-            this.Controls.Add(this.txtSubtotal);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.txtPrecioUnitario);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txtCantidad);
             this.Controls.Add(this.label10);
-            this.Controls.Add(this.txtDescripcionPedido);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.label9);
             this.DoubleBuffered = true;
@@ -199,19 +205,18 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.TextBox txtSubtotal;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.TextBox txtPrecioUnitario;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.Label label10;
-        private System.Windows.Forms.TextBox txtDescripcionPedido;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnCerrarDetallePedido;
         private System.Windows.Forms.Button btnAgregarDetallePedido;
         private System.Windows.Forms.Button btnNuevoDetallePedido;
         private System.Windows.Forms.ComboBox cmbProducto;
+        private System.Windows.Forms.Label lblSubTotal;
+        private System.Windows.Forms.TextBox textBox1;
     }
 }

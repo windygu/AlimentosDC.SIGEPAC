@@ -21,6 +21,7 @@ namespace AlimentosDC.SIGEPAC.UI
         public FrmPedido()
         {
             InitializeComponent();
+            lblNumeroPedido.Text = PedidoBL.GenerarNumeroPedido();
         }
 
         public FrmPedido(int id)
@@ -37,8 +38,8 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             pedido = PedidoBL.BuscarPorId((int) id);
             cmbListadoClientes.Text = pedido.Cliente;
-            txtDuiClientePedido.Text = pedido.Dui;
-            txtNumeroPedido.Text = pedido.NumeroPedido.ToString();
+            lblDui.Text = pedido.Dui;
+            lblNumeroPedido.Text = pedido.NumeroPedido.ToString();
             dtpFechaCreacion.Value = pedido.FechaCreacion;
             cmbEstadoPedido.Text = pedido.Estado;
             dtpFechaEntrega.Value = pedido.FechaEntrega;
@@ -70,6 +71,31 @@ namespace AlimentosDC.SIGEPAC.UI
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void FrmPedido_Load(object sender, EventArgs e)
+        {
+            List<Cliente> listadoNuevoClientes = new List<Cliente>();
+            List<Cliente> listadoClientes = ClienteBL.ObtenerTodos();
+            for (int i = 0; i < listadoClientes.Count; i++)
+            {
+                Cliente cliente = new Cliente();
+                cliente.Id = listadoClientes[i].Id;
+                cliente.Nombres = string.Concat(listadoClientes[i].Nombres, " ", listadoClientes[i].Apellidos);
+                cliente.DUI = listadoClientes[i].DUI;
+                cliente.Direccion = listadoClientes[i].Direccion;
+                cliente.Telefono = listadoClientes[i].Telefono;
+                cliente.Correo = listadoClientes[i].Correo;
+                listadoNuevoClientes.Add(cliente);
+            }
+            cmbListadoClientes.Items.AddRange(listadoNuevoClientes.ToArray());
+            cmbListadoClientes.DisplayMember  = "Nombres";
+        }
+
+        private void cmbListadoClientes_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            int id = int.Parse((cmbListadoClientes.SelectedItem as Cliente).Id.ToString());
+            lblDui.Text = (ClienteBL.BuscarPorId(id)).DUI;
         }
     }
 }

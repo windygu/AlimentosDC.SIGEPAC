@@ -14,6 +14,7 @@ namespace AlimentosDC.SIGEPAC.UI
 {
     public partial class FrmDetallePedido : MetroForm
     {
+
         public FrmDetallePedido()
         {
             InitializeComponent();
@@ -29,6 +30,23 @@ namespace AlimentosDC.SIGEPAC.UI
         private void btnCerrarDetallePedido_Click(object sender, EventArgs e)
         {
             Close();
+        }
+
+        private void txtCantidad_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCantidad.Text.Length>0 && txtPrecioUnitario.Text.Length>0)
+            {
+                lblSubTotal.Text = (int.Parse(txtPrecioUnitario.Text) + int.Parse(txtCantidad.Text)).ToString();
+            }
+        }
+
+        private void txtCantidad_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyData >= Keys.D0 && e.KeyData <= Keys.D9)
+            {
+                e.Handled = false;
+            }
+            else e.Handled = true;
         }
     }
 }

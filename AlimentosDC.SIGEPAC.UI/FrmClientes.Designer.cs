@@ -32,9 +32,15 @@
             this.btnEliminarPedido = new System.Windows.Forms.Button();
             this.btnEditarPedido = new System.Windows.Forms.Button();
             this.btnNuevoPedido = new System.Windows.Forms.Button();
-            this.lblMarcaAguaCliente = new System.Windows.Forms.Label();
-            this.txtBuscarCliente = new System.Windows.Forms.TextBox();
             this.dgvListadoClientes = new System.Windows.Forms.DataGridView();
+            this.textBoxWaterMark1 = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
+            this.dgvId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvApellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvDui = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -70,44 +76,91 @@
             this.btnNuevoPedido.UseVisualStyleBackColor = true;
             this.btnNuevoPedido.Click += new System.EventHandler(this.btnNuevoPedido_Click);
             // 
-            // lblMarcaAguaCliente
-            // 
-            this.lblMarcaAguaCliente.AutoSize = true;
-            this.lblMarcaAguaCliente.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarcaAguaCliente.ForeColor = System.Drawing.Color.Gray;
-            this.lblMarcaAguaCliente.Location = new System.Drawing.Point(15, 20);
-            this.lblMarcaAguaCliente.Name = "lblMarcaAguaCliente";
-            this.lblMarcaAguaCliente.Size = new System.Drawing.Size(215, 19);
-            this.lblMarcaAguaCliente.TabIndex = 15;
-            this.lblMarcaAguaCliente.Text = "Buscar por nombre, apellido o ID";
-            // 
-            // txtBuscarCliente
-            // 
-            this.txtBuscarCliente.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscarCliente.Location = new System.Drawing.Point(13, 16);
-            this.txtBuscarCliente.Name = "txtBuscarCliente";
-            this.txtBuscarCliente.Size = new System.Drawing.Size(322, 27);
-            this.txtBuscarCliente.TabIndex = 3;
-            this.txtBuscarCliente.WordWrap = false;
-            // 
             // dgvListadoClientes
             // 
+            this.dgvListadoClientes.AllowUserToAddRows = false;
+            this.dgvListadoClientes.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvListadoClientes.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvListadoClientes.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.dgvId,
+            this.dgvNombres,
+            this.dgvApellidos,
+            this.dgvDui,
+            this.dgvDireccion,
+            this.dgvTelefono,
+            this.dgvCorreo});
             this.dgvListadoClientes.Location = new System.Drawing.Point(13, 63);
             this.dgvListadoClientes.Name = "dgvListadoClientes";
-            this.dgvListadoClientes.Size = new System.Drawing.Size(859, 386);
+            this.dgvListadoClientes.ReadOnly = true;
+            this.dgvListadoClientes.Size = new System.Drawing.Size(924, 386);
             this.dgvListadoClientes.TabIndex = 13;
+            // 
+            // textBoxWaterMark1
+            // 
+            this.textBoxWaterMark1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxWaterMark1.Location = new System.Drawing.Point(12, 15);
+            this.textBoxWaterMark1.Name = "textBoxWaterMark1";
+            this.textBoxWaterMark1.Size = new System.Drawing.Size(322, 27);
+            this.textBoxWaterMark1.TabIndex = 14;
+            this.textBoxWaterMark1.TextoMarcaAgua = "Buscar por nombre, apellido o ID";
+            // 
+            // dgvId
+            // 
+            this.dgvId.HeaderText = "ID";
+            this.dgvId.Name = "dgvId";
+            this.dgvId.ReadOnly = true;
+            this.dgvId.Width = 50;
+            // 
+            // dgvNombres
+            // 
+            this.dgvNombres.HeaderText = "Nombres";
+            this.dgvNombres.Name = "dgvNombres";
+            this.dgvNombres.ReadOnly = true;
+            this.dgvNombres.Width = 150;
+            // 
+            // dgvApellidos
+            // 
+            this.dgvApellidos.HeaderText = "Apellidos";
+            this.dgvApellidos.Name = "dgvApellidos";
+            this.dgvApellidos.ReadOnly = true;
+            this.dgvApellidos.Width = 150;
+            // 
+            // dgvDui
+            // 
+            this.dgvDui.HeaderText = "DUI";
+            this.dgvDui.Name = "dgvDui";
+            this.dgvDui.ReadOnly = true;
+            // 
+            // dgvDireccion
+            // 
+            this.dgvDireccion.HeaderText = "Dirección";
+            this.dgvDireccion.Name = "dgvDireccion";
+            this.dgvDireccion.ReadOnly = true;
+            this.dgvDireccion.Width = 150;
+            // 
+            // dgvTelefono
+            // 
+            this.dgvTelefono.HeaderText = "Teléfono";
+            this.dgvTelefono.Name = "dgvTelefono";
+            this.dgvTelefono.ReadOnly = true;
+            this.dgvTelefono.Width = 130;
+            // 
+            // dgvCorreo
+            // 
+            this.dgvCorreo.HeaderText = "Correo";
+            this.dgvCorreo.Name = "dgvCorreo";
+            this.dgvCorreo.ReadOnly = true;
+            this.dgvCorreo.Width = 150;
             // 
             // FrmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(884, 461);
+            this.ClientSize = new System.Drawing.Size(948, 461);
+            this.Controls.Add(this.textBoxWaterMark1);
             this.Controls.Add(this.btnEliminarPedido);
             this.Controls.Add(this.btnEditarPedido);
             this.Controls.Add(this.btnNuevoPedido);
-            this.Controls.Add(this.lblMarcaAguaCliente);
-            this.Controls.Add(this.txtBuscarCliente);
             this.Controls.Add(this.dgvListadoClientes);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
@@ -115,6 +168,7 @@
             this.Name = "FrmClientes";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "CLIENTES";
+            this.Load += new System.EventHandler(this.FrmClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoClientes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -126,8 +180,14 @@
         private System.Windows.Forms.Button btnEliminarPedido;
         private System.Windows.Forms.Button btnEditarPedido;
         private System.Windows.Forms.Button btnNuevoPedido;
-        private System.Windows.Forms.Label lblMarcaAguaCliente;
-        private System.Windows.Forms.TextBox txtBuscarCliente;
         private System.Windows.Forms.DataGridView dgvListadoClientes;
+        private TextBoxWaterMark textBoxWaterMark1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvId;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvNombres;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvApellidos;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvDui;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvDireccion;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvTelefono;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dgvCorreo;
     }
 }

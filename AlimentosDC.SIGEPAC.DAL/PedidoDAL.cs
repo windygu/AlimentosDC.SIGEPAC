@@ -98,5 +98,16 @@ namespace AlimentosDC.SIGEPAC.DAL
             }
             return pedido;
         }
+
+        public static string generarNumeroPedido()
+        {
+            string procedimiento = "generarNumeroPedido";
+            SqlCommand comando = ComunDB.ObtenerComando();
+            comando.CommandType = System.Data.CommandType.StoredProcedure;
+            comando.CommandText = procedimiento;
+            comando.Parameters.Add("numeroPedido", System.Data.SqlDbType.VarChar, 20).Direction = System.Data.ParameterDirection.Output;
+
+            return ComunDB.EjecutarProcedimiento(comando);
+        }
     }
 }

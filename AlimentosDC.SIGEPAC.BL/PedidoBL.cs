@@ -34,5 +34,10 @@ namespace AlimentosDC.SIGEPAC.BL
         {
             return PedidoDAL.BuscarPorId(pId);
         }
+
+        public static string GenerarNumeroPedido()
+        {
+            return PedidoDAL.generarNumeroPedido();
+        }
     }
 }

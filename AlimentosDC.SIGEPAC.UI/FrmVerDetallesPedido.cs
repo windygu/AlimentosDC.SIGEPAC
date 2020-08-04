@@ -55,6 +55,8 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             listadoDetallesPedido = DetallePedidoBL.ObtenerTodos(idPedido);
             dgvListadoDetallesPedido.Rows.Clear();
+            int sumaProductos = 0;
+            float total = 0.00f;
             for (int i = 0; i < listadoDetallesPedido.Count; i++)
             {
                 dgvListadoDetallesPedido.Rows.Add();
@@ -65,7 +67,13 @@ namespace AlimentosDC.SIGEPAC.UI
                 dgvListadoDetallesPedido.Rows[i].Cells[4].Value = listadoDetallesPedido[i].PrecioUnitario;
                 dgvListadoDetallesPedido.Rows[i].Cells[5].Value = listadoDetallesPedido[i].SubTotal;
                 dgvListadoDetallesPedido.Rows[i].Cells[6].Value = listadoDetallesPedido[i].Estado;
+                sumaProductos += listadoDetallesPedido[i].Cantidad;
+                total += listadoDetallesPedido[i].SubTotal;
             }
+
+            lblProductos.Text = sumaProductos.ToString();
+            lblTotal.Text = total.ToString();
+
         }
     }
 }

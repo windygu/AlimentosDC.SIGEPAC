@@ -96,8 +96,7 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void dgvListadoPedidos_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvListadoPedidos.SelectedRows.Count>0 
-                && (dgvListadoPedidos.SelectedRows[0].Cells[0].Value != null))
+            if (dgvListadoPedidos.SelectedRows.Count>0)
             {
                 btnVerDetallePedido.Enabled = true;
                 btnEditarPedido.Enabled = true;

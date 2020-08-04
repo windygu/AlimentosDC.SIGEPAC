@@ -58,8 +58,8 @@ namespace AlimentosDC.SIGEPAC.DAL
 
         public static List<Cliente> ObtenerTodos()
         {
-            string consulta = @"SELECT TOP 500 c.Id, c.PrimerNombre, c.SegundoNombre, c.PrimerApellido, c.SegundoApellido, 
-            c.Dui, c.Direccion, c.Telefono, c.Correo FROM Cliente c";
+            string consulta = @"SELECT TOP (500) Id, CONCAT(PrimerNombre, ' ', SegundoNombre) Nombres, 
+            CONCAT(PrimerApellido, ' ', SegundoApellido) Apellidos, Dui, Direccion, Telefono, Correo FROM Cliente";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
             SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
@@ -68,14 +68,12 @@ namespace AlimentosDC.SIGEPAC.DAL
             {
                 Cliente cliente = new Cliente();
                 cliente.Id = reader.GetInt32(0);
-                cliente.PrimerNombre = reader.GetString(1);
-                cliente.SegundoNombre = reader.GetString(2);
-                cliente.PrimerApellido = reader.GetString(3);
-                cliente.SegundoApellido = reader.GetString(4);
-                cliente.DUI = reader.GetString(5);
-                cliente.Direccion = reader.GetString(6);
-                cliente.Telefono = reader.GetString(7);
-                cliente.Correo = reader.GetString(8);
+                cliente.Nombres = reader.GetString(1);
+                cliente.Apellidos = reader.GetString(2);
+                cliente.DUI = reader.GetString(3);
+                cliente.Direccion = reader.GetString(4);
+                cliente.Telefono = reader.GetString(5);
+                cliente.Correo = reader.GetString(6);
                 listaClientes.Add(cliente);
             }
             return listaClientes;

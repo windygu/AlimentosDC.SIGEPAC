@@ -30,10 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPedidos));
             this.dgvListadoPedidos = new System.Windows.Forms.DataGridView();
-            this.btnNuevoPedido = new System.Windows.Forms.Button();
-            this.btnEditarPedido = new System.Windows.Forms.Button();
-            this.btnEliminarPedido = new System.Windows.Forms.Button();
-            this.btnVerDetallePedido = new System.Windows.Forms.Button();
             this.dgvId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvDui = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -42,6 +38,10 @@
             this.dgvFechaEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvDireccionEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnNuevoPedido = new System.Windows.Forms.Button();
+            this.btnEditarPedido = new System.Windows.Forms.Button();
+            this.btnEliminarPedido = new System.Windows.Forms.Button();
+            this.btnVerDetallePedido = new System.Windows.Forms.Button();
             this.txtBuscadorPedidos = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoPedidos)).BeginInit();
             this.SuspendLayout();
@@ -49,6 +49,9 @@
             // dgvListadoPedidos
             // 
             this.dgvListadoPedidos.AllowUserToAddRows = false;
+            this.dgvListadoPedidos.AllowUserToDeleteRows = false;
+            this.dgvListadoPedidos.AllowUserToResizeRows = false;
+            this.dgvListadoPedidos.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvListadoPedidos.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvListadoPedidos.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dgvId,
@@ -67,52 +70,6 @@
             this.dgvListadoPedidos.Size = new System.Drawing.Size(1050, 461);
             this.dgvListadoPedidos.TabIndex = 0;
             this.dgvListadoPedidos.SelectionChanged += new System.EventHandler(this.dgvListadoPedidos_SelectionChanged);
-            // 
-            // btnNuevoPedido
-            // 
-            this.btnNuevoPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoPedido.Location = new System.Drawing.Point(373, 0);
-            this.btnNuevoPedido.Name = "btnNuevoPedido";
-            this.btnNuevoPedido.Size = new System.Drawing.Size(100, 30);
-            this.btnNuevoPedido.TabIndex = 3;
-            this.btnNuevoPedido.Text = "Nuevo";
-            this.btnNuevoPedido.UseVisualStyleBackColor = true;
-            this.btnNuevoPedido.Click += new System.EventHandler(this.btnNuevoPedido_Click);
-            // 
-            // btnEditarPedido
-            // 
-            this.btnEditarPedido.Enabled = false;
-            this.btnEditarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarPedido.Location = new System.Drawing.Point(620, 0);
-            this.btnEditarPedido.Name = "btnEditarPedido";
-            this.btnEditarPedido.Size = new System.Drawing.Size(100, 30);
-            this.btnEditarPedido.TabIndex = 4;
-            this.btnEditarPedido.Text = "Editar";
-            this.btnEditarPedido.UseVisualStyleBackColor = true;
-            this.btnEditarPedido.Click += new System.EventHandler(this.btnEditarPedido_Click);
-            // 
-            // btnEliminarPedido
-            // 
-            this.btnEliminarPedido.Enabled = false;
-            this.btnEliminarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarPedido.Location = new System.Drawing.Point(746, 0);
-            this.btnEliminarPedido.Name = "btnEliminarPedido";
-            this.btnEliminarPedido.Size = new System.Drawing.Size(100, 30);
-            this.btnEliminarPedido.TabIndex = 5;
-            this.btnEliminarPedido.Text = "Eliminar";
-            this.btnEliminarPedido.UseVisualStyleBackColor = true;
-            // 
-            // btnVerDetallePedido
-            // 
-            this.btnVerDetallePedido.Enabled = false;
-            this.btnVerDetallePedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerDetallePedido.Location = new System.Drawing.Point(495, 0);
-            this.btnVerDetallePedido.Name = "btnVerDetallePedido";
-            this.btnVerDetallePedido.Size = new System.Drawing.Size(100, 30);
-            this.btnVerDetallePedido.TabIndex = 6;
-            this.btnVerDetallePedido.Text = "Ver detalle";
-            this.btnVerDetallePedido.UseVisualStyleBackColor = true;
-            this.btnVerDetallePedido.Click += new System.EventHandler(this.btnVerDetallePedido_Click);
             // 
             // dgvId
             // 
@@ -168,6 +125,52 @@
             this.dgvEstado.Name = "dgvEstado";
             this.dgvEstado.ReadOnly = true;
             this.dgvEstado.Width = 161;
+            // 
+            // btnNuevoPedido
+            // 
+            this.btnNuevoPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevoPedido.Location = new System.Drawing.Point(373, 0);
+            this.btnNuevoPedido.Name = "btnNuevoPedido";
+            this.btnNuevoPedido.Size = new System.Drawing.Size(100, 30);
+            this.btnNuevoPedido.TabIndex = 3;
+            this.btnNuevoPedido.Text = "Nuevo";
+            this.btnNuevoPedido.UseVisualStyleBackColor = true;
+            this.btnNuevoPedido.Click += new System.EventHandler(this.btnNuevoPedido_Click);
+            // 
+            // btnEditarPedido
+            // 
+            this.btnEditarPedido.Enabled = false;
+            this.btnEditarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditarPedido.Location = new System.Drawing.Point(620, 0);
+            this.btnEditarPedido.Name = "btnEditarPedido";
+            this.btnEditarPedido.Size = new System.Drawing.Size(100, 30);
+            this.btnEditarPedido.TabIndex = 4;
+            this.btnEditarPedido.Text = "Editar";
+            this.btnEditarPedido.UseVisualStyleBackColor = true;
+            this.btnEditarPedido.Click += new System.EventHandler(this.btnEditarPedido_Click);
+            // 
+            // btnEliminarPedido
+            // 
+            this.btnEliminarPedido.Enabled = false;
+            this.btnEliminarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarPedido.Location = new System.Drawing.Point(746, 0);
+            this.btnEliminarPedido.Name = "btnEliminarPedido";
+            this.btnEliminarPedido.Size = new System.Drawing.Size(100, 30);
+            this.btnEliminarPedido.TabIndex = 5;
+            this.btnEliminarPedido.Text = "Eliminar";
+            this.btnEliminarPedido.UseVisualStyleBackColor = true;
+            // 
+            // btnVerDetallePedido
+            // 
+            this.btnVerDetallePedido.Enabled = false;
+            this.btnVerDetallePedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerDetallePedido.Location = new System.Drawing.Point(495, 0);
+            this.btnVerDetallePedido.Name = "btnVerDetallePedido";
+            this.btnVerDetallePedido.Size = new System.Drawing.Size(100, 30);
+            this.btnVerDetallePedido.TabIndex = 6;
+            this.btnVerDetallePedido.Text = "Ver detalle";
+            this.btnVerDetallePedido.UseVisualStyleBackColor = true;
+            this.btnVerDetallePedido.Click += new System.EventHandler(this.btnVerDetallePedido_Click);
             // 
             // txtBuscadorPedidos
             // 
