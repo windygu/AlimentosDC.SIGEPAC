@@ -10,6 +10,8 @@ namespace AlimentosDC.SIGEPAC.EN
     {
         public int Id { get; set; }
         public int IdCliente { get; set; }
+        public string Cliente { get; set; }
+        public string Dui { get; set; }
         public int NumeroPedido { get; set; }
         public DateTime FechaCreacion { get; set; }
         public DateTime FechaEntrega { get; set; }

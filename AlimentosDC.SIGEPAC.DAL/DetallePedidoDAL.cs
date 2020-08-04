@@ -49,23 +49,25 @@ namespace AlimentosDC.SIGEPAC.DAL
             return ComunDB.EjecutarComando(comando);
         }
 
-        public static List<DetallePedido> ObtenerTodos()
+        public static List<DetallePedido> ObtenerTodos(int pIdPedido)
         {
-            string consulta = @"SELECT TOP 500 dp.Id, dp.IdPedido, dp.IdProducto, dp.Cantidad, dp.PrecioUnitario, dp.SubTotal, 
-            dp.Estado FROM DetallePedido dp";
+            string consulta = @"select top(500) dp.Id, pr.Nombre Producto, pr.Descripcion, dp.Cantidad, dp.PrecioUnitario, 
+            dp.SubTotal, dp.Estado from Producto pr join DetallePedido dp on pr.Id = dp.IdProducto 
+            where dp.IdPedido = @IdPedido";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
+            comando.Parameters.AddWithValue("@IdPedido", pIdPedido);
             SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
             List<DetallePedido> listaDetallePedido = new List<DetallePedido>();
             while (reader.Read())
             {
                 DetallePedido detallePedido = new DetallePedido();
                 detallePedido.Id = reader.GetInt32(0);
-                detallePedido.IdPedido = reader.GetInt32(1);
-                detallePedido.IdProducto = reader.GetInt32(2);
-                detallePedido.Cantidad = reader.GetFieldValue<ushort>(3);
-                detallePedido.PrecioUnitario = reader.GetFloat(4);
-                detallePedido.SubTotal = reader.GetFloat(5);
+                detallePedido.Producto = reader.GetString(1);
+                detallePedido.Descripcion = reader.GetString(2);
+                detallePedido.Cantidad = (ushort) reader.GetInt16(3);
+                detallePedido.PrecioUnitario = (float) reader.GetDecimal(4);
+                detallePedido.SubTotal = (float) reader.GetDecimal(5);
                 detallePedido.Estado = reader.GetString(6);
                 listaDetallePedido.Add(detallePedido);
             }
@@ -86,7 +88,7 @@ namespace AlimentosDC.SIGEPAC.DAL
                 detallePedido.Id = reader.GetInt32(0);
                 detallePedido.IdPedido = reader.GetInt32(1);
                 detallePedido.IdProducto = reader.GetInt32(2);
-                detallePedido.Cantidad = reader.GetFieldValue<ushort>(3);
+                detallePedido.Cantidad = (ushort) reader.GetInt16(3);
                 detallePedido.PrecioUnitario = reader.GetFloat(4);
                 detallePedido.SubTotal = reader.GetFloat(5);
                 detallePedido.Estado = reader.GetString(6);

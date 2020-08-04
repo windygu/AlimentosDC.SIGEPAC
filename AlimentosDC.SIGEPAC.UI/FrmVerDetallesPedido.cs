@@ -9,14 +9,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
 using DevComponents.DotNetBar;
+using AlimentosDC.SIGEPAC.EN;
+using AlimentosDC.SIGEPAC.BL;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
     public partial class FrmVerDetallesPedido : MetroForm
     {
-        public FrmVerDetallesPedido()
+        List<DetallePedido> listadoDetallesPedido;
+        int idPedido, numeroPedido;
+        public FrmVerDetallesPedido(int idPedido, int numeroPedido)
         {
             InitializeComponent();
+            this.idPedido = idPedido;
+            this.numeroPedido = numeroPedido;
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -36,6 +42,30 @@ namespace AlimentosDC.SIGEPAC.UI
             FrmDetallePedido mantenimientoDetallesPedidos = new FrmDetallePedido();
             mantenimientoDetallesPedidos.Owner = this;
             mantenimientoDetallesPedidos.ShowDialog();
+        }
+
+        private void FrmVerDetallesPedido_Load(object sender, EventArgs e)
+        {
+            CargarDetalles();
+            lblIdPedido.Text = idPedido.ToString();
+            lblNumeroPedido.Text = numeroPedido.ToString();
+        }
+
+        void CargarDetalles()
+        {
+            listadoDetallesPedido = DetallePedidoBL.ObtenerTodos(idPedido);
+            dgvListadoDetallesPedido.Rows.Clear();
+            for (int i = 0; i < listadoDetallesPedido.Count; i++)
+            {
+                dgvListadoDetallesPedido.Rows.Add();
+                dgvListadoDetallesPedido.Rows[i].Cells[0].Value = listadoDetallesPedido[i].Id;
+                dgvListadoDetallesPedido.Rows[i].Cells[1].Value = listadoDetallesPedido[i].Producto;
+                dgvListadoDetallesPedido.Rows[i].Cells[2].Value = listadoDetallesPedido[i].Descripcion;
+                dgvListadoDetallesPedido.Rows[i].Cells[3].Value = listadoDetallesPedido[i].Cantidad;
+                dgvListadoDetallesPedido.Rows[i].Cells[4].Value = listadoDetallesPedido[i].PrecioUnitario;
+                dgvListadoDetallesPedido.Rows[i].Cells[5].Value = listadoDetallesPedido[i].SubTotal;
+                dgvListadoDetallesPedido.Rows[i].Cells[6].Value = listadoDetallesPedido[i].Estado;
+            }
         }
     }
 }

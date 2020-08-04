@@ -30,7 +30,7 @@ namespace AlimentosDC.SIGEPAC.BL
             return PedidoDAL.ObtenerTodos();
         }
 
-        public static Pedido Eliminar(int pId)
+        public static Pedido BuscarPorId(int pId)
         {
             return PedidoDAL.BuscarPorId(pId);
         }

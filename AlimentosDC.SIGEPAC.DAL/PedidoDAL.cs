@@ -52,8 +52,9 @@ namespace AlimentosDC.SIGEPAC.DAL
 
         public static List<Pedido> ObtenerTodos()
         {
-            string consulta = @"SELECT TOP 500 p.Id, p.IdCliente, p.NumeroPedido, p.FechaCreacion, p.FechaEntrega, p.DireccionEntrega, 
-            p.Estado FROM Pedido p";
+            string consulta = @"select top(500) p.Id, c.PrimerNombre+' '+c.PrimerApellido 
+            Cliente, c.Dui, p.NumeroPedido, p.FechaCreacion, p.FechaEntrega, p.DireccionEntrega, p.Estado 
+            from Cliente c join Pedido p on c.Id = p.IdCliente";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
             SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
@@ -62,12 +63,13 @@ namespace AlimentosDC.SIGEPAC.DAL
             {
                 Pedido pedido = new Pedido();
                 pedido.Id = reader.GetInt32(0);
-                pedido.IdCliente = reader.GetInt32(1);
-                pedido.NumeroPedido = reader.GetInt32(2);
-                pedido.FechaCreacion = reader.GetDateTime(3);
-                pedido.FechaEntrega = reader.GetDateTime(4);
-                pedido.DireccionEntrega = reader.GetString(5);
-                pedido.Estado = reader.GetString(6);
+                pedido.Cliente = reader.GetString(1);
+                pedido.Dui = reader.GetString(2);
+                pedido.NumeroPedido = reader.GetInt32(3);
+                pedido.FechaCreacion = reader.GetDateTime(4);
+                pedido.FechaEntrega = reader.GetDateTime(5);
+                pedido.DireccionEntrega = reader.GetString(6);
+                pedido.Estado = reader.GetString(7);
                 listaPedidos.Add(pedido);
             }
             return listaPedidos;
@@ -75,8 +77,9 @@ namespace AlimentosDC.SIGEPAC.DAL
 
         public static Pedido BuscarPorId(int pId)
         {
-            string consulta = @"SELECT p.Id, p.IdCliente, p.NumeroPedido, p.FechaCreacion, p.FechaEntrega, p.DireccionEntrega, 
-            p.Estado FROM Pedido p WHERE Id = @Id";
+            string consulta = @"select p.Id, CONCAT(c.PrimerNombre, ' ', c.PrimerApellido) Cliente, 
+            c.Dui, p.NumeroPedido, p.FechaCreacion, p.FechaEntrega, p.DireccionEntrega, p.Estado 
+            from Cliente c join Pedido p on c.Id = p.IdCliente where p.Id = @Id";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
             comando.Parameters.AddWithValue("@Id", pId);
@@ -85,12 +88,13 @@ namespace AlimentosDC.SIGEPAC.DAL
             while (reader.Read())
             {
                 pedido.Id = reader.GetInt32(0);
-                pedido.IdCliente = reader.GetInt32(1);
-                pedido.NumeroPedido = reader.GetInt32(2);
-                pedido.FechaCreacion = reader.GetDateTime(3);
-                pedido.FechaEntrega = reader.GetDateTime(4);
-                pedido.DireccionEntrega = reader.GetString(5);
-                pedido.Estado = reader.GetString(6);
+                pedido.Cliente = reader.GetString(1);
+                pedido.Dui = reader.GetString(2);
+                pedido.NumeroPedido = reader.GetInt32(3);
+                pedido.FechaCreacion = reader.GetDateTime(4);
+                pedido.FechaEntrega = reader.GetDateTime(5);
+                pedido.DireccionEntrega = reader.GetString(6);
+                pedido.Estado = reader.GetString(7);
             }
             return pedido;
         }

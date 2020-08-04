@@ -25,12 +25,12 @@ namespace AlimentosDC.SIGEPAC.BL
             return DetallePedidoDAL.Eliminar(pDetallePedido);
         }
 
-        public static List<DetallePedido> ObtenerTodos()
+        public static List<DetallePedido> ObtenerTodos(int pIdPedido)
         {
-            return DetallePedidoDAL.ObtenerTodos();
+            return DetallePedidoDAL.ObtenerTodos(pIdPedido);
         }
 
-        public static DetallePedido Eliminar(int pId)
+        public static DetallePedido BuscarPorId(int pId)
         {
             return DetallePedidoDAL.BuscarPorId(pId);
         }
