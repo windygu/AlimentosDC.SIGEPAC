@@ -233,6 +233,7 @@
             // 
             // btnEditarDetallePedido
             // 
+            this.btnEditarDetallePedido.Enabled = false;
             this.btnEditarDetallePedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditarDetallePedido.Location = new System.Drawing.Point(860, 311);
             this.btnEditarDetallePedido.Name = "btnEditarDetallePedido";
@@ -244,6 +245,7 @@
             // 
             // btnEliminarDetallePedido
             // 
+            this.btnEliminarDetallePedido.Enabled = false;
             this.btnEliminarDetallePedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminarDetallePedido.Location = new System.Drawing.Point(860, 363);
             this.btnEliminarDetallePedido.Name = "btnEliminarDetallePedido";
@@ -251,6 +253,7 @@
             this.btnEliminarDetallePedido.TabIndex = 20;
             this.btnEliminarDetallePedido.Text = "Eliminar";
             this.btnEliminarDetallePedido.UseVisualStyleBackColor = true;
+            this.btnEliminarDetallePedido.Click += new System.EventHandler(this.btnEliminarDetallePedido_Click);
             // 
             // btnGuardarPedido
             // 
@@ -276,13 +279,13 @@
             // 
             // lblTitulo
             // 
-            this.lblTitulo.AutoSize = true;
             this.lblTitulo.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTitulo.Location = new System.Drawing.Point(394, 9);
+            this.lblTitulo.Location = new System.Drawing.Point(350, 9);
             this.lblTitulo.Name = "lblTitulo";
             this.lblTitulo.Size = new System.Drawing.Size(232, 37);
             this.lblTitulo.TabIndex = 26;
             this.lblTitulo.Text = "Registrar pedido";
+            this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
             // 
             // btnNuevoPedido
             // 
@@ -314,6 +317,7 @@
             this.dgvListadoDetallesPedido.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListadoDetallesPedido.Size = new System.Drawing.Size(813, 219);
             this.dgvListadoDetallesPedido.TabIndex = 29;
+            this.dgvListadoDetallesPedido.SelectionChanged += new System.EventHandler(this.dgvListadoDetallesPedido_SelectionChanged);
             // 
             // dgvId
             // 

@@ -18,22 +18,43 @@ namespace AlimentosDC.SIGEPAC.UI
     {
         List<Producto> listadoProductos;
         FrmPedido objeto;
+        int? indiceDetallePedidoAEditar;
+        List<DetallePedido> listadoDetallesPedido;
         public FrmDetallePedido(ref FrmPedido objeto)
         {
             InitializeComponent();
+            listadoProductos = ProductoBL.ObtenerTodos();
+            cmbProducto.Items.AddRange(listadoProductos.ToArray());
             this.objeto = objeto;
+            
         }
 
         public FrmDetallePedido()
         {
+            listadoProductos = ProductoBL.ObtenerTodos();
+            cmbProducto.Items.AddRange(listadoProductos.ToArray());
             InitializeComponent();
         }
 
-        private void btnBuscarProducto_Click(object sender, EventArgs e)
+        public FrmDetallePedido(ref FrmPedido objeto, int indiceDetallePedidoAEditar, ref List<DetallePedido> listadoDetalles)
         {
-            FrmProductos listadoProductos = new FrmProductos();
-            listadoProductos.Owner = this;
-            listadoProductos.ShowDialog();
+            InitializeComponent();
+            listadoProductos = ProductoBL.ObtenerTodos();
+            cmbProducto.Items.AddRange(listadoProductos.ToArray());
+            this.objeto = objeto;
+            this.indiceDetallePedidoAEditar = indiceDetallePedidoAEditar;
+            listadoDetallesPedido = listadoDetalles;
+            CargarDatosAlFormulario();
+        }
+
+        void CargarDatosAlFormulario()
+        {
+            DetallePedido detallePedido = listadoDetallesPedido[(int)indiceDetallePedidoAEditar];
+            List<Producto> listadoProductos = ProductoBL.ObtenerTodos();
+            Producto producto = ProductoBL.BuscarPorId(detallePedido.IdProducto);
+            int indiceDelProducto = listadoProductos.FindIndex(x => x.Id == producto.Id);
+            cmbProducto.SelectedIndex = indiceDelProducto;
+            txtCantidad.Text = detallePedido.Cantidad.ToString();
         }
 
         private void btnCerrarDetallePedido_Click(object sender, EventArgs e)
@@ -74,8 +95,7 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void FrmDetallePedido_Load(object sender, EventArgs e)
         {
-            listadoProductos = ProductoBL.ObtenerTodos();
-            cmbProducto.Items.AddRange(listadoProductos.ToArray());
+            
         }
 
         private void cmbProducto_SelectionChangeCommitted(object sender, EventArgs e)
@@ -83,7 +103,7 @@ namespace AlimentosDC.SIGEPAC.UI
             int id = int.Parse((cmbProducto.SelectedItem as Producto).Id.ToString());
             lblPrecioUnitario.Text = (ProductoBL.BuscarPorId(id)).Precio.ToString();
             lblDescripcion.Text = (ProductoBL.BuscarPorId(id)).Descripcion;
-            lblSubTotal.Text = "$ 0.00";
+            lblSubTotal.Text = "0.00";
             lblExistencias.Text = (ProductoBL.BuscarPorId(id)).Stock.ToString();
             txtCantidad.Text = "";
             txtCantidad.Focus();
@@ -98,8 +118,19 @@ namespace AlimentosDC.SIGEPAC.UI
             detallePedido.Cantidad = ushort.Parse(txtCantidad.Text);
             detallePedido.PrecioUnitario = (cmbProducto.SelectedItem as Producto).Precio;
             detallePedido.SubTotal = float.Parse(lblSubTotal.Text);
-            objeto.listadoDetallesPedido.Add(detallePedido);
-            objeto.CargarListadoDetalles();
+            if (objeto.listadoDetallesPedido.Exists(x =>x.IdProducto==detallePedido.IdProducto))
+            {
+                MessageBoxEx.Show("Ya agregó este producto a la lista.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                    MessageBoxDefaultButton.Button1);
+                txtCantidad.Text = "";
+                txtCantidad.Focus();
+            }
+            else
+            {
+                objeto.listadoDetallesPedido.Add(detallePedido);
+                objeto.CargarListadoDetalles();
+            }
+            
         }
     }
 }

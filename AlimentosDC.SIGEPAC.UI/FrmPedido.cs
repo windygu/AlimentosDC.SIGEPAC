@@ -79,7 +79,8 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void btnEditarDetallePedido_Click(object sender, EventArgs e)
         {
-            FrmDetallePedido mantenimientoDetallesPedido = new FrmDetallePedido();
+            int indiceDetallePedidoAEditar = dgvListadoDetallesPedido.SelectedRows[0].Index;
+            FrmDetallePedido mantenimientoDetallesPedido = new FrmDetallePedido(ref objeto, indiceDetallePedidoAEditar, ref listadoDetallesPedido);
             mantenimientoDetallesPedido.Owner = this;
             mantenimientoDetallesPedido.ShowDialog();
         }
@@ -165,6 +166,37 @@ namespace AlimentosDC.SIGEPAC.UI
         private void btnNuevoPedido_Click(object sender, EventArgs e)
         {
             Limpiar();
+        }
+
+        private void btnEliminarDetallePedido_Click(object sender, EventArgs e)
+        {
+            DialogResult resultadoDelCuadro = MessageBoxEx.Show("¿Desea eliminar el detalle del pedido?", "Aviso", 
+            MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+            if (resultadoDelCuadro==DialogResult.Yes)
+            {
+                int indiceFilaAEliminar = dgvListadoDetallesPedido.SelectedRows[0].Index;
+                dgvListadoDetallesPedido.Rows.RemoveAt(indiceFilaAEliminar);
+                listadoDetallesPedido.RemoveAt(indiceFilaAEliminar);
+                for (int i = 0; i < dgvListadoDetallesPedido.RowCount; i++)
+                {
+                    dgvListadoDetallesPedido.Rows[i].Cells[0].Value = i + 1;
+                    listadoDetallesPedido[i].Id = i + 1;
+                }
+            }
+        }
+
+        private void dgvListadoDetallesPedido_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvListadoDetallesPedido.SelectedRows.Count > 0)
+            {
+                btnEditarDetallePedido.Enabled = true;
+                btnEliminarDetallePedido.Enabled = true;
+            }
+            else
+            {
+                btnEditarDetallePedido.Enabled = false;
+                btnEliminarDetallePedido.Enabled = false;
+            }
         }
     }
 }
