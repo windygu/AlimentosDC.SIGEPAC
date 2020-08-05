@@ -107,6 +107,7 @@
             // cmbListadoClientes
             // 
             this.cmbListadoClientes.DisplayMember = "Id";
+            this.cmbListadoClientes.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbListadoClientes.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbListadoClientes.FormattingEnabled = true;
             this.cmbListadoClientes.Location = new System.Drawing.Point(66, 25);
@@ -195,6 +196,7 @@
             // 
             // cmbEstadoPedido
             // 
+            this.cmbEstadoPedido.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbEstadoPedido.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEstadoPedido.FormattingEnabled = true;
             this.cmbEstadoPedido.Items.AddRange(new object[] {
@@ -259,6 +261,7 @@
             this.btnGuardarPedido.TabIndex = 25;
             this.btnGuardarPedido.Text = "Guardar";
             this.btnGuardarPedido.UseVisualStyleBackColor = true;
+            this.btnGuardarPedido.Click += new System.EventHandler(this.btnGuardarPedido_Click);
             // 
             // btnCerrar
             // 
@@ -306,6 +309,8 @@
             this.dgvEstado});
             this.dgvListadoDetallesPedido.Location = new System.Drawing.Point(16, 225);
             this.dgvListadoDetallesPedido.Name = "dgvListadoDetallesPedido";
+            this.dgvListadoDetallesPedido.ReadOnly = true;
+            this.dgvListadoDetallesPedido.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListadoDetallesPedido.Size = new System.Drawing.Size(813, 219);
             this.dgvListadoDetallesPedido.TabIndex = 29;
             // 
@@ -313,39 +318,46 @@
             // 
             this.dgvId.HeaderText = "ID";
             this.dgvId.Name = "dgvId";
+            this.dgvId.ReadOnly = true;
             this.dgvId.Width = 50;
             // 
             // dgvProducto
             // 
             this.dgvProducto.HeaderText = "Producto";
             this.dgvProducto.Name = "dgvProducto";
+            this.dgvProducto.ReadOnly = true;
             this.dgvProducto.Width = 140;
             // 
             // dgvDescripcion
             // 
             this.dgvDescripcion.HeaderText = "Descripción";
             this.dgvDescripcion.Name = "dgvDescripcion";
+            this.dgvDescripcion.ReadOnly = true;
             this.dgvDescripcion.Width = 160;
             // 
             // dgvCantidad
             // 
             this.dgvCantidad.HeaderText = "Cantidad";
             this.dgvCantidad.Name = "dgvCantidad";
+            this.dgvCantidad.ReadOnly = true;
             // 
             // dgvPrecioUnitario
             // 
             this.dgvPrecioUnitario.HeaderText = "Precio Unitario";
             this.dgvPrecioUnitario.Name = "dgvPrecioUnitario";
+            this.dgvPrecioUnitario.ReadOnly = true;
             // 
             // dgvSubTotal
             // 
             this.dgvSubTotal.HeaderText = "Sub Total";
             this.dgvSubTotal.Name = "dgvSubTotal";
+            this.dgvSubTotal.ReadOnly = true;
             // 
             // dgvEstado
             // 
             this.dgvEstado.HeaderText = "Estado";
             this.dgvEstado.Name = "dgvEstado";
+            this.dgvEstado.ReadOnly = true;
             this.dgvEstado.Width = 120;
             // 
             // lblNumeroPedido

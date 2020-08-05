@@ -9,11 +9,20 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DevComponents.DotNetBar.Metro;
 using DevComponents.DotNetBar;
+using AlimentosDC.SIGEPAC.BL;
+using AlimentosDC.SIGEPAC.EN;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
     public partial class FrmDetallePedido : MetroForm
     {
+        List<Producto> listadoProductos;
+        FrmPedido objeto;
+        public FrmDetallePedido(ref FrmPedido objeto)
+        {
+            InitializeComponent();
+            this.objeto = objeto;
+        }
 
         public FrmDetallePedido()
         {
@@ -34,19 +43,52 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void txtCantidad_TextChanged(object sender, EventArgs e)
         {
-            if (txtCantidad.Text.Length>0 && txtPrecioUnitario.Text.Length>0)
+            if (txtCantidad.Text.Length>0 && lblPrecioUnitario.Text.Length>0)
             {
-                lblSubTotal.Text = (int.Parse(txtPrecioUnitario.Text) + int.Parse(txtCantidad.Text)).ToString();
+                lblSubTotal.Text = (float.Parse(lblPrecioUnitario.Text) * float.Parse(txtCantidad.Text)).ToString();
+            }
+            else if (string.IsNullOrEmpty(txtCantidad.Text))
+            {
+                lblSubTotal.Text = "$ 0.00";
             }
         }
 
-        private void txtCantidad_KeyDown(object sender, KeyEventArgs e)
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
         {
-            if (e.KeyData >= Keys.D0 && e.KeyData <= Keys.D9)
+            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char) Keys.Back)
             {
                 e.Handled = false;
             }
             else e.Handled = true;
+        }
+
+        private void FrmDetallePedido_Load(object sender, EventArgs e)
+        {
+            listadoProductos = ProductoBL.ObtenerTodos();
+            cmbProducto.Items.AddRange(listadoProductos.ToArray());
+        }
+
+        private void cmbProducto_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            int id = int.Parse((cmbProducto.SelectedItem as Producto).Id.ToString());
+            lblPrecioUnitario.Text = (ProductoBL.BuscarPorId(id)).Precio.ToString();
+            lblDescripcion.Text = (ProductoBL.BuscarPorId(id)).Descripcion;
+            lblSubTotal.Text = "$ 0.00";
+            txtCantidad.Text = "";
+            txtCantidad.Focus();
+        }
+
+        private void btnAgregarDetallePedido_Click(object sender, EventArgs e)
+        {
+            DetallePedido detallePedido = new DetallePedido();
+            detallePedido.IdProducto = (cmbProducto.SelectedItem as Producto).Id;
+            detallePedido.Producto = (cmbProducto.SelectedItem as Producto).Nombre;
+            detallePedido.Descripcion = (cmbProducto.SelectedItem as Producto).Descripcion;
+            detallePedido.Cantidad = ushort.Parse(txtCantidad.Text);
+            detallePedido.PrecioUnitario = (cmbProducto.SelectedItem as Producto).Precio;
+            detallePedido.SubTotal = float.Parse(lblSubTotal.Text);
+            objeto.listadoDetallesPedido.Add(detallePedido);
+            objeto.CargarListadoDetalles();
         }
     }
 }

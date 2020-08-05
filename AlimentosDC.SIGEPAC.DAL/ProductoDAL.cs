@@ -49,7 +49,8 @@ namespace AlimentosDC.SIGEPAC.DAL
 
         public static List<Producto> ObtenerTodos()
         {
-            string consulta = @"SELECT TOP 500 pr.Id, pr.IdMarca, pr.Nombre, pr.Descripcion, pr.Precio, pr.Stock FROM Producto pr";
+            string consulta = @"SELECT TOP (500) pr.Id, pr.Nombre, pr.Descripcion, m.Nombre Marca, pr.Precio, 
+            pr.Stock FROM Producto pr JOIN Marca m ON pr.IdMarca = m.Id";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
             SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
@@ -58,10 +59,10 @@ namespace AlimentosDC.SIGEPAC.DAL
             {
                 Producto producto = new Producto();
                 producto.Id = reader.GetInt32(0);
-                producto.IdMarca = reader.GetInt32(1);
-                producto.Nombre = reader.GetString(2);
-                producto.Descripcion = reader.GetString(3);
-                producto.Precio = reader.GetFloat(4);
+                producto.Nombre = reader.GetString(1);
+                producto.Descripcion = reader.GetString(2);
+                producto.Marca = reader.GetString(3);
+                producto.Precio = (float) reader.GetDecimal(4);
                 producto.Stock = reader.GetInt32(5);
                 listaProductos.Add(producto);
             }
@@ -82,7 +83,7 @@ namespace AlimentosDC.SIGEPAC.DAL
                 producto.IdMarca = reader.GetInt32(1);
                 producto.Nombre = reader.GetString(2);
                 producto.Descripcion = reader.GetString(3);
-                producto.Precio = reader.GetFloat(4);
+                producto.Precio = (float) reader.GetDecimal(4);
                 producto.Stock = reader.GetInt32(5);
             }
             return producto;

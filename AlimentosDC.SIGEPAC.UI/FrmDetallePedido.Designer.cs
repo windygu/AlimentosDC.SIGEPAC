@@ -30,7 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDetallePedido));
             this.label12 = new System.Windows.Forms.Label();
-            this.txtPrecioUnitario = new System.Windows.Forms.TextBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtCantidad = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -41,7 +40,8 @@
             this.btnNuevoDetallePedido = new System.Windows.Forms.Button();
             this.cmbProducto = new System.Windows.Forms.ComboBox();
             this.lblSubTotal = new System.Windows.Forms.Label();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.lblPrecioUnitario = new System.Windows.Forms.Label();
+            this.lblDescripcion = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label12
@@ -53,16 +53,6 @@
             this.label12.Size = new System.Drawing.Size(64, 19);
             this.label12.TabIndex = 20;
             this.label12.Text = "SubTotal:";
-            // 
-            // txtPrecioUnitario
-            // 
-            this.txtPrecioUnitario.BackColor = System.Drawing.Color.White;
-            this.txtPrecioUnitario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrecioUnitario.Location = new System.Drawing.Point(267, 43);
-            this.txtPrecioUnitario.Name = "txtPrecioUnitario";
-            this.txtPrecioUnitario.ReadOnly = true;
-            this.txtPrecioUnitario.Size = new System.Drawing.Size(210, 25);
-            this.txtPrecioUnitario.TabIndex = 19;
             // 
             // label11
             // 
@@ -83,7 +73,7 @@
             this.txtCantidad.Size = new System.Drawing.Size(210, 25);
             this.txtCantidad.TabIndex = 17;
             this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
-            this.txtCantidad.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtCantidad_KeyDown);
+            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
             // 
             // label10
             // 
@@ -135,6 +125,7 @@
             this.btnAgregarDetallePedido.TabIndex = 23;
             this.btnAgregarDetallePedido.Text = "Agregar";
             this.btnAgregarDetallePedido.UseVisualStyleBackColor = true;
+            this.btnAgregarDetallePedido.Click += new System.EventHandler(this.btnAgregarDetallePedido_Click);
             // 
             // btnNuevoDetallePedido
             // 
@@ -148,12 +139,15 @@
             // 
             // cmbProducto
             // 
+            this.cmbProducto.DisplayMember = "Nombre";
+            this.cmbProducto.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbProducto.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbProducto.FormattingEnabled = true;
             this.cmbProducto.Location = new System.Drawing.Point(16, 43);
             this.cmbProducto.Name = "cmbProducto";
             this.cmbProducto.Size = new System.Drawing.Size(210, 25);
             this.cmbProducto.TabIndex = 25;
+            this.cmbProducto.SelectionChangeCommitted += new System.EventHandler(this.cmbProducto_SelectionChangeCommitted);
             // 
             // lblSubTotal
             // 
@@ -165,29 +159,38 @@
             this.lblSubTotal.TabIndex = 26;
             this.lblSubTotal.Text = "$ 0.00";
             // 
-            // textBox1
+            // lblPrecioUnitario
             // 
-            this.textBox1.BackColor = System.Drawing.Color.White;
-            this.textBox1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBox1.Location = new System.Drawing.Point(16, 107);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(210, 25);
-            this.textBox1.TabIndex = 27;
+            this.lblPrecioUnitario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblPrecioUnitario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrecioUnitario.Location = new System.Drawing.Point(265, 44);
+            this.lblPrecioUnitario.Name = "lblPrecioUnitario";
+            this.lblPrecioUnitario.Size = new System.Drawing.Size(210, 25);
+            this.lblPrecioUnitario.TabIndex = 28;
+            this.lblPrecioUnitario.Text = "0";
+            // 
+            // lblDescripcion
+            // 
+            this.lblDescripcion.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblDescripcion.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescripcion.Location = new System.Drawing.Point(16, 107);
+            this.lblDescripcion.Name = "lblDescripcion";
+            this.lblDescripcion.Size = new System.Drawing.Size(210, 25);
+            this.lblDescripcion.TabIndex = 29;
             // 
             // FrmDetallePedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(489, 271);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.lblDescripcion);
+            this.Controls.Add(this.lblPrecioUnitario);
             this.Controls.Add(this.lblSubTotal);
             this.Controls.Add(this.cmbProducto);
             this.Controls.Add(this.btnNuevoDetallePedido);
             this.Controls.Add(this.btnAgregarDetallePedido);
             this.Controls.Add(this.btnCerrarDetallePedido);
             this.Controls.Add(this.label12);
-            this.Controls.Add(this.txtPrecioUnitario);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txtCantidad);
             this.Controls.Add(this.label10);
@@ -199,6 +202,7 @@
             this.Name = "FrmDetallePedido";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mantenimiento Detalles Pedido";
+            this.Load += new System.EventHandler(this.FrmDetallePedido_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -206,7 +210,6 @@
 
         #endregion
         private System.Windows.Forms.Label label12;
-        private System.Windows.Forms.TextBox txtPrecioUnitario;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.Label label10;
@@ -217,6 +220,7 @@
         private System.Windows.Forms.Button btnNuevoDetallePedido;
         private System.Windows.Forms.ComboBox cmbProducto;
         private System.Windows.Forms.Label lblSubTotal;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Label lblPrecioUnitario;
+        private System.Windows.Forms.Label lblDescripcion;
     }
 }
