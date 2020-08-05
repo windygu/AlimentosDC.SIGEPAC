@@ -114,25 +114,57 @@ namespace AlimentosDC.SIGEPAC.UI
             lblDui.Text = (ClienteBL.BuscarPorId(id)).DUI;
         }
 
+        void Limpiar()
+        {
+            lblNumeroPedido.Text = PedidoBL.GenerarNumeroPedido();
+            dtpFechaCreacion.Value = DateTime.Now;
+            dtpFechaEntrega.Value = DateTime.Now;
+            cmbEstadoPedido.SelectedItem = null;
+            cmbListadoClientes.SelectedItem = null;
+            txtDireccionEntregaPedido.Text = "";
+            dgvListadoDetallesPedido.Rows.Clear();
+            listadoDetallesPedido.Clear();
+            dtpFechaCreacion.Focus();
+        }
+
         private void btnGuardarPedido_Click(object sender, EventArgs e)
         {
-            Pedido pedidoARegistrar = new Pedido();
-            pedidoARegistrar.IdCliente = (cmbListadoClientes.SelectedItem as Cliente).Id;
-            pedidoARegistrar.NumeroPedido = int.Parse(lblNumeroPedido.Text);
-            pedidoARegistrar.FechaCreacion = dtpFechaCreacion.Value;
-            pedidoARegistrar.FechaEntrega = dtpFechaEntrega.Value;
-            pedidoARegistrar.DireccionEntrega = txtDireccionEntregaPedido.Text;
-            pedidoARegistrar.Estado = cmbEstadoPedido.SelectedItem.ToString();
-
-            for (int i = 0; i < dgvListadoDetallesPedido.Rows.Count; i++)
+            int resultadoPedido = 0;
+            int resultadoDetallePedido = 0;
+            try
             {
-                DetallePedido detallePedidoARegistrar = new DetallePedido();
-                detallePedidoARegistrar.IdPedido = int.Parse(lblNumeroPedido.Text);
-                detallePedidoARegistrar.IdProducto = 
-                //Me quedè aqui 
-                //Continuar en hacer las inserciones de los detalles pedidos del pedido insertar
+                Pedido pedidoARegistrar = new Pedido();
+                pedidoARegistrar.IdCliente = (cmbListadoClientes.SelectedItem as Cliente).Id;
+                pedidoARegistrar.NumeroPedido = int.Parse(lblNumeroPedido.Text);
+                pedidoARegistrar.FechaCreacion = dtpFechaCreacion.Value;
+                pedidoARegistrar.FechaEntrega = dtpFechaEntrega.Value;
+                pedidoARegistrar.DireccionEntrega = txtDireccionEntregaPedido.Text;
+                pedidoARegistrar.Estado = cmbEstadoPedido.SelectedItem.ToString();
+                resultadoPedido += PedidoBL.Guardar(pedidoARegistrar);
+                for (int i = 0; i < dgvListadoDetallesPedido.Rows.Count; i++)
+                {
+                    DetallePedido detallePedidoARegistrar = new DetallePedido();
+                    detallePedidoARegistrar.IdPedido = (PedidoBL.BuscarPorNumeroPedido(int.Parse(lblNumeroPedido.Text))).Id;
+                    detallePedidoARegistrar.IdProducto = listadoDetallesPedido[i].IdProducto;
+                    detallePedidoARegistrar.Cantidad = ushort.Parse(dgvListadoDetallesPedido.Rows[i].Cells[3].Value.ToString());
+                    detallePedidoARegistrar.PrecioUnitario = float.Parse(dgvListadoDetallesPedido.Rows[i].Cells[4].Value.ToString());
+                    detallePedidoARegistrar.SubTotal = float.Parse(dgvListadoDetallesPedido.Rows[i].Cells[5].Value.ToString());
+                    detallePedidoARegistrar.Estado = dgvListadoDetallesPedido.Rows[i].Cells[6].Value.ToString();
+                    resultadoDetallePedido += DetallePedidoBL.Guardar(detallePedidoARegistrar);
+                }
+                MessageBoxEx.Show($"{resultadoPedido} pedido registrado.\n{resultadoDetallePedido} detalle(s) del pedido registrado(s).", 
+                    "Error", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                Limpiar();
             }
-            
+            catch (Exception exc)
+            {
+                MessageBoxEx.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnNuevoPedido_Click(object sender, EventArgs e)
+        {
+            Limpiar();
         }
     }
 }

@@ -46,10 +46,20 @@ namespace AlimentosDC.SIGEPAC.UI
             if (txtCantidad.Text.Length>0 && lblPrecioUnitario.Text.Length>0)
             {
                 lblSubTotal.Text = (float.Parse(lblPrecioUnitario.Text) * float.Parse(txtCantidad.Text)).ToString();
+                int stock = (cmbProducto.SelectedItem as Producto).Stock;
+                int stockMinimo = 10;
+                lblExistencias.Text = (stock-int.Parse(txtCantidad.Text)).ToString();
+                if ((stock-int.Parse(txtCantidad.Text))<stockMinimo)
+                {
+                    MessageBoxEx.Show("Las existencias mínimas de este producto deben ser 10 unidades.");
+                    txtCantidad.Text = "";
+                }
+                
             }
             else if (string.IsNullOrEmpty(txtCantidad.Text))
             {
                 lblSubTotal.Text = "$ 0.00";
+                lblExistencias.Text = (cmbProducto.SelectedItem as Producto).Stock.ToString();
             }
         }
 
@@ -74,6 +84,7 @@ namespace AlimentosDC.SIGEPAC.UI
             lblPrecioUnitario.Text = (ProductoBL.BuscarPorId(id)).Precio.ToString();
             lblDescripcion.Text = (ProductoBL.BuscarPorId(id)).Descripcion;
             lblSubTotal.Text = "$ 0.00";
+            lblExistencias.Text = (ProductoBL.BuscarPorId(id)).Stock.ToString();
             txtCantidad.Text = "";
             txtCantidad.Focus();
         }

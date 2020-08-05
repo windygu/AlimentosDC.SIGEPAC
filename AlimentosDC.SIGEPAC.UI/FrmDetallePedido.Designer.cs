@@ -42,13 +42,15 @@
             this.lblSubTotal = new System.Windows.Forms.Label();
             this.lblPrecioUnitario = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
+            this.lblExistencias = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label12
             // 
             this.label12.AutoSize = true;
             this.label12.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label12.Location = new System.Drawing.Point(12, 149);
+            this.label12.Location = new System.Drawing.Point(12, 221);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(64, 19);
             this.label12.TabIndex = 20;
@@ -68,7 +70,7 @@
             // 
             this.txtCantidad.BackColor = System.Drawing.Color.White;
             this.txtCantidad.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidad.Location = new System.Drawing.Point(267, 107);
+            this.txtCantidad.Location = new System.Drawing.Point(16, 173);
             this.txtCantidad.Name = "txtCantidad";
             this.txtCantidad.Size = new System.Drawing.Size(210, 25);
             this.txtCantidad.TabIndex = 17;
@@ -79,7 +81,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(263, 85);
+            this.label10.Location = new System.Drawing.Point(12, 151);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(67, 19);
             this.label10.TabIndex = 16;
@@ -108,7 +110,7 @@
             // btnCerrarDetallePedido
             // 
             this.btnCerrarDetallePedido.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrarDetallePedido.Location = new System.Drawing.Point(377, 226);
+            this.btnCerrarDetallePedido.Location = new System.Drawing.Point(375, 280);
             this.btnCerrarDetallePedido.Name = "btnCerrarDetallePedido";
             this.btnCerrarDetallePedido.Size = new System.Drawing.Size(100, 30);
             this.btnCerrarDetallePedido.TabIndex = 22;
@@ -119,7 +121,7 @@
             // btnAgregarDetallePedido
             // 
             this.btnAgregarDetallePedido.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarDetallePedido.Location = new System.Drawing.Point(265, 226);
+            this.btnAgregarDetallePedido.Location = new System.Drawing.Point(263, 280);
             this.btnAgregarDetallePedido.Name = "btnAgregarDetallePedido";
             this.btnAgregarDetallePedido.Size = new System.Drawing.Size(100, 30);
             this.btnAgregarDetallePedido.TabIndex = 23;
@@ -130,7 +132,7 @@
             // btnNuevoDetallePedido
             // 
             this.btnNuevoDetallePedido.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoDetallePedido.Location = new System.Drawing.Point(151, 226);
+            this.btnNuevoDetallePedido.Location = new System.Drawing.Point(149, 280);
             this.btnNuevoDetallePedido.Name = "btnNuevoDetallePedido";
             this.btnNuevoDetallePedido.Size = new System.Drawing.Size(100, 30);
             this.btnNuevoDetallePedido.TabIndex = 24;
@@ -153,7 +155,7 @@
             // 
             this.lblSubTotal.AutoSize = true;
             this.lblSubTotal.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubTotal.Location = new System.Drawing.Point(74, 148);
+            this.lblSubTotal.Location = new System.Drawing.Point(74, 220);
             this.lblSubTotal.Name = "lblSubTotal";
             this.lblSubTotal.Size = new System.Drawing.Size(54, 21);
             this.lblSubTotal.TabIndex = 26;
@@ -167,7 +169,6 @@
             this.lblPrecioUnitario.Name = "lblPrecioUnitario";
             this.lblPrecioUnitario.Size = new System.Drawing.Size(210, 25);
             this.lblPrecioUnitario.TabIndex = 28;
-            this.lblPrecioUnitario.Text = "0";
             // 
             // lblDescripcion
             // 
@@ -178,11 +179,32 @@
             this.lblDescripcion.Size = new System.Drawing.Size(210, 25);
             this.lblDescripcion.TabIndex = 29;
             // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(261, 85);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(76, 19);
+            this.label1.TabIndex = 30;
+            this.label1.Text = "Existencias:";
+            // 
+            // lblExistencias
+            // 
+            this.lblExistencias.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblExistencias.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblExistencias.Location = new System.Drawing.Point(263, 107);
+            this.lblExistencias.Name = "lblExistencias";
+            this.lblExistencias.Size = new System.Drawing.Size(210, 25);
+            this.lblExistencias.TabIndex = 31;
+            // 
             // FrmDetallePedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(489, 271);
+            this.ClientSize = new System.Drawing.Size(494, 326);
+            this.Controls.Add(this.lblExistencias);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblPrecioUnitario);
             this.Controls.Add(this.lblSubTotal);
@@ -222,5 +244,7 @@
         private System.Windows.Forms.Label lblSubTotal;
         private System.Windows.Forms.Label lblPrecioUnitario;
         private System.Windows.Forms.Label lblDescripcion;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label lblExistencias;
     }
 }

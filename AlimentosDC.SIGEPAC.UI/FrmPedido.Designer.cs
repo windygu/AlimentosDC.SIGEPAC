@@ -293,6 +293,7 @@
             this.btnNuevoPedido.TabIndex = 28;
             this.btnNuevoPedido.Text = "Nuevo";
             this.btnNuevoPedido.UseVisualStyleBackColor = true;
+            this.btnNuevoPedido.Click += new System.EventHandler(this.btnNuevoPedido_Click);
             // 
             // dgvListadoDetallesPedido
             // 

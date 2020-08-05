@@ -18,9 +18,9 @@ namespace AlimentosDC.SIGEPAC.DAL
             comando.CommandText = consulta;
             comando.Parameters.AddWithValue("@IdPedido", pDetallePedido.IdPedido);
             comando.Parameters.AddWithValue("@IdProducto", pDetallePedido.IdProducto);
-            comando.Parameters.AddWithValue("@Cantidad", pDetallePedido.Cantidad);
-            comando.Parameters.AddWithValue("@PrecioUnitario", pDetallePedido.PrecioUnitario);
-            comando.Parameters.AddWithValue("@SubTotal", pDetallePedido.SubTotal);
+            comando.Parameters.AddWithValue("@Cantidad", pDetallePedido.Cantidad.ToString());
+            comando.Parameters.AddWithValue("@PrecioUnitario", pDetallePedido.PrecioUnitario).ToString();
+            comando.Parameters.AddWithValue("@SubTotal", pDetallePedido.SubTotal.ToString());
             comando.Parameters.AddWithValue("@Estado", pDetallePedido.Estado);
             return ComunDB.EjecutarComando(comando);
         }
