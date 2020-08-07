@@ -29,9 +29,6 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmVerDetallesPedido));
-            this.btnEliminarDetallePedido = new System.Windows.Forms.Button();
-            this.btnEditarDetallePedido = new System.Windows.Forms.Button();
-            this.btnNuevoDetallePedido = new System.Windows.Forms.Button();
             this.dgvListadoDetallesPedido = new System.Windows.Forms.DataGridView();
             this.dgvId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -52,38 +49,6 @@
             this.label6 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDetallesPedido)).BeginInit();
             this.SuspendLayout();
-            // 
-            // btnEliminarDetallePedido
-            // 
-            this.btnEliminarDetallePedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarDetallePedido.Location = new System.Drawing.Point(427, 434);
-            this.btnEliminarDetallePedido.Name = "btnEliminarDetallePedido";
-            this.btnEliminarDetallePedido.Size = new System.Drawing.Size(100, 30);
-            this.btnEliminarDetallePedido.TabIndex = 25;
-            this.btnEliminarDetallePedido.Text = "Eliminar";
-            this.btnEliminarDetallePedido.UseVisualStyleBackColor = true;
-            // 
-            // btnEditarDetallePedido
-            // 
-            this.btnEditarDetallePedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarDetallePedido.Location = new System.Drawing.Point(308, 434);
-            this.btnEditarDetallePedido.Name = "btnEditarDetallePedido";
-            this.btnEditarDetallePedido.Size = new System.Drawing.Size(100, 30);
-            this.btnEditarDetallePedido.TabIndex = 24;
-            this.btnEditarDetallePedido.Text = "Editar";
-            this.btnEditarDetallePedido.UseVisualStyleBackColor = true;
-            this.btnEditarDetallePedido.Click += new System.EventHandler(this.btnEditarDetallePedido_Click);
-            // 
-            // btnNuevoDetallePedido
-            // 
-            this.btnNuevoDetallePedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoDetallePedido.Location = new System.Drawing.Point(190, 434);
-            this.btnNuevoDetallePedido.Name = "btnNuevoDetallePedido";
-            this.btnNuevoDetallePedido.Size = new System.Drawing.Size(100, 30);
-            this.btnNuevoDetallePedido.TabIndex = 21;
-            this.btnNuevoDetallePedido.Text = "Nuevo";
-            this.btnNuevoDetallePedido.UseVisualStyleBackColor = true;
-            this.btnNuevoDetallePedido.Click += new System.EventHandler(this.btnNuevoDetallePedido_Click);
             // 
             // dgvListadoDetallesPedido
             // 
@@ -153,7 +118,7 @@
             // btnCerrar
             // 
             this.btnCerrar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrar.Location = new System.Drawing.Point(548, 434);
+            this.btnCerrar.Location = new System.Drawing.Point(727, 434);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(100, 30);
             this.btnCerrar.TabIndex = 28;
@@ -251,16 +216,12 @@
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.label8);
             this.Controls.Add(this.dgvListadoDetallesPedido);
-            this.Controls.Add(this.btnEliminarDetallePedido);
-            this.Controls.Add(this.btnEditarDetallePedido);
-            this.Controls.Add(this.btnNuevoDetallePedido);
             this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmVerDetallesPedido";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "DETALLES PEDIDO";
-            this.Load += new System.EventHandler(this.FrmVerDetallesPedido_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDetallesPedido)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -268,10 +229,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Button btnEliminarDetallePedido;
-        private System.Windows.Forms.Button btnEditarDetallePedido;
-        private System.Windows.Forms.Button btnNuevoDetallePedido;
         private System.Windows.Forms.DataGridView dgvListadoDetallesPedido;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnCerrar;

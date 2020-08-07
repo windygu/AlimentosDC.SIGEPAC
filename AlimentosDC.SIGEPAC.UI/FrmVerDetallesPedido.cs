@@ -23,32 +23,14 @@ namespace AlimentosDC.SIGEPAC.UI
             InitializeComponent();
             this.idPedido = idPedido;
             this.numeroPedido = numeroPedido;
+            CargarDetalles();
+            lblIdPedido.Text = idPedido.ToString();
+            lblNumeroPedido.Text = numeroPedido.ToString();
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Close();
-        }
-
-        private void btnNuevoDetallePedido_Click(object sender, EventArgs e)
-        {
-            FrmDetallePedido mantenimientoDetallesPedidos = new FrmDetallePedido();
-            mantenimientoDetallesPedidos.Owner = this;
-            mantenimientoDetallesPedidos.ShowDialog();
-        }
-
-        private void btnEditarDetallePedido_Click(object sender, EventArgs e)
-        {
-            FrmDetallePedido mantenimientoDetallesPedidos = new FrmDetallePedido();
-            mantenimientoDetallesPedidos.Owner = this;
-            mantenimientoDetallesPedidos.ShowDialog();
-        }
-
-        private void FrmVerDetallesPedido_Load(object sender, EventArgs e)
-        {
-            CargarDetalles();
-            lblIdPedido.Text = idPedido.ToString();
-            lblNumeroPedido.Text = numeroPedido.ToString();
         }
 
         void CargarDetalles()
@@ -73,7 +55,6 @@ namespace AlimentosDC.SIGEPAC.UI
 
             lblProductos.Text = sumaProductos.ToString();
             lblTotal.Text = total.ToString();
-
         }
     }
 }

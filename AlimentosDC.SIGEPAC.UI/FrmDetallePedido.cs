@@ -18,32 +18,56 @@ namespace AlimentosDC.SIGEPAC.UI
     {
         List<Producto> listadoProductos;
         FrmPedido objeto;
-        int? indiceDetallePedidoAEditar;
+        int? indiceDetallePedidoAEditar = null;
+        int? idPedidoEditando = null;
         List<DetallePedido> listadoDetallesPedido;
+        List<DetallePedido> listadoViejoDetallesPedido;
+        List<DetallePedido> listadoNuevoDetallesPedido;
+
+        //Constructor para un nuevo detalle
         public FrmDetallePedido(ref FrmPedido objeto)
         {
             InitializeComponent();
             listadoProductos = ProductoBL.ObtenerTodos();
             cmbProducto.Items.AddRange(listadoProductos.ToArray());
             this.objeto = objeto;
-            
         }
-
-        public FrmDetallePedido()
+        public FrmDetallePedido(ref FrmPedido objeto, int idPedidoEditando)
         {
+            InitializeComponent();
             listadoProductos = ProductoBL.ObtenerTodos();
             cmbProducto.Items.AddRange(listadoProductos.ToArray());
-            InitializeComponent();
+            this.idPedidoEditando = idPedidoEditando;
+            this.objeto = objeto;
         }
 
+        //Constructor para la modificación de los detalles del pedido
         public FrmDetallePedido(ref FrmPedido objeto, int indiceDetallePedidoAEditar, ref List<DetallePedido> listadoDetalles)
         {
             InitializeComponent();
             listadoProductos = ProductoBL.ObtenerTodos();
             cmbProducto.Items.AddRange(listadoProductos.ToArray());
+            btnNuevoDetallePedido.Visible = false;
+            btnAgregarDetallePedido.Text = "Actualizar";
             this.objeto = objeto;
             this.indiceDetallePedidoAEditar = indiceDetallePedidoAEditar;
             listadoDetallesPedido = listadoDetalles;
+            CargarDatosAlFormulario();
+
+        }
+        public FrmDetallePedido(ref FrmPedido objeto, int indiceDetallePedidoAEditar, ref List<DetallePedido> listadoDetallesPedido,
+           ref List<DetallePedido> listadoViejoDetallesPedido, ref List<DetallePedido> listadoNuevoDetallesPedido, int idPedidoEditando)
+        {
+            InitializeComponent();
+            listadoProductos = ProductoBL.ObtenerTodos();
+            cmbProducto.Items.AddRange(listadoProductos.ToArray());
+            btnNuevoDetallePedido.Visible = false;
+            btnAgregarDetallePedido.Text = "Actualizar";
+            this.objeto = objeto;
+            this.indiceDetallePedidoAEditar = indiceDetallePedidoAEditar;
+            this.listadoDetallesPedido = listadoDetallesPedido;
+            this.listadoViejoDetallesPedido = listadoViejoDetallesPedido;
+            this.listadoNuevoDetallesPedido = listadoNuevoDetallesPedido;
             CargarDatosAlFormulario();
         }
 
@@ -93,44 +117,56 @@ namespace AlimentosDC.SIGEPAC.UI
             else e.Handled = true;
         }
 
-        private void FrmDetallePedido_Load(object sender, EventArgs e)
-        {
-            
-        }
-
         private void cmbProducto_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            int id = int.Parse((cmbProducto.SelectedItem as Producto).Id.ToString());
-            lblPrecioUnitario.Text = (ProductoBL.BuscarPorId(id)).Precio.ToString();
-            lblDescripcion.Text = (ProductoBL.BuscarPorId(id)).Descripcion;
-            lblSubTotal.Text = "0.00";
-            lblExistencias.Text = (ProductoBL.BuscarPorId(id)).Stock.ToString();
-            txtCantidad.Text = "";
-            txtCantidad.Focus();
+            if (cmbProducto.SelectedItem!=null)
+            {
+                int id = int.Parse((cmbProducto.SelectedItem as Producto).Id.ToString());
+                lblPrecioUnitario.Text = (ProductoBL.BuscarPorId(id)).Precio.ToString();
+                lblDescripcion.Text = (ProductoBL.BuscarPorId(id)).Descripcion;
+                lblSubTotal.Text = "0.00";
+                lblExistencias.Text = (ProductoBL.BuscarPorId(id)).Stock.ToString();
+                txtCantidad.Text = "";
+                txtCantidad.Focus();
+            }
+            
         }
 
         private void btnAgregarDetallePedido_Click(object sender, EventArgs e)
         {
-            DetallePedido detallePedido = new DetallePedido();
-            detallePedido.IdProducto = (cmbProducto.SelectedItem as Producto).Id;
-            detallePedido.Producto = (cmbProducto.SelectedItem as Producto).Nombre;
-            detallePedido.Descripcion = (cmbProducto.SelectedItem as Producto).Descripcion;
-            detallePedido.Cantidad = ushort.Parse(txtCantidad.Text);
-            detallePedido.PrecioUnitario = (cmbProducto.SelectedItem as Producto).Precio;
-            detallePedido.SubTotal = float.Parse(lblSubTotal.Text);
-            if (objeto.listadoDetallesPedido.Exists(x =>x.IdProducto==detallePedido.IdProducto))
+            if (indiceDetallePedidoAEditar != null)
             {
-                MessageBoxEx.Show("Ya agregó este producto a la lista.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning,
-                    MessageBoxDefaultButton.Button1);
-                txtCantidad.Text = "";
-                txtCantidad.Focus();
+                listadoDetallesPedido[(int)indiceDetallePedidoAEditar].IdProducto = (cmbProducto.SelectedItem as Producto).Id;
+                listadoDetallesPedido[(int)indiceDetallePedidoAEditar].Producto = (cmbProducto.SelectedItem as Producto).Nombre;
+                listadoDetallesPedido[(int)indiceDetallePedidoAEditar].Descripcion = (cmbProducto.SelectedItem as Producto).Descripcion;
+                listadoDetallesPedido[(int)indiceDetallePedidoAEditar].PrecioUnitario = (cmbProducto.SelectedItem as Producto).Precio;
+                listadoDetallesPedido[(int)indiceDetallePedidoAEditar].Cantidad = ushort.Parse(txtCantidad.Text);
+                listadoDetallesPedido[(int)indiceDetallePedidoAEditar].SubTotal = float.Parse(lblSubTotal.Text);
+                objeto.ActualizarDatagridView();
+                Close();
             }
             else
             {
-                objeto.listadoDetallesPedido.Add(detallePedido);
-                objeto.CargarListadoDetalles();
+                DetallePedido detallePedido = new DetallePedido();
+                detallePedido.IdProducto = (cmbProducto.SelectedItem as Producto).Id;
+                detallePedido.Producto = (cmbProducto.SelectedItem as Producto).Nombre;
+                detallePedido.Descripcion = (cmbProducto.SelectedItem as Producto).Descripcion;
+                detallePedido.Cantidad = ushort.Parse(txtCantidad.Text);
+                detallePedido.PrecioUnitario = (cmbProducto.SelectedItem as Producto).Precio;
+                detallePedido.SubTotal = float.Parse(lblSubTotal.Text);
+                if (objeto.listadoDetallesPedido.Exists(x => x.IdProducto == detallePedido.IdProducto))
+                {
+                    MessageBoxEx.Show("Ya agregó este producto a la lista.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                        MessageBoxDefaultButton.Button1);
+                    txtCantidad.Text = "";
+                    txtCantidad.Focus();
+                }
+                else
+                {
+                    objeto.listadoDetallesPedido.Add(detallePedido);
+                    objeto.CargarListadoDetalles();
+                }
             }
-            
         }
     }
 }

@@ -115,6 +115,7 @@
             this.cmbListadoClientes.Size = new System.Drawing.Size(225, 25);
             this.cmbListadoClientes.TabIndex = 5;
             this.cmbListadoClientes.ValueMember = "Id";
+            this.cmbListadoClientes.SelectedIndexChanged += new System.EventHandler(this.cmbListadoClientes_SelectionChangeCommitted);
             this.cmbListadoClientes.SelectionChangeCommitted += new System.EventHandler(this.cmbListadoClientes_SelectionChangeCommitted);
             // 
             // label3
@@ -407,7 +408,6 @@
             this.Name = "FrmPedido";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mantenimiento Pedidos";
-            this.Load += new System.EventHandler(this.FrmPedido_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDetallesPedido)).EndInit();

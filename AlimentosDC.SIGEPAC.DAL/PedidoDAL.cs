@@ -32,6 +32,7 @@ namespace AlimentosDC.SIGEPAC.DAL
             Estado = @Estado WHERE Id = @Id;";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
+            comando.Parameters.AddWithValue("@Id", pPedido.Id);
             comando.Parameters.AddWithValue("@IdCliente", pPedido.IdCliente);
             comando.Parameters.AddWithValue("@NumeroPedido", pPedido.NumeroPedido);
             comando.Parameters.AddWithValue("@FechaCreacion", pPedido.FechaCreacion);
@@ -77,7 +78,7 @@ namespace AlimentosDC.SIGEPAC.DAL
 
         public static Pedido BuscarPorId(int pId)
         {
-            string consulta = @"select p.Id, CONCAT(c.PrimerNombre, ' ', c.PrimerApellido) Cliente, 
+            string consulta = @"select p.Id, p.IdCliente, CONCAT(c.PrimerNombre, ' ', c.PrimerApellido) Cliente, 
             c.Dui, p.NumeroPedido, p.FechaCreacion, p.FechaEntrega, p.DireccionEntrega, p.Estado 
             from Cliente c join Pedido p on c.Id = p.IdCliente where p.Id = @Id";
             SqlCommand comando = ComunDB.ObtenerComando();
@@ -88,13 +89,14 @@ namespace AlimentosDC.SIGEPAC.DAL
             while (reader.Read())
             {
                 pedido.Id = reader.GetInt32(0);
-                pedido.Cliente = reader.GetString(1);
-                pedido.Dui = reader.GetString(2);
-                pedido.NumeroPedido = reader.GetInt32(3);
-                pedido.FechaCreacion = reader.GetDateTime(4);
-                pedido.FechaEntrega = reader.GetDateTime(5);
-                pedido.DireccionEntrega = reader.GetString(6);
-                pedido.Estado = reader.GetString(7);
+                pedido.IdCliente = reader.GetInt32(1);
+                pedido.Cliente = reader.GetString(2);
+                pedido.Dui = reader.GetString(3);
+                pedido.NumeroPedido = reader.GetInt32(4);
+                pedido.FechaCreacion = reader.GetDateTime(5);
+                pedido.FechaEntrega = reader.GetDateTime(6);
+                pedido.DireccionEntrega = reader.GetString(7);
+                pedido.Estado = reader.GetString(8);
             }
             return pedido;
         }

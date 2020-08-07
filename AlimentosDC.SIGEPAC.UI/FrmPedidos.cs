@@ -32,9 +32,9 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             int idPedido = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[0].Value.ToString());
             int numeroPedido = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[3].Value.ToString());
-            FrmVerDetallesPedido vdp = new FrmVerDetallesPedido(idPedido, numeroPedido);
-            vdp.Owner = this;
-            vdp.ShowDialog();
+            FrmVerDetallesPedido verDetallesPedido = new FrmVerDetallesPedido(idPedido, numeroPedido);
+            verDetallesPedido.Owner = this;
+            verDetallesPedido.ShowDialog();
         }
 
         private void btnNuevoPedido_Click(object sender, EventArgs e)
@@ -46,8 +46,8 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void btnEditarPedido_Click(object sender, EventArgs e)
         {
-            int indiceFilaSeleccionada = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[0].Value.ToString());
-            FrmPedido p = new FrmPedido(indiceFilaSeleccionada);
+            int idPedido = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[0].Value.ToString());
+            FrmPedido p = new FrmPedido(idPedido);
             p.Owner = this;
             p.ShowDialog();
         }
