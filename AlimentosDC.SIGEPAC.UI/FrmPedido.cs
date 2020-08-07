@@ -25,6 +25,7 @@ namespace AlimentosDC.SIGEPAC.UI
         public List<DetallePedido> listadoDetallesPedido = new List<DetallePedido>();
         //Listados a usarse en la modificación de un pedido
         public List<DetallePedido> listadoViejoDetallesPedido = new List<DetallePedido>();
+        public List<int> detallesViejosAEliminarDeLaBD = new List<int>();
 
         //Constructor para un nuevo pedido
         public FrmPedido()
@@ -45,16 +46,13 @@ namespace AlimentosDC.SIGEPAC.UI
             objeto = this;
             lblTitulo.Text = "Editar pedido";
             btnNuevoPedido.Visible = false;
-            
-
         }
 
         //Método para ir agregando cada detalle (anteriormente agregado a la lista) al datagrid
         public void CargarListadoDetalles()
         {
             int indiceFilaAgregada = dgvListadoDetallesPedido.Rows.Add();
-            int idTemporal = indiceFilaAgregada + 1;
-            dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[0].Value = idTemporal;
+            dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[0].Value = listadoDetallesPedido[indiceFilaAgregada].Id;
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[1].Value = listadoDetallesPedido[indiceFilaAgregada].Producto;
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[2].Value = listadoDetallesPedido[indiceFilaAgregada].Descripcion;
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[3].Value = listadoDetallesPedido[indiceFilaAgregada].Cantidad;
@@ -82,7 +80,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 for (int i = 0; i < listadoViejoDetallesPedido.Count; i++)
                 {
                     dgvListadoDetallesPedido.Rows.Add();
-                    dgvListadoDetallesPedido.Rows[i].Cells[0].Value = i + 1;
+                    dgvListadoDetallesPedido.Rows[i].Cells[0].Value = listadoViejoDetallesPedido[i].Id;
                     dgvListadoDetallesPedido.Rows[i].Cells[1].Value = listadoViejoDetallesPedido[i].Producto;
                     dgvListadoDetallesPedido.Rows[i].Cells[2].Value = listadoViejoDetallesPedido[i].Descripcion;
                     dgvListadoDetallesPedido.Rows[i].Cells[3].Value = listadoViejoDetallesPedido[i].Cantidad;
@@ -91,9 +89,7 @@ namespace AlimentosDC.SIGEPAC.UI
                     dgvListadoDetallesPedido.Rows[i].Cells[6].Value = cmbEstadoPedido.SelectedItem.ToString();
                     listadoDetallesPedido.Add(listadoViejoDetallesPedido[i]);
                 }
-               
             }
-            
         }
 
         private void btnNuevoDetallePedido_Click(object sender, EventArgs e)
@@ -105,8 +101,10 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void btnEditarDetallePedido_Click(object sender, EventArgs e)
         {
-            int indiceDetallePedidoAEditar = dgvListadoDetallesPedido.SelectedRows[0].Index;
-            FrmDetallePedido mantenimientoDetallesPedido = new FrmDetallePedido(ref objeto, indiceDetallePedidoAEditar, ref listadoDetallesPedido);
+            int idDetallePedidoAEditar = int.Parse(dgvListadoDetallesPedido.SelectedRows[0].Cells[0].Value.ToString());
+            FrmDetallePedido mantenimientoDetallesPedido =
+            new FrmDetallePedido(ref objeto, idDetallePedidoAEditar, 
+            ref listadoDetallesPedido, ref listadoViejoDetallesPedido, (int) idPedido);
             mantenimientoDetallesPedido.Owner = this;
             mantenimientoDetallesPedido.ShowDialog();
         }
@@ -164,8 +162,8 @@ namespace AlimentosDC.SIGEPAC.UI
             {
                 int resultadoPedido = 0;
                 int resultadoDetallePedido = 0;
-                //try
-                //{
+                try
+                {
                     Pedido pedidoARegistrar = new Pedido();
                     pedidoARegistrar.IdCliente = (cmbListadoClientes.SelectedItem as Cliente).Id;
                     pedidoARegistrar.NumeroPedido = int.Parse(lblNumeroPedido.Text);
@@ -180,29 +178,28 @@ namespace AlimentosDC.SIGEPAC.UI
                         DetallePedido detallePedidoARegistrar = new DetallePedido();
                         detallePedidoARegistrar.IdPedido = (PedidoBL.BuscarPorNumeroPedido(int.Parse(lblNumeroPedido.Text))).Id;
                         detallePedidoARegistrar.IdProducto = listadoDetallesPedido[i].IdProducto;
-                        detallePedidoARegistrar.Cantidad = ushort.Parse(dgvListadoDetallesPedido.Rows[i].Cells[3].Value.ToString());
-                        detallePedidoARegistrar.PrecioUnitario = float.Parse(dgvListadoDetallesPedido.Rows[i].Cells[4].Value.ToString());
-                        detallePedidoARegistrar.SubTotal = float.Parse(dgvListadoDetallesPedido.Rows[i].Cells[5].Value.ToString());
-                        detallePedidoARegistrar.Estado = dgvListadoDetallesPedido.Rows[i].Cells[6].Value.ToString();
+                        detallePedidoARegistrar.Cantidad = listadoDetallesPedido[i].Cantidad;
+                        detallePedidoARegistrar.PrecioUnitario = listadoDetallesPedido[i].PrecioUnitario;
+                        detallePedidoARegistrar.SubTotal = listadoDetallesPedido[i].SubTotal;
+                        detallePedidoARegistrar.Estado = cmbEstadoPedido.SelectedItem.ToString();
                         resultadoDetallePedido += DetallePedidoBL.Guardar(detallePedidoARegistrar);
                     }
                     MessageBoxEx.Show($"{resultadoPedido} pedido registrado.\n{resultadoDetallePedido} detalle(s) del pedido registrado(s).",
                         "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Limpiar();
-                /*
                 }
                 catch (Exception exc)
                 {
                     MessageBoxEx.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                */
             }
             else
             {
                 int resultadoPedido = 0;
                 int resultadoDetallePedido = 0;
-                //try
-                //{
+                int resultadoEliminados = 0;
+                try
+                {
                     pedido.IdCliente = (cmbListadoClientes.SelectedItem as Cliente).Id;
                     pedido.FechaCreacion = dtpFechaCreacion.Value;
                     pedido.FechaEntrega = dtpFechaEntrega.Value;
@@ -215,12 +212,12 @@ namespace AlimentosDC.SIGEPAC.UI
                         detallePedidoARegistrar.Id = listadoDetallesPedido[i].Id;
                         detallePedidoARegistrar.IdPedido = (int)idPedido;
                         detallePedidoARegistrar.IdProducto = listadoDetallesPedido[i].IdProducto;
-                        detallePedidoARegistrar.Cantidad = ushort.Parse(dgvListadoDetallesPedido.Rows[i].Cells[3].Value.ToString());
-                        detallePedidoARegistrar.PrecioUnitario = float.Parse(dgvListadoDetallesPedido.Rows[i].Cells[4].Value.ToString());
-                        detallePedidoARegistrar.SubTotal = float.Parse(dgvListadoDetallesPedido.Rows[i].Cells[5].Value.ToString());
+                        detallePedidoARegistrar.Cantidad = listadoDetallesPedido[i].Cantidad;
+                        detallePedidoARegistrar.PrecioUnitario = listadoDetallesPedido[i].PrecioUnitario;
+                        detallePedidoARegistrar.SubTotal = listadoDetallesPedido[i].SubTotal;
                         detallePedidoARegistrar.Estado = cmbEstadoPedido.SelectedItem.ToString();
-
-                        if (listadoDetallesPedido[i].Id >= 1)
+                        
+                        if (listadoViejoDetallesPedido.Find(x=>x.Id==listadoDetallesPedido[i].Id)!=null)
                         {
                              resultadoDetallePedido += DetallePedidoBL.Modificar(detallePedidoARegistrar);
                         }
@@ -228,26 +225,28 @@ namespace AlimentosDC.SIGEPAC.UI
                         {
                              resultadoDetallePedido += DetallePedidoBL.Guardar(detallePedidoARegistrar);
                         }
-
-                        //Me quedè aqui en cambiar la manera de eliminar los detalles pedidos
-                        //lo cambiare de eliminar por medio de indice a por medio de id
-                        //agregar un id temporal incluso a los nuevos detalles
-                        
+                    }
+                    if (detallesViejosAEliminarDeLaBD.Count>=1)
+                    {
+                         for (int i = 0; i < detallesViejosAEliminarDeLaBD.Count; i++)
+                         {
+                              resultadoEliminados += DetallePedidoBL.Eliminar(detallesViejosAEliminarDeLaBD[i]);
+                         }
                     }
                     DialogResult resultadoDelDialgo = MessageBoxEx.Show
-                    ($"{resultadoPedido} pedido actualizado.\n{resultadoDetallePedido} detalle(s) del pedido modificados(s).\n¿Desea cerrar el editor?",
+                    ($"{resultadoPedido} pedido actualizado.\n{resultadoDetallePedido} detalle(s) actualizado(s).\n"+
+                    $"{resultadoEliminados} detalle(s) eliminado(s).\n¿Desea cerrar el editor?",
                         "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                     if (resultadoDelDialgo==DialogResult.Yes)
                     {
                         Close();
                     }
-                /*
+                
                 }
                 catch (Exception exc)
                 {
                     MessageBoxEx.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-                */
             }
         }
 
@@ -264,20 +263,28 @@ namespace AlimentosDC.SIGEPAC.UI
             {
                 if (idPedido==null)
                 {
-                    int indiceFilaAEliminar = dgvListadoDetallesPedido.SelectedRows[0].Index;
-                    dgvListadoDetallesPedido.Rows.RemoveAt(indiceFilaAEliminar);
-                    listadoDetallesPedido.RemoveAt(indiceFilaAEliminar);
+                    int idDetallePedidoAEliminar = int.Parse(dgvListadoDetallesPedido.SelectedRows[0].Cells[0].Value.ToString());
+                    dgvListadoDetallesPedido.Rows.RemoveAt(dgvListadoDetallesPedido.SelectedRows[0].Index);
+                    listadoDetallesPedido.Remove(listadoDetallesPedido.Find(x => x.Id == idDetallePedidoAEliminar));
                     ActualizarDatagridView();
                 }
                 else
                 {
-                    int indiceFilaAEliminar = dgvListadoDetallesPedido.SelectedRows[0].Index;
-                    dgvListadoDetallesPedido.Rows.RemoveAt(indiceFilaAEliminar);
-                    listadoDetallesPedido.RemoveAt(indiceFilaAEliminar);
+                    int idDetallePedidoAEliminar = int.Parse(dgvListadoDetallesPedido.SelectedRows[0].Cells[0].Value.ToString());
+                    dgvListadoDetallesPedido.Rows.RemoveAt(dgvListadoDetallesPedido.SelectedRows[0].Index);
+                    DetallePedido detalleAEliminar = listadoDetallesPedido.Find(x => x.Id == idDetallePedidoAEliminar);
+                    listadoDetallesPedido.Remove(detalleAEliminar);
                     ActualizarDatagridView();
-                    if (listadoDetallesPedido[indiceFilaAEliminar].Id >= 1)
+                    if (listadoViejoDetallesPedido.Find(x=>x.Id==detalleAEliminar.Id)!=null)
                     {
-                        DetallePedidoBL.Eliminar(listadoDetallesPedido[indiceFilaAEliminar]);
+                        for (int i = 0; i < listadoViejoDetallesPedido.Count; i++)
+                        {
+                            if (listadoViejoDetallesPedido[i].Id==detalleAEliminar.Id)
+                            {
+                                listadoViejoDetallesPedido.RemoveAt(i);
+                            }
+                        }
+                        detallesViejosAEliminarDeLaBD.Add(detalleAEliminar.Id);
                     }
                 }
             }
@@ -289,7 +296,6 @@ namespace AlimentosDC.SIGEPAC.UI
             for (int i = 0; i < listadoDetallesPedido.Count; i++)
             {
                 CargarListadoDetalles();
-                dgvListadoDetallesPedido.Rows[i].Cells[0].Value = i + 1;
             }
         }
 
