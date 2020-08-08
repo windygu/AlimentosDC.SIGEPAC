@@ -17,6 +17,7 @@ namespace AlimentosDC.SIGEPAC.UI
     public partial class FrmPedido : MetroForm
     {
         FrmPedido objeto;
+        FrmPedidos objetoActual;
         Pedido pedido;
         List<Cliente> listadoClientes;
         List<Cliente> listadoNuevoClientes;
@@ -28,24 +29,27 @@ namespace AlimentosDC.SIGEPAC.UI
         public List<int> detallesViejosAEliminarDeLaBD = new List<int>();
 
         //Constructor para un nuevo pedido
-        public FrmPedido()
+        public FrmPedido(ref FrmPedidos objetoActual)
         {
             InitializeComponent();
+            btnGuardarPedido.Enabled = false;
+            this.objetoActual = objetoActual;
             CargarClientesAlCombobox();
             lblNumeroPedido.Text = PedidoBL.GenerarNumeroPedido();
             objeto = this;
         }
 
         //Constructor para editar un pedido
-        public FrmPedido(int idPedido)
+        public FrmPedido(ref FrmPedidos objetoActual, int idPedido)
         {
             InitializeComponent();
+            btnGuardarPedido.Enabled = false;
+            this.objetoActual = objetoActual;
             CargarClientesAlCombobox();
             this.idPedido = idPedido;
             CargarDatosAlFormulario();
             objeto = this;
             lblTitulo.Text = "Editar pedido";
-            btnNuevoPedido.Visible = false;
         }
 
         //Método para ir agregando cada detalle (anteriormente agregado a la lista) al datagrid
@@ -58,7 +62,7 @@ namespace AlimentosDC.SIGEPAC.UI
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[3].Value = listadoDetallesPedido[indiceFilaAgregada].Cantidad;
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[4].Value = listadoDetallesPedido[indiceFilaAgregada].PrecioUnitario;
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[5].Value = listadoDetallesPedido[indiceFilaAgregada].SubTotal;
-            dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[6].Value = cmbEstadoPedido.SelectedItem.ToString();
+            dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[6].Value = listadoDetallesPedido[indiceFilaAgregada].Estado;
         }
         
         void CargarDatosAlFormulario()
@@ -69,7 +73,6 @@ namespace AlimentosDC.SIGEPAC.UI
             Cliente cliente = ClienteBL.BuscarPorId(pedido.IdCliente);
             int indiceDelCliente = listadoClientes2.FindIndex(x => x.Id == cliente.Id);
             cmbListadoClientes.SelectedIndex = indiceDelCliente;
-            
             dtpFechaCreacion.Value = pedido.FechaCreacion;
             cmbEstadoPedido.SelectedItem = pedido.Estado;
             dtpFechaEntrega.Value = pedido.FechaEntrega;
@@ -140,6 +143,15 @@ namespace AlimentosDC.SIGEPAC.UI
                 int id = int.Parse((cmbListadoClientes.SelectedItem as Cliente).Id.ToString());
                 lblDui.Text = (ClienteBL.BuscarPorId(id)).DUI;
             }
+            if (cmbEstadoPedido.SelectedItem != null && (txtDireccionEntregaPedido.Text.Length >= 1))
+            {
+                btnGuardarPedido.Enabled = true;
+            }
+            else if (cmbEstadoPedido.SelectedItem == null)
+            {
+                txtDireccionEntregaPedido.Focus();
+            }
+            else btnNuevoDetallePedido.Focus();
             
         }
 
@@ -153,6 +165,7 @@ namespace AlimentosDC.SIGEPAC.UI
             txtDireccionEntregaPedido.Text = "";
             dgvListadoDetallesPedido.Rows.Clear();
             listadoDetallesPedido.Clear();
+            listadoViejoDetallesPedido.Clear();
             dtpFechaCreacion.Focus();
         }
 
@@ -181,9 +194,10 @@ namespace AlimentosDC.SIGEPAC.UI
                         detallePedidoARegistrar.Cantidad = listadoDetallesPedido[i].Cantidad;
                         detallePedidoARegistrar.PrecioUnitario = listadoDetallesPedido[i].PrecioUnitario;
                         detallePedidoARegistrar.SubTotal = listadoDetallesPedido[i].SubTotal;
-                        detallePedidoARegistrar.Estado = cmbEstadoPedido.SelectedItem.ToString();
+                        detallePedidoARegistrar.Estado = listadoDetallesPedido[i].Estado;
                         resultadoDetallePedido += DetallePedidoBL.Guardar(detallePedidoARegistrar);
                     }
+                    objetoActual.CargarPedidos();
                     MessageBoxEx.Show($"{resultadoPedido} pedido registrado.\n{resultadoDetallePedido} detalle(s) del pedido registrado(s).",
                         "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Limpiar();
@@ -196,7 +210,8 @@ namespace AlimentosDC.SIGEPAC.UI
             else
             {
                 int resultadoPedido = 0;
-                int resultadoDetallePedido = 0;
+                int resultDetallesModificados = 0;
+                int resultDetallesAñadidos = 0;
                 int resultadoEliminados = 0;
                 try
                 {
@@ -215,15 +230,15 @@ namespace AlimentosDC.SIGEPAC.UI
                         detallePedidoARegistrar.Cantidad = listadoDetallesPedido[i].Cantidad;
                         detallePedidoARegistrar.PrecioUnitario = listadoDetallesPedido[i].PrecioUnitario;
                         detallePedidoARegistrar.SubTotal = listadoDetallesPedido[i].SubTotal;
-                        detallePedidoARegistrar.Estado = cmbEstadoPedido.SelectedItem.ToString();
-                        
+                        detallePedidoARegistrar.Estado = listadoDetallesPedido[i].Estado;
+
                         if (listadoViejoDetallesPedido.Find(x=>x.Id==listadoDetallesPedido[i].Id)!=null)
                         {
-                             resultadoDetallePedido += DetallePedidoBL.Modificar(detallePedidoARegistrar);
+                            resultDetallesModificados += DetallePedidoBL.Modificar(detallePedidoARegistrar);
                         }
                         else
                         {
-                             resultadoDetallePedido += DetallePedidoBL.Guardar(detallePedidoARegistrar);
+                            resultDetallesAñadidos += DetallePedidoBL.Guardar(detallePedidoARegistrar);
                         }
                     }
                     if (detallesViejosAEliminarDeLaBD.Count>=1)
@@ -233,9 +248,10 @@ namespace AlimentosDC.SIGEPAC.UI
                               resultadoEliminados += DetallePedidoBL.Eliminar(detallesViejosAEliminarDeLaBD[i]);
                          }
                     }
+                    objetoActual.CargarPedidos();
                     DialogResult resultadoDelDialgo = MessageBoxEx.Show
-                    ($"{resultadoPedido} pedido actualizado.\n{resultadoDetallePedido} detalle(s) actualizado(s).\n"+
-                    $"{resultadoEliminados} detalle(s) eliminado(s).\n¿Desea cerrar el editor?",
+                    ($"{resultadoPedido} pedido actualizado.\n{resultDetallesModificados} detalle(s) actualizado(s).\n"+
+                    $"{resultDetallesAñadidos} detalle(s) registrado(s).\n{resultadoEliminados} detalle(s) eliminado(s).\n¿Desea cerrar el editor?",
                         "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                     if (resultadoDelDialgo==DialogResult.Yes)
                     {
@@ -248,11 +264,6 @@ namespace AlimentosDC.SIGEPAC.UI
                     MessageBoxEx.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-
-        private void btnNuevoPedido_Click(object sender, EventArgs e)
-        {
-            Limpiar();
         }
 
         private void btnEliminarDetallePedido_Click(object sender, EventArgs e)
@@ -311,6 +322,53 @@ namespace AlimentosDC.SIGEPAC.UI
                 btnEditarDetallePedido.Enabled = false;
                 btnEliminarDetallePedido.Enabled = false;
             }
+        }
+
+        private void cmbEstadoPedido_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (cmbEstadoPedido.SelectedItem!=null)
+            {
+                if (cmbListadoClientes.SelectedItem != null && (txtDireccionEntregaPedido.Text.Length >= 1))
+                {
+                    btnGuardarPedido.Enabled = true;
+                }
+                else if (cmbListadoClientes.SelectedItem == null)
+                {
+                    cmbListadoClientes.Focus();
+                }
+                else txtDireccionEntregaPedido.Focus();
+            }
+        }
+
+        private void txtDireccionEntregaPedido_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtDireccionEntregaPedido.Text))
+            {
+                btnGuardarPedido.Enabled = false;
+            }
+            else if
+            (
+               (txtDireccionEntregaPedido.Text.Length >= 1) && (cmbListadoClientes.SelectedItem != null) &&
+               (cmbEstadoPedido.SelectedItem != null)
+            )
+            {
+                btnGuardarPedido.Enabled = true;
+            }
+            else if (cmbEstadoPedido.SelectedItem == null)
+            {
+                cmbEstadoPedido.Focus();
+                MessageBoxEx.Show("Seleccione un Estado para el pedido.");
+            }
+            else
+            {
+                cmbListadoClientes.Focus();
+                MessageBoxEx.Show("Seleccione un cliente.");
+            }
+
+            //Continuar en limpiar las etiquetas de mantenimiento de detalles pedidos al agregar el
+            //detalle pedido
+            //y despues poner el foco en txtdireccion entrega al seleccionar un cliente y 
+            //tambien al seleccionar un estado del pedido
         }
     }
 }

@@ -37,13 +37,17 @@
             this.label9 = new System.Windows.Forms.Label();
             this.btnCerrarDetallePedido = new System.Windows.Forms.Button();
             this.btnAgregarDetallePedido = new System.Windows.Forms.Button();
-            this.btnNuevoDetallePedido = new System.Windows.Forms.Button();
             this.cmbProducto = new System.Windows.Forms.ComboBox();
-            this.lblSubTotal = new System.Windows.Forms.Label();
             this.lblPrecioUnitario = new System.Windows.Forms.Label();
             this.lblDescripcion = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.lblExistencias = new System.Windows.Forms.Label();
+            this.cmbEstadoDetallePedido = new System.Windows.Forms.ComboBox();
+            this.label7 = new System.Windows.Forms.Label();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
+            this.lblSubTotal = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // label12
@@ -129,16 +133,6 @@
             this.btnAgregarDetallePedido.UseVisualStyleBackColor = true;
             this.btnAgregarDetallePedido.Click += new System.EventHandler(this.btnAgregarDetallePedido_Click);
             // 
-            // btnNuevoDetallePedido
-            // 
-            this.btnNuevoDetallePedido.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoDetallePedido.Location = new System.Drawing.Point(149, 280);
-            this.btnNuevoDetallePedido.Name = "btnNuevoDetallePedido";
-            this.btnNuevoDetallePedido.Size = new System.Drawing.Size(100, 30);
-            this.btnNuevoDetallePedido.TabIndex = 24;
-            this.btnNuevoDetallePedido.Text = "Nuevo";
-            this.btnNuevoDetallePedido.UseVisualStyleBackColor = true;
-            // 
             // cmbProducto
             // 
             this.cmbProducto.DisplayMember = "Nombre";
@@ -151,16 +145,6 @@
             this.cmbProducto.TabIndex = 25;
             this.cmbProducto.SelectedIndexChanged += new System.EventHandler(this.cmbProducto_SelectionChangeCommitted);
             this.cmbProducto.SelectionChangeCommitted += new System.EventHandler(this.cmbProducto_SelectionChangeCommitted);
-            // 
-            // lblSubTotal
-            // 
-            this.lblSubTotal.AutoSize = true;
-            this.lblSubTotal.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubTotal.Location = new System.Drawing.Point(74, 220);
-            this.lblSubTotal.Name = "lblSubTotal";
-            this.lblSubTotal.Size = new System.Drawing.Size(54, 21);
-            this.lblSubTotal.TabIndex = 26;
-            this.lblSubTotal.Text = "$ 0.00";
             // 
             // lblPrecioUnitario
             // 
@@ -199,18 +183,77 @@
             this.lblExistencias.Size = new System.Drawing.Size(210, 25);
             this.lblExistencias.TabIndex = 31;
             // 
+            // cmbEstadoDetallePedido
+            // 
+            this.cmbEstadoDetallePedido.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEstadoDetallePedido.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cmbEstadoDetallePedido.FormattingEnabled = true;
+            this.cmbEstadoDetallePedido.Items.AddRange(new object[] {
+            "No iniciado",
+            "Iniciado",
+            "Revisado",
+            "Enviado",
+            "Finalizado"});
+            this.cmbEstadoDetallePedido.Location = new System.Drawing.Point(263, 173);
+            this.cmbEstadoDetallePedido.Name = "cmbEstadoDetallePedido";
+            this.cmbEstadoDetallePedido.Size = new System.Drawing.Size(210, 25);
+            this.cmbEstadoDetallePedido.TabIndex = 33;
+            this.cmbEstadoDetallePedido.SelectedIndexChanged += new System.EventHandler(this.cmbEstadoDetallePedido_SelectionChangeCommitted);
+            this.cmbEstadoDetallePedido.SelectionChangeCommitted += new System.EventHandler(this.cmbEstadoDetallePedido_SelectionChangeCommitted);
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(263, 151);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(53, 19);
+            this.label7.TabIndex = 32;
+            this.label7.Text = "Estado:";
+            // 
+            // panel1
+            // 
+            this.panel1.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel1.Controls.Add(this.label2);
+            this.panel1.Controls.Add(this.lblSubTotal);
+            this.panel1.Location = new System.Drawing.Point(79, 217);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(91, 23);
+            this.panel1.TabIndex = 37;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Agency FB", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Location = new System.Drawing.Point(3, -2);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(18, 24);
+            this.label2.TabIndex = 38;
+            this.label2.Text = "$";
+            // 
+            // lblSubTotal
+            // 
+            this.lblSubTotal.AutoSize = true;
+            this.lblSubTotal.Font = new System.Drawing.Font("Agency FB", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubTotal.Location = new System.Drawing.Point(20, -2);
+            this.lblSubTotal.Name = "lblSubTotal";
+            this.lblSubTotal.Size = new System.Drawing.Size(41, 24);
+            this.lblSubTotal.TabIndex = 37;
+            this.lblSubTotal.Text = "0.00";
+            // 
             // FrmDetallePedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(494, 326);
+            this.Controls.Add(this.panel1);
+            this.Controls.Add(this.cmbEstadoDetallePedido);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.lblExistencias);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lblDescripcion);
             this.Controls.Add(this.lblPrecioUnitario);
-            this.Controls.Add(this.lblSubTotal);
             this.Controls.Add(this.cmbProducto);
-            this.Controls.Add(this.btnNuevoDetallePedido);
             this.Controls.Add(this.btnAgregarDetallePedido);
             this.Controls.Add(this.btnCerrarDetallePedido);
             this.Controls.Add(this.label12);
@@ -225,6 +268,8 @@
             this.Name = "FrmDetallePedido";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mantenimiento Detalles Pedido";
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,12 +284,15 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnCerrarDetallePedido;
         private System.Windows.Forms.Button btnAgregarDetallePedido;
-        private System.Windows.Forms.Button btnNuevoDetallePedido;
         private System.Windows.Forms.ComboBox cmbProducto;
-        private System.Windows.Forms.Label lblSubTotal;
         private System.Windows.Forms.Label lblPrecioUnitario;
         private System.Windows.Forms.Label lblDescripcion;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblExistencias;
+        private System.Windows.Forms.ComboBox cmbEstadoDetallePedido;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lblSubTotal;
     }
 }

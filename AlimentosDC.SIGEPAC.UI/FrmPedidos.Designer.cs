@@ -202,7 +202,6 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Tag = "";
             this.Text = "PEDIDOS";
-            this.Load += new System.EventHandler(this.FrmPedidos_Load);
             this.Click += new System.EventHandler(this.FrmPedidos_Click);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoPedidos)).EndInit();
             this.ResumeLayout(false);

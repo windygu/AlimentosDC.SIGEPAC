@@ -17,9 +17,15 @@ namespace AlimentosDC.SIGEPAC.UI
     public partial class FrmPedidos : MetroForm
     {
         List<Pedido> listadoPedidos = new List<Pedido>();
+        FrmPedidos objetoActual;
         public FrmPedidos()
         {
             InitializeComponent();
+            objetoActual = this;
+            CargarPedidos();
+            btnEditarPedido.Enabled = true;
+            btnVerDetallePedido.Enabled = true;
+            btnEliminarPedido.Enabled = true;
             txtBuscadorPedidos.GotFocus += TxtBuscadorPedidos_GotFocus;
         }
 
@@ -39,7 +45,7 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void btnNuevoPedido_Click(object sender, EventArgs e)
         {
-            FrmPedido p = new FrmPedido();
+            FrmPedido p = new FrmPedido(ref objetoActual);
             p.Owner = this;
             p.ShowDialog();
         }
@@ -47,7 +53,7 @@ namespace AlimentosDC.SIGEPAC.UI
         private void btnEditarPedido_Click(object sender, EventArgs e)
         {
             int idPedido = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[0].Value.ToString());
-            FrmPedido p = new FrmPedido(idPedido);
+            FrmPedido p = new FrmPedido(ref objetoActual, idPedido);
             p.Owner = this;
             p.ShowDialog();
         }
@@ -68,18 +74,10 @@ namespace AlimentosDC.SIGEPAC.UI
                 txtBuscadorPedidos.Font = new Font(txtBuscadorPedidos.Font, FontStyle.Regular);
         }
 
-        private void FrmPedidos_Load(object sender, EventArgs e)
+        public void CargarPedidos()
         {
-            CargarPedidos();
-            btnEditarPedido.Enabled = true;
-            btnVerDetallePedido.Enabled = true;
-            btnEliminarPedido.Enabled = true;
-        }
-
-        void CargarPedidos()
-        {
-            listadoPedidos = PedidoBL.ObtenerTodos();
             dgvListadoPedidos.Rows.Clear();
+            listadoPedidos = PedidoBL.ObtenerTodos();
             for (int i = 0; i < listadoPedidos.Count; i++)
             {
                 dgvListadoPedidos.Rows.Add();

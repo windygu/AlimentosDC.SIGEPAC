@@ -50,7 +50,6 @@
             this.btnGuardarPedido = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.lblTitulo = new System.Windows.Forms.Label();
-            this.btnNuevoPedido = new System.Windows.Forms.Button();
             this.dgvListadoDetallesPedido = new System.Windows.Forms.DataGridView();
             this.dgvId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -166,6 +165,7 @@
             this.txtDireccionEntregaPedido.Name = "txtDireccionEntregaPedido";
             this.txtDireccionEntregaPedido.Size = new System.Drawing.Size(240, 50);
             this.txtDireccionEntregaPedido.TabIndex = 11;
+            this.txtDireccionEntregaPedido.TextChanged += new System.EventHandler(this.txtDireccionEntregaPedido_TextChanged);
             // 
             // label7
             // 
@@ -210,6 +210,9 @@
             this.cmbEstadoPedido.Name = "cmbEstadoPedido";
             this.cmbEstadoPedido.Size = new System.Drawing.Size(150, 25);
             this.cmbEstadoPedido.TabIndex = 16;
+            this.cmbEstadoPedido.SelectedIndexChanged += new System.EventHandler(this.cmbEstadoPedido_SelectionChangeCommitted);
+            this.cmbEstadoPedido.SelectionChangeCommitted += new System.EventHandler(this.cmbEstadoPedido_SelectionChangeCommitted);
+            this.cmbEstadoPedido.SelectedValueChanged += new System.EventHandler(this.cmbEstadoPedido_SelectionChangeCommitted);
             // 
             // label13
             // 
@@ -259,7 +262,7 @@
             // btnGuardarPedido
             // 
             this.btnGuardarPedido.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarPedido.Location = new System.Drawing.Point(426, 491);
+            this.btnGuardarPedido.Location = new System.Drawing.Point(735, 493);
             this.btnGuardarPedido.Name = "btnGuardarPedido";
             this.btnGuardarPedido.Size = new System.Drawing.Size(100, 30);
             this.btnGuardarPedido.TabIndex = 25;
@@ -270,11 +273,11 @@
             // btnCerrar
             // 
             this.btnCerrar.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrar.Location = new System.Drawing.Point(555, 491);
+            this.btnCerrar.Location = new System.Drawing.Point(864, 493);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(100, 30);
             this.btnCerrar.TabIndex = 24;
-            this.btnCerrar.Text = "Cerrar";
+            this.btnCerrar.Text = "Cancelar";
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
@@ -287,17 +290,6 @@
             this.lblTitulo.TabIndex = 26;
             this.lblTitulo.Text = "Registrar pedido";
             this.lblTitulo.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
-            // btnNuevoPedido
-            // 
-            this.btnNuevoPedido.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoPedido.Location = new System.Drawing.Point(300, 491);
-            this.btnNuevoPedido.Name = "btnNuevoPedido";
-            this.btnNuevoPedido.Size = new System.Drawing.Size(100, 30);
-            this.btnNuevoPedido.TabIndex = 28;
-            this.btnNuevoPedido.Text = "Nuevo";
-            this.btnNuevoPedido.UseVisualStyleBackColor = true;
-            this.btnNuevoPedido.Click += new System.EventHandler(this.btnNuevoPedido_Click);
             // 
             // dgvListadoDetallesPedido
             // 
@@ -384,7 +376,6 @@
             this.ClientSize = new System.Drawing.Size(976, 535);
             this.Controls.Add(this.lblNumeroPedido);
             this.Controls.Add(this.dgvListadoDetallesPedido);
-            this.Controls.Add(this.btnNuevoPedido);
             this.Controls.Add(this.lblTitulo);
             this.Controls.Add(this.btnGuardarPedido);
             this.Controls.Add(this.btnCerrar);
@@ -438,7 +429,6 @@
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Label lblTitulo;
         private System.Windows.Forms.ComboBox cmbListadoClientes;
-        private System.Windows.Forms.Button btnNuevoPedido;
         private System.Windows.Forms.DataGridView dgvListadoDetallesPedido;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvProducto;
