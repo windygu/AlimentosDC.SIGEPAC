@@ -57,6 +57,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ComboBox2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="ComboBox2.Designer.cs">
+      <DependentUpon>ComboBox2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DataGridView2.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DataGridView2.Designer.cs">
+      <DependentUpon>DataGridView2.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -125,6 +137,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TextBox2.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TextBox2.Designer.cs">
+      <DependentUpon>TextBox2.cs</DependentUpon>
+    </Compile>
     <Compile Include="TextBoxWaterMark.cs">
       <SubType>Component</SubType>
     </Compile>

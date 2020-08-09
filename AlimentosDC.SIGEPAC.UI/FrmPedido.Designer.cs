@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPedido));
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -59,8 +60,10 @@
             this.dgvSubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNumeroPedido = new System.Windows.Forms.Label();
+            this.epValidadorControles = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDetallesPedido)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epValidadorControles)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -116,6 +119,7 @@
             this.cmbListadoClientes.ValueMember = "Id";
             this.cmbListadoClientes.SelectedIndexChanged += new System.EventHandler(this.cmbListadoClientes_SelectionChangeCommitted);
             this.cmbListadoClientes.SelectionChangeCommitted += new System.EventHandler(this.cmbListadoClientes_SelectionChangeCommitted);
+            this.cmbListadoClientes.DropDownClosed += new System.EventHandler(this.cmbListadoClientes_DropDownClosed);
             // 
             // label3
             // 
@@ -212,7 +216,7 @@
             this.cmbEstadoPedido.TabIndex = 16;
             this.cmbEstadoPedido.SelectedIndexChanged += new System.EventHandler(this.cmbEstadoPedido_SelectionChangeCommitted);
             this.cmbEstadoPedido.SelectionChangeCommitted += new System.EventHandler(this.cmbEstadoPedido_SelectionChangeCommitted);
-            this.cmbEstadoPedido.SelectedValueChanged += new System.EventHandler(this.cmbEstadoPedido_SelectionChangeCommitted);
+            this.cmbEstadoPedido.DropDownClosed += new System.EventHandler(this.cmbEstadoPedido_DropDownClosed);
             // 
             // label13
             // 
@@ -308,8 +312,9 @@
             this.dgvListadoDetallesPedido.Name = "dgvListadoDetallesPedido";
             this.dgvListadoDetallesPedido.ReadOnly = true;
             this.dgvListadoDetallesPedido.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListadoDetallesPedido.Size = new System.Drawing.Size(813, 219);
+            this.dgvListadoDetallesPedido.Size = new System.Drawing.Size(814, 220);
             this.dgvListadoDetallesPedido.TabIndex = 29;
+            this.dgvListadoDetallesPedido.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvListadoDetallesPedido_RowsAdded);
             this.dgvListadoDetallesPedido.SelectionChanged += new System.EventHandler(this.dgvListadoDetallesPedido_SelectionChanged);
             // 
             // dgvId
@@ -362,12 +367,16 @@
             // 
             this.lblNumeroPedido.AutoSize = true;
             this.lblNumeroPedido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblNumeroPedido.Font = new System.Drawing.Font("Segoe UI Semibold", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNumeroPedido.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblNumeroPedido.Location = new System.Drawing.Point(96, 69);
             this.lblNumeroPedido.Name = "lblNumeroPedido";
             this.lblNumeroPedido.Size = new System.Drawing.Size(21, 23);
             this.lblNumeroPedido.TabIndex = 30;
             this.lblNumeroPedido.Text = "0";
+            // 
+            // epValidadorControles
+            // 
+            this.epValidadorControles.ContainerControl = this;
             // 
             // FrmPedido
             // 
@@ -399,9 +408,11 @@
             this.Name = "FrmPedido";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mantenimiento Pedidos";
+            this.Load += new System.EventHandler(this.FrmPedido_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDetallesPedido)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.epValidadorControles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -439,5 +450,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvEstado;
         private System.Windows.Forms.Label lblNumeroPedido;
         private System.Windows.Forms.Label lblDui;
+        private System.Windows.Forms.ErrorProvider epValidadorControles;
     }
 }

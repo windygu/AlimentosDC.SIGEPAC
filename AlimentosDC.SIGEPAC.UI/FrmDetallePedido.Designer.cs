@@ -268,6 +268,7 @@
             this.Name = "FrmDetallePedido";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mantenimiento Detalles Pedido";
+            this.Load += new System.EventHandler(this.FrmDetallePedido_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);

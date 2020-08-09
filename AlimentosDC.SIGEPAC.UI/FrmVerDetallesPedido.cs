@@ -11,34 +11,52 @@ using DevComponents.DotNetBar.Metro;
 using DevComponents.DotNetBar;
 using AlimentosDC.SIGEPAC.EN;
 using AlimentosDC.SIGEPAC.BL;
+using System.Globalization;
+using System.Threading;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
     public partial class FrmVerDetallesPedido : MetroForm
     {
         List<DetallePedido> listadoDetallesPedido;
+        Pedido pedido;
+        Cliente cliente;
         int idPedido, numeroPedido;
+        //Objeto a ser utilizado para cambiar coma por punto en numeros decimales
+        CultureInfo cultura = (CultureInfo)Thread.CurrentThread.CurrentCulture.Clone();
         public FrmVerDetallesPedido(int idPedido, int numeroPedido)
         {
             InitializeComponent();
+            //Cambiamos el separador por un punto
+            cultura.NumberFormat.NumberDecimalSeparator = ".";
+            //Establecemos el hilo de ejecucion actual por la copia que hicimos anteriormente
+            Thread.CurrentThread.CurrentCulture = cultura;
             this.idPedido = idPedido;
             this.numeroPedido = numeroPedido;
             CargarDetalles();
-            lblIdPedido.Text = idPedido.ToString();
-            lblNumeroPedido.Text = numeroPedido.ToString();
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Close();
         }
-
         void CargarDetalles()
         {
             listadoDetallesPedido = DetallePedidoBL.ObtenerTodos(idPedido);
             dgvListadoDetallesPedido.Rows.Clear();
+            pedido = PedidoBL.BuscarPorId(idPedido);
+            lblIdPedido.Text = pedido.Id.ToString();
+            lblNumeroPedido.Text = pedido.NumeroPedido.ToString();
+            lblFechaCreacion.Text = pedido.FechaCreacion.ToString();
+            lblEstadoPedido.Text = pedido.Estado;
+            lblFechaEntrega.Text = pedido.FechaEntrega.ToString();
+            lblDireccionEntrega.Text = pedido.DireccionEntrega;
+            cliente = ClienteBL.BuscarPorId(pedido.IdCliente);
+            lblCliente.Text = string.Concat(cliente.PrimerNombre, " ", cliente.SegundoNombre, " ", 
+                cliente.PrimerApellido, " ", cliente.SegundoApellido);
+            lblDuiCliente.Text = cliente.DUI;
             int sumaProductos = 0;
-            float total = 0.00f;
+            float total = 0;
             for (int i = 0; i < listadoDetallesPedido.Count; i++)
             {
                 dgvListadoDetallesPedido.Rows.Add();
@@ -54,7 +72,11 @@ namespace AlimentosDC.SIGEPAC.UI
             }
 
             lblProductos.Text = sumaProductos.ToString();
-            lblTotal.Text = total.ToString();
+            int cantidad;
+            lblTotal.Text =
+            "$ "+ ((int.TryParse(total.ToString(), out cantidad) == true) ? (total.ToString() + ".00") : total.ToString());
+
+            //Me quede en buscar el erro de que cuando doy en editar un pedido se me despliega el combo de estados
         }
     }
 }

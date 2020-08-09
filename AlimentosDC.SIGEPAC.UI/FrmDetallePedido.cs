@@ -32,7 +32,6 @@ namespace AlimentosDC.SIGEPAC.UI
             listadoProductos = ProductoBL.ObtenerTodos();
             cmbProducto.Items.AddRange(listadoProductos.ToArray());
             this.objeto = objeto;
-            cmbProducto.Focus();
         }
         //Constructor para un nuevo detalle pedido de un viejo pedido
         public FrmDetallePedido(ref FrmPedido objeto, int idPedidoEditando)
@@ -43,7 +42,7 @@ namespace AlimentosDC.SIGEPAC.UI
             cmbProducto.Items.AddRange(listadoProductos.ToArray());
             this.idPedidoEditando = idPedidoEditando;
             this.objeto = objeto;
-            cmbProducto.Focus();
+            cmbProducto.DroppedDown = true;
         }
 
         //Constructor para la modificación de detalles pedido de un nuevo pedido
@@ -59,7 +58,7 @@ namespace AlimentosDC.SIGEPAC.UI
             listadoDetallesPedido = listadoDetalles;
             CargarDatosAlFormulario();
             detallePedidoAEditar = listadoDetallesPedido.Find(x => x.Id == idDetallePedidoAEditar);
-            cmbProducto.Focus();
+            txtCantidad.Focus();
 
         }
 
@@ -78,7 +77,7 @@ namespace AlimentosDC.SIGEPAC.UI
             this.listadoViejoDetallesPedido = listadoViejoDetallesPedido;
             detallePedidoAEditar = objeto.listadoDetallesPedido.Find(x => x.Id == idDetallePedidoAEditar);
             CargarDatosAlFormulario();
-            cmbProducto.Focus();
+            txtCantidad.Focus();
         }
 
         void CargarDatosAlFormulario()
@@ -111,7 +110,6 @@ namespace AlimentosDC.SIGEPAC.UI
                         MessageBoxEx.Show("Las existencias mínimas de este producto deben ser 10 unidades.");
                         txtCantidad.Text = "";
                     }
-
                 }
                 else if (string.IsNullOrEmpty(txtCantidad.Text))
                 {
@@ -127,7 +125,23 @@ namespace AlimentosDC.SIGEPAC.UI
                 {
                     btnAgregarDetallePedido.Enabled = true;
                 }
-                else btnAgregarDetallePedido.Enabled = false;
+                else if (cmbProducto.SelectedItem == null)
+                {
+                    cmbProducto.DroppedDown = true;
+                    Cursor = Cursors.Arrow;
+                }
+                else if (string.IsNullOrEmpty(txtCantidad.Text))
+                {
+                    cmbProducto.DroppedDown = false;
+                    cmbEstadoDetallePedido.DroppedDown = false;
+                    btnAgregarDetallePedido.Enabled = false;
+                }
+                else if (cmbEstadoDetallePedido.SelectedItem == null)
+                {
+                    cmbEstadoDetallePedido.DroppedDown = true;
+                    Cursor = Cursors.Arrow;
+                }
+                else btnAgregarDetallePedido.Enabled = true;
             }
             catch (Exception er)
             {
@@ -155,12 +169,21 @@ namespace AlimentosDC.SIGEPAC.UI
                 lblSubTotal.Text = "0.00";
                 lblExistencias.Text = (ProductoBL.BuscarPorId(id)).Stock.ToString();
                 txtCantidad.Text = "";
-                txtCantidad.Focus();
                 if (cmbEstadoDetallePedido.SelectedItem != null && (txtCantidad.Text.Length >= 1))
                 {
                     btnAgregarDetallePedido.Enabled = true;
+                    btnAgregarDetallePedido.Focus();
                 }
-                else btnAgregarDetallePedido.Enabled = false;
+                else if (string.IsNullOrWhiteSpace(txtCantidad.Text))
+                {
+                    btnAgregarDetallePedido.Enabled = false;
+                    txtCantidad.Focus();
+                }
+                else
+                {
+                    btnAgregarDetallePedido.Enabled = false;
+                    cmbEstadoDetallePedido.DroppedDown = true;
+                }
             }
         }
 
@@ -230,7 +253,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 }
                 else if (cmbProducto.SelectedItem == null)
                 {
-                    cmbProducto.Focus();
+                    cmbProducto.DroppedDown = true;
                 }
                 else txtCantidad.Focus();
             }
@@ -240,8 +263,20 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             cmbProducto.SelectedItem = null;
             txtCantidad.Text = "";
+            lblPrecioUnitario.Text = "";
+            lblDescripcion.Text = "";
+            lblExistencias.Text = "";
             cmbEstadoDetallePedido.SelectedItem = null;
-            cmbProducto.Focus();
+            cmbProducto.DroppedDown = true;
+        }
+
+        private void FrmDetallePedido_Load(object sender, EventArgs e)
+        {
+            if (idDetallePedidoAEditar==null)
+            {
+                cmbProducto.DroppedDown = true;
+                cmbProducto.Focus();
+            }
         }
     }
 }
