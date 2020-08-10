@@ -14,7 +14,7 @@ using AlimentosDC.SIGEPAC.BL;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
-    public partial class FrmPedidos : MetroForm
+    public partial class FrmPedidos : MetroFramework.Forms.MetroForm
     {
         List<Pedido> listadoPedidos = new List<Pedido>();
         FrmPedidos objetoActual;
@@ -22,11 +22,14 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             InitializeComponent();
             objetoActual = this;
-            CargarPedidos();
             btnEditarPedido.Enabled = true;
             btnVerDetallePedido.Enabled = true;
             btnEliminarPedido.Enabled = true;
             txtBuscadorPedidos.GotFocus += TxtBuscadorPedidos_GotFocus;
+            txtBuscadorPedidos.Text = " ";
+            txtBuscadorPedidos.Text = "";
+            cmbMostrando.SelectedItem = "Todos";
+            btnNuevoPedido.Focus();
         }
 
         private void TxtBuscadorPedidos_GotFocus(object sender, EventArgs e)
@@ -74,10 +77,10 @@ namespace AlimentosDC.SIGEPAC.UI
                 txtBuscadorPedidos.Font = new Font(txtBuscadorPedidos.Font, FontStyle.Regular);
         }
 
-        public void CargarPedidos()
+        public void CargarPedidos(string pEstado = "%")
         {
             dgvListadoPedidos.Rows.Clear();
-            listadoPedidos = PedidoBL.ObtenerTodos();
+            listadoPedidos = PedidoBL.ObtenerTodos(pEstado);
             for (int i = 0; i < listadoPedidos.Count; i++)
             {
                 dgvListadoPedidos.Rows.Add();
@@ -107,5 +110,42 @@ namespace AlimentosDC.SIGEPAC.UI
                 btnEliminarPedido.Enabled = false;
             }
         }
+
+        private void cmbMostrando_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            switch (cmbMostrando.SelectedItem.ToString())
+            {
+                case "Todos": CargarPedidos();
+                    break;
+                case "No iniciados": CargarPedidos("No iniciado");
+                    break;
+                case "Iniciados": CargarPedidos("Iniciado");
+                    break;
+                case "Revisados": CargarPedidos("Revisado");
+                    break;
+                case "Enviados": CargarPedidos("Enviado");
+                    break;
+                case "Finalizados": CargarPedidos("Finalizado");
+                    break;
+            }
+        }
+
+        private void btnEliminarPedido_Click(object sender, EventArgs e)
+        {
+            int idPedidoAEliminar = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[0].Value.ToString());
+            DialogResult resultadoDialgo = MetroFramework.MetroMessageBox.Show(this, "¿Desea eliminar este pedido?", "Aviso",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (resultadoDialgo == DialogResult.Yes)
+            {
+                PedidoBL.Eliminar(idPedidoAEliminar);
+            }
+        }
+
+        private void txtBuscadorPedidos_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        //Continuar aqui en darle funcionamiento al buscador de pedidos
     }
 }

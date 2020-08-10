@@ -42,22 +42,23 @@ namespace AlimentosDC.SIGEPAC.DAL
             return ComunDB.EjecutarComando(comando);
         }
 
-        public static int Eliminar(Pedido pPedido)
+        public static int Eliminar(int pIdPedido)
         {
             string consulta = @"DELETE FROM Pedido WHERE Id = @Id;";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
-            comando.Parameters.AddWithValue("@Id", pPedido.Id);
+            comando.Parameters.AddWithValue("@Id", pIdPedido);
             return ComunDB.EjecutarComando(comando);
         }
 
-        public static List<Pedido> ObtenerTodos()
+        public static List<Pedido> ObtenerTodos(string pEstado = "%")
         {
-            string consulta = @"select top(500) p.Id, c.PrimerNombre+' '+c.PrimerApellido 
+            string consulta = @"SELECT TOP(500) p.Id, c.PrimerNombre+' '+c.PrimerApellido 
             Cliente, c.Dui, p.NumeroPedido, p.FechaCreacion, p.FechaEntrega, p.DireccionEntrega, p.Estado 
-            from Cliente c join Pedido p on c.Id = p.IdCliente";
+            FROM Cliente c JOIN Pedido p ON c.Id = p.IdCliente WHERE Estado LIKE @pEstado";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
+            comando.Parameters.AddWithValue("@pEstado", pEstado);
             SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
             List<Pedido> listaPedidos = new List<Pedido>();
             while (reader.Read())
@@ -129,7 +130,8 @@ namespace AlimentosDC.SIGEPAC.DAL
         {
             int numeroPedido = 0;
             string consulta = 
-            string.Concat("declare @numeroPedido int\n",
+            string.Concat
+            ("declare @numeroPedido int\n",
             "if (not exists(select numeroPedido from pedido))\n",
             "begin\n",
             "set @numeroPedido = 1\n",

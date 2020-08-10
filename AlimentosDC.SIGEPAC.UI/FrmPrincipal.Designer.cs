@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCerraSesion = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnPedidos = new System.Windows.Forms.Button();
             this.btnMarcas = new System.Windows.Forms.Button();
             this.btnProductos = new System.Windows.Forms.Button();
             this.btnClientes = new System.Windows.Forms.Button();
-            this.btnCerraSesion = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.SuspendLayout();
@@ -50,10 +50,20 @@
             this.panel1.Controls.Add(this.btnProductos);
             this.panel1.Controls.Add(this.btnClientes);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Location = new System.Drawing.Point(20, 60);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(174, 761);
+            this.panel1.Size = new System.Drawing.Size(174, 681);
             this.panel1.TabIndex = 0;
+            // 
+            // btnCerraSesion
+            // 
+            this.btnCerraSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerraSesion.Location = new System.Drawing.Point(16, 382);
+            this.btnCerraSesion.Name = "btnCerraSesion";
+            this.btnCerraSesion.Size = new System.Drawing.Size(140, 38);
+            this.btnCerraSesion.TabIndex = 1;
+            this.btnCerraSesion.Text = "Cerrar sesión";
+            this.btnCerraSesion.UseVisualStyleBackColor = true;
             // 
             // pictureBox1
             // 
@@ -117,27 +127,17 @@
             this.btnClientes.UseVisualStyleBackColor = true;
             this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
-            // btnCerraSesion
-            // 
-            this.btnCerraSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerraSesion.Location = new System.Drawing.Point(16, 382);
-            this.btnCerraSesion.Name = "btnCerraSesion";
-            this.btnCerraSesion.Size = new System.Drawing.Size(140, 38);
-            this.btnCerraSesion.TabIndex = 1;
-            this.btnCerraSesion.Text = "Cerrar sesión";
-            this.btnCerraSesion.UseVisualStyleBackColor = true;
-            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1484, 761);
             this.Controls.Add(this.panel1);
-            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmPrincipal";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Resizable = false;
+            this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "ALIMENTOS DE CALIDAD";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();

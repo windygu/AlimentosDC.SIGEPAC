@@ -11,10 +11,12 @@ using DevComponents.DotNetBar.Metro;
 using DevComponents.DotNetBar;
 using AlimentosDC.SIGEPAC.BL;
 using AlimentosDC.SIGEPAC.EN;
+using MetroFramework.Components;
+using MetroFramework.Animation;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
-    public partial class FrmPedido : MetroForm
+    public partial class FrmPedido : MetroFramework.Forms.MetroForm
     {
         FrmPedido objeto;
         FrmPedidos objetoActual;
@@ -37,6 +39,7 @@ namespace AlimentosDC.SIGEPAC.UI
             CargarClientesAlCombobox();
             lblNumeroPedido.Text = PedidoBL.GenerarNumeroPedido();
             objeto = this;
+            dtpFechaCreacion.Focus();
         }
 
         //Constructor para editar un pedido
@@ -47,9 +50,8 @@ namespace AlimentosDC.SIGEPAC.UI
             this.objetoActual = objetoActual;
             CargarClientesAlCombobox();
             this.idPedido = idPedido;
-            
+            CargarDatosAlFormulario();
             objeto = this;
-            lblTitulo.Text = "Editar pedido";
         }
 
         //Método para ir agregando cada detalle (anteriormente agregado a la lista) al datagrid
@@ -89,7 +91,7 @@ namespace AlimentosDC.SIGEPAC.UI
                     dgvListadoDetallesPedido.Rows[i].Cells[3].Value = listadoViejoDetallesPedido[i].Cantidad;
                     dgvListadoDetallesPedido.Rows[i].Cells[4].Value = listadoViejoDetallesPedido[i].PrecioUnitario;
                     dgvListadoDetallesPedido.Rows[i].Cells[5].Value = listadoViejoDetallesPedido[i].SubTotal;
-                    dgvListadoDetallesPedido.Rows[i].Cells[6].Value = cmbEstadoPedido.SelectedItem.ToString();
+                    dgvListadoDetallesPedido.Rows[i].Cells[6].Value = listadoViejoDetallesPedido[i].Estado;
                     listadoDetallesPedido.Add(listadoViejoDetallesPedido[i]);
                 }
             }
@@ -98,7 +100,6 @@ namespace AlimentosDC.SIGEPAC.UI
         private void btnNuevoDetallePedido_Click(object sender, EventArgs e)
         {
             FrmDetallePedido mantenimientoDetallesPedido = new FrmDetallePedido(ref objeto);
-            mantenimientoDetallesPedido.Owner = this;
             mantenimientoDetallesPedido.ShowDialog();
         }
 
@@ -106,8 +107,7 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             int idDetallePedidoAEditar = int.Parse(dgvListadoDetallesPedido.SelectedRows[0].Cells[0].Value.ToString());
             FrmDetallePedido mantenimientoDetallesPedido =
-            new FrmDetallePedido(ref objeto, idDetallePedidoAEditar, 
-            ref listadoDetallesPedido, ref listadoViejoDetallesPedido, (int) idPedido);
+            new FrmDetallePedido(ref objeto, idPedido, idDetallePedidoAEditar);
             mantenimientoDetallesPedido.Owner = this;
             mantenimientoDetallesPedido.ShowDialog();
         }
@@ -154,8 +154,11 @@ namespace AlimentosDC.SIGEPAC.UI
             }
             else if (cmbEstadoPedido.SelectedItem == null)
             {
-                cmbEstadoPedido.DroppedDown = true;
-                Cursor = Cursors.Arrow;
+                if (idPedido == null)
+                {
+                    cmbEstadoPedido.DroppedDown = true;
+                    Cursor = Cursors.Arrow;
+                }              
             }
             else if (string.IsNullOrWhiteSpace(txtDireccionEntregaPedido.Text))
             {
@@ -286,7 +289,7 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void btnEliminarDetallePedido_Click(object sender, EventArgs e)
         {
-            DialogResult resultadoDelCuadro = MessageBoxEx.Show("¿Desea eliminar el detalle del pedido?", "Aviso", 
+            DialogResult resultadoDelCuadro = MetroFramework.MetroMessageBox.Show(this, "¿Desea eliminar el detalle del pedido?", "Aviso", 
             MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
             if (resultadoDelCuadro==DialogResult.Yes)
             {
@@ -353,8 +356,11 @@ namespace AlimentosDC.SIGEPAC.UI
                 }
                 else if (cmbListadoClientes.SelectedItem == null)
                 {
-                    cmbListadoClientes.DroppedDown = true;
-                    Cursor = Cursors.Arrow;
+                    if (idPedido==null)
+                    {
+                        cmbListadoClientes.DroppedDown = true;
+                        Cursor = Cursors.Arrow;
+                    }
                 }
                 else if (string.IsNullOrWhiteSpace(txtDireccionEntregaPedido.Text))
                 {
@@ -398,7 +404,7 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void dgvListadoDetallesPedido_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
-            epValidadorControles.Clear();
+            epValidadorControles.SetError(dgvListadoDetallesPedido, "");
         }
 
         private void cmbEstadoPedido_DropDownClosed(object sender, EventArgs e)
@@ -415,11 +421,6 @@ namespace AlimentosDC.SIGEPAC.UI
             {
                 epValidadorControles.SetError(cmbListadoClientes, "Debe seleccionar un cliente.");
             }
-        }
-
-        private void FrmPedido_Load(object sender, EventArgs e)
-        {
-            CargarDatosAlFormulario();
         }
     }
 }

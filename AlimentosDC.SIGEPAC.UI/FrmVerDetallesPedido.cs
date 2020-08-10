@@ -16,7 +16,7 @@ using System.Threading;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
-    public partial class FrmVerDetallesPedido : MetroForm
+    public partial class FrmVerDetallesPedido : MetroFramework.Forms.MetroForm
     {
         List<DetallePedido> listadoDetallesPedido;
         Pedido pedido;

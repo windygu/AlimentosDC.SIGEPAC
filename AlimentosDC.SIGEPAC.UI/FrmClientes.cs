@@ -14,7 +14,7 @@ using AlimentosDC.SIGEPAC.EN;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
-    public partial class FrmClientes : MetroForm
+    public partial class FrmClientes : MetroFramework.Forms.MetroForm
     {
         List<Cliente> listadoClientes;
         public FrmClientes()

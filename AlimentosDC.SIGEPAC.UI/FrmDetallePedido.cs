@@ -14,14 +14,12 @@ using AlimentosDC.SIGEPAC.EN;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
-    public partial class FrmDetallePedido : MetroForm
+    public partial class FrmDetallePedido : MetroFramework.Forms.MetroForm
     {
         List<Producto> listadoProductos;
         FrmPedido objeto;
         int? idDetallePedidoAEditar = null;
         int? idPedidoEditando = null;
-        List<DetallePedido> listadoDetallesPedido;
-        List<DetallePedido> listadoViejoDetallesPedido;
         DetallePedido detallePedidoAEditar;
 
         //Constructor para un nuevo detalle de un nuevo pedido
@@ -33,51 +31,24 @@ namespace AlimentosDC.SIGEPAC.UI
             cmbProducto.Items.AddRange(listadoProductos.ToArray());
             this.objeto = objeto;
         }
-        //Constructor para un nuevo detalle pedido de un viejo pedido
-        public FrmDetallePedido(ref FrmPedido objeto, int idPedidoEditando)
+        //Constructor para editar un detalle de un nuevo o viejo pedido
+        public FrmDetallePedido(ref FrmPedido objeto, int? idPedidoEditando, int? idDetallePedidoAEditar)
         {
             InitializeComponent();
             btnAgregarDetallePedido.Enabled = false;
             listadoProductos = ProductoBL.ObtenerTodos();
             cmbProducto.Items.AddRange(listadoProductos.ToArray());
             this.idPedidoEditando = idPedidoEditando;
-            this.objeto = objeto;
-            cmbProducto.DroppedDown = true;
-        }
-
-        //Constructor para la modificación de detalles pedido de un nuevo pedido
-        public FrmDetallePedido(ref FrmPedido objeto, int idDetallePedidoAEditar, ref List<DetallePedido> listadoDetalles)
-        {
-            InitializeComponent();
-            btnAgregarDetallePedido.Enabled = false;
-            listadoProductos = ProductoBL.ObtenerTodos();
-            cmbProducto.Items.AddRange(listadoProductos.ToArray());
-            btnAgregarDetallePedido.Text = "Actualizar";
-            this.objeto = objeto;
             this.idDetallePedidoAEditar = idDetallePedidoAEditar;
-            listadoDetallesPedido = listadoDetalles;
-            CargarDatosAlFormulario();
-            detallePedidoAEditar = listadoDetallesPedido.Find(x => x.Id == idDetallePedidoAEditar);
-            txtCantidad.Focus();
-
-        }
-
-        //Contructor para la modificación de un detalle pedido de un viejo pedido
-        public FrmDetallePedido(ref FrmPedido objeto, int idDetallePedidoAEditar, ref List<DetallePedido> listadoDetallesPedido,
-           ref List<DetallePedido> listadoViejoDetallesPedido, int idPedidoEditando)
-        {
-            InitializeComponent();
-            btnAgregarDetallePedido.Enabled = false;
-            listadoProductos = ProductoBL.ObtenerTodos();
-            cmbProducto.Items.AddRange(listadoProductos.ToArray());
-            btnAgregarDetallePedido.Text = "Actualizar";
             this.objeto = objeto;
-            this.idDetallePedidoAEditar = idDetallePedidoAEditar;
-            this.listadoDetallesPedido = listadoDetallesPedido;
-            this.listadoViejoDetallesPedido = listadoViejoDetallesPedido;
-            detallePedidoAEditar = objeto.listadoDetallesPedido.Find(x => x.Id == idDetallePedidoAEditar);
-            CargarDatosAlFormulario();
-            txtCantidad.Focus();
+            if (idDetallePedidoAEditar != null)
+            {
+                detallePedidoAEditar = objeto.listadoDetallesPedido.Find(x => x.Id == idDetallePedidoAEditar);
+                btnAgregarDetallePedido.Text = "Actualizar";
+                CargarDatosAlFormulario();
+                txtCantidad.Focus();
+            }
+            
         }
 
         void CargarDatosAlFormulario()
@@ -169,6 +140,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 lblSubTotal.Text = "0.00";
                 lblExistencias.Text = (ProductoBL.BuscarPorId(id)).Stock.ToString();
                 txtCantidad.Text = "";
+                cmbEstadoDetallePedido.DroppedDown = true;
                 if (cmbEstadoDetallePedido.SelectedItem != null && (txtCantidad.Text.Length >= 1))
                 {
                     btnAgregarDetallePedido.Enabled = true;
@@ -191,7 +163,7 @@ namespace AlimentosDC.SIGEPAC.UI
         {
                 if (idDetallePedidoAEditar != null)
                 {
-                    foreach (var detallePedido in listadoDetallesPedido.Where(x => x.Id == idDetallePedidoAEditar))
+                    foreach (var detallePedido in objeto.listadoDetallesPedido.Where(x => x.Id == idDetallePedidoAEditar))
                     {
                         detallePedido.IdProducto = (cmbProducto.SelectedItem as Producto).Id;
                         detallePedido.Producto = (cmbProducto.SelectedItem as Producto).Nombre;

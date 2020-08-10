@@ -12,7 +12,7 @@ using DevComponents.DotNetBar;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
-    public partial class FrmPrincipal : MetroForm
+    public partial class FrmPrincipal : MetroFramework.Forms.MetroForm
     {
         public FrmPrincipal()
         {
