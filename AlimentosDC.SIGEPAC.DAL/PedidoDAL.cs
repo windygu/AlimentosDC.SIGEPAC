@@ -51,14 +51,22 @@ namespace AlimentosDC.SIGEPAC.DAL
             return ComunDB.EjecutarComando(comando);
         }
 
-        public static List<Pedido> ObtenerTodos(string pEstado = "%")
+        public static List<Pedido> ObtenerTodos(string pEstado = "%", string pDatoABuscar = null)
         {
             string consulta = @"SELECT TOP(500) p.Id, c.PrimerNombre+' '+c.PrimerApellido 
             Cliente, c.Dui, p.NumeroPedido, p.FechaCreacion, p.FechaEntrega, p.DireccionEntrega, p.Estado 
             FROM Cliente c JOIN Pedido p ON c.Id = p.IdCliente WHERE Estado LIKE @pEstado";
+            if (pDatoABuscar != null)
+            {
+                consulta = string.Concat("SELECT p.Id, c.PrimerNombre+' '+c.PrimerApellido Cliente, c.Dui, p.NumeroPedido, ", 
+                "p.FechaCreacion, p.FechaEntrega, p.DireccionEntrega, p.Estado FROM pedido p JOIN Cliente c ON p.IdCliente = c.Id ",
+                "WHERE p.NumeroPedido LIKE CONCAT(@pDatoABuscar, '%') OR CONCAT(c.PrimerNombre, ' ', c.SegundoNombre, ' ', c.PrimerApellido, ' ', ",
+                "c.SegundoApellido) LIKE CONCAT('%', @pDatoABuscar, '%')");
+            }    
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
-            comando.Parameters.AddWithValue("@pEstado", pEstado);
+            if (pDatoABuscar!=null) comando.Parameters.AddWithValue("@pDatoABuscar", pDatoABuscar);
+            else comando.Parameters.AddWithValue("@pEstado", pEstado);
             SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
             List<Pedido> listaPedidos = new List<Pedido>();
             while (reader.Read())

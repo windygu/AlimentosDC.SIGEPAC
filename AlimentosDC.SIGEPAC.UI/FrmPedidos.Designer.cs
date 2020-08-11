@@ -206,7 +206,7 @@
             this.txtBuscadorPedidos.WaterMark = "Buscar por número de pedido o cliente";
             this.txtBuscadorPedidos.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
             this.txtBuscadorPedidos.WaterMarkFont = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Pixel);
-            this.txtBuscadorPedidos.Click += new System.EventHandler(this.txtBuscadorPedidos_Click);
+            this.txtBuscadorPedidos.TextChanged += new System.EventHandler(this.txtBuscadorPedidos_TextChanged);
             // 
             // cmbMostrando
             // 
@@ -244,6 +244,7 @@
             this.MaximizeBox = false;
             this.Name = "FrmPedidos";
             this.Resizable = false;
+            this.Style = MetroFramework.MetroColorStyle.Green;
             this.Tag = "";
             this.Text = "PEDIDOS";
             this.Click += new System.EventHandler(this.FrmPedidos_Click);
@@ -255,7 +256,6 @@
         #endregion
 
         private System.Windows.Forms.DataGridView dgvListadoPedidos;
-        private System.Windows.Forms.Button btnNuevoPedido;
         private System.Windows.Forms.Button btnEditarPedido;
         private System.Windows.Forms.Button btnEliminarPedido;
         private System.Windows.Forms.Button btnVerDetallePedido;
@@ -269,5 +269,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvEstado;
         private MetroFramework.Controls.MetroTextBox txtBuscadorPedidos;
         private MetroFramework.Controls.MetroComboBox cmbMostrando;
+        private System.Windows.Forms.Button btnNuevoPedido;
     }
 }

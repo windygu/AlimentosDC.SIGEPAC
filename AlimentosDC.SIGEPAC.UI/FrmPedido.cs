@@ -7,16 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevComponents.DotNetBar.Metro;
-using DevComponents.DotNetBar;
 using AlimentosDC.SIGEPAC.BL;
 using AlimentosDC.SIGEPAC.EN;
-using MetroFramework.Components;
-using MetroFramework.Animation;
+using MetroFramework;
+using MetroFramework.Forms;
+using MetroFramework.Controls;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
-    public partial class FrmPedido : MetroFramework.Forms.MetroForm
+    public partial class FrmPedido : MetroForm
     {
         FrmPedido objeto;
         FrmPedidos objetoActual;
@@ -100,6 +99,7 @@ namespace AlimentosDC.SIGEPAC.UI
         private void btnNuevoDetallePedido_Click(object sender, EventArgs e)
         {
             FrmDetallePedido mantenimientoDetallesPedido = new FrmDetallePedido(ref objeto);
+            mantenimientoDetallesPedido.Owner = this;
             mantenimientoDetallesPedido.ShowDialog();
         }
 
@@ -171,16 +171,20 @@ namespace AlimentosDC.SIGEPAC.UI
 
         void Limpiar()
         {
+            
             lblNumeroPedido.Text = PedidoBL.GenerarNumeroPedido();
             dtpFechaCreacion.Value = DateTime.Now;
             dtpFechaEntrega.Value = DateTime.Now;
+            
             cmbEstadoPedido.SelectedItem = null;
             cmbListadoClientes.SelectedItem = null;
-            txtDireccionEntregaPedido.Text = "";
+            txtDireccionEntregaPedido.Text = null;
             dgvListadoDetallesPedido.Rows.Clear();
             listadoDetallesPedido.Clear();
             listadoViejoDetallesPedido.Clear();
             dtpFechaCreacion.Focus();
+            
+            //objetoActual.btnNuevoPedido_Click(null, null);
         }
 
         private void btnGuardarPedido_Click(object sender, EventArgs e)
@@ -218,13 +222,13 @@ namespace AlimentosDC.SIGEPAC.UI
                             resultadoDetallePedido += DetallePedidoBL.Guardar(detallePedidoARegistrar);
                         }
                         objetoActual.CargarPedidos();
-                        MessageBoxEx.Show($"{resultadoPedido} pedido registrado.\n{resultadoDetallePedido} detalle(s) del pedido registrado(s).",
-                            "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MetroMessageBox.Show(this, $"{resultadoPedido} pedido registrado.\n{resultadoDetallePedido} detalle(s) del pedido registrado(s).", "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information,
+                            MessageBoxDefaultButton.Button1);
                         Limpiar();
                     }
                     catch (Exception exc)
                     {
-                        MessageBoxEx.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MetroMessageBox.Show(this, exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
                 else
@@ -269,8 +273,8 @@ namespace AlimentosDC.SIGEPAC.UI
                             }
                         }
                         objetoActual.CargarPedidos();
-                        DialogResult resultadoDelDialgo = MessageBoxEx.Show
-                        ($"{resultadoPedido} pedido actualizado.\n{resultDetallesModificados} detalle(s) actualizado(s).\n" +
+                        DialogResult resultadoDelDialgo = MetroMessageBox.Show
+                        (this, $"{resultadoPedido} pedido actualizado.\n{resultDetallesModificados} detalle(s) actualizado(s).\n" +
                         $"{resultDetallesAñadidos} detalle(s) registrado(s).\n{resultadoEliminados} detalle(s) eliminado(s).\n¿Desea cerrar el editor?",
                             "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                         if (resultadoDelDialgo == DialogResult.Yes)
@@ -281,7 +285,7 @@ namespace AlimentosDC.SIGEPAC.UI
                     }
                     catch (Exception exc)
                     {
-                        MessageBoxEx.Show(exc.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MetroMessageBox.Show(this, exc.Message, "¡Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
                 }
             }

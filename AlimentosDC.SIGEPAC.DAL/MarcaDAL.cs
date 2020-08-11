@@ -59,7 +59,7 @@ namespace AlimentosDC.SIGEPAC.DAL
 
         public static Marca BuscarPorId(int pId)
         {
-            string consulta = @"SELECT TOP 500 m.Id, m.Nombre, m.Comentario FROM Marca m WHERE Id = @Id";
+            string consulta = @"SELECT m.Id, m.Nombre, m.Comentario FROM Marca m WHERE Id = @Id";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
             comando.Parameters.AddWithValue("@Id", pId);

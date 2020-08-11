@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevComponents.DotNetBar.Metro;
-using DevComponents.DotNetBar;
 using AlimentosDC.SIGEPAC.BL;
 using AlimentosDC.SIGEPAC.EN;
+using MetroFramework;
+using MetroFramework.Forms;
+using MetroFramework.Controls;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
-    public partial class FrmDetallePedido : MetroFramework.Forms.MetroForm
+    public partial class FrmDetallePedido : MetroForm
     {
         List<Producto> listadoProductos;
         FrmPedido objeto;
@@ -35,11 +36,11 @@ namespace AlimentosDC.SIGEPAC.UI
         public FrmDetallePedido(ref FrmPedido objeto, int? idPedidoEditando, int? idDetallePedidoAEditar)
         {
             InitializeComponent();
+            this.idPedidoEditando = idPedidoEditando;
+            this.idDetallePedidoAEditar = idDetallePedidoAEditar;
             btnAgregarDetallePedido.Enabled = false;
             listadoProductos = ProductoBL.ObtenerTodos();
             cmbProducto.Items.AddRange(listadoProductos.ToArray());
-            this.idPedidoEditando = idPedidoEditando;
-            this.idDetallePedidoAEditar = idDetallePedidoAEditar;
             this.objeto = objeto;
             if (idDetallePedidoAEditar != null)
             {
@@ -78,7 +79,7 @@ namespace AlimentosDC.SIGEPAC.UI
                     lblExistencias.Text = (stock - int.Parse(txtCantidad.Text)).ToString();
                     if ((stock - int.Parse(txtCantidad.Text)) < stockMinimo)
                     {
-                        MessageBoxEx.Show("Las existencias mínimas de este producto deben ser 10 unidades.");
+                        MetroMessageBox.Show(this, "Las existencias mínimas de este producto deben ser 10 unidades.", "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         txtCantidad.Text = "";
                     }
                 }
@@ -116,7 +117,7 @@ namespace AlimentosDC.SIGEPAC.UI
             }
             catch (Exception er)
             {
-                MessageBoxEx.Show(er.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroMessageBox.Show(this, er.Message, "¡Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
         }
@@ -140,7 +141,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 lblSubTotal.Text = "0.00";
                 lblExistencias.Text = (ProductoBL.BuscarPorId(id)).Stock.ToString();
                 txtCantidad.Text = "";
-                cmbEstadoDetallePedido.DroppedDown = true;
+                if(detallePedidoAEditar==null) cmbEstadoDetallePedido.DroppedDown = true;
                 if (cmbEstadoDetallePedido.SelectedItem != null && (txtCantidad.Text.Length >= 1))
                 {
                     btnAgregarDetallePedido.Enabled = true;
@@ -168,7 +169,7 @@ namespace AlimentosDC.SIGEPAC.UI
                         detallePedido.IdProducto = (cmbProducto.SelectedItem as Producto).Id;
                         detallePedido.Producto = (cmbProducto.SelectedItem as Producto).Nombre;
                         detallePedido.Descripcion = (cmbProducto.SelectedItem as Producto).Descripcion;
-                        detallePedido.PrecioUnitario = (cmbProducto.SelectedItem as Producto).Precio;
+                        detallePedido.PrecioUnitario = (float) (cmbProducto.SelectedItem as Producto).Precio;
                         detallePedido.Cantidad = ushort.Parse(txtCantidad.Text);
                         detallePedido.SubTotal = float.Parse(lblSubTotal.Text);
                         detallePedido.Estado = cmbEstadoDetallePedido.SelectedItem.ToString();
@@ -195,8 +196,9 @@ namespace AlimentosDC.SIGEPAC.UI
                     detallePedido.Estado = cmbEstadoDetallePedido.SelectedItem.ToString();
                     if (objeto.listadoDetallesPedido.Exists(x => x.IdProducto == detallePedido.IdProducto))
                     {
-                        MessageBoxEx.Show("Ya agregó este producto a la lista.", "Aviso", MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                        MetroMessageBox.Show(this, "Ya agregó este producto a la lista.", "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning,
                             MessageBoxDefaultButton.Button1);
+                        
                         txtCantidad.Text = "";
                         txtCantidad.Focus();
                     }
@@ -244,7 +246,7 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void FrmDetallePedido_Load(object sender, EventArgs e)
         {
-            if (idDetallePedidoAEditar==null)
+            if (idDetallePedidoAEditar==null && idPedidoEditando == null)
             {
                 cmbProducto.DroppedDown = true;
                 cmbProducto.Focus();

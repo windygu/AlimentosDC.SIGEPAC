@@ -33,7 +33,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtComentarioMarca = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
             this.btnGuardarMarca = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.btnNuevaMarca = new System.Windows.Forms.Button();
@@ -76,17 +75,6 @@
             this.label1.TabIndex = 9;
             this.label1.Text = "Comentario";
             // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Font = new System.Drawing.Font("Segoe UI", 20.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(111, 9);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(220, 37);
-            this.label8.TabIndex = 27;
-            this.label8.Text = "Registrar marca";
-            this.label8.TextAlign = System.Drawing.ContentAlignment.TopCenter;
-            // 
             // btnGuardarMarca
             // 
             this.btnGuardarMarca.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -126,17 +114,15 @@
             this.Controls.Add(this.btnNuevaMarca);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnGuardarMarca);
-            this.Controls.Add(this.label8);
             this.Controls.Add(this.txtComentarioMarca);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtNombreMarca);
             this.Controls.Add(this.label3);
-            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmMarca";
             this.RightToLeftLayout = true;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Mantenimiento Marcas";
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -149,7 +135,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox txtComentarioMarca;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Button btnGuardarMarca;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button btnNuevaMarca;

@@ -227,7 +227,6 @@
             this.lblCliente.Name = "lblCliente";
             this.lblCliente.Size = new System.Drawing.Size(215, 20);
             this.lblCliente.TabIndex = 46;
-            this.lblCliente.Text = "Erick";
             // 
             // lblDuiCliente
             // 
@@ -396,6 +395,7 @@
             this.MaximizeBox = false;
             this.Name = "FrmVerDetallesPedido";
             this.Resizable = false;
+            this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "DETALLES PEDIDO";
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

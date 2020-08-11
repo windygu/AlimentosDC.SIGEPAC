@@ -33,6 +33,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cmbListadoClientes = new MetroFramework.Controls.MetroComboBox();
             this.lblDui = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -59,7 +60,6 @@
             this.lblNumeroPedido = new System.Windows.Forms.Label();
             this.epValidadorControles = new System.Windows.Forms.ErrorProvider(this.components);
             this.cmbEstadoPedido = new MetroFramework.Controls.MetroComboBox();
-            this.cmbListadoClientes = new MetroFramework.Controls.MetroComboBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDetallesPedido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epValidadorControles)).BeginInit();
@@ -96,6 +96,19 @@
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cliente";
+            // 
+            // cmbListadoClientes
+            // 
+            this.cmbListadoClientes.FormattingEnabled = true;
+            this.cmbListadoClientes.ItemHeight = 23;
+            this.cmbListadoClientes.Location = new System.Drawing.Point(68, 23);
+            this.cmbListadoClientes.Name = "cmbListadoClientes";
+            this.cmbListadoClientes.Size = new System.Drawing.Size(240, 29);
+            this.cmbListadoClientes.TabIndex = 32;
+            this.cmbListadoClientes.UseSelectable = true;
+            this.cmbListadoClientes.SelectedIndexChanged += new System.EventHandler(this.cmbListadoClientes_SelectionChangeCommitted);
+            this.cmbListadoClientes.SelectionChangeCommitted += new System.EventHandler(this.cmbListadoClientes_SelectionChangeCommitted);
+            this.cmbListadoClientes.DropDownClosed += new System.EventHandler(this.cmbListadoClientes_DropDownClosed);
             // 
             // lblDui
             // 
@@ -348,21 +361,10 @@
             this.cmbEstadoPedido.Name = "cmbEstadoPedido";
             this.cmbEstadoPedido.Size = new System.Drawing.Size(202, 29);
             this.cmbEstadoPedido.TabIndex = 31;
+            this.cmbEstadoPedido.UseSelectable = true;
             this.cmbEstadoPedido.SelectedIndexChanged += new System.EventHandler(this.cmbEstadoPedido_SelectionChangeCommitted);
             this.cmbEstadoPedido.SelectionChangeCommitted += new System.EventHandler(this.cmbEstadoPedido_SelectionChangeCommitted);
             this.cmbEstadoPedido.DropDownClosed += new System.EventHandler(this.cmbEstadoPedido_DropDownClosed);
-            // 
-            // cmbListadoClientes
-            // 
-            this.cmbListadoClientes.FormattingEnabled = true;
-            this.cmbListadoClientes.ItemHeight = 23;
-            this.cmbListadoClientes.Location = new System.Drawing.Point(68, 23);
-            this.cmbListadoClientes.Name = "cmbListadoClientes";
-            this.cmbListadoClientes.Size = new System.Drawing.Size(240, 29);
-            this.cmbListadoClientes.TabIndex = 32;
-            this.cmbListadoClientes.SelectedIndexChanged += new System.EventHandler(this.cmbListadoClientes_SelectionChangeCommitted);
-            this.cmbListadoClientes.SelectionChangeCommitted += new System.EventHandler(this.cmbListadoClientes_SelectionChangeCommitted);
-            this.cmbListadoClientes.DropDownClosed += new System.EventHandler(this.cmbListadoClientes_DropDownClosed);
             // 
             // FrmPedido
             // 
@@ -390,6 +392,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmPedido";
+            this.Style = MetroFramework.MetroColorStyle.Green;
             this.Tag = "";
             this.Text = "Mantenimiento Pedidos";
             this.groupBox1.ResumeLayout(false);

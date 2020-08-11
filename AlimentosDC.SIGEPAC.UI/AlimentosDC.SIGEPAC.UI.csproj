@@ -69,12 +69,6 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Form1.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Form1.Designer.cs">
-      <DependentUpon>Form1.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmCliente.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -217,6 +211,12 @@
       <Project>{94900832-77a1-4de8-aa09-968fb6814fab}</Project>
       <Name>AlimentosDC.SIGEPAC.EN</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Iconos\Business man-02-WF.png" />
+    <Content Include="Iconos\Customer.png" />
+    <Content Include="Iconos\Letterpad-.png" />
+    <Content Include="Iconos\Product2-WF.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

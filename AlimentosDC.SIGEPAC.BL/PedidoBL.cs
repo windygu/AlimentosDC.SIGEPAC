@@ -25,9 +25,9 @@ namespace AlimentosDC.SIGEPAC.BL
             return PedidoDAL.Eliminar(pIdPedido);
         }
 
-        public static List<Pedido> ObtenerTodos(string pEstado = "%")
+        public static List<Pedido> ObtenerTodos(string pEstado = "%", string pDatoABuscar = null)
         {
-            return PedidoDAL.ObtenerTodos(pEstado);
+            return PedidoDAL.ObtenerTodos(pEstado, pDatoABuscar);
         }
 
         public static Pedido BuscarPorId(int pId)

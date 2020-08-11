@@ -41,7 +41,7 @@
             // btnEliminarMarca
             // 
             this.btnEliminarMarca.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarMarca.Location = new System.Drawing.Point(605, 7);
+            this.btnEliminarMarca.Location = new System.Drawing.Point(605, 61);
             this.btnEliminarMarca.Name = "btnEliminarMarca";
             this.btnEliminarMarca.Size = new System.Drawing.Size(100, 30);
             this.btnEliminarMarca.TabIndex = 30;
@@ -51,7 +51,7 @@
             // btnEditarMarca
             // 
             this.btnEditarMarca.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarMarca.Location = new System.Drawing.Point(489, 8);
+            this.btnEditarMarca.Location = new System.Drawing.Point(489, 62);
             this.btnEditarMarca.Name = "btnEditarMarca";
             this.btnEditarMarca.Size = new System.Drawing.Size(100, 30);
             this.btnEditarMarca.TabIndex = 29;
@@ -62,7 +62,7 @@
             // btnNuevaMarca
             // 
             this.btnNuevaMarca.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevaMarca.Location = new System.Drawing.Point(371, 7);
+            this.btnNuevaMarca.Location = new System.Drawing.Point(371, 61);
             this.btnNuevaMarca.Name = "btnNuevaMarca";
             this.btnNuevaMarca.Size = new System.Drawing.Size(100, 30);
             this.btnNuevaMarca.TabIndex = 28;
@@ -75,7 +75,7 @@
             this.lblMarcaAguaMarca.AutoSize = true;
             this.lblMarcaAguaMarca.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMarcaAguaMarca.ForeColor = System.Drawing.Color.Gray;
-            this.lblMarcaAguaMarca.Location = new System.Drawing.Point(12, 12);
+            this.lblMarcaAguaMarca.Location = new System.Drawing.Point(12, 66);
             this.lblMarcaAguaMarca.Name = "lblMarcaAguaMarca";
             this.lblMarcaAguaMarca.Size = new System.Drawing.Size(214, 19);
             this.lblMarcaAguaMarca.TabIndex = 27;
@@ -84,7 +84,7 @@
             // txtBuscarMarca
             // 
             this.txtBuscarMarca.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscarMarca.Location = new System.Drawing.Point(10, 8);
+            this.txtBuscarMarca.Location = new System.Drawing.Point(10, 62);
             this.txtBuscarMarca.Name = "txtBuscarMarca";
             this.txtBuscarMarca.Size = new System.Drawing.Size(322, 27);
             this.txtBuscarMarca.TabIndex = 26;
@@ -92,8 +92,9 @@
             // 
             // dgvListadoMarcas
             // 
+            this.dgvListadoMarcas.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
             this.dgvListadoMarcas.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvListadoMarcas.Location = new System.Drawing.Point(10, 55);
+            this.dgvListadoMarcas.Location = new System.Drawing.Point(10, 109);
             this.dgvListadoMarcas.Name = "dgvListadoMarcas";
             this.dgvListadoMarcas.Size = new System.Drawing.Size(715, 275);
             this.dgvListadoMarcas.TabIndex = 25;
@@ -102,18 +103,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(734, 341);
+            this.ClientSize = new System.Drawing.Size(735, 400);
             this.Controls.Add(this.btnEliminarMarca);
             this.Controls.Add(this.btnEditarMarca);
             this.Controls.Add(this.btnNuevaMarca);
             this.Controls.Add(this.lblMarcaAguaMarca);
             this.Controls.Add(this.txtBuscarMarca);
             this.Controls.Add(this.dgvListadoMarcas);
-            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmMarcas";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "MARCAS";
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoMarcas)).EndInit();
             this.ResumeLayout(false);

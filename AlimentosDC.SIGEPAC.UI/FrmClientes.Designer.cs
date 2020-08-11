@@ -33,7 +33,6 @@
             this.btnEditarPedido = new System.Windows.Forms.Button();
             this.btnNuevoPedido = new System.Windows.Forms.Button();
             this.dgvListadoClientes = new System.Windows.Forms.DataGridView();
-            this.textBoxWaterMark1 = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
             this.dgvId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvApellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,13 +40,14 @@
             this.dgvDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.textBoxWaterMark1 = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoClientes)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEliminarPedido
             // 
             this.btnEliminarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarPedido.Location = new System.Drawing.Point(688, 13);
+            this.btnEliminarPedido.Location = new System.Drawing.Point(688, 62);
             this.btnEliminarPedido.Name = "btnEliminarPedido";
             this.btnEliminarPedido.Size = new System.Drawing.Size(100, 30);
             this.btnEliminarPedido.TabIndex = 2;
@@ -57,7 +57,7 @@
             // btnEditarPedido
             // 
             this.btnEditarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarPedido.Location = new System.Drawing.Point(549, 13);
+            this.btnEditarPedido.Location = new System.Drawing.Point(549, 62);
             this.btnEditarPedido.Name = "btnEditarPedido";
             this.btnEditarPedido.Size = new System.Drawing.Size(100, 30);
             this.btnEditarPedido.TabIndex = 1;
@@ -68,7 +68,7 @@
             // btnNuevoPedido
             // 
             this.btnNuevoPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoPedido.Location = new System.Drawing.Point(413, 14);
+            this.btnNuevoPedido.Location = new System.Drawing.Point(413, 63);
             this.btnNuevoPedido.Name = "btnNuevoPedido";
             this.btnNuevoPedido.Size = new System.Drawing.Size(100, 30);
             this.btnNuevoPedido.TabIndex = 0;
@@ -89,20 +89,11 @@
             this.dgvDireccion,
             this.dgvTelefono,
             this.dgvCorreo});
-            this.dgvListadoClientes.Location = new System.Drawing.Point(13, 63);
+            this.dgvListadoClientes.Location = new System.Drawing.Point(13, 112);
             this.dgvListadoClientes.Name = "dgvListadoClientes";
             this.dgvListadoClientes.ReadOnly = true;
             this.dgvListadoClientes.Size = new System.Drawing.Size(924, 386);
             this.dgvListadoClientes.TabIndex = 13;
-            // 
-            // textBoxWaterMark1
-            // 
-            this.textBoxWaterMark1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxWaterMark1.Location = new System.Drawing.Point(12, 15);
-            this.textBoxWaterMark1.Name = "textBoxWaterMark1";
-            this.textBoxWaterMark1.Size = new System.Drawing.Size(322, 27);
-            this.textBoxWaterMark1.TabIndex = 14;
-            this.textBoxWaterMark1.TextoMarcaAgua = "Buscar por nombre, apellido o ID";
             // 
             // dgvId
             // 
@@ -152,21 +143,29 @@
             this.dgvCorreo.ReadOnly = true;
             this.dgvCorreo.Width = 150;
             // 
+            // textBoxWaterMark1
+            // 
+            this.textBoxWaterMark1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBoxWaterMark1.Location = new System.Drawing.Point(12, 64);
+            this.textBoxWaterMark1.Name = "textBoxWaterMark1";
+            this.textBoxWaterMark1.Size = new System.Drawing.Size(322, 27);
+            this.textBoxWaterMark1.TabIndex = 14;
+            this.textBoxWaterMark1.TextoMarcaAgua = "Buscar por nombre, apellido o ID";
+            // 
             // FrmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(948, 461);
+            this.ClientSize = new System.Drawing.Size(950, 515);
             this.Controls.Add(this.textBoxWaterMark1);
             this.Controls.Add(this.btnEliminarPedido);
             this.Controls.Add(this.btnEditarPedido);
             this.Controls.Add(this.btnNuevoPedido);
             this.Controls.Add(this.dgvListadoClientes);
-            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmClientes";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "CLIENTES";
             this.Load += new System.EventHandler(this.FrmClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoClientes)).EndInit();

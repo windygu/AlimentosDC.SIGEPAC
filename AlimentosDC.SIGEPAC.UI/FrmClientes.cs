@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevComponents.DotNetBar.Metro;
-using DevComponents.DotNetBar;
 using AlimentosDC.SIGEPAC.BL;
 using AlimentosDC.SIGEPAC.EN;
+using MetroFramework;
+using MetroFramework.Forms;
+using MetroFramework.Controls;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
-    public partial class FrmClientes : MetroFramework.Forms.MetroForm
+    public partial class FrmClientes : MetroForm
     {
         List<Cliente> listadoClientes;
         public FrmClientes()

@@ -7,36 +7,40 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevComponents.DotNetBar.Metro;
-using DevComponents.DotNetBar;
 using AlimentosDC.SIGEPAC.BL;
 using AlimentosDC.SIGEPAC.EN;
+using MetroFramework;
+using MetroFramework.Forms;
+using MetroFramework.Controls;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
     public partial class FrmProductos : MetroForm
     {
-        List<Producto> listadoProductos = null;
+        public List<Producto> listadoProductos = null;
+        FrmProductos objetoActual;
         public FrmProductos()
         {
             InitializeComponent();
+            objetoActual = this;
         }
 
         private void btnNuevoProducto_Click(object sender, EventArgs e)
         {
-            FrmProducto mantenimientoProductos = new FrmProducto();
-            mantenimientoProductos.Owner = this;
+            FrmProducto mantenimientoProductos = new FrmProducto(ref objetoActual);
+            mantenimientoProductos.Owner = objetoActual;
             mantenimientoProductos.ShowDialog();
         }
 
         private void btnEditarProducto_Click(object sender, EventArgs e)
         {
-            FrmProducto mantenimientoProductos = new FrmProducto();
+            int idProductoAEditar = int.Parse(dgvListadoProductos.SelectedRows[0].Cells[0].Value.ToString());
+            FrmProducto mantenimientoProductos = new FrmProducto(ref objetoActual, idProductoAEditar);
             mantenimientoProductos.Owner = this;
             mantenimientoProductos.ShowDialog();
         }
 
-        void CargarProductos()
+        public void CargarProductos()
         {
             listadoProductos = ProductoBL.ObtenerTodos();
             dgvListadoProductos.Rows.Clear();

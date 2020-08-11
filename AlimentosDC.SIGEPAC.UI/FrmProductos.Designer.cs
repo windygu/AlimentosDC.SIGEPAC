@@ -46,7 +46,7 @@
             // btnEliminarProducto
             // 
             this.btnEliminarProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarProducto.Location = new System.Drawing.Point(623, 12);
+            this.btnEliminarProducto.Location = new System.Drawing.Point(623, 63);
             this.btnEliminarProducto.Name = "btnEliminarProducto";
             this.btnEliminarProducto.Size = new System.Drawing.Size(100, 30);
             this.btnEliminarProducto.TabIndex = 12;
@@ -56,7 +56,7 @@
             // btnEditarProducto
             // 
             this.btnEditarProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarProducto.Location = new System.Drawing.Point(501, 12);
+            this.btnEditarProducto.Location = new System.Drawing.Point(501, 63);
             this.btnEditarProducto.Name = "btnEditarProducto";
             this.btnEditarProducto.Size = new System.Drawing.Size(100, 30);
             this.btnEditarProducto.TabIndex = 11;
@@ -67,7 +67,7 @@
             // btnNuevoProducto
             // 
             this.btnNuevoProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoProducto.Location = new System.Drawing.Point(376, 13);
+            this.btnNuevoProducto.Location = new System.Drawing.Point(376, 64);
             this.btnNuevoProducto.Name = "btnNuevoProducto";
             this.btnNuevoProducto.Size = new System.Drawing.Size(100, 30);
             this.btnNuevoProducto.TabIndex = 10;
@@ -87,7 +87,7 @@
             this.dgvMarca,
             this.dgvPrecio,
             this.dgvStock});
-            this.dgvListadoProductos.Location = new System.Drawing.Point(13, 62);
+            this.dgvListadoProductos.Location = new System.Drawing.Point(13, 113);
             this.dgvListadoProductos.Name = "dgvListadoProductos";
             this.dgvListadoProductos.ReadOnly = true;
             this.dgvListadoProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -138,7 +138,7 @@
             // textBoxWaterMark1
             // 
             this.textBoxWaterMark1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxWaterMark1.Location = new System.Drawing.Point(13, 12);
+            this.textBoxWaterMark1.Location = new System.Drawing.Point(13, 63);
             this.textBoxWaterMark1.Name = "textBoxWaterMark1";
             this.textBoxWaterMark1.Size = new System.Drawing.Size(322, 27);
             this.textBoxWaterMark1.TabIndex = 13;
@@ -148,17 +148,16 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(794, 411);
+            this.ClientSize = new System.Drawing.Size(795, 470);
             this.Controls.Add(this.textBoxWaterMark1);
             this.Controls.Add(this.btnEliminarProducto);
             this.Controls.Add(this.btnEditarProducto);
             this.Controls.Add(this.btnNuevoProducto);
             this.Controls.Add(this.dgvListadoProductos);
-            this.DoubleBuffered = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmProductos";
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "PRODUCTOS";
             this.Load += new System.EventHandler(this.FrmProductos_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoProductos)).EndInit();

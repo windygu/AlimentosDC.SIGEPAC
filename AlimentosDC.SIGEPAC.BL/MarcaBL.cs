@@ -30,7 +30,7 @@ namespace AlimentosDC.SIGEPAC.BL
             return MarcaDAL.ObtenerTodos();
         }
 
-        public static Marca Eliminar(int pId)
+        public static Marca BuscarPorId(int pId)
         {
             return MarcaDAL.BuscarPorId(pId);
         }

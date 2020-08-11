@@ -266,6 +266,7 @@
             this.MaximizeBox = false;
             this.Name = "FrmDetallePedido";
             this.Resizable = false;
+            this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Mantenimiento Detalles Pedido";
             this.Load += new System.EventHandler(this.FrmDetallePedido_Load);
             this.panel1.ResumeLayout(false);

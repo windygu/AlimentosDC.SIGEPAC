@@ -42,7 +42,7 @@
             // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.panel1.BackColor = System.Drawing.Color.MediumAquamarine;
             this.panel1.Controls.Add(this.btnCerraSesion);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.btnPedidos);
@@ -134,7 +134,6 @@
             this.ClientSize = new System.Drawing.Size(1484, 761);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
-            this.MaximizeBox = false;
             this.Name = "FrmPrincipal";
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Green;

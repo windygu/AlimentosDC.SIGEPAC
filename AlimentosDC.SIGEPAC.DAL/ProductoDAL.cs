@@ -30,6 +30,7 @@ namespace AlimentosDC.SIGEPAC.DAL
             Descripcion = @Descripcion, Precio = @Precio, Stock = @Stock WHERE Id = @Id;";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
+            comando.Parameters.AddWithValue("@Id", pProducto.Id);
             comando.Parameters.AddWithValue("@IdMarca", pProducto.IdMarca);
             comando.Parameters.AddWithValue("@Nombre", pProducto.Nombre);
             comando.Parameters.AddWithValue("@Descripcion", pProducto.Descripcion);
@@ -87,6 +88,8 @@ namespace AlimentosDC.SIGEPAC.DAL
                 producto.Stock = reader.GetInt32(5);
             }
             return producto;
+
+            //Continuar en encontrar el error que no ingresa punto decimal a la BD
         }
     }
 }

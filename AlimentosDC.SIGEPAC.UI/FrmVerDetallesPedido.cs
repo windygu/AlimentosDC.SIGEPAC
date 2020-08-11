@@ -7,16 +7,17 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevComponents.DotNetBar.Metro;
-using DevComponents.DotNetBar;
 using AlimentosDC.SIGEPAC.EN;
 using AlimentosDC.SIGEPAC.BL;
 using System.Globalization;
 using System.Threading;
+using MetroFramework;
+using MetroFramework.Forms;
+using MetroFramework.Controls;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
-    public partial class FrmVerDetallesPedido : MetroFramework.Forms.MetroForm
+    public partial class FrmVerDetallesPedido : MetroForm
     {
         List<DetallePedido> listadoDetallesPedido;
         Pedido pedido;
@@ -75,8 +76,7 @@ namespace AlimentosDC.SIGEPAC.UI
             int cantidad;
             lblTotal.Text =
             "$ "+ ((int.TryParse(total.ToString(), out cantidad) == true) ? (total.ToString() + ".00") : total.ToString());
-
-            //Me quede en buscar el erro de que cuando doy en editar un pedido se me despliega el combo de estados
+            
         }
     }
 }

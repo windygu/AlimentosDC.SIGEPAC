@@ -7,14 +7,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using DevComponents.DotNetBar.Metro;
-using DevComponents.DotNetBar;
 using AlimentosDC.SIGEPAC.EN;
 using AlimentosDC.SIGEPAC.BL;
+using MetroFramework;
+using MetroFramework.Forms;
+using MetroFramework.Controls;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
-    public partial class FrmPedidos : MetroFramework.Forms.MetroForm
+    public partial class FrmPedidos : MetroForm
     {
         List<Pedido> listadoPedidos = new List<Pedido>();
         FrmPedidos objetoActual;
@@ -26,8 +27,6 @@ namespace AlimentosDC.SIGEPAC.UI
             btnVerDetallePedido.Enabled = true;
             btnEliminarPedido.Enabled = true;
             txtBuscadorPedidos.GotFocus += TxtBuscadorPedidos_GotFocus;
-            txtBuscadorPedidos.Text = " ";
-            txtBuscadorPedidos.Text = "";
             cmbMostrando.SelectedItem = "Todos";
             btnNuevoPedido.Focus();
         }
@@ -46,10 +45,10 @@ namespace AlimentosDC.SIGEPAC.UI
             verDetallesPedido.ShowDialog();
         }
 
-        private void btnNuevoPedido_Click(object sender, EventArgs e)
+        public void btnNuevoPedido_Click(object sender, EventArgs e)
         {
             FrmPedido p = new FrmPedido(ref objetoActual);
-            p.Owner = this;
+            p.Owner = objetoActual;
             p.ShowDialog();
         }
 
@@ -57,7 +56,7 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             int idPedido = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[0].Value.ToString());
             FrmPedido p = new FrmPedido(ref objetoActual, idPedido);
-            p.Owner = this;
+            p.Owner = objetoActual;
             p.ShowDialog();
         }
 
@@ -75,12 +74,13 @@ namespace AlimentosDC.SIGEPAC.UI
             }
             else
                 txtBuscadorPedidos.Font = new Font(txtBuscadorPedidos.Font, FontStyle.Regular);
+            CargarPedidos(pDatoABuscar: txtBuscadorPedidos.Text);
         }
 
-        public void CargarPedidos(string pEstado = "%")
+        public void CargarPedidos(string pEstado = "%", string pDatoABuscar = null)
         {
             dgvListadoPedidos.Rows.Clear();
-            listadoPedidos = PedidoBL.ObtenerTodos(pEstado);
+            listadoPedidos = PedidoBL.ObtenerTodos(pEstado, pDatoABuscar);
             for (int i = 0; i < listadoPedidos.Count; i++)
             {
                 dgvListadoPedidos.Rows.Add();
@@ -140,12 +140,5 @@ namespace AlimentosDC.SIGEPAC.UI
                 PedidoBL.Eliminar(idPedidoAEliminar);
             }
         }
-
-        private void txtBuscadorPedidos_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        //Continuar aqui en darle funcionamiento al buscador de pedidos
     }
 }
