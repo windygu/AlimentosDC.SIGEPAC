@@ -13,25 +13,35 @@ using MetroFramework;
 using MetroFramework.Forms;
 using MetroFramework.Controls;
 using System.Text.RegularExpressions;
+using System.Threading;
+using System.Globalization;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
     public partial class FrmProducto : MetroForm
     {
-        FrmProductos objetoActual;
+        FrmProductos objetoProductosActual;
         int? idProductoAEditar = null;
         Producto productoAEditar;
-        public FrmProducto(ref FrmProductos objetoActual)
+        CultureInfo cultura = (CultureInfo)Thread.CurrentThread.CurrentCulture.Clone();
+        public FrmProducto(ref FrmProductos objetoProductosActual)
         {
             InitializeComponent();
-            this.objetoActual = objetoActual;
+            cultura.NumberFormat.NumberDecimalSeparator = ".";
+            //Establecemos el hilo de ejecucion actual por la copia que hicimos anteriormente
+            Thread.CurrentThread.CurrentCulture = cultura;
+            this.objetoProductosActual = objetoProductosActual;
             CargarMarcasAlCombobox();
         }
+
         //Constructor para editar un producto
-        public FrmProducto(ref FrmProductos objetoActual, int idProductoAEditar)
+        public FrmProducto(ref FrmProductos objetoProductosActual, int idProductoAEditar)
         {
             InitializeComponent();
-            this.objetoActual = objetoActual;
+            cultura.NumberFormat.NumberDecimalSeparator = ".";
+            //Establecemos el hilo de ejecucion actual por la copia que hicimos anteriormente
+            Thread.CurrentThread.CurrentCulture = cultura;
+            this.objetoProductosActual = objetoProductosActual;
             this.idProductoAEditar = idProductoAEditar;
             CargarMarcasAlCombobox();
             productoAEditar = ProductoBL.BuscarPorId(idProductoAEditar);
@@ -92,7 +102,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 try
                 {
                     ProductoBL.Guardar(productoAAgregar);
-                    objetoActual.CargarProductos();
+                    objetoProductosActual.CargarProductos();
                     MetroMessageBox.Show(this, "Producto registrado exitosamente.", "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Limpiar();
                 }
@@ -107,14 +117,15 @@ namespace AlimentosDC.SIGEPAC.UI
                 try
                 {
                     ProductoBL.Modificar(productoAAgregar);
-                    objetoActual.CargarProductos();
+                    objetoProductosActual.CargarProductos();
                     DialogResult resultado = MetroMessageBox.Show(this, "Producto actualizado exitosamente.\n¿Desea cerrar el editor?", "¡Aviso!", 
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (resultado == DialogResult.Yes) Close();
                 }
                 catch (Exception exc)
                 {
-                    MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\n{exc.Message}", "¡Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\n{exc.Message}", "¡Error!", MessageBoxButtons.OK, 
+                        MessageBoxIcon.Error);
                 }
             }
             
@@ -179,8 +190,8 @@ namespace AlimentosDC.SIGEPAC.UI
 
         byte ValidarPrecio(string textoDelPrecio)
         {
-            string pattern = @"\d+[.]\d{3}";
-            Regex objetoValidador = new Regex(pattern);
+            string patronTresDecimales = @"\d+[.]\d{3}";
+            Regex objetoValidador = new Regex(patronTresDecimales);
             byte valorDeRetorno;
             float c;
             if (float.TryParse(textoDelPrecio.Trim(), out c) && (objetoValidador.IsMatch(textoDelPrecio.Trim())))

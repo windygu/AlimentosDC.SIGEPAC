@@ -20,7 +20,7 @@ namespace AlimentosDC.SIGEPAC.BL
             return DetallePedidoDAL.Modificar(pDetallePedido);
         }
 
-        public static int Eliminar(int pDetallePedido)
+        public static int Eliminar(int pDetallePedido, int? idPedido = null)
         {
             return DetallePedidoDAL.Eliminar(pDetallePedido);
         }

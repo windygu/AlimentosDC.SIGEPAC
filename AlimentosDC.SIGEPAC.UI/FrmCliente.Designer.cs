@@ -47,7 +47,6 @@
             this.txtCorreo = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btnCancelarCliente = new System.Windows.Forms.Button();
-            this.btnNuevo = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnGuardarCliente
@@ -57,8 +56,9 @@
             this.btnGuardarCliente.Name = "btnGuardarCliente";
             this.btnGuardarCliente.Size = new System.Drawing.Size(100, 30);
             this.btnGuardarCliente.TabIndex = 8;
-            this.btnGuardarCliente.Text = "Registrar";
+            this.btnGuardarCliente.Text = "Guardar";
             this.btnGuardarCliente.UseVisualStyleBackColor = true;
+            this.btnGuardarCliente.Click += new System.EventHandler(this.btnGuardarCliente_Click);
             // 
             // txtDireccion
             // 
@@ -220,26 +220,15 @@
             this.btnCancelarCliente.Name = "btnCancelarCliente";
             this.btnCancelarCliente.Size = new System.Drawing.Size(100, 30);
             this.btnCancelarCliente.TabIndex = 10;
-            this.btnCancelarCliente.Text = "Cerrar";
+            this.btnCancelarCliente.Text = "Cancelar";
             this.btnCancelarCliente.UseVisualStyleBackColor = true;
             this.btnCancelarCliente.Click += new System.EventHandler(this.btnCancelarCliente_Click);
-            // 
-            // btnNuevo
-            // 
-            this.btnNuevo.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevo.Location = new System.Drawing.Point(229, 378);
-            this.btnNuevo.Name = "btnNuevo";
-            this.btnNuevo.Size = new System.Drawing.Size(100, 30);
-            this.btnNuevo.TabIndex = 9;
-            this.btnNuevo.Text = "Nuevo";
-            this.btnNuevo.UseVisualStyleBackColor = true;
             // 
             // FrmCliente
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(580, 430);
-            this.Controls.Add(this.btnNuevo);
             this.Controls.Add(this.txtCorreo);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtTelefono);
@@ -287,6 +276,5 @@
         private System.Windows.Forms.TextBox txtCorreo;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnCancelarCliente;
-        private System.Windows.Forms.Button btnNuevo;
     }
 }

@@ -12,37 +12,38 @@ using AlimentosDC.SIGEPAC.EN;
 using MetroFramework;
 using MetroFramework.Forms;
 using MetroFramework.Controls;
+using System.Media;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
     public partial class FrmProductos : MetroForm
     {
         public List<Producto> listadoProductos = null;
-        FrmProductos objetoActual;
+        FrmProductos objetoProductosActual;
         public FrmProductos()
         {
             InitializeComponent();
-            objetoActual = this;
+            objetoProductosActual = this;
         }
 
         private void btnNuevoProducto_Click(object sender, EventArgs e)
         {
-            FrmProducto mantenimientoProductos = new FrmProducto(ref objetoActual);
-            mantenimientoProductos.Owner = objetoActual;
+            FrmProducto mantenimientoProductos = new FrmProducto(ref objetoProductosActual);
+            mantenimientoProductos.Owner = objetoProductosActual;
             mantenimientoProductos.ShowDialog();
         }
 
         private void btnEditarProducto_Click(object sender, EventArgs e)
         {
             int idProductoAEditar = int.Parse(dgvListadoProductos.SelectedRows[0].Cells[0].Value.ToString());
-            FrmProducto mantenimientoProductos = new FrmProducto(ref objetoActual, idProductoAEditar);
-            mantenimientoProductos.Owner = this;
+            FrmProducto mantenimientoProductos = new FrmProducto(ref objetoProductosActual, idProductoAEditar);
+            mantenimientoProductos.Owner = objetoProductosActual;
             mantenimientoProductos.ShowDialog();
         }
 
-        public void CargarProductos()
+        public void CargarProductos(string pCondicion = "%")
         {
-            listadoProductos = ProductoBL.ObtenerTodos();
+            listadoProductos = ProductoBL.ObtenerTodos(pCondicion);
             dgvListadoProductos.Rows.Clear();
             for (int i = 0; i < listadoProductos.Count; i++)
             {
@@ -59,6 +60,24 @@ namespace AlimentosDC.SIGEPAC.UI
         private void FrmProductos_Load(object sender, EventArgs e)
         {
             CargarProductos();
+        }
+
+        private void btnEliminarProducto_Click(object sender, EventArgs e)
+        {
+            int idProductoAEliminar = int.Parse(dgvListadoProductos.SelectedRows[0].Cells[0].Value.ToString());
+            DialogResult resultado = MessageBox.Show("¿Desea eliminar este producto?", "¡Aviso!", MessageBoxButtons.YesNo, 
+                MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            SystemSounds.Question.Play();
+            if (resultado == DialogResult.Yes)
+            {
+                ProductoBL.Eliminar(idProductoAEliminar);
+                CargarProductos();
+            }
+        }
+
+        private void txtBuscarProductos_TextChanged(object sender, EventArgs e)
+        {
+            CargarProductos(txtBuscarProductos.Text.Trim());
         }
     }
 }

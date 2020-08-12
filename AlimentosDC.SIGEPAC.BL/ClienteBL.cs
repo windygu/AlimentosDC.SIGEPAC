@@ -20,14 +20,14 @@ namespace AlimentosDC.SIGEPAC.BL
             return ClienteDAL.Modificar(pCliente);
         }
 
-        public static int Eliminar(Cliente pCliente)
+        public static int Eliminar(int pIdCliente)
         {
-            return ClienteDAL.Eliminar(pCliente);
+            return ClienteDAL.Eliminar(pIdCliente);
         }
 
-        public static List<Cliente> ObtenerTodos()
+        public static List<Cliente> ObtenerTodos(string pCondicion = "%")
         {
-            return ClienteDAL.ObtenerTodos();
+            return ClienteDAL.ObtenerTodos(pCondicion);
         }
 
         public static Cliente BuscarPorId(int pId)

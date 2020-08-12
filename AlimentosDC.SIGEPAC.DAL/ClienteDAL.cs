@@ -47,21 +47,24 @@ namespace AlimentosDC.SIGEPAC.DAL
             return ComunDB.EjecutarComando(comando);
         }
 
-        public static int Eliminar(Cliente pCliente)
+        public static int Eliminar(int pIdCliente)
         {
             string consulta = @"DELETE FROM Cliente WHERE Id = @Id;";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
-            comando.Parameters.AddWithValue("@Id", pCliente.Id);
+            comando.Parameters.AddWithValue("@Id", pIdCliente);
             return ComunDB.EjecutarComando(comando);
         }
 
-        public static List<Cliente> ObtenerTodos()
+        public static List<Cliente> ObtenerTodos(string pCondicion = "%")
         {
             string consulta = @"SELECT TOP (500) Id, CONCAT(PrimerNombre, ' ', SegundoNombre) Nombres, 
-            CONCAT(PrimerApellido, ' ', SegundoApellido) Apellidos, Dui, Direccion, Telefono, Correo FROM Cliente";
+            CONCAT(PrimerApellido, ' ', SegundoApellido) Apellidos, Dui, Direccion, Telefono, Correo FROM Cliente
+			where PrimerNombre LIKE CONCAT(@pCondicion, '%') OR SegundoNombre LIKE CONCAT(@pCondicion, '%') OR PrimerApellido LIKE CONCAT(@pCondicion, '%')
+			OR SegundoApellido LIKE CONCAT(@pCondicion, '%')";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
+            comando.Parameters.AddWithValue("@pCondicion", pCondicion);
             SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
             List<Cliente> listaClientes = new List<Cliente>();
             while (reader.Read())

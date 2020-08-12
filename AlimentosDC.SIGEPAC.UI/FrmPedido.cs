@@ -17,8 +17,8 @@ namespace AlimentosDC.SIGEPAC.UI
 {
     public partial class FrmPedido : MetroForm
     {
-        FrmPedido objeto;
-        FrmPedidos objetoActual;
+        FrmPedido objetoPedidoActual;
+        FrmPedidos objetoPedidosActual;
         Pedido pedido;
         List<Cliente> listadoClientes;
         List<Cliente> listadoNuevoClientes;
@@ -30,27 +30,27 @@ namespace AlimentosDC.SIGEPAC.UI
         public List<int> detallesViejosAEliminarDeLaBD = new List<int>();
 
         //Constructor para un nuevo pedido
-        public FrmPedido(ref FrmPedidos objetoActual)
+        public FrmPedido(ref FrmPedidos objetoPedidosActual)
         {
             InitializeComponent();
             btnGuardarPedido.Enabled = false;
-            this.objetoActual = objetoActual;
+            this.objetoPedidosActual = objetoPedidosActual;
             CargarClientesAlCombobox();
             lblNumeroPedido.Text = PedidoBL.GenerarNumeroPedido();
-            objeto = this;
+            objetoPedidoActual = this;
             dtpFechaCreacion.Focus();
         }
 
         //Constructor para editar un pedido
-        public FrmPedido(ref FrmPedidos objetoActual, int idPedido)
+        public FrmPedido(ref FrmPedidos objetoPedidosActual, int idPedido)
         {
             InitializeComponent();
             btnGuardarPedido.Enabled = false;
-            this.objetoActual = objetoActual;
+            this.objetoPedidosActual = objetoPedidosActual;
             CargarClientesAlCombobox();
             this.idPedido = idPedido;
             CargarDatosAlFormulario();
-            objeto = this;
+            objetoPedidoActual = this;
         }
 
         //Método para ir agregando cada detalle (anteriormente agregado a la lista) al datagrid
@@ -98,8 +98,8 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void btnNuevoDetallePedido_Click(object sender, EventArgs e)
         {
-            FrmDetallePedido mantenimientoDetallesPedido = new FrmDetallePedido(ref objeto);
-            mantenimientoDetallesPedido.Owner = this;
+            FrmDetallePedido mantenimientoDetallesPedido = new FrmDetallePedido(ref objetoPedidoActual);
+            mantenimientoDetallesPedido.Owner = objetoPedidoActual;
             mantenimientoDetallesPedido.ShowDialog();
         }
 
@@ -107,8 +107,8 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             int idDetallePedidoAEditar = int.Parse(dgvListadoDetallesPedido.SelectedRows[0].Cells[0].Value.ToString());
             FrmDetallePedido mantenimientoDetallesPedido =
-            new FrmDetallePedido(ref objeto, idPedido, idDetallePedidoAEditar);
-            mantenimientoDetallesPedido.Owner = this;
+            new FrmDetallePedido(ref objetoPedidoActual, idDetallePedidoAEditar);
+            mantenimientoDetallesPedido.Owner = objetoPedidoActual;
             mantenimientoDetallesPedido.ShowDialog();
         }
 
@@ -183,8 +183,6 @@ namespace AlimentosDC.SIGEPAC.UI
             listadoDetallesPedido.Clear();
             listadoViejoDetallesPedido.Clear();
             dtpFechaCreacion.Focus();
-            
-            //objetoActual.btnNuevoPedido_Click(null, null);
         }
 
         private void btnGuardarPedido_Click(object sender, EventArgs e)
@@ -221,9 +219,9 @@ namespace AlimentosDC.SIGEPAC.UI
                             detallePedidoARegistrar.Estado = listadoDetallesPedido[i].Estado;
                             resultadoDetallePedido += DetallePedidoBL.Guardar(detallePedidoARegistrar);
                         }
-                        objetoActual.CargarPedidos();
-                        MetroMessageBox.Show(this, $"{resultadoPedido} pedido registrado.\n{resultadoDetallePedido} detalle(s) del pedido registrado(s).", "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information,
-                            MessageBoxDefaultButton.Button1);
+                        objetoPedidosActual.CargarPedidos();
+                        MetroMessageBox.Show(this, $"{resultadoPedido} pedido registrado.\n{resultadoDetallePedido} detalle(s) del pedido registrado(s).", 
+                            "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information,MessageBoxDefaultButton.Button1);
                         Limpiar();
                     }
                     catch (Exception exc)
@@ -272,7 +270,7 @@ namespace AlimentosDC.SIGEPAC.UI
                                 resultadoEliminados += DetallePedidoBL.Eliminar(detallesViejosAEliminarDeLaBD[i]);
                             }
                         }
-                        objetoActual.CargarPedidos();
+                        objetoPedidosActual.CargarPedidos();
                         DialogResult resultadoDelDialgo = MetroMessageBox.Show
                         (this, $"{resultadoPedido} pedido actualizado.\n{resultDetallesModificados} detalle(s) actualizado(s).\n" +
                         $"{resultDetallesAñadidos} detalle(s) registrado(s).\n{resultadoEliminados} detalle(s) eliminado(s).\n¿Desea cerrar el editor?",
@@ -281,7 +279,6 @@ namespace AlimentosDC.SIGEPAC.UI
                         {
                             Close();
                         }
-
                     }
                     catch (Exception exc)
                     {

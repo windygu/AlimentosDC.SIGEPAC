@@ -40,7 +40,7 @@
             this.dgvDireccion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBoxWaterMark1 = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
+            this.txtBuscarClientes = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -53,6 +53,7 @@
             this.btnEliminarPedido.TabIndex = 2;
             this.btnEliminarPedido.Text = "Eliminar";
             this.btnEliminarPedido.UseVisualStyleBackColor = true;
+            this.btnEliminarPedido.Click += new System.EventHandler(this.btnEliminarPedido_Click);
             // 
             // btnEditarPedido
             // 
@@ -92,6 +93,7 @@
             this.dgvListadoClientes.Location = new System.Drawing.Point(13, 112);
             this.dgvListadoClientes.Name = "dgvListadoClientes";
             this.dgvListadoClientes.ReadOnly = true;
+            this.dgvListadoClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListadoClientes.Size = new System.Drawing.Size(924, 386);
             this.dgvListadoClientes.TabIndex = 13;
             // 
@@ -143,21 +145,22 @@
             this.dgvCorreo.ReadOnly = true;
             this.dgvCorreo.Width = 150;
             // 
-            // textBoxWaterMark1
+            // txtBuscarClientes
             // 
-            this.textBoxWaterMark1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxWaterMark1.Location = new System.Drawing.Point(12, 64);
-            this.textBoxWaterMark1.Name = "textBoxWaterMark1";
-            this.textBoxWaterMark1.Size = new System.Drawing.Size(322, 27);
-            this.textBoxWaterMark1.TabIndex = 14;
-            this.textBoxWaterMark1.TextoMarcaAgua = "Buscar por nombre, apellido o ID";
+            this.txtBuscarClientes.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscarClientes.Location = new System.Drawing.Point(12, 64);
+            this.txtBuscarClientes.Name = "txtBuscarClientes";
+            this.txtBuscarClientes.Size = new System.Drawing.Size(322, 27);
+            this.txtBuscarClientes.TabIndex = 14;
+            this.txtBuscarClientes.TextoMarcaAgua = "Buscar por nombre o apellido";
+            this.txtBuscarClientes.TextChanged += new System.EventHandler(this.txtBuscarClientes_TextChanged);
             // 
             // FrmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 515);
-            this.Controls.Add(this.textBoxWaterMark1);
+            this.Controls.Add(this.txtBuscarClientes);
             this.Controls.Add(this.btnEliminarPedido);
             this.Controls.Add(this.btnEditarPedido);
             this.Controls.Add(this.btnNuevoPedido);
@@ -167,7 +170,6 @@
             this.Name = "FrmClientes";
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "CLIENTES";
-            this.Load += new System.EventHandler(this.FrmClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoClientes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -180,7 +182,7 @@
         private System.Windows.Forms.Button btnEditarPedido;
         private System.Windows.Forms.Button btnNuevoPedido;
         private System.Windows.Forms.DataGridView dgvListadoClientes;
-        private TextBoxWaterMark textBoxWaterMark1;
+        private TextBoxWaterMark txtBuscarClientes;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvNombres;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvApellidos;

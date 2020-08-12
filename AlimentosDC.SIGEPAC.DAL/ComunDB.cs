@@ -33,14 +33,6 @@ namespace AlimentosDC.SIGEPAC.DAL
             return resultado;
         }
 
-        public static string EjecutarProcedimiento(SqlCommand pComando)
-        {
-            pComando.ExecuteNonQuery();
-            string resultadoDevuelto = pComando.Parameters[0].Value.ToString();
-            pComando.Connection.Close();
-            return resultadoDevuelto;
-        }
-
         public static SqlDataReader EjecutarComandoReader(SqlCommand pComando)
         {
             SqlDataReader reader = pComando.ExecuteReader(CommandBehavior.CloseConnection);

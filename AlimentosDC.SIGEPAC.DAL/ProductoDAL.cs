@@ -39,21 +39,23 @@ namespace AlimentosDC.SIGEPAC.DAL
             return ComunDB.EjecutarComando(comando);
         }
 
-        public static int Eliminar(Producto pProducto)
+        public static int Eliminar(int pIdProducto)
         {
             string consulta = @"DELETE FROM Producto WHERE Id = @Id;";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
-            comando.Parameters.AddWithValue("@Id", pProducto.Id);
+            comando.Parameters.AddWithValue("@Id", pIdProducto);
             return ComunDB.EjecutarComando(comando);
         }
 
-        public static List<Producto> ObtenerTodos()
+        public static List<Producto> ObtenerTodos(string pCondicion = "%")
         {
-            string consulta = @"SELECT TOP (500) pr.Id, pr.Nombre, pr.Descripcion, m.Nombre Marca, pr.Precio, 
-            pr.Stock FROM Producto pr JOIN Marca m ON pr.IdMarca = m.Id";
+            string consulta = string.Concat("SELECT TOP(500) pr.Id, pr.Nombre, pr.Descripcion, m.Nombre Marca, pr.Precio, ",
+            "pr.Stock FROM Producto pr JOIN Marca m ON pr.IdMarca = m.Id WHERE pr.Nombre LIKE CONCAT(@pCondicion, '%') ",
+            "OR pr.Descripcion LIKE CONCAT(@pCondicion, '%')");
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
+            comando.Parameters.AddWithValue("@pCondicion", pCondicion);
             SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
             List<Producto> listaProductos = new List<Producto>();
             while (reader.Read())

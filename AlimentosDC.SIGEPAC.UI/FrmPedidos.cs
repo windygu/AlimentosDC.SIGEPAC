@@ -18,11 +18,11 @@ namespace AlimentosDC.SIGEPAC.UI
     public partial class FrmPedidos : MetroForm
     {
         List<Pedido> listadoPedidos = new List<Pedido>();
-        FrmPedidos objetoActual;
+        FrmPedidos objetoPedidosActual;
         public FrmPedidos()
         {
             InitializeComponent();
-            objetoActual = this;
+            objetoPedidosActual = this;
             btnEditarPedido.Enabled = true;
             btnVerDetallePedido.Enabled = true;
             btnEliminarPedido.Enabled = true;
@@ -47,16 +47,16 @@ namespace AlimentosDC.SIGEPAC.UI
 
         public void btnNuevoPedido_Click(object sender, EventArgs e)
         {
-            FrmPedido p = new FrmPedido(ref objetoActual);
-            p.Owner = objetoActual;
+            FrmPedido p = new FrmPedido(ref objetoPedidosActual);
+            p.Owner = objetoPedidosActual;
             p.ShowDialog();
         }
 
         private void btnEditarPedido_Click(object sender, EventArgs e)
         {
             int idPedido = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[0].Value.ToString());
-            FrmPedido p = new FrmPedido(ref objetoActual, idPedido);
-            p.Owner = objetoActual;
+            FrmPedido p = new FrmPedido(ref objetoPedidosActual, idPedido);
+            p.Owner = objetoPedidosActual;
             p.ShowDialog();
         }
 
@@ -133,12 +133,28 @@ namespace AlimentosDC.SIGEPAC.UI
         private void btnEliminarPedido_Click(object sender, EventArgs e)
         {
             int idPedidoAEliminar = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[0].Value.ToString());
-            DialogResult resultadoDialgo = MetroFramework.MetroMessageBox.Show(this, "¿Desea eliminar este pedido?", "Aviso",
+            DialogResult resultadoDialgo = MetroMessageBox.Show(this, "¿Desea eliminar este pedido?", "Aviso",
                 MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
             if (resultadoDialgo == DialogResult.Yes)
             {
-                PedidoBL.Eliminar(idPedidoAEliminar);
+                List<DetallePedido> listadoDetalles = DetallePedidoBL.ObtenerTodos(idPedidoAEliminar);
+                if (listadoDetalles.Count>=1)
+                {
+                    DialogResult resultado = MetroMessageBox.Show(this, "Se eliminarán el pedido y todos sus detalles.", "¡Advertencia!", 
+                        MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                    if (resultado == DialogResult.OK)
+                    {
+                        foreach (var item in listadoDetalles)
+                        {
+                            DetallePedidoBL.Eliminar(item.Id);
+                        }
+                        PedidoBL.Eliminar(idPedidoAEliminar);
+                    }
+                }
+                else PedidoBL.Eliminar(idPedidoAEliminar);
+                CargarPedidos();
             }
+            
         }
     }
 }

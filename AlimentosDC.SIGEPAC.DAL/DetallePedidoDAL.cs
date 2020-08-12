@@ -41,12 +41,18 @@ namespace AlimentosDC.SIGEPAC.DAL
             return ComunDB.EjecutarComando(comando);
         }
 
-        public static int Eliminar(int pDetallePedido)
+        public static int Eliminar(int pDetallePedido, int? idPedido=null)
         {
+            
             string consulta = @"DELETE FROM DetallePedido WHERE Id = @Id;";
+            if (idPedido!=null)
+            {
+                consulta = @"DELETE FROM DetallePedido WHERE IdPedido = @IdPedido;";
+            }
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
-            comando.Parameters.AddWithValue("@Id", pDetallePedido);
+            if (idPedido==null) comando.Parameters.AddWithValue("@Id", pDetallePedido);
+            else comando.Parameters.AddWithValue("@IdPedido", idPedido);
             return ComunDB.EjecutarComando(comando);
         }
 

@@ -18,33 +18,32 @@ namespace AlimentosDC.SIGEPAC.UI
     public partial class FrmClientes : MetroForm
     {
         List<Cliente> listadoClientes;
+        FrmClientes objetoClientesActual;
         public FrmClientes()
         {
             InitializeComponent();
+            objetoClientesActual = this;
+            CargarClientes();
         }
 
         private void btnNuevoPedido_Click(object sender, EventArgs e)
         {
-            FrmCliente mantenimientoClientes = new FrmCliente();
-            mantenimientoClientes.Owner = this;
+            FrmCliente mantenimientoClientes = new FrmCliente(ref objetoClientesActual);
+            mantenimientoClientes.Owner = objetoClientesActual;
             mantenimientoClientes.ShowDialog();
         }
 
         private void btnEditarPedido_Click(object sender, EventArgs e)
         {
-            FrmCliente mantenimientoClientes = new FrmCliente();
-            mantenimientoClientes.Owner = this;
+            int idClienteAEditar = int.Parse(dgvListadoClientes.SelectedRows[0].Cells[0].Value.ToString());
+            FrmCliente mantenimientoClientes = new FrmCliente(ref objetoClientesActual, idClienteAEditar);
+            mantenimientoClientes.Owner = objetoClientesActual;
             mantenimientoClientes.ShowDialog();
         }
 
-        private void FrmClientes_Load(object sender, EventArgs e)
+        public void CargarClientes(string pCondicion = "%")
         {
-            CargarClientes();
-        }
-
-        void CargarClientes()
-        {
-            listadoClientes = ClienteBL.ObtenerTodos();
+            listadoClientes = ClienteBL.ObtenerTodos(pCondicion);
             dgvListadoClientes.Rows.Clear();
             for (int i = 0; i < listadoClientes.Count; i++)
             {
@@ -57,6 +56,47 @@ namespace AlimentosDC.SIGEPAC.UI
                 dgvListadoClientes.Rows[i].Cells[5].Value = listadoClientes[i].Telefono;
                 dgvListadoClientes.Rows[i].Cells[6].Value = listadoClientes[i].Correo;
             }
+        }
+
+        private void btnEliminarPedido_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                int idClienteAEliminar = int.Parse(dgvListadoClientes.SelectedRows[0].Cells[0].Value.ToString());
+                DialogResult resultado = MetroMessageBox.Show(this, "¿Desea eliminar el cliente?", "Aviso", MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (resultado == DialogResult.Yes)
+                {
+                    ClienteBL.Eliminar(idClienteAEliminar);
+                    objetoClientesActual.CargarClientes();
+                }
+            }
+            catch (DeletedRowInaccessibleException error)
+            {
+                MetroMessageBox.Show(this, $"Este cliente ya fue eliminado.\nMás información: {error.Message}", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                objetoClientesActual.CargarClientes();
+            }
+            catch (Exception err)
+            {
+                MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\nInformación: {err.Message}", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
+            
+        }
+
+        private void txtBuscarClientes_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CargarClientes(txtBuscarClientes.Text);
+            }
+            catch (Exception error)
+            {
+                MetroMessageBox.Show(this, $"¡Ha ocurrido un error!.\n{error.Message}", "¡Error!", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
+            }
+            //Continuar con la ventana de MARCAS
         }
     }
 }

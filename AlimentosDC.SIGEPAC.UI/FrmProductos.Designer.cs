@@ -39,7 +39,7 @@
             this.dgvMarca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvStock = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.textBoxWaterMark1 = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
+            this.txtBuscarProductos = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoProductos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -52,6 +52,7 @@
             this.btnEliminarProducto.TabIndex = 12;
             this.btnEliminarProducto.Text = "Eliminar";
             this.btnEliminarProducto.UseVisualStyleBackColor = true;
+            this.btnEliminarProducto.Click += new System.EventHandler(this.btnEliminarProducto_Click);
             // 
             // btnEditarProducto
             // 
@@ -135,21 +136,22 @@
             this.dgvStock.Name = "dgvStock";
             this.dgvStock.ReadOnly = true;
             // 
-            // textBoxWaterMark1
+            // txtBuscarProductos
             // 
-            this.textBoxWaterMark1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.textBoxWaterMark1.Location = new System.Drawing.Point(13, 63);
-            this.textBoxWaterMark1.Name = "textBoxWaterMark1";
-            this.textBoxWaterMark1.Size = new System.Drawing.Size(322, 27);
-            this.textBoxWaterMark1.TabIndex = 13;
-            this.textBoxWaterMark1.TextoMarcaAgua = "Buscar por nombre, descripción o ID";
+            this.txtBuscarProductos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscarProductos.Location = new System.Drawing.Point(13, 63);
+            this.txtBuscarProductos.Name = "txtBuscarProductos";
+            this.txtBuscarProductos.Size = new System.Drawing.Size(322, 27);
+            this.txtBuscarProductos.TabIndex = 13;
+            this.txtBuscarProductos.TextoMarcaAgua = "Buscar por nombre o descripción";
+            this.txtBuscarProductos.TextChanged += new System.EventHandler(this.txtBuscarProductos_TextChanged);
             // 
             // FrmProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(795, 470);
-            this.Controls.Add(this.textBoxWaterMark1);
+            this.Controls.Add(this.txtBuscarProductos);
             this.Controls.Add(this.btnEliminarProducto);
             this.Controls.Add(this.btnEditarProducto);
             this.Controls.Add(this.btnNuevoProducto);
@@ -177,6 +179,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvMarca;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvPrecio;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvStock;
-        private TextBoxWaterMark textBoxWaterMark1;
+        private TextBoxWaterMark txtBuscarProductos;
     }
 }
