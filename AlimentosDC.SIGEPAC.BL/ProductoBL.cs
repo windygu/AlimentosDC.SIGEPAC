@@ -25,9 +25,9 @@ namespace AlimentosDC.SIGEPAC.BL
             return ProductoDAL.Eliminar(pIdProducto);
         }
 
-        public static List<Producto> ObtenerTodos(string pCondicion = "%")
+        public static List<Producto> ObtenerTodos(string pCondicion = "%", int? idMarca = null)
         {
-            return ProductoDAL.ObtenerTodos(pCondicion);
+            return ProductoDAL.ObtenerTodos(pCondicion, idMarca);
         }
 
         public static Producto BuscarPorId(int pId)

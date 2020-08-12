@@ -27,23 +27,26 @@ namespace AlimentosDC.SIGEPAC.DAL
             comando.CommandText = consulta;
             comando.Parameters.AddWithValue("@Nombre", pMarca.Nombre);
             comando.Parameters.AddWithValue("@Comentario", pMarca.Comentario);
-            return ComunDB.EjecutarComando(comando);
-        }
-
-        public static int Eliminar(Marca pMarca)
-        {
-            string consulta = @"DELETE FROM Marca WHERE Id = @Id;";
-            SqlCommand comando = ComunDB.ObtenerComando();
-            comando.CommandText = consulta;
             comando.Parameters.AddWithValue("@Id", pMarca.Id);
             return ComunDB.EjecutarComando(comando);
         }
 
-        public static List<Marca> ObtenerTodos()
+        public static int Eliminar(int idMarca)
         {
-            string consulta = @"SELECT TOP 500 m.Id, m.Nombre, m.Comentario FROM Marca m";
+            string consulta = @"DELETE FROM Marca WHERE Id = @Id;";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
+            comando.Parameters.AddWithValue("@Id", idMarca);
+            return ComunDB.EjecutarComando(comando);
+        }
+
+        public static List<Marca> ObtenerTodos(string pCondicion = "%")
+        {
+            string consulta = @"SELECT TOP 500 m.Id, m.Nombre, m.Comentario FROM Marca m WHERE Nombre like CONCAT(@pCondicion, '%') OR 
+            Comentario LIKE CONCAT(@pCondicion, '%')";
+            SqlCommand comando = ComunDB.ObtenerComando();
+            comando.CommandText = consulta;
+            comando.Parameters.AddWithValue("@pCondicion", pCondicion);
             SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
             List<Marca> listaMarcas = new List<Marca>();
             while (reader.Read())

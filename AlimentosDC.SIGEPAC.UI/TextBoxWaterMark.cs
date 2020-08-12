@@ -50,7 +50,11 @@ namespace AlimentosDC.SIGEPAC.UI
                 SendMessage(Handle, 0x1501, (IntPtr)1, TextoMarcaAgua);
             }
         }
-
         
     }      
+
+    class NativeMethods
+    {
+
+    }
 }

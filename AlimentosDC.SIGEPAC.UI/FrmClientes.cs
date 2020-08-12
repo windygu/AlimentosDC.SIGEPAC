@@ -67,8 +67,16 @@ namespace AlimentosDC.SIGEPAC.UI
                     MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (resultado == DialogResult.Yes)
                 {
-                    ClienteBL.Eliminar(idClienteAEliminar);
-                    objetoClientesActual.CargarClientes();
+                    if (PedidoBL.ObtenerTodos(idCliente: idClienteAEliminar).Count >= 1)
+                    {
+                        MetroMessageBox.Show(this, string.Concat("No puede eliminar este cliente por que tiene pedidos, para poder eliminarlo primer debe remover ",
+                            "sus pedidos."), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                    else
+                    {
+                        ClienteBL.Eliminar(idClienteAEliminar);
+                        objetoClientesActual.CargarClientes();
+                    }
                 }
             }
             catch (DeletedRowInaccessibleException error)
@@ -96,7 +104,8 @@ namespace AlimentosDC.SIGEPAC.UI
                 MetroMessageBox.Show(this, $"¡Ha ocurrido un error!.\n{error.Message}", "¡Error!", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
             }
-            //Continuar con la ventana de MARCAS
+
+            //Continuar en hacer mejoras como cambiar comas por puntos decimales
         }
     }
 }

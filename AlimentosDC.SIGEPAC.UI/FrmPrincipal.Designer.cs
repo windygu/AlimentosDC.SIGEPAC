@@ -64,6 +64,7 @@
             this.btnCerraSesion.TabIndex = 1;
             this.btnCerraSesion.Text = "Cerrar sesión";
             this.btnCerraSesion.UseVisualStyleBackColor = true;
+            this.btnCerraSesion.Click += new System.EventHandler(this.btnCerraSesion_Click);
             // 
             // pictureBox1
             // 

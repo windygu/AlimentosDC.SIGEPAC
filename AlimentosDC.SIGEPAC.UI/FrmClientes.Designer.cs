@@ -91,6 +91,7 @@
             this.dgvTelefono,
             this.dgvCorreo});
             this.dgvListadoClientes.Location = new System.Drawing.Point(13, 112);
+            this.dgvListadoClientes.MultiSelect = false;
             this.dgvListadoClientes.Name = "dgvListadoClientes";
             this.dgvListadoClientes.ReadOnly = true;
             this.dgvListadoClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;

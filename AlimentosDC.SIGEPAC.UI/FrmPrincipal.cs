@@ -47,5 +47,15 @@ namespace AlimentosDC.SIGEPAC.UI
             listadoMarcas.Owner = this;
             listadoMarcas.ShowDialog();
         }
+
+        private void btnCerraSesion_Click(object sender, EventArgs e)
+        {
+            DialogResult resultado = MetroMessageBox.Show(this, "¿Desea cerrar la sesión?", "Aviso", MessageBoxButtons.YesNo, 
+                MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (resultado == DialogResult.Yes)
+            {
+                Close();
+            }
+        }
     }
 }

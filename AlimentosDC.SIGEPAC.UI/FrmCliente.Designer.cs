@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmCliente));
             this.btnGuardarCliente = new System.Windows.Forms.Button();
             this.txtDireccion = new System.Windows.Forms.TextBox();
@@ -47,6 +48,8 @@
             this.txtCorreo = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.btnCancelarCliente = new System.Windows.Forms.Button();
+            this.epValidarControles = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.epValidarControles)).BeginInit();
             this.SuspendLayout();
             // 
             // btnGuardarCliente
@@ -65,10 +68,12 @@
             this.txtDireccion.BackColor = System.Drawing.Color.White;
             this.txtDireccion.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDireccion.Location = new System.Drawing.Point(18, 295);
+            this.txtDireccion.MaxLength = 150;
             this.txtDireccion.Multiline = true;
             this.txtDireccion.Name = "txtDireccion";
             this.txtDireccion.Size = new System.Drawing.Size(250, 50);
             this.txtDireccion.TabIndex = 6;
+            this.txtDireccion.TextChanged += new System.EventHandler(this.txtDireccion_TextChanged);
             // 
             // label6
             // 
@@ -85,9 +90,12 @@
             this.txtDui.BackColor = System.Drawing.Color.White;
             this.txtDui.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDui.Location = new System.Drawing.Point(18, 228);
+            this.txtDui.MaxLength = 10;
             this.txtDui.Name = "txtDui";
             this.txtDui.Size = new System.Drawing.Size(250, 25);
             this.txtDui.TabIndex = 4;
+            this.txtDui.TextChanged += new System.EventHandler(this.txtDui_TextChanged);
+            this.txtDui.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtDui_KeyUp);
             // 
             // label5
             // 
@@ -104,9 +112,11 @@
             this.txtPrimerNombre.BackColor = System.Drawing.Color.White;
             this.txtPrimerNombre.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrimerNombre.Location = new System.Drawing.Point(18, 97);
+            this.txtPrimerNombre.MaxLength = 50;
             this.txtPrimerNombre.Name = "txtPrimerNombre";
             this.txtPrimerNombre.Size = new System.Drawing.Size(250, 25);
             this.txtPrimerNombre.TabIndex = 0;
+            this.txtPrimerNombre.TextChanged += new System.EventHandler(this.txtPrimerNombre_TextChanged);
             // 
             // label3
             // 
@@ -123,6 +133,7 @@
             this.txtSegundoNombre.BackColor = System.Drawing.Color.White;
             this.txtSegundoNombre.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSegundoNombre.Location = new System.Drawing.Point(314, 97);
+            this.txtSegundoNombre.MaxLength = 50;
             this.txtSegundoNombre.Name = "txtSegundoNombre";
             this.txtSegundoNombre.Size = new System.Drawing.Size(250, 25);
             this.txtSegundoNombre.TabIndex = 1;
@@ -142,9 +153,11 @@
             this.txtPrimerApellido.BackColor = System.Drawing.Color.White;
             this.txtPrimerApellido.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPrimerApellido.Location = new System.Drawing.Point(18, 161);
+            this.txtPrimerApellido.MaxLength = 50;
             this.txtPrimerApellido.Name = "txtPrimerApellido";
             this.txtPrimerApellido.Size = new System.Drawing.Size(250, 25);
             this.txtPrimerApellido.TabIndex = 2;
+            this.txtPrimerApellido.TextChanged += new System.EventHandler(this.txtPrimerApellido_TextChanged);
             // 
             // label2
             // 
@@ -161,9 +174,11 @@
             this.txtSegundoApellido.BackColor = System.Drawing.Color.White;
             this.txtSegundoApellido.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtSegundoApellido.Location = new System.Drawing.Point(314, 161);
+            this.txtSegundoApellido.MaxLength = 50;
             this.txtSegundoApellido.Name = "txtSegundoApellido";
             this.txtSegundoApellido.Size = new System.Drawing.Size(250, 25);
             this.txtSegundoApellido.TabIndex = 3;
+            this.txtSegundoApellido.TextChanged += new System.EventHandler(this.txtSegundoApellido_TextChanged);
             // 
             // label4
             // 
@@ -180,9 +195,11 @@
             this.txtTelefono.BackColor = System.Drawing.Color.White;
             this.txtTelefono.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtTelefono.Location = new System.Drawing.Point(314, 228);
+            this.txtTelefono.MaxLength = 20;
             this.txtTelefono.Name = "txtTelefono";
             this.txtTelefono.Size = new System.Drawing.Size(250, 25);
             this.txtTelefono.TabIndex = 5;
+            this.txtTelefono.TextChanged += new System.EventHandler(this.txtTelefono_TextChanged);
             // 
             // label7
             // 
@@ -199,9 +216,11 @@
             this.txtCorreo.BackColor = System.Drawing.Color.White;
             this.txtCorreo.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtCorreo.Location = new System.Drawing.Point(314, 295);
+            this.txtCorreo.MaxLength = 70;
             this.txtCorreo.Name = "txtCorreo";
             this.txtCorreo.Size = new System.Drawing.Size(250, 25);
             this.txtCorreo.TabIndex = 7;
+            this.txtCorreo.TextChanged += new System.EventHandler(this.txtCorreo_TextChanged);
             // 
             // label9
             // 
@@ -223,6 +242,10 @@
             this.btnCancelarCliente.Text = "Cancelar";
             this.btnCancelarCliente.UseVisualStyleBackColor = true;
             this.btnCancelarCliente.Click += new System.EventHandler(this.btnCancelarCliente_Click);
+            // 
+            // epValidarControles
+            // 
+            this.epValidarControles.ContainerControl = this;
             // 
             // FrmCliente
             // 
@@ -252,6 +275,7 @@
             this.Name = "FrmCliente";
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Mantenimiento Clientes";
+            ((System.ComponentModel.ISupportInitialize)(this.epValidarControles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -276,5 +300,6 @@
         private System.Windows.Forms.TextBox txtCorreo;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Button btnCancelarCliente;
+        private System.Windows.Forms.ErrorProvider epValidarControles;
     }
 }
