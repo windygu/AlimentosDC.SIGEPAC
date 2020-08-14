@@ -23,6 +23,8 @@ namespace AlimentosDC.SIGEPAC.UI
         public FrmProductos()
         {
             InitializeComponent();
+            btnEditarProducto.Enabled = false;
+            btnEliminarProducto.Enabled = false;
             objetoProductosActual = this;
         }
 
@@ -78,6 +80,20 @@ namespace AlimentosDC.SIGEPAC.UI
         private void txtBuscarProductos_TextChanged(object sender, EventArgs e)
         {
             CargarProductos(txtBuscarProductos.Text.Trim());
+        }
+
+        private void dgvListadoProductos_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvListadoProductos.SelectedRows.Count>=1)
+            {
+                btnEditarProducto.Enabled = true;
+                btnEliminarProducto.Enabled = true;
+            }
+            else
+            {
+                btnEliminarProducto.Enabled = false;
+                btnEditarProducto.Enabled = false;
+            }
         }
     }
 }

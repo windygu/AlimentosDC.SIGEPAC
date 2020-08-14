@@ -50,6 +50,11 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void btnGuardarMarca_Click(object sender, EventArgs e)
         {
+            GuardarMarca();
+        }
+
+        void GuardarMarca()
+        {
             Marca marcaARegistrar = new Marca();
             marcaARegistrar.Nombre = txtNombreMarca.Text;
             marcaARegistrar.Comentario = txtComentarioMarca.Text;

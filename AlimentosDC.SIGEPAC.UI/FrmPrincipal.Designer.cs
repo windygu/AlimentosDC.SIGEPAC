@@ -36,8 +36,12 @@
             this.btnMarcas = new System.Windows.Forms.Button();
             this.btnProductos = new System.Windows.Forms.Button();
             this.btnClientes = new System.Windows.Forms.Button();
+            this.pcbFotoPerfil = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.ofdEscogerFoto = new System.Windows.Forms.OpenFileDialog();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbFotoPerfil)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -58,7 +62,7 @@
             // btnCerraSesion
             // 
             this.btnCerraSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerraSesion.Location = new System.Drawing.Point(16, 382);
+            this.btnCerraSesion.Location = new System.Drawing.Point(16, 476);
             this.btnCerraSesion.Name = "btnCerraSesion";
             this.btnCerraSesion.Size = new System.Drawing.Size(140, 38);
             this.btnCerraSesion.TabIndex = 1;
@@ -69,7 +73,7 @@
             // pictureBox1
             // 
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(16, 21);
+            this.pictureBox1.Location = new System.Drawing.Point(16, 115);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(140, 67);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -81,7 +85,7 @@
             this.btnPedidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPedidos.Image = ((System.Drawing.Image)(resources.GetObject("btnPedidos.Image")));
             this.btnPedidos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPedidos.Location = new System.Drawing.Point(16, 132);
+            this.btnPedidos.Location = new System.Drawing.Point(16, 226);
             this.btnPedidos.Name = "btnPedidos";
             this.btnPedidos.Size = new System.Drawing.Size(140, 38);
             this.btnPedidos.TabIndex = 0;
@@ -94,7 +98,7 @@
             this.btnMarcas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMarcas.Image = ((System.Drawing.Image)(resources.GetObject("btnMarcas.Image")));
             this.btnMarcas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMarcas.Location = new System.Drawing.Point(16, 319);
+            this.btnMarcas.Location = new System.Drawing.Point(16, 413);
             this.btnMarcas.Name = "btnMarcas";
             this.btnMarcas.Size = new System.Drawing.Size(140, 38);
             this.btnMarcas.TabIndex = 3;
@@ -107,7 +111,7 @@
             this.btnProductos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnProductos.Image")));
             this.btnProductos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProductos.Location = new System.Drawing.Point(16, 192);
+            this.btnProductos.Location = new System.Drawing.Point(16, 286);
             this.btnProductos.Name = "btnProductos";
             this.btnProductos.Size = new System.Drawing.Size(140, 38);
             this.btnProductos.TabIndex = 1;
@@ -120,7 +124,7 @@
             this.btnClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnClientes.Image")));
             this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClientes.Location = new System.Drawing.Point(16, 254);
+            this.btnClientes.Location = new System.Drawing.Point(16, 348);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Size = new System.Drawing.Size(140, 38);
             this.btnClientes.TabIndex = 2;
@@ -128,11 +132,37 @@
             this.btnClientes.UseVisualStyleBackColor = true;
             this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
+            // pcbFotoPerfil
+            // 
+            this.pcbFotoPerfil.Location = new System.Drawing.Point(1431, 26);
+            this.pcbFotoPerfil.Name = "pcbFotoPerfil";
+            this.pcbFotoPerfil.Size = new System.Drawing.Size(45, 45);
+            this.pcbFotoPerfil.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pcbFotoPerfil.TabIndex = 1;
+            this.pcbFotoPerfil.TabStop = false;
+            this.pcbFotoPerfil.Click += new System.EventHandler(this.pictureBox2_Click);
+            // 
+            // label1
+            // 
+            this.label1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(1217, 26);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(208, 23);
+            this.label1.TabIndex = 2;
+            this.label1.Text = "Usuario: Erik";
+            this.label1.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
+            // ofdEscogerFoto
+            // 
+            this.ofdEscogerFoto.FileName = "openFileDialog1";
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1484, 761);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.pcbFotoPerfil);
             this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmPrincipal";
@@ -141,6 +171,7 @@
             this.Text = "ALIMENTOS DE CALIDAD";
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pcbFotoPerfil)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -154,5 +185,8 @@
         private System.Windows.Forms.Button btnPedidos;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnCerraSesion;
+        private System.Windows.Forms.PictureBox pcbFotoPerfil;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.OpenFileDialog ofdEscogerFoto;
     }
 }

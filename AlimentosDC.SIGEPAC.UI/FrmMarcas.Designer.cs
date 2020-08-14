@@ -90,6 +90,7 @@
             this.dgvListadoMarcas.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListadoMarcas.Size = new System.Drawing.Size(715, 275);
             this.dgvListadoMarcas.TabIndex = 25;
+            this.dgvListadoMarcas.SelectionChanged += new System.EventHandler(this.dgvListadoMarcas_SelectionChanged);
             // 
             // dgvIdMarca
             // 
@@ -137,6 +138,7 @@
             this.Name = "FrmMarcas";
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "MARCAS";
+            this.Load += new System.EventHandler(this.FrmMarcas_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoMarcas)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

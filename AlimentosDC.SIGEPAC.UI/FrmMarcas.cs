@@ -23,8 +23,9 @@ namespace AlimentosDC.SIGEPAC.UI
         public FrmMarcas()
         {
             InitializeComponent();
+            btnEditarMarca.Enabled = false;
+            btnEliminarMarca.Enabled = false;
             objetoMarcasActual = this;
-            CargarMarcas();
         }
 
         public void CargarMarcas(string pCondicion = "%")
@@ -102,6 +103,25 @@ namespace AlimentosDC.SIGEPAC.UI
                 MessageBoxIcon.Error);
                 CargarMarcas();
             }
+        }
+
+        private void dgvListadoMarcas_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvListadoMarcas.SelectedRows.Count>=1)
+            {
+                btnEliminarMarca.Enabled = true;
+                btnEditarMarca.Enabled = true;
+            }
+            else
+            {
+                btnEditarMarca.Enabled = false;
+                btnEliminarMarca.Enabled = false;
+            }
+        }
+
+        private void FrmMarcas_Load(object sender, EventArgs e)
+        {
+            CargarMarcas();
         }
     }
 }

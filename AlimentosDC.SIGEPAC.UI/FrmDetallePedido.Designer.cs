@@ -143,6 +143,7 @@
             this.cmbProducto.Name = "cmbProducto";
             this.cmbProducto.Size = new System.Drawing.Size(210, 25);
             this.cmbProducto.TabIndex = 25;
+            this.cmbProducto.ValueMember = "Id";
             this.cmbProducto.SelectedIndexChanged += new System.EventHandler(this.cmbProducto_SelectionChangeCommitted);
             this.cmbProducto.SelectionChangeCommitted += new System.EventHandler(this.cmbProducto_SelectionChangeCommitted);
             // 

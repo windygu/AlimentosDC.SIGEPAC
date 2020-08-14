@@ -397,6 +397,7 @@
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "DETALLES PEDIDO";
+            this.Load += new System.EventHandler(this.FrmVerDetallesPedido_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDetallesPedido)).EndInit();

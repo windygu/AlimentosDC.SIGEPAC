@@ -34,49 +34,63 @@ namespace AlimentosDC.SIGEPAC.UI
             Thread.CurrentThread.CurrentCulture = cultura;
             this.idPedido = idPedido;
             this.numeroPedido = numeroPedido;
-            CargarDetalles();
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Close();
         }
+
+        private void FrmVerDetallesPedido_Load(object sender, EventArgs e)
+        {
+            CargarDetalles();
+        }
+
         void CargarDetalles()
         {
-            listadoDetallesPedido = DetallePedidoBL.ObtenerTodos(idPedido);
-            dgvListadoDetallesPedido.Rows.Clear();
-            pedido = PedidoBL.BuscarPorId(idPedido);
-            lblIdPedido.Text = pedido.Id.ToString();
-            lblNumeroPedido.Text = pedido.NumeroPedido.ToString();
-            lblFechaCreacion.Text = pedido.FechaCreacion.ToString();
-            lblEstadoPedido.Text = pedido.Estado;
-            lblFechaEntrega.Text = pedido.FechaEntrega.ToString();
-            lblDireccionEntrega.Text = pedido.DireccionEntrega;
-            cliente = ClienteBL.BuscarPorId(pedido.IdCliente);
-            lblCliente.Text = string.Concat(cliente.PrimerNombre, " ", cliente.SegundoNombre, " ", 
-                cliente.PrimerApellido, " ", cliente.SegundoApellido);
-            lblDuiCliente.Text = cliente.DUI;
-            int sumaProductos = 0;
-            float total = 0;
-            for (int i = 0; i < listadoDetallesPedido.Count; i++)
+            try
             {
-                dgvListadoDetallesPedido.Rows.Add();
-                dgvListadoDetallesPedido.Rows[i].Cells[0].Value = listadoDetallesPedido[i].Id;
-                dgvListadoDetallesPedido.Rows[i].Cells[1].Value = listadoDetallesPedido[i].Producto;
-                dgvListadoDetallesPedido.Rows[i].Cells[2].Value = listadoDetallesPedido[i].Descripcion;
-                dgvListadoDetallesPedido.Rows[i].Cells[3].Value = listadoDetallesPedido[i].Cantidad;
-                dgvListadoDetallesPedido.Rows[i].Cells[4].Value = listadoDetallesPedido[i].PrecioUnitario;
-                dgvListadoDetallesPedido.Rows[i].Cells[5].Value = listadoDetallesPedido[i].SubTotal;
-                dgvListadoDetallesPedido.Rows[i].Cells[6].Value = listadoDetallesPedido[i].Estado;
-                sumaProductos += listadoDetallesPedido[i].Cantidad;
-                total += listadoDetallesPedido[i].SubTotal;
-            }
+                listadoDetallesPedido = DetallePedidoBL.ObtenerTodos(idPedido);
+                dgvListadoDetallesPedido.Rows.Clear();
+                pedido = PedidoBL.BuscarPorId(idPedido);
+                lblIdPedido.Text = pedido.Id.ToString();
+                lblNumeroPedido.Text = pedido.NumeroPedido.ToString();
+                lblFechaCreacion.Text = pedido.FechaCreacion.ToString();
+                lblEstadoPedido.Text = pedido.Estado;
+                lblFechaEntrega.Text = pedido.FechaEntrega.ToString();
+                lblDireccionEntrega.Text = pedido.DireccionEntrega;
+                cliente = ClienteBL.BuscarPorId(pedido.IdCliente);
+                lblCliente.Text = string.Concat(cliente.PrimerNombre, " ", cliente.SegundoNombre, " ",
+                    cliente.PrimerApellido, " ", cliente.SegundoApellido);
+                lblDuiCliente.Text = cliente.DUI;
+                int sumaProductos = 0;
+                float total = 0;
+                for (int i = 0; i < listadoDetallesPedido.Count; i++)
+                {
+                    dgvListadoDetallesPedido.Rows.Add();
+                    dgvListadoDetallesPedido.Rows[i].Cells[0].Value = listadoDetallesPedido[i].Id;
+                    dgvListadoDetallesPedido.Rows[i].Cells[1].Value = listadoDetallesPedido[i].Producto;
+                    dgvListadoDetallesPedido.Rows[i].Cells[2].Value = listadoDetallesPedido[i].Descripcion;
+                    dgvListadoDetallesPedido.Rows[i].Cells[3].Value = listadoDetallesPedido[i].Cantidad;
+                    dgvListadoDetallesPedido.Rows[i].Cells[4].Value = listadoDetallesPedido[i].PrecioUnitario;
+                    dgvListadoDetallesPedido.Rows[i].Cells[5].Value = listadoDetallesPedido[i].SubTotal;
+                    dgvListadoDetallesPedido.Rows[i].Cells[6].Value = listadoDetallesPedido[i].Estado;
+                    sumaProductos += listadoDetallesPedido[i].Cantidad;
+                    total += listadoDetallesPedido[i].SubTotal;
+                }
 
-            lblProductos.Text = sumaProductos.ToString();
-            int cantidad;
-            lblTotal.Text =
-            "$ "+ ((int.TryParse(total.ToString(), out cantidad) == true) ? (total.ToString() + ".00") : total.ToString());
-            
+                lblProductos.Text = sumaProductos.ToString();
+                int cantidad;
+                lblTotal.Text =
+                "$ " + ((int.TryParse(total.ToString(), out cantidad) == true) ? (total.ToString() + ".00") : total.ToString());
+
+            }
+            catch (Exception error)
+            {
+                MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\nMÁS INFORMACIÓN: {error.Message}", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+                Close();
+            }
         }
     }
 }

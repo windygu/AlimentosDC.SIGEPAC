@@ -233,6 +233,7 @@
             this.Name = "FrmProducto";
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Mantenimiento Productos";
+            this.Load += new System.EventHandler(this.FrmProducto_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epValidarControles)).EndInit();

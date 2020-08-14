@@ -99,6 +99,7 @@
             // 
             // cmbListadoClientes
             // 
+            this.cmbListadoClientes.DisplayMember = "Nombres";
             this.cmbListadoClientes.FormattingEnabled = true;
             this.cmbListadoClientes.ItemHeight = 23;
             this.cmbListadoClientes.Location = new System.Drawing.Point(68, 23);
@@ -106,9 +107,10 @@
             this.cmbListadoClientes.Size = new System.Drawing.Size(240, 29);
             this.cmbListadoClientes.TabIndex = 32;
             this.cmbListadoClientes.UseSelectable = true;
-            this.cmbListadoClientes.SelectedIndexChanged += new System.EventHandler(this.cmbListadoClientes_SelectionChangeCommitted);
+            this.cmbListadoClientes.ValueMember = "Id";
             this.cmbListadoClientes.SelectionChangeCommitted += new System.EventHandler(this.cmbListadoClientes_SelectionChangeCommitted);
             this.cmbListadoClientes.DropDownClosed += new System.EventHandler(this.cmbListadoClientes_DropDownClosed);
+            this.cmbListadoClientes.SelectedValueChanged += new System.EventHandler(this.cmbListadoClientes_SelectionChangeCommitted);
             // 
             // lblDui
             // 
@@ -395,6 +397,7 @@
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Tag = "";
             this.Text = "Mantenimiento Pedidos";
+            this.Load += new System.EventHandler(this.FrmPedido_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDetallesPedido)).EndInit();

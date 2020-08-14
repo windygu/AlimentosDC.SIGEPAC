@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmClientes));
-            this.btnEliminarPedido = new System.Windows.Forms.Button();
-            this.btnEditarPedido = new System.Windows.Forms.Button();
-            this.btnNuevoPedido = new System.Windows.Forms.Button();
+            this.btnEliminarCliente = new System.Windows.Forms.Button();
+            this.btnEditarCliente = new System.Windows.Forms.Button();
+            this.btnNuevoCliente = new System.Windows.Forms.Button();
             this.dgvListadoClientes = new System.Windows.Forms.DataGridView();
             this.dgvId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,38 +44,38 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoClientes)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnEliminarPedido
+            // btnEliminarCliente
             // 
-            this.btnEliminarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarPedido.Location = new System.Drawing.Point(688, 62);
-            this.btnEliminarPedido.Name = "btnEliminarPedido";
-            this.btnEliminarPedido.Size = new System.Drawing.Size(100, 30);
-            this.btnEliminarPedido.TabIndex = 2;
-            this.btnEliminarPedido.Text = "Eliminar";
-            this.btnEliminarPedido.UseVisualStyleBackColor = true;
-            this.btnEliminarPedido.Click += new System.EventHandler(this.btnEliminarPedido_Click);
+            this.btnEliminarCliente.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarCliente.Location = new System.Drawing.Point(688, 62);
+            this.btnEliminarCliente.Name = "btnEliminarCliente";
+            this.btnEliminarCliente.Size = new System.Drawing.Size(100, 30);
+            this.btnEliminarCliente.TabIndex = 2;
+            this.btnEliminarCliente.Text = "Eliminar";
+            this.btnEliminarCliente.UseVisualStyleBackColor = true;
+            this.btnEliminarCliente.Click += new System.EventHandler(this.btnEliminarCliente_Click);
             // 
-            // btnEditarPedido
+            // btnEditarCliente
             // 
-            this.btnEditarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarPedido.Location = new System.Drawing.Point(549, 62);
-            this.btnEditarPedido.Name = "btnEditarPedido";
-            this.btnEditarPedido.Size = new System.Drawing.Size(100, 30);
-            this.btnEditarPedido.TabIndex = 1;
-            this.btnEditarPedido.Text = "Editar";
-            this.btnEditarPedido.UseVisualStyleBackColor = true;
-            this.btnEditarPedido.Click += new System.EventHandler(this.btnEditarPedido_Click);
+            this.btnEditarCliente.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditarCliente.Location = new System.Drawing.Point(549, 62);
+            this.btnEditarCliente.Name = "btnEditarCliente";
+            this.btnEditarCliente.Size = new System.Drawing.Size(100, 30);
+            this.btnEditarCliente.TabIndex = 1;
+            this.btnEditarCliente.Text = "Editar";
+            this.btnEditarCliente.UseVisualStyleBackColor = true;
+            this.btnEditarCliente.Click += new System.EventHandler(this.btnEditarCliente_Click);
             // 
-            // btnNuevoPedido
+            // btnNuevoCliente
             // 
-            this.btnNuevoPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoPedido.Location = new System.Drawing.Point(413, 63);
-            this.btnNuevoPedido.Name = "btnNuevoPedido";
-            this.btnNuevoPedido.Size = new System.Drawing.Size(100, 30);
-            this.btnNuevoPedido.TabIndex = 0;
-            this.btnNuevoPedido.Text = "Nuevo";
-            this.btnNuevoPedido.UseVisualStyleBackColor = true;
-            this.btnNuevoPedido.Click += new System.EventHandler(this.btnNuevoPedido_Click);
+            this.btnNuevoCliente.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevoCliente.Location = new System.Drawing.Point(413, 63);
+            this.btnNuevoCliente.Name = "btnNuevoCliente";
+            this.btnNuevoCliente.Size = new System.Drawing.Size(100, 30);
+            this.btnNuevoCliente.TabIndex = 0;
+            this.btnNuevoCliente.Text = "Nuevo";
+            this.btnNuevoCliente.UseVisualStyleBackColor = true;
+            this.btnNuevoCliente.Click += new System.EventHandler(this.btnNuevoCliente_Click);
             // 
             // dgvListadoClientes
             // 
@@ -97,6 +97,7 @@
             this.dgvListadoClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListadoClientes.Size = new System.Drawing.Size(924, 386);
             this.dgvListadoClientes.TabIndex = 13;
+            this.dgvListadoClientes.SelectionChanged += new System.EventHandler(this.dgvListadoClientes_SelectionChanged);
             // 
             // dgvId
             // 
@@ -162,15 +163,16 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(950, 515);
             this.Controls.Add(this.txtBuscarClientes);
-            this.Controls.Add(this.btnEliminarPedido);
-            this.Controls.Add(this.btnEditarPedido);
-            this.Controls.Add(this.btnNuevoPedido);
+            this.Controls.Add(this.btnEliminarCliente);
+            this.Controls.Add(this.btnEditarCliente);
+            this.Controls.Add(this.btnNuevoCliente);
             this.Controls.Add(this.dgvListadoClientes);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmClientes";
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "CLIENTES";
+            this.Load += new System.EventHandler(this.FrmClientes_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoClientes)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -179,9 +181,9 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btnEliminarPedido;
-        private System.Windows.Forms.Button btnEditarPedido;
-        private System.Windows.Forms.Button btnNuevoPedido;
+        private System.Windows.Forms.Button btnEliminarCliente;
+        private System.Windows.Forms.Button btnEditarCliente;
+        private System.Windows.Forms.Button btnNuevoCliente;
         private System.Windows.Forms.DataGridView dgvListadoClientes;
         private TextBoxWaterMark txtBuscarClientes;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvId;

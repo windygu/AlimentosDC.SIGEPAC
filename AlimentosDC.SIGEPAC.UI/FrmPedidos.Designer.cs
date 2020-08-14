@@ -247,6 +247,7 @@
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Tag = "";
             this.Text = "PEDIDOS";
+            this.Load += new System.EventHandler(this.FrmPedidos_Load);
             this.Click += new System.EventHandler(this.FrmPedidos_Click);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoPedidos)).EndInit();
             this.ResumeLayout(false);

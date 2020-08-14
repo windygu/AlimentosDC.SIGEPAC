@@ -23,17 +23,16 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             InitializeComponent();
             objetoClientesActual = this;
-            CargarClientes();
         }
 
-        private void btnNuevoPedido_Click(object sender, EventArgs e)
+        private void btnNuevoCliente_Click(object sender, EventArgs e)
         {
             FrmCliente mantenimientoClientes = new FrmCliente(ref objetoClientesActual);
             mantenimientoClientes.Owner = objetoClientesActual;
             mantenimientoClientes.ShowDialog();
         }
 
-        private void btnEditarPedido_Click(object sender, EventArgs e)
+        private void btnEditarCliente_Click(object sender, EventArgs e)
         {
             int idClienteAEditar = int.Parse(dgvListadoClientes.SelectedRows[0].Cells[0].Value.ToString());
             FrmCliente mantenimientoClientes = new FrmCliente(ref objetoClientesActual, idClienteAEditar);
@@ -58,7 +57,7 @@ namespace AlimentosDC.SIGEPAC.UI
             }
         }
 
-        private void btnEliminarPedido_Click(object sender, EventArgs e)
+        private void btnEliminarCliente_Click(object sender, EventArgs e)
         {
             try
             {
@@ -81,13 +80,13 @@ namespace AlimentosDC.SIGEPAC.UI
             }
             catch (DeletedRowInaccessibleException error)
             {
-                MetroMessageBox.Show(this, $"Este cliente ya fue eliminado.\nMás información: {error.Message}", "Error", MessageBoxButtons.OK,
+                MetroMessageBox.Show(this, $"Este cliente ya fue eliminado.\nMÁS INFORMACIÓN: {error.Message}", "Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 objetoClientesActual.CargarClientes();
             }
             catch (Exception err)
             {
-                MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\nInformación: {err.Message}", "Error", MessageBoxButtons.OK,
+                MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\nMÁS INFORMACIÓN: {err.Message}", "Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
             
@@ -104,8 +103,25 @@ namespace AlimentosDC.SIGEPAC.UI
                 MetroMessageBox.Show(this, $"¡Ha ocurrido un error!.\n{error.Message}", "¡Error!", MessageBoxButtons.OK,
                         MessageBoxIcon.Error);
             }
+        }
 
-            //Continuar en hacer mejoras como cambiar comas por puntos decimales
+        private void dgvListadoClientes_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvListadoClientes.SelectedRows.Count>=1)
+            {
+                btnEditarCliente.Enabled = true;
+                btnEliminarCliente.Enabled = true;
+            }
+            else
+            {
+                btnEliminarCliente.Enabled = false;
+                btnEditarCliente.Enabled = false;
+            }
+        }
+
+        private void FrmClientes_Load(object sender, EventArgs e)
+        {
+            CargarClientes();
         }
     }
 }

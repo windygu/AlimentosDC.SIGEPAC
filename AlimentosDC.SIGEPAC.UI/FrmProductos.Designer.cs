@@ -94,6 +94,7 @@
             this.dgvListadoProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListadoProductos.Size = new System.Drawing.Size(768, 340);
             this.dgvListadoProductos.TabIndex = 7;
+            this.dgvListadoProductos.SelectionChanged += new System.EventHandler(this.dgvListadoProductos_SelectionChanged);
             // 
             // dgvId
             // 

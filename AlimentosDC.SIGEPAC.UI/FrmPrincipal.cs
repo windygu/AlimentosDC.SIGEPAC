@@ -10,6 +10,10 @@ using System.Windows.Forms;
 using MetroFramework;
 using MetroFramework.Forms;
 using MetroFramework.Controls;
+using System.IO;
+using AlimentosDC.SIGEPAC.BL;
+using AlimentosDC.SIGEPAC.EN;
+using System.Drawing.Imaging;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
@@ -55,6 +59,24 @@ namespace AlimentosDC.SIGEPAC.UI
             if (resultado == DialogResult.Yes)
             {
                 Close();
+            }
+        }
+
+        private void pictureBox2_Click(object sender, EventArgs e)
+        {
+            DialogResult resultadoCuadro = MetroMessageBox.Show(this, "¿Desea cambiar su cambiar la foto de perfil?", "Aviso", MessageBoxButtons.YesNo,
+               MessageBoxIcon.Question);
+            if (resultadoCuadro == DialogResult.Yes)
+            {
+                string rutaImagen;
+                DialogResult resultado = ofdEscogerFoto.ShowDialog();
+                if (resultado == DialogResult.OK)
+                {
+                    MemoryStream secuenciaBytes = new MemoryStream();
+                    rutaImagen = ofdEscogerFoto.FileName;
+                    pcbFotoPerfil.ImageLocation = rutaImagen;
+                    pcbFotoPerfil.Image.Save(secuenciaBytes, ImageFormat.Jpeg);
+                }
             }
         }
     }

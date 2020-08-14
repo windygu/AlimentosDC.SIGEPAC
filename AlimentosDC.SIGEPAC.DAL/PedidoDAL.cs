@@ -51,18 +51,12 @@ namespace AlimentosDC.SIGEPAC.DAL
             return ComunDB.EjecutarComando(comando);
         }
 
-        public static List<Pedido> ObtenerTodos(string pEstado = "%", string pDatoABuscar = null, int? idCliente = null)
+        public static List<Pedido> ObtenerTodos(string pCondicion = "%", string pEstado = "%", int? idCliente = null)
         {
-            string consulta = @"SELECT TOP(500) p.Id, c.PrimerNombre+' '+c.PrimerApellido 
-            Cliente, c.Dui, p.NumeroPedido, p.FechaCreacion, p.FechaEntrega, p.DireccionEntrega, p.Estado 
-            FROM Cliente c JOIN Pedido p ON c.Id = p.IdCliente WHERE Estado LIKE @pEstado";
-            if (pDatoABuscar != null)
-            {
-                consulta = string.Concat("SELECT p.Id, c.PrimerNombre+' '+c.PrimerApellido Cliente, c.Dui, p.NumeroPedido, ", 
-                "p.FechaCreacion, p.FechaEntrega, p.DireccionEntrega, p.Estado FROM pedido p JOIN Cliente c ON p.IdCliente = c.Id ",
-                "WHERE p.NumeroPedido LIKE CONCAT(@pDatoABuscar, '%') OR CONCAT(c.PrimerNombre, ' ', c.SegundoNombre, ' ', c.PrimerApellido, ' ', ",
-                "c.SegundoApellido) LIKE CONCAT('%', @pDatoABuscar, '%')");
-            }
+            string consulta = string.Concat("SELECT p.Id, c.PrimerNombre+' '+c.PrimerApellido Cliente, c.Dui, p.NumeroPedido, ", 
+            "p.FechaCreacion, p.FechaEntrega, p.DireccionEntrega, p.Estado FROM pedido p JOIN Cliente c ON p.IdCliente = c.Id ",
+            "WHERE (p.NumeroPedido LIKE CONCAT(@pCondicion, '%') OR CONCAT(c.PrimerNombre, ' ', c.SegundoNombre, ' ', c.PrimerApellido, ' ', ",
+            "c.SegundoApellido) LIKE CONCAT('%', @pCondicion, '%')) AND p.Estado LIKE @pEstado");
             if (idCliente!= null)
             {
                 consulta = string.Concat("SELECT TOP(500) p.Id, c.PrimerNombre+' '+c.PrimerApellido ",
@@ -71,9 +65,12 @@ namespace AlimentosDC.SIGEPAC.DAL
             }    
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
-            if (pDatoABuscar!=null) comando.Parameters.AddWithValue("@pDatoABuscar", pDatoABuscar);
-            else if(idCliente!=null) comando.Parameters.AddWithValue("@idCliente", idCliente);
-            else comando.Parameters.AddWithValue("@pEstado", pEstado);
+            if (idCliente != null) comando.Parameters.AddWithValue("@idCliente", idCliente);
+            else
+            {
+                comando.Parameters.AddWithValue("@pCondicion", pCondicion);
+                comando.Parameters.AddWithValue("@pEstado", pEstado);
+            }
             SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
             List<Pedido> listaPedidos = new List<Pedido>();
             while (reader.Read())

@@ -59,6 +59,11 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void btnGuardarCliente_Click(object sender, EventArgs e)
         {
+            Guardar();
+        }
+
+        void Guardar()
+        {
             try
             {
                 Cliente clienteARegistrar = new Cliente();

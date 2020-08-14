@@ -12,6 +12,7 @@ using AlimentosDC.SIGEPAC.BL;
 using MetroFramework;
 using MetroFramework.Forms;
 using MetroFramework.Controls;
+using System.Data.SqlClient;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
@@ -23,11 +24,10 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             InitializeComponent();
             objetoPedidosActual = this;
-            btnEditarPedido.Enabled = true;
-            btnVerDetallePedido.Enabled = true;
-            btnEliminarPedido.Enabled = true;
+            btnEditarPedido.Enabled = false;
+            btnVerDetallePedido.Enabled = false;
+            btnEliminarPedido.Enabled = false;
             txtBuscadorPedidos.GotFocus += TxtBuscadorPedidos_GotFocus;
-            cmbMostrando.SelectedItem = "Todos";
             btnNuevoPedido.Focus();
         }
 
@@ -72,15 +72,24 @@ namespace AlimentosDC.SIGEPAC.UI
             {
                 txtBuscadorPedidos.Font = new Font(txtBuscadorPedidos.Font, FontStyle.Italic);
             }
+            else txtBuscadorPedidos.Font = new Font(txtBuscadorPedidos.Font, FontStyle.Regular);
+            if (cmbMostrando.SelectedItem.ToString() == "Todos")
+            {
+                CargarPedidos(txtBuscadorPedidos.Text);
+            }
             else
-                txtBuscadorPedidos.Font = new Font(txtBuscadorPedidos.Font, FontStyle.Regular);
-            CargarPedidos(pDatoABuscar: txtBuscadorPedidos.Text);
+            {
+                string pEstado = cmbMostrando.SelectedItem.ToString();
+                string parametroEstado = pEstado.Remove(pEstado.Length - 1, 1);
+                CargarPedidos(txtBuscadorPedidos.Text, parametroEstado);
+            }
+            
         }
 
-        public void CargarPedidos(string pEstado = "%", string pDatoABuscar = null)
+        public void CargarPedidos(string pCondicion = "%", string pEstado = "%")
         {
             dgvListadoPedidos.Rows.Clear();
-            listadoPedidos = PedidoBL.ObtenerTodos(pEstado, pDatoABuscar);
+            listadoPedidos = PedidoBL.ObtenerTodos(pCondicion, pEstado);
             for (int i = 0; i < listadoPedidos.Count; i++)
             {
                 dgvListadoPedidos.Rows.Add();
@@ -113,21 +122,42 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void cmbMostrando_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            switch (cmbMostrando.SelectedItem.ToString())
+            try
             {
-                case "Todos": CargarPedidos();
-                    break;
-                case "No iniciados": CargarPedidos("No iniciado");
-                    break;
-                case "Iniciados": CargarPedidos("Iniciado");
-                    break;
-                case "Revisados": CargarPedidos("Revisado");
-                    break;
-                case "Enviados": CargarPedidos("Enviado");
-                    break;
-                case "Finalizados": CargarPedidos("Finalizado");
-                    break;
+                switch (cmbMostrando.SelectedItem.ToString())
+                {
+                    case "Todos":
+                        CargarPedidos(txtBuscadorPedidos.Text);
+                        break;
+                    case "No iniciados":
+                        CargarPedidos(txtBuscadorPedidos.Text, "No iniciado");
+                        break;
+                    case "Iniciados":
+                        CargarPedidos(txtBuscadorPedidos.Text, "Iniciado");
+                        break;
+                    case "Revisados":
+                        CargarPedidos(txtBuscadorPedidos.Text, "Revisado");
+                        break;
+                    case "Enviados":
+                        CargarPedidos(txtBuscadorPedidos.Text, "Enviado");
+                        break;
+                    case "Finalizados":
+                        CargarPedidos(txtBuscadorPedidos.Text, "Finalizado");
+                        break;
+                }
             }
+            catch (SqlException error)
+            {
+                MetroMessageBox.Show(this, string.Concat("Hubo un error al intentar conectarse al servidor, ",
+                    $"por favor revise si es posible conectarse al servidor de la base datos.\nMÁS INFORMACIÓN: {error.Message}"), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
+            catch(Exception error)
+            {
+                MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\nMÁS INFORMACIÓN: {error.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
+            
         }
 
         private void btnEliminarPedido_Click(object sender, EventArgs e)
@@ -155,6 +185,11 @@ namespace AlimentosDC.SIGEPAC.UI
                 CargarPedidos();
             }
             
+        }
+
+        private void FrmPedidos_Load(object sender, EventArgs e)
+        {
+            cmbMostrando.SelectedItem = "Todos";
         }
     }
 }

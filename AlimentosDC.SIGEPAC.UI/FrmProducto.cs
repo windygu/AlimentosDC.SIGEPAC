@@ -27,33 +27,20 @@ namespace AlimentosDC.SIGEPAC.UI
         public FrmProducto(ref FrmProductos objetoProductosActual)
         {
             InitializeComponent();
-            cultura.NumberFormat.NumberDecimalSeparator = ".";
-            //Establecemos el hilo de ejecucion actual por la copia que hicimos anteriormente
-            Thread.CurrentThread.CurrentCulture = cultura;
             this.objetoProductosActual = objetoProductosActual;
-            CargarMarcasAlCombobox();
         }
 
         //Constructor para editar un producto
         public FrmProducto(ref FrmProductos objetoProductosActual, int idProductoAEditar)
         {
             InitializeComponent();
-            cultura.NumberFormat.NumberDecimalSeparator = ".";
-            //Establecemos el hilo de ejecucion actual por la copia que hicimos anteriormente
-            Thread.CurrentThread.CurrentCulture = cultura;
             this.objetoProductosActual = objetoProductosActual;
             this.idProductoAEditar = idProductoAEditar;
-            CargarMarcasAlCombobox();
-            productoAEditar = ProductoBL.BuscarPorId(idProductoAEditar);
-            CargarDatosAlFormulario();
-            btnGuardarProducto.Text = "Actualizar";
         }
 
         void CargarDatosAlFormulario()
         {
-            List<Marca> listadoMarcas = MarcaBL.ObtenerTodos();
-            int indiceMarca = listadoMarcas.FindIndex(x => x.Id == productoAEditar.IdMarca);
-            cmbMarcas.SelectedIndex = indiceMarca;
+            cmbMarcas.SelectedValue = productoAEditar.IdMarca;
             txtNombreProducto.Text = productoAEditar.Nombre;
             txtPrecioProducto.Text = productoAEditar.Precio.ToString();
             txtDescripcionProducto.Text = productoAEditar.Descripcion;
@@ -63,8 +50,26 @@ namespace AlimentosDC.SIGEPAC.UI
         void CargarMarcasAlCombobox()
         {
             List<Marca> listadoMarcas = MarcaBL.ObtenerTodos();
-            cmbMarcas.Items.AddRange(listadoMarcas.ToArray());
+            cmbMarcas.DataSource = listadoMarcas;
             cmbMarcas.DisplayMember = "Nombre";
+            cmbMarcas.ValueMember = "Id";
+        }
+        private void FrmProducto_Load(object sender, EventArgs e)
+        {
+            cultura.NumberFormat.NumberDecimalSeparator = ".";
+            Thread.CurrentThread.CurrentCulture = cultura;
+            btnGuardarProducto.Enabled = false;
+            CargarMarcasAlCombobox();
+            cmbMarcas.DisplayMember = "Nombre";
+            cmbMarcas.ValueMember = "Id";
+            cmbMarcas.SelectedItem = null;
+            lblComentario.Text = "";
+            if(idProductoAEditar!=null)
+            {
+                productoAEditar = ProductoBL.BuscarPorId((int)idProductoAEditar);
+                CargarDatosAlFormulario();
+                btnGuardarProducto.Text = "Actualizar";
+            }
         }
 
         private void btnCancelarProducto_Click(object sender, EventArgs e)
@@ -91,45 +96,44 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void btnGuardarProducto_Click(object sender, EventArgs e)
         {
-            Producto productoAAgregar = new Producto();
-            productoAAgregar.IdMarca = (cmbMarcas.SelectedItem as Marca).Id;
-            productoAAgregar.Nombre = txtNombreProducto.Text;
-            productoAAgregar.Descripcion = txtDescripcionProducto.Text;
-            productoAAgregar.Precio = float.Parse(txtPrecioProducto.Text);
-            productoAAgregar.Stock = int.Parse(txtStock.Text);
-            if (idProductoAEditar==null)
+            GuardarProducto();
+        }
+
+        void GuardarProducto()
+        {
+            try
             {
-                try
+                Producto productoAAgregar = new Producto();
+                productoAAgregar.IdMarca = int.Parse(cmbMarcas.SelectedValue.ToString());
+                productoAAgregar.Nombre = txtNombreProducto.Text;
+                productoAAgregar.Descripcion = txtDescripcionProducto.Text;
+                productoAAgregar.Precio = float.Parse(txtPrecioProducto.Text);
+                productoAAgregar.Stock = int.Parse(txtStock.Text);
+                if (idProductoAEditar == null)
                 {
+
                     ProductoBL.Guardar(productoAAgregar);
                     objetoProductosActual.CargarProductos();
                     MetroMessageBox.Show(this, "Producto registrado exitosamente.", "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Limpiar();
+
                 }
-                catch (Exception exc)
+                else
                 {
-                    MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\n{exc.Message}", "¡Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-            else
-            {
-                productoAAgregar.Id = (int) idProductoAEditar;
-                try
-                {
+                    productoAAgregar.Id = (int)idProductoAEditar;
                     ProductoBL.Modificar(productoAAgregar);
                     objetoProductosActual.CargarProductos();
-                    DialogResult resultado = MetroMessageBox.Show(this, "Producto actualizado exitosamente.\n¿Desea cerrar el editor?", "¡Aviso!", 
+                    DialogResult resultado = MetroMessageBox.Show(this, "Producto actualizado exitosamente.\n¿Desea cerrar el editor?", "¡Aviso!",
                         MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (resultado == DialogResult.Yes) Close();
-                }
-                catch (Exception exc)
-                {
-                    MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\n{exc.Message}", "¡Error!", MessageBoxButtons.OK, 
-                        MessageBoxIcon.Error);
+
                 }
             }
-            
-            
+            catch (Exception error)
+            {
+                MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\nMÁS INFORMACIÓN: {error.Message}", "¡Error!", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
+            }
         }
         void Limpiar()
         {
@@ -264,5 +268,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 epValidarControles.SetError(cmbMarcas, "Debe seleccionar una marca.");
             }
         }
+
+        
     }
 }
