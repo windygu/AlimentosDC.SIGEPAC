@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AlimentosDC.SIGEPAC.EN;
 using System.Data.SqlClient;
+using System.Data;
 
 namespace AlimentosDC.SIGEPAC.DAL
 {
@@ -87,6 +88,19 @@ namespace AlimentosDC.SIGEPAC.DAL
                 listaPedidos.Add(pedido);
             }
             return listaPedidos;
+        }
+
+        public static DataTable DatosFactura(int numeroPedido)
+        {
+            string consulta = string.Concat("select * from Pedido p join DetallePedido dp on p.Id = dp.IdPedido join Cliente c ",
+            "on p.IdCliente = c.Id join Producto pr on dp.IdProducto = pr.Id where p.NumeroPedido = @numeroPedido");
+            SqlCommand comando = ComunDB.ObtenerComando();
+            comando.CommandText = consulta;
+            comando.Parameters.AddWithValue("@numeroPedido", numeroPedido);
+            SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
+            DataTable datosFactura = new DataTable();
+            datosFactura.Load(reader);
+            return datosFactura;
         }
 
         public static Pedido BuscarPorId(int pId)

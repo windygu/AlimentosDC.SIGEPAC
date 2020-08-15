@@ -232,6 +232,9 @@ namespace AlimentosDC.SIGEPAC.UI
                         objetoPedidosActual.CargarPedidos();
                         MetroMessageBox.Show(this, $"{resultadoPedido} pedido registrado.\n{resultadoDetallePedido} detalle(s) del pedido registrado(s).",
                             "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        FrmReportes factura = new FrmReportes();
+                        factura.reportViewer1.LocalReport.DataSources[0].Value = PedidoBL.DatosFactura(int.Parse(lblNumeroPedido.Text));
+                        factura.ShowDialog();
                         Limpiar();
                     }
                     else

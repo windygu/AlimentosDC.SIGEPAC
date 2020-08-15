@@ -34,10 +34,33 @@ namespace AlimentosDC.SIGEPAC.UI
             }
             else
             {
-                MetroMessageBox.Show(this, "Clave o usuario incorrecto.", "Inicio Sesión", MessageBoxButtons.OK,
+                MetroMessageBox.Show(this, "Clave o usuario incorrectos.", "Datos incorrectos", MessageBoxButtons.OK,
                 MessageBoxIcon.Warning);
             }
 
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void txtUsuario_TextChanged(object sender, EventArgs e)
+        {
+            HabilitarBoton();
+        }
+        void HabilitarBoton()
+        {
+            if (!string.IsNullOrWhiteSpace(txtUsuario.Text) && !string.IsNullOrWhiteSpace(txtClave.Text))
+            {
+                btnIngresar.Enabled = true;
+            }
+            else btnIngresar.Enabled = false;
+        }
+
+        private void txtClave_TextChanged(object sender, EventArgs e)
+        {
+            HabilitarBoton();
         }
     }
 }

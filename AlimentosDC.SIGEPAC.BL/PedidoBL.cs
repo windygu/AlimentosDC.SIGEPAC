@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using AlimentosDC.SIGEPAC.DAL;
 using AlimentosDC.SIGEPAC.EN;
+using System.Data;
 
 namespace AlimentosDC.SIGEPAC.BL
 {
@@ -28,6 +29,11 @@ namespace AlimentosDC.SIGEPAC.BL
         public static List<Pedido> ObtenerTodos(string pCondicion = "%", string pEstado = "%", int? idCliente = null)
         {
             return PedidoDAL.ObtenerTodos(pCondicion, pEstado, idCliente);
+        }
+
+        public static DataTable DatosFactura(int numeroFactura)
+        {
+            return PedidoDAL.DatosFactura(numeroFactura);
         }
 
         public static Pedido BuscarPorId(int pId)

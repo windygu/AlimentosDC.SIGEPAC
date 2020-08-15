@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnReportes = new System.Windows.Forms.Button();
             this.btnCerraSesion = new System.Windows.Forms.Button();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnPedidos = new System.Windows.Forms.Button();
@@ -47,6 +48,7 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.MediumAquamarine;
+            this.panel1.Controls.Add(this.btnReportes);
             this.panel1.Controls.Add(this.btnCerraSesion);
             this.panel1.Controls.Add(this.pictureBox1);
             this.panel1.Controls.Add(this.btnPedidos);
@@ -59,14 +61,32 @@
             this.panel1.Size = new System.Drawing.Size(174, 681);
             this.panel1.TabIndex = 0;
             // 
+            // btnReportes
+            // 
+            this.btnReportes.BackColor = System.Drawing.Color.White;
+            this.btnReportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportes.Image = ((System.Drawing.Image)(resources.GetObject("btnReportes.Image")));
+            this.btnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnReportes.Location = new System.Drawing.Point(17, 382);
+            this.btnReportes.Name = "btnReportes";
+            this.btnReportes.Size = new System.Drawing.Size(140, 45);
+            this.btnReportes.TabIndex = 4;
+            this.btnReportes.Text = "Reportes";
+            this.btnReportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnReportes.UseVisualStyleBackColor = true;
+            // 
             // btnCerraSesion
             // 
-            this.btnCerraSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerraSesion.Location = new System.Drawing.Point(17, 384);
+            this.btnCerraSesion.BackColor = System.Drawing.Color.White;
+            this.btnCerraSesion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btnCerraSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerraSesion.Image = ((System.Drawing.Image)(resources.GetObject("btnCerraSesion.Image")));
+            this.btnCerraSesion.Location = new System.Drawing.Point(17, 452);
             this.btnCerraSesion.Name = "btnCerraSesion";
-            this.btnCerraSesion.Size = new System.Drawing.Size(140, 38);
+            this.btnCerraSesion.Size = new System.Drawing.Size(140, 45);
             this.btnCerraSesion.TabIndex = 1;
             this.btnCerraSesion.Text = "Cerrar sesión";
+            this.btnCerraSesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCerraSesion.UseVisualStyleBackColor = true;
             this.btnCerraSesion.Click += new System.EventHandler(this.btnCerraSesion_Click);
             // 
@@ -82,62 +102,70 @@
             // 
             // btnPedidos
             // 
-            this.btnPedidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPedidos.BackColor = System.Drawing.Color.White;
+            this.btnPedidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPedidos.Image = ((System.Drawing.Image)(resources.GetObject("btnPedidos.Image")));
             this.btnPedidos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPedidos.Location = new System.Drawing.Point(17, 134);
             this.btnPedidos.Name = "btnPedidos";
-            this.btnPedidos.Size = new System.Drawing.Size(140, 38);
+            this.btnPedidos.Size = new System.Drawing.Size(140, 45);
             this.btnPedidos.TabIndex = 0;
             this.btnPedidos.Text = "Pedidos";
+            this.btnPedidos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPedidos.UseVisualStyleBackColor = true;
             this.btnPedidos.Click += new System.EventHandler(this.btnPedidos_Click);
             // 
             // btnMarcas
             // 
-            this.btnMarcas.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMarcas.BackColor = System.Drawing.Color.White;
+            this.btnMarcas.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMarcas.Image = ((System.Drawing.Image)(resources.GetObject("btnMarcas.Image")));
             this.btnMarcas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMarcas.Location = new System.Drawing.Point(17, 321);
             this.btnMarcas.Name = "btnMarcas";
-            this.btnMarcas.Size = new System.Drawing.Size(140, 38);
+            this.btnMarcas.Size = new System.Drawing.Size(140, 45);
             this.btnMarcas.TabIndex = 3;
             this.btnMarcas.Text = "Marcas";
+            this.btnMarcas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnMarcas.UseVisualStyleBackColor = true;
             this.btnMarcas.Click += new System.EventHandler(this.btnMarcas_Click);
             // 
             // btnProductos
             // 
-            this.btnProductos.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProductos.BackColor = System.Drawing.Color.White;
+            this.btnProductos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnProductos.Image")));
             this.btnProductos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProductos.Location = new System.Drawing.Point(17, 194);
             this.btnProductos.Name = "btnProductos";
-            this.btnProductos.Size = new System.Drawing.Size(140, 38);
+            this.btnProductos.Size = new System.Drawing.Size(140, 45);
             this.btnProductos.TabIndex = 1;
             this.btnProductos.Text = "Productos";
+            this.btnProductos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnProductos.UseVisualStyleBackColor = true;
             this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click);
             // 
             // btnClientes
             // 
-            this.btnClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClientes.BackColor = System.Drawing.Color.White;
+            this.btnClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnClientes.Image")));
             this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClientes.Location = new System.Drawing.Point(17, 256);
             this.btnClientes.Name = "btnClientes";
-            this.btnClientes.Size = new System.Drawing.Size(140, 38);
+            this.btnClientes.Size = new System.Drawing.Size(140, 45);
             this.btnClientes.TabIndex = 2;
             this.btnClientes.Text = "Clientes";
+            this.btnClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnClientes.UseVisualStyleBackColor = true;
             this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
             // pcbFotoPerfil
             // 
             this.pcbFotoPerfil.Image = global::AlimentosDC.SIGEPAC.UI.Properties.Resources.Customer;
-            this.pcbFotoPerfil.Location = new System.Drawing.Point(1431, 26);
+            this.pcbFotoPerfil.Location = new System.Drawing.Point(1426, 34);
             this.pcbFotoPerfil.Name = "pcbFotoPerfil";
-            this.pcbFotoPerfil.Size = new System.Drawing.Size(42, 42);
+            this.pcbFotoPerfil.Size = new System.Drawing.Size(35, 35);
             this.pcbFotoPerfil.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbFotoPerfil.TabIndex = 1;
             this.pcbFotoPerfil.TabStop = false;
@@ -145,8 +173,8 @@
             // 
             // lblUsuario
             // 
-            this.lblUsuario.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(1217, 26);
+            this.lblUsuario.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuario.Location = new System.Drawing.Point(1212, 38);
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(208, 23);
             this.lblUsuario.TabIndex = 2;
@@ -161,10 +189,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.ClientSize = new System.Drawing.Size(1484, 761);
             this.Controls.Add(this.lblUsuario);
             this.Controls.Add(this.pcbFotoPerfil);
             this.Controls.Add(this.panel1);
+            this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmPrincipal";
             this.Resizable = false;
@@ -191,5 +221,6 @@
         private System.Windows.Forms.PictureBox pcbFotoPerfil;
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.OpenFileDialog ofdEscogerFoto;
+        private System.Windows.Forms.Button btnReportes;
     }
 }
