@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmDetallePedido));
             this.label12 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -47,7 +48,9 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.label2 = new System.Windows.Forms.Label();
             this.lblSubTotal = new System.Windows.Forms.Label();
+            this.epValidarControles = new System.Windows.Forms.ErrorProvider(this.components);
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epValidarControles)).BeginInit();
             this.SuspendLayout();
             // 
             // label12
@@ -144,8 +147,9 @@
             this.cmbProducto.Size = new System.Drawing.Size(210, 25);
             this.cmbProducto.TabIndex = 25;
             this.cmbProducto.ValueMember = "Id";
-            this.cmbProducto.SelectedIndexChanged += new System.EventHandler(this.cmbProducto_SelectionChangeCommitted);
             this.cmbProducto.SelectionChangeCommitted += new System.EventHandler(this.cmbProducto_SelectionChangeCommitted);
+            this.cmbProducto.DropDownClosed += new System.EventHandler(this.cmbProducto_DropDownClosed);
+            this.cmbProducto.SelectedValueChanged += new System.EventHandler(this.cmbProducto_SelectionChangeCommitted);
             // 
             // lblPrecioUnitario
             // 
@@ -190,6 +194,7 @@
             this.cmbEstadoDetallePedido.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbEstadoDetallePedido.FormattingEnabled = true;
             this.cmbEstadoDetallePedido.Items.AddRange(new object[] {
+            "- Seleccione -",
             "No iniciado",
             "Iniciado",
             "Revisado",
@@ -199,8 +204,8 @@
             this.cmbEstadoDetallePedido.Name = "cmbEstadoDetallePedido";
             this.cmbEstadoDetallePedido.Size = new System.Drawing.Size(210, 25);
             this.cmbEstadoDetallePedido.TabIndex = 33;
-            this.cmbEstadoDetallePedido.SelectedIndexChanged += new System.EventHandler(this.cmbEstadoDetallePedido_SelectionChangeCommitted);
             this.cmbEstadoDetallePedido.SelectionChangeCommitted += new System.EventHandler(this.cmbEstadoDetallePedido_SelectionChangeCommitted);
+            this.cmbEstadoDetallePedido.DropDownClosed += new System.EventHandler(this.cmbEstadoDetallePedido_DropDownClosed);
             // 
             // label7
             // 
@@ -242,6 +247,10 @@
             this.lblSubTotal.TabIndex = 37;
             this.lblSubTotal.Text = "0.00";
             // 
+            // epValidarControles
+            // 
+            this.epValidarControles.ContainerControl = this;
+            // 
             // FrmDetallePedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -272,6 +281,7 @@
             this.Load += new System.EventHandler(this.FrmDetallePedido_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.epValidarControles)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -296,5 +306,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblSubTotal;
+        private System.Windows.Forms.ErrorProvider epValidarControles;
     }
 }

@@ -9,7 +9,7 @@ namespace AlimentosDC.SIGEPAC.EN
 {
     public class Usuario
     {
-        public int Id { get; set; }
+        public byte Id { get; set; }
         public string Usuario1 { get; set; }
         public string Clave { get; set; }
         public bool StatusAdmin { get; set; }

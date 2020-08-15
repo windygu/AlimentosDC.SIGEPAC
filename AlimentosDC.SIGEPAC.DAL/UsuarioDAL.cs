@@ -47,20 +47,20 @@ namespace AlimentosDC.SIGEPAC.DAL
         }
         public static Usuario ObtenerUsuario(string pUsuario, string pClave)
         {
-            string consulta = @"SELECT * FROM Usuario WHERE Usuario = @Usuario AND Clave = @Clave";
+            string consulta = @"SELECT * FROM Usuario WHERE Usuario = @pUsuario AND Clave = @pClave";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
-            comando.Parameters.AddWithValue("@Usuario", pUsuario);
-            comando.Parameters.AddWithValue("@Clave", pClave);
+            comando.Parameters.AddWithValue("@pUsuario", pUsuario);
+            comando.Parameters.AddWithValue("@pClave", pClave);
             SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
             Usuario usuario = new Usuario();
             while (reader.Read())
             {
-                usuario.Id = reader.GetInt32(0);
+                usuario.Id = reader.GetByte(0);
                 usuario.Usuario1 = reader.GetString(1);
                 usuario.Clave = reader.GetString(2);
                 usuario.StatusAdmin = reader.GetBoolean(3);
-                usuario.Imagen = (byte[]) reader[4];
+                usuario.Imagen = (reader[4]!=DBNull.Value)?((byte[])reader[4]):null;
             }
             return usuario;
         }

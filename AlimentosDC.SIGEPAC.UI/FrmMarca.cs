@@ -92,6 +92,7 @@ namespace AlimentosDC.SIGEPAC.UI
             txtNombreMarca.Clear();
             txtComentarioMarca.Clear();
             txtNombreMarca.Focus();
+            epValidarControles.Clear();
         }
 
         private void txtNombreMarca_TextChanged(object sender, EventArgs e)

@@ -32,6 +32,7 @@ namespace AlimentosDC.SIGEPAC.UI
             this.objetoPedidoActual = objetoPedidoActual;
             cultura.NumberFormat.NumberDecimalSeparator = ".";
             Thread.CurrentThread.CurrentCulture = cultura;
+            
         }
         //Constructor para editar un detalle de un nuevo o viejo pedido
         public FrmDetallePedido(ref FrmPedido objetoPedidoActual, int? idDetallePedidoAEditar)
@@ -46,21 +47,16 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void FrmDetallePedido_Load(object sender, EventArgs e)
         {
-            if (idDetallePedidoAEditar == null)
-            {
-
-                btnAgregarDetallePedido.Enabled = false;
-                listadoProductos = ProductoBL.ObtenerTodos();
-                cmbProducto.Items.AddRange(listadoProductos.ToArray());
-                cmbProducto.DroppedDown = true;
-                cmbProducto.Focus();
-            }
-            else
-            {
-                listadoProductos = ProductoBL.ObtenerTodos();
-                //cmbProducto.Items.AddRange(listadoProductos.ToArray());
-                cmbProducto.DataSource = listadoProductos;
-                cmbProducto.ValueMember = "Id";
+            btnAgregarDetallePedido.Enabled = false;
+            listadoProductos = ProductoBL.ObtenerTodos();
+            listadoProductos.Insert(0, new Producto() { Id = 0, Nombre = "- Seleccione -" });
+            cmbProducto.DisplayMember = "Nombre";
+            cmbProducto.ValueMember = "Id";
+            cmbProducto.DataSource = listadoProductos;
+            cmbEstadoDetallePedido.SelectedIndex = 0;
+            epValidarControles.Clear();
+            if (idDetallePedidoAEditar != null)
+            { 
                 detallePedidoAEditar = objetoPedidoActual.listadoDetallesPedido.Find(x => x.Id == idDetallePedidoAEditar);
                 btnAgregarDetallePedido.Text = "Actualizar";
                 CargarDatosAlFormulario();
@@ -69,10 +65,6 @@ namespace AlimentosDC.SIGEPAC.UI
         }
         void CargarDatosAlFormulario()
         {
-            //List<Producto> listadoProductos = ProductoBL.ObtenerTodos();
-            //Producto producto = ProductoBL.BuscarPorId(detallePedidoAEditar.IdProducto);
-            //int indiceDelProducto = listadoProductos.FindIndex(x => x.Id == producto.Id);
-            //cmbProducto.SelectedIndex = indiceDelProducto;
             cmbProducto.SelectedValue = detallePedidoAEditar.IdProducto;
             cmbEstadoDetallePedido.SelectedItem = detallePedidoAEditar.Estado;
             txtCantidad.Text = detallePedidoAEditar.Cantidad.ToString();
@@ -89,6 +81,7 @@ namespace AlimentosDC.SIGEPAC.UI
             {
                 if (txtCantidad.Text.Length > 0 && lblPrecioUnitario.Text.Length > 0)
                 {
+                    epValidarControles.SetError(txtCantidad, "");
                     lblSubTotal.Text = (float.Parse(lblPrecioUnitario.Text) * float.Parse(txtCantidad.Text)).ToString();
                     int stock = (cmbProducto.SelectedItem as Producto).Stock;
                     int stockMinimo = 10;
@@ -98,43 +91,40 @@ namespace AlimentosDC.SIGEPAC.UI
                         MetroMessageBox.Show(this, "Las existencias mínimas de este producto deben ser 10 unidades.", "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                         txtCantidad.Text = "";
                     }
+                    HabilitarBotonAgregarDetalle();
                 }
-                else if (string.IsNullOrEmpty(txtCantidad.Text))
+                else if (txtCantidad.TextLength >= 1)
+                {
+                    epValidarControles.SetError(txtCantidad, "");
+                    epValidarControles.SetError(cmbProducto, "Debe seleccionar un producto");
+                    if (cmbEstadoDetallePedido.SelectedIndex == 0) epValidarControles.SetError(cmbEstadoDetallePedido, "Debe seleccionar un estado");
+                }
+                else
                 {
                     lblSubTotal.Text = "0.00";
-                    if (cmbProducto.SelectedItem != null)
+                    if ((int)cmbProducto.SelectedValue > 0)
                     {
                         lblExistencias.Text = (cmbProducto.SelectedItem as Producto).Stock.ToString();
                     }
-
+                    epValidarControles.SetError(txtCantidad, "Este campo es obligatorio");
+                    HabilitarBotonAgregarDetalle();
                 }
-                if (cmbEstadoDetallePedido.SelectedItem != null && cmbProducto.SelectedItem != null &&
-                    (txtCantidad.Text.Length >= 1))
-                {
-                    btnAgregarDetallePedido.Enabled = true;
-                }
-                else if (cmbProducto.SelectedItem == null)
-                {
-                    cmbProducto.DroppedDown = true;
-                    Cursor = Cursors.Arrow;
-                }
-                else if (string.IsNullOrEmpty(txtCantidad.Text))
-                {
-                    cmbProducto.DroppedDown = false;
-                    cmbEstadoDetallePedido.DroppedDown = false;
-                    btnAgregarDetallePedido.Enabled = false;
-                }
-                else if (cmbEstadoDetallePedido.SelectedItem == null)
-                {
-                    cmbEstadoDetallePedido.DroppedDown = true;
-                    Cursor = Cursors.Arrow;
-                }
-                else btnAgregarDetallePedido.Enabled = true;
             }
             catch (Exception er)
             {
                 MetroMessageBox.Show(this, er.Message, "¡Error!", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        void HabilitarBotonAgregarDetalle()
+        {
+            if ((int)cmbProducto.SelectedValue > 0 && cmbEstadoDetallePedido.SelectedIndex > 0 &&
+                txtCantidad.Text.Length >= 1
+                )
+            {
+                btnAgregarDetallePedido.Enabled = true;
+            }
+            else btnAgregarDetallePedido.Enabled = false;
         }
 
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
@@ -148,30 +138,25 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void cmbProducto_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (cmbProducto.SelectedItem!=null)
+            lblSubTotal.Text = "0.00";
+            txtCantidad.Text = "";
+            if ((int)cmbProducto.SelectedValue>0)
             {
-                int id = int.Parse((cmbProducto.SelectedItem as Producto).Id.ToString());
+                epValidarControles.SetError(cmbProducto, "");
+                int id = (int)cmbProducto.SelectedValue;
                 lblPrecioUnitario.Text = (ProductoBL.BuscarPorId(id)).Precio.ToString();
                 lblDescripcion.Text = (ProductoBL.BuscarPorId(id)).Descripcion;
-                lblSubTotal.Text = "0.00";
                 lblExistencias.Text = (ProductoBL.BuscarPorId(id)).Stock.ToString();
-                txtCantidad.Text = "";
-                if(detallePedidoAEditar==null) cmbEstadoDetallePedido.DroppedDown = true;
-                if (cmbEstadoDetallePedido.SelectedItem != null && (txtCantidad.Text.Length >= 1))
-                {
-                    btnAgregarDetallePedido.Enabled = true;
-                    btnAgregarDetallePedido.Focus();
-                }
-                else if (string.IsNullOrWhiteSpace(txtCantidad.Text))
-                {
-                    btnAgregarDetallePedido.Enabled = false;
-                    txtCantidad.Focus();
-                }
-                else
-                {
-                    btnAgregarDetallePedido.Enabled = false;
-                    cmbEstadoDetallePedido.DroppedDown = true;
-                }
+                if (idDetallePedidoAEditar == null && cmbEstadoDetallePedido.SelectedIndex == 0) cmbEstadoDetallePedido.DroppedDown = true;
+                HabilitarBotonAgregarDetalle();
+            }
+            else
+            {
+                lblPrecioUnitario.Text = "";
+                lblDescripcion.Text = "";
+                lblExistencias.Text = "";
+                epValidarControles.SetError(cmbProducto, "Debe seleccionar un producto");
+                HabilitarBotonAgregarDetalle();
             }
         }
 
@@ -242,34 +227,41 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void cmbEstadoDetallePedido_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (cmbEstadoDetallePedido.SelectedItem!=null)
+            if (cmbEstadoDetallePedido.SelectedIndex > 0)
             {
-                if (cmbEstadoDetallePedido.SelectedItem != null && (txtCantidad.Text.Length >= 1))
-                {
-                    btnAgregarDetallePedido.Enabled = true;
-                }
-                else btnAgregarDetallePedido.Enabled = false;
-                if (cmbProducto.SelectedItem != null && (txtCantidad.Text.Length >= 1))
-                {
-                    btnAgregarDetallePedido.Focus();
-                }
-                else if (cmbProducto.SelectedItem == null)
-                {
-                    cmbProducto.DroppedDown = true;
-                }
-                else txtCantidad.Focus();
+                epValidarControles.SetError(cmbEstadoDetallePedido, "");
+                HabilitarBotonAgregarDetalle();
             }
+            else epValidarControles.SetError(cmbEstadoDetallePedido, "Debe seleccionar un estado");
+            txtCantidad.Focus();            
         }
 
         void Limpiar()
         {
-            cmbProducto.SelectedItem = null;
-            txtCantidad.Text = "";
-            lblPrecioUnitario.Text = "";
+            cmbProducto.SelectedValue = 0;
+            cmbEstadoDetallePedido.SelectedIndex = 0;
             lblDescripcion.Text = "";
             lblExistencias.Text = "";
-            cmbEstadoDetallePedido.SelectedItem = null;
-            cmbProducto.DroppedDown = true;
+            lblPrecioUnitario.Text = "";
+            txtCantidad.Clear();
+            epValidarControles.Clear();
+            cmbProducto.Focus();
+        }
+
+        private void cmbProducto_DropDownClosed(object sender, EventArgs e)
+        {
+            if ((int)cmbProducto.SelectedValue==0)
+            {
+                epValidarControles.SetError(cmbProducto, "Debe seleccionar un producto");
+            }
+        }
+
+        private void cmbEstadoDetallePedido_DropDownClosed(object sender, EventArgs e)
+        {
+            if (cmbEstadoDetallePedido.SelectedIndex == 0)
+            {
+                epValidarControles.SetError(cmbEstadoDetallePedido, "Debe seleccionar un estado");
+            }
         }
     }
 }

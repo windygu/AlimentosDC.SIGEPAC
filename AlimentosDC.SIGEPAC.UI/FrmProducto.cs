@@ -37,6 +37,20 @@ namespace AlimentosDC.SIGEPAC.UI
             this.objetoProductosActual = objetoProductosActual;
             this.idProductoAEditar = idProductoAEditar;
         }
+        private void FrmProducto_Load(object sender, EventArgs e)
+        {
+            cultura.NumberFormat.NumberDecimalSeparator = ".";
+            Thread.CurrentThread.CurrentCulture = cultura;
+            btnGuardarProducto.Enabled = false;
+            CargarMarcasAlCombobox();
+            epValidarControles.Clear();
+            if (idProductoAEditar != null)
+            {
+                productoAEditar = ProductoBL.BuscarPorId((int)idProductoAEditar);
+                CargarDatosAlFormulario();
+                btnGuardarProducto.Text = "Actualizar";
+            }
+        }
 
         void CargarDatosAlFormulario()
         {
@@ -50,26 +64,8 @@ namespace AlimentosDC.SIGEPAC.UI
         void CargarMarcasAlCombobox()
         {
             List<Marca> listadoMarcas = MarcaBL.ObtenerTodos();
+            listadoMarcas.Insert(0, new Marca() { Id = 0, Nombre = "- Seleccione -" });
             cmbMarcas.DataSource = listadoMarcas;
-            cmbMarcas.DisplayMember = "Nombre";
-            cmbMarcas.ValueMember = "Id";
-        }
-        private void FrmProducto_Load(object sender, EventArgs e)
-        {
-            cultura.NumberFormat.NumberDecimalSeparator = ".";
-            Thread.CurrentThread.CurrentCulture = cultura;
-            btnGuardarProducto.Enabled = false;
-            CargarMarcasAlCombobox();
-            cmbMarcas.DisplayMember = "Nombre";
-            cmbMarcas.ValueMember = "Id";
-            cmbMarcas.SelectedItem = null;
-            lblComentario.Text = "";
-            if(idProductoAEditar!=null)
-            {
-                productoAEditar = ProductoBL.BuscarPorId((int)idProductoAEditar);
-                CargarDatosAlFormulario();
-                btnGuardarProducto.Text = "Actualizar";
-            }
         }
 
         private void btnCancelarProducto_Click(object sender, EventArgs e)
@@ -79,15 +75,26 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void cmbMarcas_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (cmbMarcas.SelectedItem!=null)
+            if ((int)cmbMarcas.SelectedValue>0)
             {
-                lblComentario.Text = MarcaBL.BuscarPorId((cmbMarcas.SelectedItem as Marca).Id).Comentario;
                 epValidarControles.SetError(cmbMarcas, "");
+                lblComentario.Text = MarcaBL.BuscarPorId((int)cmbMarcas.SelectedValue).Comentario;
                 txtNombreProducto.Focus();
+                HabilitarBotonGuardar();
             }
-            if (cmbMarcas.SelectedItem != null && !string.IsNullOrWhiteSpace(txtNombreProducto.Text) &&
-                !string.IsNullOrWhiteSpace(txtDescripcionProducto.Text) && (!string.IsNullOrWhiteSpace(txtPrecioProducto.Text) && ValidarPrecio(txtPrecioProducto.Text)==0) &&
-                !string.IsNullOrWhiteSpace(txtStock.Text))
+            else
+            {
+                lblComentario.Text = "";
+                epValidarControles.SetError(cmbMarcas, "Debe seleccionar una marca");
+                HabilitarBotonGuardar();
+            }
+
+        }
+        void HabilitarBotonGuardar()
+        {
+            if ((int)cmbMarcas.SelectedValue > 0 && !string.IsNullOrWhiteSpace(txtNombreProducto.Text) &&
+                !string.IsNullOrWhiteSpace(txtDescripcionProducto.Text) && ((!string.IsNullOrWhiteSpace(txtPrecioProducto.Text)) 
+                && ValidarPrecio(txtPrecioProducto.Text) == 0) && !string.IsNullOrWhiteSpace(txtStock.Text))
             {
                 btnGuardarProducto.Enabled = true;
             }
@@ -137,29 +144,28 @@ namespace AlimentosDC.SIGEPAC.UI
         }
         void Limpiar()
         {
-            cmbMarcas.SelectedItem = null;
+            cmbMarcas.SelectedValue = 0;
             lblComentario.Text = "";
             txtNombreProducto.Clear();
             txtDescripcionProducto.Clear();
             txtStock.Clear();
             txtPrecioProducto.Clear();
+            epValidarControles.Clear();
         }
 
         private void txtNombreProducto_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtNombreProducto.Text))
             {
-                epValidarControles.SetError(txtNombreProducto, "Este campo es obligatorio.");
+                epValidarControles.SetError(txtNombreProducto, "Este campo es obligatorio");
+                HabilitarBotonGuardar();
             }
-            else epValidarControles.SetError(txtNombreProducto, "");
-            if (cmbMarcas.SelectedItem != null && !string.IsNullOrWhiteSpace(txtNombreProducto.Text) &&
-                !string.IsNullOrWhiteSpace(txtDescripcionProducto.Text) && (!string.IsNullOrWhiteSpace(txtPrecioProducto.Text) 
-                && ValidarPrecio(txtPrecioProducto.Text) == 0) &&
-                !string.IsNullOrWhiteSpace(txtStock.Text))
+            else
             {
-                btnGuardarProducto.Enabled = true;
+                epValidarControles.SetError(txtNombreProducto, "");
+                if ((int)cmbMarcas.SelectedValue == 0) epValidarControles.SetError(cmbMarcas, "Debe elegir una marca");
+                HabilitarBotonGuardar();
             }
-            else btnGuardarProducto.Enabled = false;
         }
 
         private void txtPrecioProducto_TextChanged(object sender, EventArgs e)
@@ -167,6 +173,7 @@ namespace AlimentosDC.SIGEPAC.UI
             if (string.IsNullOrWhiteSpace(txtPrecioProducto.Text))
             {
                 epValidarControles.SetError(txtPrecioProducto, "Este campo es obligatorio.");
+                HabilitarBotonGuardar();
             }
             else
             {
@@ -181,15 +188,8 @@ namespace AlimentosDC.SIGEPAC.UI
                         epValidarControles.SetError(txtPrecioProducto, "");
                         break;
                 }
+                HabilitarBotonGuardar();
             }
-            if (cmbMarcas.SelectedItem != null && !string.IsNullOrWhiteSpace(txtNombreProducto.Text) &&
-                !string.IsNullOrWhiteSpace(txtDescripcionProducto.Text) && (!string.IsNullOrWhiteSpace(txtPrecioProducto.Text)
-                && ValidarPrecio(txtPrecioProducto.Text) == 0) &&
-                !string.IsNullOrWhiteSpace(txtStock.Text))
-            {
-                btnGuardarProducto.Enabled = true;
-            }
-            else btnGuardarProducto.Enabled = false;
         }
 
         byte ValidarPrecio(string textoDelPrecio)
@@ -222,34 +222,30 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             if (string.IsNullOrWhiteSpace(txtDescripcionProducto.Text))
             {
-                epValidarControles.SetError(txtDescripcionProducto, "Este campo es obligatorio.");
+                epValidarControles.SetError(txtDescripcionProducto, "Este campo es obligatorio");
+                HabilitarBotonGuardar();
             }
-            else epValidarControles.SetError(txtDescripcionProducto, "");
-            if (cmbMarcas.SelectedItem != null && !string.IsNullOrWhiteSpace(txtNombreProducto.Text) &&
-                !string.IsNullOrWhiteSpace(txtDescripcionProducto.Text) && (!string.IsNullOrWhiteSpace(txtPrecioProducto.Text) 
-                && ValidarPrecio(txtPrecioProducto.Text) == 0) &&
-                !string.IsNullOrWhiteSpace(txtStock.Text))
+            else
             {
-                btnGuardarProducto.Enabled = true;
+                epValidarControles.SetError(txtDescripcionProducto, "");
+                if ((int)cmbMarcas.SelectedValue == 0) epValidarControles.SetError(cmbMarcas, "Debe elegir una marca");
+                HabilitarBotonGuardar();
             }
-            else btnGuardarProducto.Enabled = false;
         }
 
         private void txtStock_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtStock.Text))
             {
-                epValidarControles.SetError(txtStock, "Este campo es obligatorio.");
+                epValidarControles.SetError(txtStock, "Este campo es obligatorio");
+                HabilitarBotonGuardar();
             }
-            else epValidarControles.SetError(txtStock, "");
-            if (cmbMarcas.SelectedItem != null && !string.IsNullOrWhiteSpace(txtNombreProducto.Text) &&
-                !string.IsNullOrWhiteSpace(txtDescripcionProducto.Text) && (!string.IsNullOrWhiteSpace(txtPrecioProducto.Text) 
-                && ValidarPrecio(txtPrecioProducto.Text) == 0) &&
-                !string.IsNullOrWhiteSpace(txtStock.Text))
+            else
             {
-                btnGuardarProducto.Enabled = true;
+                epValidarControles.SetError(txtStock, "");
+                if ((int)cmbMarcas.SelectedValue == 0) epValidarControles.SetError(cmbMarcas, "Debe elegir una marca");
+                HabilitarBotonGuardar();
             }
-            else btnGuardarProducto.Enabled = false;
         }
 
         private void txtStock_KeyPress(object sender, KeyPressEventArgs e)
@@ -263,12 +259,10 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void cmbMarcas_DropDownClosed(object sender, EventArgs e)
         {
-            if (cmbMarcas.SelectedItem==null)
+            if ((int)cmbMarcas.SelectedValue==0)
             {
-                epValidarControles.SetError(cmbMarcas, "Debe seleccionar una marca.");
+                epValidarControles.SetError(cmbMarcas, "Debe seleccionar una marca");
             }
         }
-
-        
     }
 }

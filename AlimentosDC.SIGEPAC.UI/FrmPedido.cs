@@ -48,23 +48,20 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void FrmPedido_Load(object sender, EventArgs e)
         {
+            btnGuardarPedido.Enabled = false;
+            CargarClientesAlCombobox();
             if (idPedido == null)
             {
-                btnGuardarPedido.Enabled = false;
-                CargarClientesAlCombobox();
+                
                 lblNumeroPedido.Text = PedidoBL.GenerarNumeroPedido();
-                cmbListadoClientes.SelectedItem = null;
-                lblDui.Text = "";
+                cmbEstadoPedido.SelectedIndex = 0;
                 dtpFechaCreacion.Focus();
             }
             else
             {
-                btnGuardarPedido.Enabled = false;
-                CargarClientesAlCombobox();
                 CargarDatosAlFormulario();
                 dtpFechaCreacion.Focus();
             }
-
         }
 
         void CargarDatosAlFormulario()
@@ -112,10 +109,11 @@ namespace AlimentosDC.SIGEPAC.UI
                 cliente.Correo = listadoClientes[i].Correo;
                 listadoNuevoClientes.Add(cliente);
             }
+            listadoNuevoClientes.Insert(0, new Cliente() { Id = 0, Nombres = "- Seleccione -" });
+            cmbListadoClientes.DataSource = listadoNuevoClientes;
             cmbListadoClientes.DisplayMember = "Nombres";
             cmbListadoClientes.ValueMember = "Id";
-            cmbListadoClientes.DataSource = listadoNuevoClientes;
-            
+
         }
         //Método para ir agregando cada detalle (anteriormente agregado a la lista) al datagrid
         public void CargarListadoDetalles()
@@ -160,25 +158,19 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void cmbListadoClientes_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (cmbListadoClientes.SelectedItem!=null)
+            if ((int)cmbListadoClientes.SelectedValue>0)
             {
                 epValidadorControles.SetError(cmbListadoClientes, "");
-                int id = int.Parse((cmbListadoClientes.SelectedItem as Cliente).Id.ToString());
+                int id = (int)cmbListadoClientes.SelectedValue;
                 lblDui.Text = (ClienteBL.BuscarPorId(id)).DUI;
+                HabilitarBotonGuardarPedido();
                 txtDireccionEntregaPedido.Focus();
             }
-
-            if (
-                cmbEstadoPedido.SelectedItem != null && (!string.IsNullOrWhiteSpace(txtDireccionEntregaPedido.Text)) &&
-                cmbEstadoPedido.SelectedItem != null
-                )
+            else 
             {
-                btnGuardarPedido.Enabled = true;
+                lblDui.Text = "";
+                HabilitarBotonGuardarPedido();
             }
-            else if (string.IsNullOrWhiteSpace(txtDireccionEntregaPedido.Text))
-            {
-                btnGuardarPedido.Enabled = false;
-            } 
         }
 
         void Limpiar()
@@ -187,13 +179,13 @@ namespace AlimentosDC.SIGEPAC.UI
             lblNumeroPedido.Text = PedidoBL.GenerarNumeroPedido();
             dtpFechaCreacion.Value = DateTime.Now;
             dtpFechaEntrega.Value = DateTime.Now;
-            
-            cmbEstadoPedido.SelectedItem = null;
-            cmbListadoClientes.SelectedItem = null;
-            txtDireccionEntregaPedido.Text = null;
+            cmbEstadoPedido.SelectedIndex = 0;
+            cmbListadoClientes.SelectedValue = 0;
+            txtDireccionEntregaPedido.Clear();
             dgvListadoDetallesPedido.Rows.Clear();
             listadoDetallesPedido.Clear();
             listadoViejoDetallesPedido.Clear();
+            epValidadorControles.Clear();
             dtpFechaCreacion.Focus();
         }
 
@@ -241,7 +233,6 @@ namespace AlimentosDC.SIGEPAC.UI
                         MetroMessageBox.Show(this, $"{resultadoPedido} pedido registrado.\n{resultadoDetallePedido} detalle(s) del pedido registrado(s).",
                             "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                         Limpiar();
-
                     }
                     else
                     {
@@ -314,6 +305,7 @@ namespace AlimentosDC.SIGEPAC.UI
                     dgvListadoDetallesPedido.Rows.RemoveAt(dgvListadoDetallesPedido.SelectedRows[0].Index);
                     listadoDetallesPedido.Remove(listadoDetallesPedido.Find(x => x.Id == idDetallePedidoAEliminar));
                     ActualizarDatagridView();
+                    
                 }
                 else
                 {
@@ -334,6 +326,8 @@ namespace AlimentosDC.SIGEPAC.UI
                         detallesViejosAEliminarDeLaBD.Add(detalleAEliminar.Id);
                     }
                 }
+                if (dgvListadoDetallesPedido.Rows.Count < 1) epValidadorControles.SetError(dgvListadoDetallesPedido, "Debe agregar al menos un detalle");
+                HabilitarBotonGuardarPedido();
             }
         }
 
@@ -353,69 +347,59 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void cmbEstadoPedido_SelectionChangeCommitted(object sender, EventArgs e)
         {
-            if (cmbEstadoPedido.SelectedItem!=null)
+            if (cmbEstadoPedido.SelectedIndex > 0)
             {
                 epValidadorControles.SetError(cmbEstadoPedido, "");
-                if (cmbListadoClientes.SelectedItem != null && (txtDireccionEntregaPedido.Text.Length >= 1))
+                if ((int)cmbListadoClientes.SelectedValue==0)
                 {
-                    btnGuardarPedido.Enabled = true;
+                    cmbListadoClientes.DroppedDown = true;
+                    Cursor = Cursors.Arrow;
                 }
-                else if (cmbListadoClientes.SelectedItem == null)
-                {
-                    if (idPedido==null)
-                    {
-                        cmbListadoClientes.DroppedDown = true;
-                        Cursor = Cursors.Arrow;
-                    }
-                }
-                else if (string.IsNullOrWhiteSpace(txtDireccionEntregaPedido.Text))
-                {
-                    txtDireccionEntregaPedido.Focus();
-                    btnGuardarPedido.Enabled = false;
-                }
-                else btnNuevoDetallePedido.Focus();
+                HabilitarBotonGuardarPedido();
             }
+            else
+            {
+                HabilitarBotonGuardarPedido();
+            }
+        }
+
+        void HabilitarBotonGuardarPedido()
+        {
+            if (
+                cmbEstadoPedido.SelectedIndex > 0 && (int)cmbListadoClientes.SelectedValue > 0 &&
+                (!string.IsNullOrWhiteSpace(txtDireccionEntregaPedido.Text)) && dgvListadoDetallesPedido.Rows.Count > 0
+                )
+            {
+                btnGuardarPedido.Enabled = true;
+            }
+            else btnGuardarPedido.Enabled = false;
         }
 
         private void txtDireccionEntregaPedido_TextChanged(object sender, EventArgs e)
         {
-            if (
-                (!string.IsNullOrWhiteSpace(txtDireccionEntregaPedido.Text)==true) && (cmbListadoClientes.SelectedItem != null) &&
-                (cmbEstadoPedido.SelectedItem != null)
-                )
+            if (!string.IsNullOrWhiteSpace(txtDireccionEntregaPedido.Text))
             {
-                btnGuardarPedido.Enabled = true;
-                epValidadorControles.SetError(txtDireccionEntregaPedido, string.Empty);
-            }
-            else if (string.IsNullOrWhiteSpace(txtDireccionEntregaPedido.Text))
-            {
-                cmbListadoClientes.DroppedDown = false;
-                cmbEstadoPedido.DroppedDown = false;
-                btnGuardarPedido.Enabled = false;
-                epValidadorControles.SetError(txtDireccionEntregaPedido, "Este campo es obligatorio.");
-            }
-            else if (cmbEstadoPedido.SelectedItem==null)
-            {
-                cmbListadoClientes.DroppedDown = false;
-                cmbEstadoPedido.DroppedDown = true;
-                Cursor = Cursors.Arrow;
+                epValidadorControles.SetError(txtDireccionEntregaPedido, "");
+                if (cmbEstadoPedido.SelectedIndex==0) epValidadorControles.SetError(cmbEstadoPedido, "Debe seleccionar un estado");
+                if ((int)cmbListadoClientes.SelectedValue==0) epValidadorControles.SetError(cmbListadoClientes, "Debe seleccionar un cliente");
+                HabilitarBotonGuardarPedido();
             }
             else
             {
-                cmbEstadoPedido.DroppedDown = false;
-                cmbListadoClientes.DroppedDown = true;
-                Cursor = Cursors.Arrow;
+                epValidadorControles.SetError(txtDireccionEntregaPedido, "Este campo es obligatorio");
+                HabilitarBotonGuardarPedido();
             }
         }
 
         private void dgvListadoDetallesPedido_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             epValidadorControles.SetError(dgvListadoDetallesPedido, "");
+            HabilitarBotonGuardarPedido();
         }
 
         private void cmbEstadoPedido_DropDownClosed(object sender, EventArgs e)
         {
-            if (cmbEstadoPedido.SelectedItem==null)
+            if (cmbEstadoPedido.SelectedIndex==0)
             {
                 epValidadorControles.SetError(cmbEstadoPedido, "Debe seleccionar un estado.");
             }
@@ -423,12 +407,10 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void cmbListadoClientes_DropDownClosed(object sender, EventArgs e)
         {
-            if (cmbListadoClientes.SelectedItem == null)
+            if ((int)cmbListadoClientes.SelectedValue == 0)
             {
                 epValidadorControles.SetError(cmbListadoClientes, "Debe seleccionar un cliente.");
             }
         }
-
-        
     }
 }

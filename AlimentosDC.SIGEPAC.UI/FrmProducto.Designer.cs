@@ -74,6 +74,7 @@
             // 
             // cmbMarcas
             // 
+            this.cmbMarcas.DisplayMember = "Nombre";
             this.cmbMarcas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMarcas.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbMarcas.FormattingEnabled = true;
@@ -81,9 +82,10 @@
             this.cmbMarcas.Name = "cmbMarcas";
             this.cmbMarcas.Size = new System.Drawing.Size(215, 25);
             this.cmbMarcas.TabIndex = 54;
-            this.cmbMarcas.SelectedIndexChanged += new System.EventHandler(this.cmbMarcas_SelectionChangeCommitted);
+            this.cmbMarcas.ValueMember = "Id";
             this.cmbMarcas.SelectionChangeCommitted += new System.EventHandler(this.cmbMarcas_SelectionChangeCommitted);
             this.cmbMarcas.DropDownClosed += new System.EventHandler(this.cmbMarcas_DropDownClosed);
+            this.cmbMarcas.SelectedValueChanged += new System.EventHandler(this.cmbMarcas_SelectionChangeCommitted);
             // 
             // label1
             // 

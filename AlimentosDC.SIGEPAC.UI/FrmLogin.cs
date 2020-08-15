@@ -10,6 +10,8 @@ using System.Windows.Forms;
 using MetroFramework;
 using MetroFramework.Forms;
 using MetroFramework.Controls;
+using AlimentosDC.SIGEPAC.BL;
+using AlimentosDC.SIGEPAC.EN;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
@@ -22,7 +24,20 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            //Continuar aqui 
+            Usuario usuario = UsuarioBL.ObtenerUsuario(txtUsuario.Text, txtClave.Text);
+            if (usuario.Usuario1 == txtUsuario.Text && usuario.Clave == txtClave.Text)
+            {
+                MetroMessageBox.Show(this, "¡Bienvenido!", "Inicio Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                FrmPrincipal menuPrincipal = new FrmPrincipal(usuario);
+                this.Hide();
+                menuPrincipal.Show();
+            }
+            else
+            {
+                MetroMessageBox.Show(this, "Clave o usuario incorrecto.", "Inicio Sesión", MessageBoxButtons.OK,
+                MessageBoxIcon.Warning);
+            }
+
         }
     }
 }

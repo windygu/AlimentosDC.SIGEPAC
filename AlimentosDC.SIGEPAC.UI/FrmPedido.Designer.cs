@@ -354,6 +354,7 @@
             this.cmbEstadoPedido.FormattingEnabled = true;
             this.cmbEstadoPedido.ItemHeight = 23;
             this.cmbEstadoPedido.Items.AddRange(new object[] {
+            "- Seleccione -",
             "No iniciado",
             "Iniciado",
             "Revisado",

@@ -19,9 +19,22 @@ namespace AlimentosDC.SIGEPAC.UI
 {
     public partial class FrmPrincipal : MetroForm
     {
-        public FrmPrincipal()
+        Usuario usuarioActual;
+        public FrmPrincipal(Usuario usuario)
         {
             InitializeComponent();
+            usuarioActual = usuario;
+        }
+
+        private void FrmPrincipal_Load(object sender, EventArgs e)
+        {
+            lblUsuario.Text = usuarioActual.Usuario1;
+            if (usuarioActual.Imagen != null)
+            {
+                MemoryStream secuenciaBytes = new MemoryStream(usuarioActual.Imagen);
+                pcbFotoPerfil.Image = Image.FromStream(secuenciaBytes);
+            }
+            
         }
 
         private void btnPedidos_Click(object sender, EventArgs e)
@@ -62,9 +75,9 @@ namespace AlimentosDC.SIGEPAC.UI
             }
         }
 
-        private void pictureBox2_Click(object sender, EventArgs e)
+        private void pcbFotoPerfil_Click(object sender, EventArgs e)
         {
-            DialogResult resultadoCuadro = MetroMessageBox.Show(this, "¿Desea cambiar su cambiar la foto de perfil?", "Aviso", MessageBoxButtons.YesNo,
+            DialogResult resultadoCuadro = MetroMessageBox.Show(this, "¿Desea cambiar su foto de perfil?", "Cambiar foto de perfil", MessageBoxButtons.YesNo,
                MessageBoxIcon.Question);
             if (resultadoCuadro == DialogResult.Yes)
             {
@@ -72,12 +85,19 @@ namespace AlimentosDC.SIGEPAC.UI
                 DialogResult resultado = ofdEscogerFoto.ShowDialog();
                 if (resultado == DialogResult.OK)
                 {
-                    MemoryStream secuenciaBytes = new MemoryStream();
                     rutaImagen = ofdEscogerFoto.FileName;
-                    pcbFotoPerfil.ImageLocation = rutaImagen;
+                    pcbFotoPerfil.Image = Image.FromFile(rutaImagen);
+                    MemoryStream secuenciaBytes = new MemoryStream();
                     pcbFotoPerfil.Image.Save(secuenciaBytes, ImageFormat.Jpeg);
+                    usuarioActual.Imagen = secuenciaBytes.GetBuffer();
+                    UsuarioBL.Modificar(usuarioActual);
                 }
             }
+        }
+
+        private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            Application.Exit();
         }
     }
 }
