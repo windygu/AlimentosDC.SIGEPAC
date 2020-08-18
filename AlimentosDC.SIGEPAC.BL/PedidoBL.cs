@@ -30,12 +30,12 @@ namespace AlimentosDC.SIGEPAC.BL
         {
             return PedidoDAL.ObtenerTodos(pCondicion, pEstado, idCliente);
         }
-
-        public static DataTable DatosFactura(int numeroFactura)
+        
+        public static DataTable DatosNotaRemision(int numeroPedido)
         {
-            return PedidoDAL.DatosFactura(numeroFactura);
+            return PedidoDAL.DatosNotaRemision(numeroPedido);
         }
-
+        
         public static Pedido BuscarPorId(int pId)
         {
             return PedidoDAL.BuscarPorId(pId);
@@ -49,6 +49,10 @@ namespace AlimentosDC.SIGEPAC.BL
         public static string GenerarNumeroPedido()
         {
             return PedidoDAL.generarNumeroPedido();
+        }
+        public static string generarNumeroCCF()
+        {
+            return PedidoDAL.generarNumeroCCF();
         }
     }
 }

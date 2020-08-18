@@ -27,7 +27,7 @@ namespace AlimentosDC.SIGEPAC.UI
             Usuario usuario = UsuarioBL.ObtenerUsuario(txtUsuario.Text, txtClave.Text);
             if (usuario.Usuario1 == txtUsuario.Text && usuario.Clave == txtClave.Text)
             {
-                MetroMessageBox.Show(this, "¡Bienvenido!", "Inicio Sesión", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MetroMessageBox.Show(this, "¡Bienvenido!", "Sesión iniciada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 FrmPrincipal menuPrincipal = new FrmPrincipal(usuario);
                 this.Hide();
                 menuPrincipal.Show();
@@ -61,6 +61,11 @@ namespace AlimentosDC.SIGEPAC.UI
         private void txtClave_TextChanged(object sender, EventArgs e)
         {
             HabilitarBoton();
+        }
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+            txtUsuario.Focus();
         }
     }
 }

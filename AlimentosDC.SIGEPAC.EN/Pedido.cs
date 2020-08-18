@@ -17,5 +17,6 @@ namespace AlimentosDC.SIGEPAC.EN
         public DateTime FechaEntrega { get; set; }
         public string DireccionEntrega { get; set; }
         public string Estado { get; set; }
+        public string NumeroCCF { get; set; }
     }
 }

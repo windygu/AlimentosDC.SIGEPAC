@@ -250,7 +250,7 @@
             this.btnGuardarPedido.Name = "btnGuardarPedido";
             this.btnGuardarPedido.Size = new System.Drawing.Size(100, 30);
             this.btnGuardarPedido.TabIndex = 25;
-            this.btnGuardarPedido.Text = "Facturar";
+            this.btnGuardarPedido.Text = "Guardar";
             this.btnGuardarPedido.UseVisualStyleBackColor = true;
             this.btnGuardarPedido.Click += new System.EventHandler(this.btnGuardarPedido_Click);
             // 

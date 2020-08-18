@@ -99,5 +99,12 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             Application.Exit();
         }
+
+        private void btnReportes_Click(object sender, EventArgs e)
+        {
+            FrmReporte informe = new FrmReporte();
+            informe.Owner = this;
+            informe.ShowDialog();
+        }
     }
 }

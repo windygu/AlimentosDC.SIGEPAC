@@ -72,10 +72,11 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ConjuntoDatos.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>ConjuntoDatos.xsd</DependentUpon>
+    <Compile Include="FrmCCF.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCCF.Designer.cs">
+      <DependentUpon>FrmCCF.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmCliente.cs">
       <SubType>Form</SubType>
@@ -143,17 +144,27 @@
     <Compile Include="FrmProductos.Designer.cs">
       <DependentUpon>FrmProductos.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmReportes.cs">
+    <Compile Include="FrmReporte.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="FrmReportes.Designer.cs">
-      <DependentUpon>FrmReportes.cs</DependentUpon>
+    <Compile Include="FrmReporte.Designer.cs">
+      <DependentUpon>FrmReporte.cs</DependentUpon>
     </Compile>
     <Compile Include="FrmVerDetallesPedido.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="FrmVerDetallesPedido.Designer.cs">
       <DependentUpon>FrmVerDetallesPedido.cs</DependentUpon>
+    </Compile>
+    <Compile Include="GestionPedidosAlimentosDCDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionPedidosAlimentosDCDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="GestionPedidosAlimentosDCDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>GestionPedidosAlimentosDCDataSet1.xsd</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -163,6 +174,9 @@
     <Compile Include="TextBoxWaterMark.Designer.cs">
       <DependentUpon>TextBoxWaterMark.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="FrmCCF.resx">
+      <DependentUpon>FrmCCF.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmCliente.resx">
       <DependentUpon>FrmCliente.cs</DependentUpon>
     </EmbeddedResource>
@@ -196,13 +210,14 @@
     <EmbeddedResource Include="FrmProductos.resx">
       <DependentUpon>FrmProductos.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmReportes.resx">
-      <DependentUpon>FrmReportes.cs</DependentUpon>
+    <EmbeddedResource Include="FrmReporte.resx">
+      <DependentUpon>FrmReporte.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmVerDetallesPedido.resx">
       <DependentUpon>FrmVerDetallesPedido.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Informe.rdlc" />
+    <EmbeddedResource Include="InformeNotaRemision.rdlc" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -216,16 +231,27 @@
     <EmbeddedResource Include="TextBoxWaterMark.resx">
       <DependentUpon>TextBoxWaterMark.cs</DependentUpon>
     </EmbeddedResource>
-    <None Include="ConjuntoDatos.xsc">
-      <DependentUpon>ConjuntoDatos.xsd</DependentUpon>
+    <None Include="GestionPedidosAlimentosDCDataSet.xsc">
+      <DependentUpon>GestionPedidosAlimentosDCDataSet.xsd</DependentUpon>
     </None>
-    <None Include="ConjuntoDatos.xsd">
-      <SubType>Designer</SubType>
+    <None Include="GestionPedidosAlimentosDCDataSet.xsd">
       <Generator>MSDataSetGenerator</Generator>
-      <LastGenOutput>ConjuntoDatos.Designer.cs</LastGenOutput>
+      <LastGenOutput>GestionPedidosAlimentosDCDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </None>
-    <None Include="ConjuntoDatos.xss">
-      <DependentUpon>ConjuntoDatos.xsd</DependentUpon>
+    <None Include="GestionPedidosAlimentosDCDataSet.xss">
+      <DependentUpon>GestionPedidosAlimentosDCDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="GestionPedidosAlimentosDCDataSet1.xsc">
+      <DependentUpon>GestionPedidosAlimentosDCDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="GestionPedidosAlimentosDCDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>GestionPedidosAlimentosDCDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="GestionPedidosAlimentosDCDataSet1.xss">
+      <DependentUpon>GestionPedidosAlimentosDCDataSet1.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

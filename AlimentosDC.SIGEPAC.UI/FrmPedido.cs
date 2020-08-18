@@ -19,7 +19,7 @@ namespace AlimentosDC.SIGEPAC.UI
     {
         FrmPedido objetoPedidoActual;
         FrmPedidos objetoPedidosActual;
-        Pedido pedido;
+        Pedido pedidoEditando;
         List<Cliente> listadoClientes;
         List<Cliente> listadoNuevoClientes;
         int? idPedido = null;
@@ -28,7 +28,7 @@ namespace AlimentosDC.SIGEPAC.UI
         //Listados a usarse en la modificación de un pedido
         public List<DetallePedido> listadoViejoDetallesPedido = new List<DetallePedido>();
         public List<int> detallesViejosAEliminarDeLaBD = new List<int>();
-
+        string numeroCCF;
         //Constructor para un nuevo pedido
         public FrmPedido(ref FrmPedidos objetoPedidosActual)
         {
@@ -54,6 +54,7 @@ namespace AlimentosDC.SIGEPAC.UI
             {
                 
                 lblNumeroPedido.Text = PedidoBL.GenerarNumeroPedido();
+                numeroCCF = PedidoBL.generarNumeroCCF();
                 cmbEstadoPedido.SelectedIndex = 0;
                 dtpFechaCreacion.Focus();
             }
@@ -66,17 +67,17 @@ namespace AlimentosDC.SIGEPAC.UI
 
         void CargarDatosAlFormulario()
         {
-            pedido = PedidoBL.BuscarPorId((int) idPedido);
-            lblNumeroPedido.Text = pedido.NumeroPedido.ToString();
+            pedidoEditando = PedidoBL.BuscarPorId((int) idPedido);
+            lblNumeroPedido.Text = pedidoEditando.NumeroPedido.ToString();
             //List<Cliente> listadoClientes2 = ClienteBL.ObtenerTodos();
             //Cliente cliente = ClienteBL.BuscarPorId(pedido.IdCliente);
             //int indiceDelCliente = listadoClientes2.FindIndex(x => x.Id == cliente.Id);
             //cmbListadoClientes.SelectedIndex = indiceDelCliente;
-            cmbListadoClientes.SelectedValue = pedido.IdCliente;
-            dtpFechaCreacion.Value = pedido.FechaCreacion;
-            cmbEstadoPedido.SelectedItem = pedido.Estado;
-            dtpFechaEntrega.Value = pedido.FechaEntrega;
-            txtDireccionEntregaPedido.Text = pedido.DireccionEntrega;
+            cmbListadoClientes.SelectedValue = pedidoEditando.IdCliente;
+            dtpFechaCreacion.Value = pedidoEditando.FechaCreacion;
+            cmbEstadoPedido.SelectedItem = pedidoEditando.Estado;
+            dtpFechaEntrega.Value = pedidoEditando.FechaEntrega;
+            txtDireccionEntregaPedido.Text = pedidoEditando.DireccionEntrega;
             listadoViejoDetallesPedido = DetallePedidoBL.ObtenerTodos((int)idPedido);
             if (listadoViejoDetallesPedido!=null)
             {
@@ -196,8 +197,8 @@ namespace AlimentosDC.SIGEPAC.UI
 
         void GuardarPedido()
         {
-            try
-            {
+           // try
+            //{
                 if (dgvListadoDetallesPedido.Rows.Count < 1)
                 {
                     epValidadorControles.SetError(dgvListadoDetallesPedido, "Debe agregar al menos un detalle.");
@@ -216,6 +217,7 @@ namespace AlimentosDC.SIGEPAC.UI
                         pedidoARegistrar.FechaEntrega = dtpFechaEntrega.Value;
                         pedidoARegistrar.DireccionEntrega = txtDireccionEntregaPedido.Text;
                         pedidoARegistrar.Estado = cmbEstadoPedido.SelectedItem.ToString();
+                        pedidoARegistrar.NumeroCCF = numeroCCF;
                         resultadoPedido += PedidoBL.Guardar(pedidoARegistrar);
                         for (int i = 0; i < dgvListadoDetallesPedido.Rows.Count; i++)
                         {
@@ -232,11 +234,12 @@ namespace AlimentosDC.SIGEPAC.UI
                         objetoPedidosActual.CargarPedidos();
                         MetroMessageBox.Show(this, $"{resultadoPedido} pedido registrado.\n{resultadoDetallePedido} detalle(s) del pedido registrado(s).",
                             "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                        FrmReportes factura = new FrmReportes();
-                        factura.reportViewer1.LocalReport.DataSources[0].Value = PedidoBL.DatosFactura(int.Parse(lblNumeroPedido.Text));
-                        factura.ShowDialog();
+                        FrmCCF comprobanteCreditoFiscal = new FrmCCF(int.Parse(lblNumeroPedido.Text));
+                        comprobanteCreditoFiscal.Owner = this;
+                        comprobanteCreditoFiscal.ShowDialog();
                         Limpiar();
-                    }
+
+                }
                     else
                     {
                         int resultadoPedido = 0;
@@ -244,12 +247,12 @@ namespace AlimentosDC.SIGEPAC.UI
                         int resultDetallesAñadidos = 0;
                         int resultadoEliminados = 0;
 
-                        pedido.IdCliente = (cmbListadoClientes.SelectedItem as Cliente).Id;
-                        pedido.FechaCreacion = dtpFechaCreacion.Value;
-                        pedido.FechaEntrega = dtpFechaEntrega.Value;
-                        pedido.DireccionEntrega = txtDireccionEntregaPedido.Text;
-                        pedido.Estado = cmbEstadoPedido.SelectedItem.ToString();
-                        resultadoPedido += PedidoBL.Modificar(pedido);
+                        pedidoEditando.IdCliente = (cmbListadoClientes.SelectedItem as Cliente).Id;
+                        pedidoEditando.FechaCreacion = dtpFechaCreacion.Value;
+                        pedidoEditando.FechaEntrega = dtpFechaEntrega.Value;
+                        pedidoEditando.DireccionEntrega = txtDireccionEntregaPedido.Text;
+                        pedidoEditando.Estado = cmbEstadoPedido.SelectedItem.ToString();
+                        resultadoPedido += PedidoBL.Modificar(pedidoEditando);
                         for (int i = 0; i < dgvListadoDetallesPedido.Rows.Count; i++)
                         {
                             DetallePedido detallePedidoARegistrar = new DetallePedido();
@@ -288,12 +291,14 @@ namespace AlimentosDC.SIGEPAC.UI
                         }
                     }
                 }
-            }
+         /*   }
+        
             catch (Exception error)
             {
                 MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\nMÁS INFORMACIÓN: {error.Message}", "Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-            }
+            } */
+            
         }
 
         private void btnEliminarDetallePedido_Click(object sender, EventArgs e)
