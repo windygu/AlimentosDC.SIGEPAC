@@ -64,14 +64,14 @@
             // btnReportes
             // 
             this.btnReportes.BackColor = System.Drawing.Color.White;
-            this.btnReportes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportes.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportes.Image = ((System.Drawing.Image)(resources.GetObject("btnReportes.Image")));
-            this.btnReportes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReportes.Location = new System.Drawing.Point(17, 382);
+            this.btnReportes.Location = new System.Drawing.Point(17, 375);
             this.btnReportes.Name = "btnReportes";
-            this.btnReportes.Size = new System.Drawing.Size(140, 45);
+            this.btnReportes.Size = new System.Drawing.Size(140, 44);
             this.btnReportes.TabIndex = 4;
             this.btnReportes.Text = "Reportes";
+            this.btnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnReportes.UseVisualStyleBackColor = true;
             this.btnReportes.Click += new System.EventHandler(this.btnReportes_Click);
@@ -80,13 +80,14 @@
             // 
             this.btnCerraSesion.BackColor = System.Drawing.Color.White;
             this.btnCerraSesion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnCerraSesion.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerraSesion.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerraSesion.Image = ((System.Drawing.Image)(resources.GetObject("btnCerraSesion.Image")));
-            this.btnCerraSesion.Location = new System.Drawing.Point(17, 452);
+            this.btnCerraSesion.Location = new System.Drawing.Point(17, 435);
             this.btnCerraSesion.Name = "btnCerraSesion";
-            this.btnCerraSesion.Size = new System.Drawing.Size(140, 45);
+            this.btnCerraSesion.Size = new System.Drawing.Size(140, 44);
             this.btnCerraSesion.TabIndex = 1;
-            this.btnCerraSesion.Text = "Cerrar sesión";
+            this.btnCerraSesion.Text = "Salir";
+            this.btnCerraSesion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCerraSesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnCerraSesion.UseVisualStyleBackColor = true;
             this.btnCerraSesion.Click += new System.EventHandler(this.btnCerraSesion_Click);
@@ -104,14 +105,14 @@
             // btnPedidos
             // 
             this.btnPedidos.BackColor = System.Drawing.Color.White;
-            this.btnPedidos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPedidos.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPedidos.Image = ((System.Drawing.Image)(resources.GetObject("btnPedidos.Image")));
-            this.btnPedidos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPedidos.Location = new System.Drawing.Point(17, 134);
             this.btnPedidos.Name = "btnPedidos";
-            this.btnPedidos.Size = new System.Drawing.Size(140, 45);
+            this.btnPedidos.Size = new System.Drawing.Size(140, 44);
             this.btnPedidos.TabIndex = 0;
             this.btnPedidos.Text = "Pedidos";
+            this.btnPedidos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnPedidos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnPedidos.UseVisualStyleBackColor = true;
             this.btnPedidos.Click += new System.EventHandler(this.btnPedidos_Click);
@@ -119,14 +120,14 @@
             // btnMarcas
             // 
             this.btnMarcas.BackColor = System.Drawing.Color.White;
-            this.btnMarcas.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMarcas.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMarcas.Image = ((System.Drawing.Image)(resources.GetObject("btnMarcas.Image")));
-            this.btnMarcas.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMarcas.Location = new System.Drawing.Point(17, 321);
+            this.btnMarcas.Location = new System.Drawing.Point(17, 316);
             this.btnMarcas.Name = "btnMarcas";
-            this.btnMarcas.Size = new System.Drawing.Size(140, 45);
+            this.btnMarcas.Size = new System.Drawing.Size(140, 44);
             this.btnMarcas.TabIndex = 3;
             this.btnMarcas.Text = "Marcas";
+            this.btnMarcas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMarcas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnMarcas.UseVisualStyleBackColor = true;
             this.btnMarcas.Click += new System.EventHandler(this.btnMarcas_Click);
@@ -134,14 +135,14 @@
             // btnProductos
             // 
             this.btnProductos.BackColor = System.Drawing.Color.White;
-            this.btnProductos.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProductos.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnProductos.Image")));
-            this.btnProductos.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnProductos.Location = new System.Drawing.Point(17, 194);
+            this.btnProductos.Location = new System.Drawing.Point(17, 195);
             this.btnProductos.Name = "btnProductos";
-            this.btnProductos.Size = new System.Drawing.Size(140, 45);
+            this.btnProductos.Size = new System.Drawing.Size(140, 44);
             this.btnProductos.TabIndex = 1;
             this.btnProductos.Text = "Productos";
+            this.btnProductos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProductos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnProductos.UseVisualStyleBackColor = true;
             this.btnProductos.Click += new System.EventHandler(this.btnProductos_Click);
@@ -149,27 +150,28 @@
             // btnClientes
             // 
             this.btnClientes.BackColor = System.Drawing.Color.White;
-            this.btnClientes.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClientes.Font = new System.Drawing.Font("Arial", 13F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnClientes.Image")));
-            this.btnClientes.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClientes.Location = new System.Drawing.Point(17, 256);
             this.btnClientes.Name = "btnClientes";
-            this.btnClientes.Size = new System.Drawing.Size(140, 45);
+            this.btnClientes.Size = new System.Drawing.Size(140, 44);
             this.btnClientes.TabIndex = 2;
             this.btnClientes.Text = "Clientes";
+            this.btnClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnClientes.UseVisualStyleBackColor = true;
             this.btnClientes.Click += new System.EventHandler(this.btnClientes_Click);
             // 
             // pcbFotoPerfil
             // 
-            this.pcbFotoPerfil.Image = global::AlimentosDC.SIGEPAC.UI.Properties.Resources.Customer;
+            this.pcbFotoPerfil.Image = ((System.Drawing.Image)(resources.GetObject("pcbFotoPerfil.Image")));
             this.pcbFotoPerfil.Location = new System.Drawing.Point(1426, 34);
             this.pcbFotoPerfil.Name = "pcbFotoPerfil";
             this.pcbFotoPerfil.Size = new System.Drawing.Size(35, 35);
             this.pcbFotoPerfil.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbFotoPerfil.TabIndex = 1;
             this.pcbFotoPerfil.TabStop = false;
+            this.pcbFotoPerfil.Tag = "";
             this.pcbFotoPerfil.Click += new System.EventHandler(this.pcbFotoPerfil_Click);
             // 
             // lblUsuario

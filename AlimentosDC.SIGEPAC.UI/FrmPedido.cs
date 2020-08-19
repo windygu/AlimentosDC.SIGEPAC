@@ -20,15 +20,15 @@ namespace AlimentosDC.SIGEPAC.UI
         FrmPedido objetoPedidoActual;
         FrmPedidos objetoPedidosActual;
         Pedido pedidoEditando;
-        List<Cliente> listadoClientes;
-        List<Cliente> listadoNuevoClientes;
+        int? idDetallePedidoAEditar = null;
+        Producto producto;
         int? idPedido = null;
         //Listado a usarse en un nuevo pedido
         public List<DetallePedido> listadoDetallesPedido = new List<DetallePedido>();
         //Listados a usarse en la modificación de un pedido
         public List<DetallePedido> listadoViejoDetallesPedido = new List<DetallePedido>();
         public List<int> detallesViejosAEliminarDeLaBD = new List<int>();
-        string numeroCCF;
+        Cliente cliente = null;
         //Constructor para un nuevo pedido
         public FrmPedido(ref FrmPedidos objetoPedidosActual)
         {
@@ -49,12 +49,12 @@ namespace AlimentosDC.SIGEPAC.UI
         private void FrmPedido_Load(object sender, EventArgs e)
         {
             btnGuardarPedido.Enabled = false;
-            CargarClientesAlCombobox();
+            
             if (idPedido == null)
             {
                 
                 lblNumeroPedido.Text = PedidoBL.GenerarNumeroPedido();
-                numeroCCF = PedidoBL.generarNumeroCCF();
+                lblCCF.Text = PedidoBL.generarNumeroCCF();
                 cmbEstadoPedido.SelectedIndex = 0;
                 dtpFechaCreacion.Focus();
             }
@@ -69,15 +69,15 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             pedidoEditando = PedidoBL.BuscarPorId((int) idPedido);
             lblNumeroPedido.Text = pedidoEditando.NumeroPedido.ToString();
-            //List<Cliente> listadoClientes2 = ClienteBL.ObtenerTodos();
-            //Cliente cliente = ClienteBL.BuscarPorId(pedido.IdCliente);
-            //int indiceDelCliente = listadoClientes2.FindIndex(x => x.Id == cliente.Id);
-            //cmbListadoClientes.SelectedIndex = indiceDelCliente;
-            cmbListadoClientes.SelectedValue = pedidoEditando.IdCliente;
+            lblCCF.Text = pedidoEditando.NumeroCCF;
             dtpFechaCreacion.Value = pedidoEditando.FechaCreacion;
-            cmbEstadoPedido.SelectedItem = pedidoEditando.Estado;
             dtpFechaEntrega.Value = pedidoEditando.FechaEntrega;
+            cmbEstadoPedido.SelectedItem = pedidoEditando.Estado;
             txtDireccionEntregaPedido.Text = pedidoEditando.DireccionEntrega;
+            cliente = ClienteBL.BuscarPorId(pedidoEditando.IdCliente);
+            lblCliente.Text = string.Concat(cliente.PrimerNombre, " ", cliente.SegundoNombre, " ",
+                cliente.PrimerApellido, " ", cliente.SegundoApellido);
+            lblDui.Text = cliente.DUI;
             listadoViejoDetallesPedido = DetallePedidoBL.ObtenerTodos((int)idPedido);
             if (listadoViejoDetallesPedido!=null)
             {
@@ -85,48 +85,28 @@ namespace AlimentosDC.SIGEPAC.UI
                 {
                     dgvListadoDetallesPedido.Rows.Add();
                     dgvListadoDetallesPedido.Rows[i].Cells[0].Value = listadoViejoDetallesPedido[i].Id;
-                    dgvListadoDetallesPedido.Rows[i].Cells[1].Value = listadoViejoDetallesPedido[i].Producto;
-                    dgvListadoDetallesPedido.Rows[i].Cells[2].Value = listadoViejoDetallesPedido[i].Descripcion;
-                    dgvListadoDetallesPedido.Rows[i].Cells[3].Value = listadoViejoDetallesPedido[i].Cantidad;
-                    dgvListadoDetallesPedido.Rows[i].Cells[4].Value = listadoViejoDetallesPedido[i].PrecioUnitario;
-                    dgvListadoDetallesPedido.Rows[i].Cells[5].Value = listadoViejoDetallesPedido[i].SubTotal;
-                    dgvListadoDetallesPedido.Rows[i].Cells[6].Value = listadoViejoDetallesPedido[i].Estado;
+                    dgvListadoDetallesPedido.Rows[i].Cells[1].Value = listadoViejoDetallesPedido[i].Cantidad;
+                    dgvListadoDetallesPedido.Rows[i].Cells[2].Value = listadoViejoDetallesPedido[i].Producto;
+                    dgvListadoDetallesPedido.Rows[i].Cells[3].Value = listadoViejoDetallesPedido[i].Descripcion;
+                    dgvListadoDetallesPedido.Rows[i].Cells[4].Value = listadoViejoDetallesPedido[i].Estado;
+                    dgvListadoDetallesPedido.Rows[i].Cells[5].Value = listadoViejoDetallesPedido[i].PrecioUnitario;
+                    dgvListadoDetallesPedido.Rows[i].Cells[6].Value = listadoViejoDetallesPedido[i].SubTotal;
                     listadoDetallesPedido.Add(listadoViejoDetallesPedido[i]);
                 }
             }
         }
-        void CargarClientesAlCombobox()
-        {
-            listadoNuevoClientes = new List<Cliente>();
-            listadoClientes = ClienteBL.ObtenerTodos();
-            for (int i = 0; i < listadoClientes.Count; i++)
-            {
-                Cliente cliente = new Cliente();
-                cliente.Id = listadoClientes[i].Id;
-                cliente.Nombres = string.Concat(listadoClientes[i].Nombres, " ", listadoClientes[i].Apellidos);
-                cliente.DUI = listadoClientes[i].DUI;
-                cliente.Direccion = listadoClientes[i].Direccion;
-                cliente.Telefono = listadoClientes[i].Telefono;
-                cliente.Correo = listadoClientes[i].Correo;
-                listadoNuevoClientes.Add(cliente);
-            }
-            listadoNuevoClientes.Insert(0, new Cliente() { Id = 0, Nombres = "- Seleccione -" });
-            cmbListadoClientes.DataSource = listadoNuevoClientes;
-            cmbListadoClientes.DisplayMember = "Nombres";
-            cmbListadoClientes.ValueMember = "Id";
 
-        }
         //Método para ir agregando cada detalle (anteriormente agregado a la lista) al datagrid
         public void CargarListadoDetalles()
         {
             int indiceFilaAgregada = dgvListadoDetallesPedido.Rows.Add();
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[0].Value = listadoDetallesPedido[indiceFilaAgregada].Id;
-            dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[1].Value = listadoDetallesPedido[indiceFilaAgregada].Producto;
-            dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[2].Value = listadoDetallesPedido[indiceFilaAgregada].Descripcion;
-            dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[3].Value = listadoDetallesPedido[indiceFilaAgregada].Cantidad;
-            dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[4].Value = listadoDetallesPedido[indiceFilaAgregada].PrecioUnitario;
-            dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[5].Value = listadoDetallesPedido[indiceFilaAgregada].SubTotal;
-            dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[6].Value = listadoDetallesPedido[indiceFilaAgregada].Estado;
+            dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[1].Value = listadoDetallesPedido[indiceFilaAgregada].Cantidad;
+            dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[2].Value = listadoDetallesPedido[indiceFilaAgregada].Producto;
+            dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[3].Value = listadoDetallesPedido[indiceFilaAgregada].Descripcion;
+            dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[4].Value = listadoDetallesPedido[indiceFilaAgregada].Estado;
+            dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[5].Value = listadoDetallesPedido[indiceFilaAgregada].PrecioUnitario;
+            dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[6].Value = listadoDetallesPedido[indiceFilaAgregada].SubTotal;
         }
         public void ActualizarDatagridView()
         {
@@ -136,53 +116,25 @@ namespace AlimentosDC.SIGEPAC.UI
                 CargarListadoDetalles();
             }
         }
-        private void btnNuevoDetallePedido_Click(object sender, EventArgs e)
-        {
-            FrmDetallePedido mantenimientoDetallesPedido = new FrmDetallePedido(ref objetoPedidoActual);
-            mantenimientoDetallesPedido.Owner = objetoPedidoActual;
-            mantenimientoDetallesPedido.ShowDialog();
-        }
-
-        private void btnEditarDetallePedido_Click(object sender, EventArgs e)
-        {
-            int idDetallePedidoAEditar = int.Parse(dgvListadoDetallesPedido.SelectedRows[0].Cells[0].Value.ToString());
-            FrmDetallePedido mantenimientoDetallesPedido =
-            new FrmDetallePedido(ref objetoPedidoActual, idDetallePedidoAEditar);
-            mantenimientoDetallesPedido.Owner = objetoPedidoActual;
-            mantenimientoDetallesPedido.ShowDialog();
-        }
 
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Close();
         }
 
-        private void cmbListadoClientes_SelectionChangeCommitted(object sender, EventArgs e)
-        {
-            if ((int)cmbListadoClientes.SelectedValue>0)
-            {
-                epValidadorControles.SetError(cmbListadoClientes, "");
-                int id = (int)cmbListadoClientes.SelectedValue;
-                lblDui.Text = (ClienteBL.BuscarPorId(id)).DUI;
-                HabilitarBotonGuardarPedido();
-                txtDireccionEntregaPedido.Focus();
-            }
-            else 
-            {
-                lblDui.Text = "";
-                HabilitarBotonGuardarPedido();
-            }
-        }
-
         void Limpiar()
         {
             
             lblNumeroPedido.Text = PedidoBL.GenerarNumeroPedido();
+            lblCCF.Text = PedidoBL.generarNumeroCCF();
             dtpFechaCreacion.Value = DateTime.Now;
             dtpFechaEntrega.Value = DateTime.Now;
             cmbEstadoPedido.SelectedIndex = 0;
-            cmbListadoClientes.SelectedValue = 0;
             txtDireccionEntregaPedido.Clear();
+            lblCliente.Text = "";
+            lblDui.Text = "";
+            cliente = null;
+            LimpiarDetalles();
             dgvListadoDetallesPedido.Rows.Clear();
             listadoDetallesPedido.Clear();
             listadoViejoDetallesPedido.Clear();
@@ -211,15 +163,15 @@ namespace AlimentosDC.SIGEPAC.UI
                         int resultadoDetallePedido = 0;
 
                         Pedido pedidoARegistrar = new Pedido();
-                        pedidoARegistrar.IdCliente = (cmbListadoClientes.SelectedItem as Cliente).Id;
+                        pedidoARegistrar.IdCliente = cliente.Id;
                         pedidoARegistrar.NumeroPedido = int.Parse(lblNumeroPedido.Text);
                         pedidoARegistrar.FechaCreacion = dtpFechaCreacion.Value;
                         pedidoARegistrar.FechaEntrega = dtpFechaEntrega.Value;
                         pedidoARegistrar.DireccionEntrega = txtDireccionEntregaPedido.Text;
                         pedidoARegistrar.Estado = cmbEstadoPedido.SelectedItem.ToString();
-                        pedidoARegistrar.NumeroCCF = numeroCCF;
+                        pedidoARegistrar.NumeroCCF = lblCCF.Text;
                         resultadoPedido += PedidoBL.Guardar(pedidoARegistrar);
-                        for (int i = 0; i < dgvListadoDetallesPedido.Rows.Count; i++)
+                        for (int i = 0; i < listadoDetallesPedido.Count; i++)
                         {
 
                             DetallePedido detallePedidoARegistrar = new DetallePedido();
@@ -247,30 +199,30 @@ namespace AlimentosDC.SIGEPAC.UI
                         int resultDetallesAñadidos = 0;
                         int resultadoEliminados = 0;
 
-                        pedidoEditando.IdCliente = (cmbListadoClientes.SelectedItem as Cliente).Id;
+                        pedidoEditando.IdCliente = cliente.Id;
                         pedidoEditando.FechaCreacion = dtpFechaCreacion.Value;
                         pedidoEditando.FechaEntrega = dtpFechaEntrega.Value;
                         pedidoEditando.DireccionEntrega = txtDireccionEntregaPedido.Text;
                         pedidoEditando.Estado = cmbEstadoPedido.SelectedItem.ToString();
                         resultadoPedido += PedidoBL.Modificar(pedidoEditando);
-                        for (int i = 0; i < dgvListadoDetallesPedido.Rows.Count; i++)
+                        for (int i = 0; i < listadoDetallesPedido.Count; i++)
                         {
-                            DetallePedido detallePedidoARegistrar = new DetallePedido();
-                            detallePedidoARegistrar.Id = listadoDetallesPedido[i].Id;
-                            detallePedidoARegistrar.IdPedido = (int)idPedido;
-                            detallePedidoARegistrar.IdProducto = listadoDetallesPedido[i].IdProducto;
-                            detallePedidoARegistrar.Cantidad = listadoDetallesPedido[i].Cantidad;
-                            detallePedidoARegistrar.PrecioUnitario = listadoDetallesPedido[i].PrecioUnitario;
-                            detallePedidoARegistrar.SubTotal = listadoDetallesPedido[i].SubTotal;
-                            detallePedidoARegistrar.Estado = listadoDetallesPedido[i].Estado;
+                           DetallePedido detallePedido = new DetallePedido();
+                           detallePedido.Id = listadoDetallesPedido[i].Id;
+                           detallePedido.IdPedido = (int)idPedido;
+                           detallePedido.IdProducto = listadoDetallesPedido[i].IdProducto;
+                           detallePedido.Cantidad = listadoDetallesPedido[i].Cantidad;
+                           detallePedido.PrecioUnitario = listadoDetallesPedido[i].PrecioUnitario;
+                           detallePedido.SubTotal = listadoDetallesPedido[i].SubTotal;
+                           detallePedido.Estado = listadoDetallesPedido[i].Estado;
 
                             if (listadoViejoDetallesPedido.Find(x => x.Id == listadoDetallesPedido[i].Id) != null)
                             {
-                                resultDetallesModificados += DetallePedidoBL.Modificar(detallePedidoARegistrar);
+                                resultDetallesModificados += DetallePedidoBL.Modificar(detallePedido);
                             }
                             else
                             {
-                                resultDetallesAñadidos += DetallePedidoBL.Guardar(detallePedidoARegistrar);
+                                resultDetallesAñadidos += DetallePedidoBL.Guardar(detallePedido);
                             }
                         }
                         if (detallesViejosAEliminarDeLaBD.Count >= 1)
@@ -320,17 +272,14 @@ namespace AlimentosDC.SIGEPAC.UI
                     int idDetallePedidoAEliminar = int.Parse(dgvListadoDetallesPedido.SelectedRows[0].Cells[0].Value.ToString());
                     dgvListadoDetallesPedido.Rows.RemoveAt(dgvListadoDetallesPedido.SelectedRows[0].Index);
                     DetallePedido detalleAEliminar = listadoDetallesPedido.Find(x => x.Id == idDetallePedidoAEliminar);
-                    listadoDetallesPedido.Remove(detalleAEliminar);
+                    if (listadoDetallesPedido.Remove(detalleAEliminar)==false)
+                    {
+                        throw new Exception
+                        ("No se ha podido encontrar el detalle que se quiere eliminar de la lista 'listadoDetallesPedido'");
+                    }
                     ActualizarDatagridView();
                     if (listadoViejoDetallesPedido.Find(x=>x.Id==detalleAEliminar.Id)!=null)
                     {
-                        for (int i = 0; i < listadoViejoDetallesPedido.Count; i++)
-                        {
-                            if (listadoViejoDetallesPedido[i].Id==detalleAEliminar.Id)
-                            {
-                                listadoViejoDetallesPedido.RemoveAt(i);
-                            }
-                        }
                         detallesViejosAEliminarDeLaBD.Add(detalleAEliminar.Id);
                     }
                 }
@@ -358,11 +307,7 @@ namespace AlimentosDC.SIGEPAC.UI
             if (cmbEstadoPedido.SelectedIndex > 0)
             {
                 epValidadorControles.SetError(cmbEstadoPedido, "");
-                if ((int)cmbListadoClientes.SelectedValue==0)
-                {
-                    cmbListadoClientes.DroppedDown = true;
-                    Cursor = Cursors.Arrow;
-                }
+                txtDireccionEntregaPedido.Focus();
                 HabilitarBotonGuardarPedido();
             }
             else
@@ -374,7 +319,7 @@ namespace AlimentosDC.SIGEPAC.UI
         void HabilitarBotonGuardarPedido()
         {
             if (
-                cmbEstadoPedido.SelectedIndex > 0 && (int)cmbListadoClientes.SelectedValue > 0 &&
+                cmbEstadoPedido.SelectedIndex > 0 && cliente!=null &&
                 (!string.IsNullOrWhiteSpace(txtDireccionEntregaPedido.Text)) && dgvListadoDetallesPedido.Rows.Count > 0
                 )
             {
@@ -389,7 +334,6 @@ namespace AlimentosDC.SIGEPAC.UI
             {
                 epValidadorControles.SetError(txtDireccionEntregaPedido, "");
                 if (cmbEstadoPedido.SelectedIndex==0) epValidadorControles.SetError(cmbEstadoPedido, "Debe seleccionar un estado");
-                if ((int)cmbListadoClientes.SelectedValue==0) epValidadorControles.SetError(cmbListadoClientes, "Debe seleccionar un cliente");
                 HabilitarBotonGuardarPedido();
             }
             else
@@ -413,12 +357,195 @@ namespace AlimentosDC.SIGEPAC.UI
             }
         }
 
-        private void cmbListadoClientes_DropDownClosed(object sender, EventArgs e)
+        private void btnElegirCliente_Click(object sender, EventArgs e)
         {
-            if ((int)cmbListadoClientes.SelectedValue == 0)
+            FrmClientes clientes = new FrmClientes(objetoPedidoActual);
+            clientes.Owner = this;
+            clientes.ShowDialog();
+            if (clientes.DialogResult==DialogResult.OK)
             {
-                epValidadorControles.SetError(cmbListadoClientes, "Debe seleccionar un cliente.");
+                cliente = clientes.clienteSeleccionado;
+                lblCliente.Text = string.Concat(cliente.PrimerNombre, " ", cliente.SegundoNombre, " ",
+                    cliente.PrimerApellido, " ", cliente.SegundoApellido);
+                lblDui.Text = cliente.DUI;
+            }
+            if (cliente==null) epValidadorControles.SetError(btnElegirCliente, "Debe elegir un cliente");
+            else epValidadorControles.SetError(btnElegirCliente, "");
+        }
+
+        private void btnElegirProducto_Click(object sender, EventArgs e)
+        {
+            if (cliente == null)
+            {
+                epValidadorControles.SetError(btnElegirCliente, "Debe elegir un cliente");
+            }
+            else
+            {
+                FrmProductos productos = new FrmProductos(objetoPedidoActual);
+                productos.ShowDialog();
+                if (productos.DialogResult == DialogResult.OK)
+                {
+                    producto = productos.productoSeleccionado;
+                    lblNombreProducto.Text = producto.Nombre;
+                    lblDescripcionProducto.Text = producto.Descripcion;
+                    lblPrecioUnitario.Text = producto.Precio.ToString();
+                    lblStockProducto.Text = producto.Stock.ToString();
+                }
+                if (producto == null) epValidadorControles.SetError(btnElegirProducto, "Debe elegir un producto");
+                else epValidadorControles.SetError(btnElegirProducto, "");
+            }
+            
+        }
+
+        private void btnAgregarDetalle_Click(object sender, EventArgs e)
+        {
+            AgregarDetalles();
+        }
+        void AgregarDetalles()
+        {
+            if (idDetallePedidoAEditar != null)
+            {
+                foreach (DetallePedido detalle in listadoDetallesPedido.Where(x => x.Id == idDetallePedidoAEditar))
+                {
+                    detalle.IdProducto = producto.Id;
+                    detalle.Producto = producto.Nombre;
+                    detalle.Descripcion = producto.Descripcion;
+                    detalle.Cantidad = ushort.Parse(txtCantidad.Text);
+                    detalle.PrecioUnitario = producto.Precio;
+                    detalle.SubTotal = float.Parse(lblSubTotal.Text);
+                    detalle.Estado = cmbEstadoDetallePedido.SelectedItem.ToString();
+                }
+                ActualizarDatagridView();
+                LimpiarDetalles();
+                btnAgregarDetalle.Text = "Agregar detalle";
+            }
+
+            else
+            {
+                DetallePedido detallePedidoAAgregar = new DetallePedido();
+                detallePedidoAAgregar.IdProducto = producto.Id;
+                detallePedidoAAgregar.Producto = producto.Nombre;
+                detallePedidoAAgregar.Descripcion = producto.Descripcion;
+                detallePedidoAAgregar.Cantidad = ushort.Parse(txtCantidad.Text);
+                detallePedidoAAgregar.PrecioUnitario = producto.Precio;
+                detallePedidoAAgregar.SubTotal = float.Parse(lblSubTotal.Text);
+                detallePedidoAAgregar.Estado = cmbEstadoDetallePedido.SelectedItem.ToString();
+                int idUltimoDetalle;
+                if (listadoDetallesPedido.Count >= 1)
+                {
+                    idUltimoDetalle = objetoPedidoActual.listadoDetallesPedido[objetoPedidoActual.listadoDetallesPedido.Count - 1].Id;
+                }
+                else idUltimoDetalle = 0;
+                detallePedidoAAgregar.Id = idUltimoDetalle + 1;
+                if (listadoDetallesPedido.Exists(x => x.IdProducto == detallePedidoAAgregar.IdProducto))
+                {
+                    MetroMessageBox.Show(this, "Ya agregó este producto a la lista.", "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                        MessageBoxDefaultButton.Button1);
+                    txtCantidad.Clear();
+                    txtCantidad.Focus();
+                }
+                else
+                {
+                    listadoDetallesPedido.Add(detallePedidoAAgregar);
+                    CargarListadoDetalles();
+                    LimpiarDetalles();
+                }
+            }
+        }
+
+        private void btnEditarDetallePedido_Click(object sender, EventArgs e)
+        {
+            idDetallePedidoAEditar = (int)dgvListadoDetallesPedido.SelectedRows[0].Cells[0].Value;
+            CargarDetallesAEditar();
+            btnAgregarDetalle.Text = "Actualizar";
+        }
+        void CargarDetallesAEditar()
+        {
+            DetallePedido detalleAEditar = listadoDetallesPedido.Find(x => x.Id == idDetallePedidoAEditar);
+            producto = ProductoBL.BuscarPorId(detalleAEditar.IdProducto);
+            lblNombreProducto.Text = producto.Nombre;
+            lblPrecioUnitario.Text = producto.Precio.ToString();
+            lblDescripcionProducto.Text = producto.Descripcion;
+            lblStockProducto.Text = producto.Stock.ToString();
+            txtCantidad.Text = detalleAEditar.Cantidad.ToString();
+            lblSubTotal.Text = detalleAEditar.SubTotal.ToString();
+            cmbEstadoDetallePedido.SelectedItem = detalleAEditar.Estado;
+        }
+        void LimpiarDetalles()
+        {
+            lblNombreProducto.Text = "";
+            lblDescripcionProducto.Text = "";
+            lblPrecioUnitario.Text = "";
+            lblStockProducto.Text = "";
+            txtCantidad.Clear();
+            lblSubTotal.Text = "";
+            cmbEstadoDetallePedido.SelectedIndex = 0;
+            producto = null;
+            idDetallePedidoAEditar = null;
+        }
+
+        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+            {
+                e.Handled = false;
+            }
+            else e.Handled = true;
+        }
+
+        private void txtCantidad_TextChanged(object sender, EventArgs e)
+        {
+            if (txtCantidad.Text.Length > 0 && lblPrecioUnitario.Text.Length > 0)
+            {
+                epValidadorControles.SetError(txtCantidad, "");
+                lblSubTotal.Text = (float.Parse(lblPrecioUnitario.Text) * float.Parse(txtCantidad.Text)).ToString();
+                int stock = producto.Stock;
+                int stockMinimo = 10;
+                lblStockProducto.Text = (stock - int.Parse(txtCantidad.Text)).ToString();
+                if ((stock - int.Parse(txtCantidad.Text)) < stockMinimo)
+                {
+                    MetroMessageBox.Show(this, "Las existencias mínimas de este producto deben ser 10 unidades.", "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    txtCantidad.Text = "";
+                }
+                HabilitarBotonAgregarDetalle();
+            }
+            else if (txtCantidad.TextLength >= 1)
+            {
+                epValidadorControles.SetError(txtCantidad, "");
+                epValidadorControles.SetError(btnElegirProducto, "Debe seleccionar un producto");
+                if (cmbEstadoDetallePedido.SelectedIndex == 0) epValidadorControles.SetError(cmbEstadoDetallePedido, "Debe seleccionar un estado");
+            }
+            else
+            {
+                lblSubTotal.Text = "0.00";
+                if (producto!=null)
+                {
+                    lblStockProducto.Text = producto.Stock.ToString();
+                }
+                epValidadorControles.SetError(txtCantidad, "Este campo es obligatorio");
+                HabilitarBotonAgregarDetalle();
+            }
+        }
+        void HabilitarBotonAgregarDetalle()
+        {
+            if (producto!=null && cmbEstadoDetallePedido.SelectedIndex > 0 &&
+                txtCantidad.Text.Length >= 1
+                )
+            {
+                btnAgregarDetalle.Enabled = true;
+            }
+            else btnAgregarDetalle.Enabled = false;
+        }
+
+        private void cmbEstadoPedido_SelectionChangeCommitted_1(object sender, EventArgs e)
+        {
+            if (cmbEstadoPedido.SelectedIndex>0)
+            {
+                epValidadorControles.SetError(cmbEstadoPedido, "");
+                txtDireccionEntregaPedido.Focus();
             }
         }
     }
+
+    //CONTINUAR CORRIENDO LOS ERRORES 
 }

@@ -20,12 +20,19 @@ namespace AlimentosDC.SIGEPAC.UI
     {
         public List<Producto> listadoProductos = null;
         FrmProductos objetoProductosActual;
+        FrmPedido objetoPedidoActual = null;
+        public Producto productoSeleccionado { get; set; }
         public FrmProductos()
         {
             InitializeComponent();
             btnEditarProducto.Enabled = false;
             btnEliminarProducto.Enabled = false;
             objetoProductosActual = this;
+        }
+        public FrmProductos(FrmPedido objetoPedidoActual)
+        {
+            InitializeComponent();
+            this.objetoPedidoActual = objetoPedidoActual;
         }
 
         private void btnNuevoProducto_Click(object sender, EventArgs e)
@@ -62,6 +69,14 @@ namespace AlimentosDC.SIGEPAC.UI
         private void FrmProductos_Load(object sender, EventArgs e)
         {
             CargarProductos();
+            if (objetoPedidoActual != null)
+            {
+                btnNuevoProducto.Visible = false;
+                btnEditarProducto.Visible = false;
+                btnEliminarProducto.Visible = false;
+                btnCerrar.Text = "Cancelar";
+                btnSeleccionar.Visible = true;
+            }
         }
 
         private void btnEliminarProducto_Click(object sender, EventArgs e)
@@ -94,6 +109,31 @@ namespace AlimentosDC.SIGEPAC.UI
                 btnEliminarProducto.Enabled = false;
                 btnEditarProducto.Enabled = false;
             }
+            if (objetoPedidoActual!=null)
+            {
+                if (dgvListadoProductos.SelectedRows.Count >= 1)
+                {
+                    btnSeleccionar.Enabled = true;
+                }
+                else
+                {
+                    btnSeleccionar.Enabled = false;
+                }
+            }
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            int idProductoSeleccionado = int.Parse(dgvListadoProductos.SelectedRows[0].Cells[0].Value.ToString());
+            productoSeleccionado = ProductoBL.BuscarPorId(idProductoSeleccionado);
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            DialogResult = DialogResult.Cancel;
+            Close();
         }
     }
 }

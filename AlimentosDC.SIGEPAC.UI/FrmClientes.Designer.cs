@@ -41,6 +41,8 @@
             this.dgvTelefono = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvCorreo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtBuscarClientes = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
+            this.btnCerrar = new System.Windows.Forms.Button();
+            this.btnSeleccionar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoClientes)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,7 +97,7 @@
             this.dgvListadoClientes.Name = "dgvListadoClientes";
             this.dgvListadoClientes.ReadOnly = true;
             this.dgvListadoClientes.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListadoClientes.Size = new System.Drawing.Size(924, 386);
+            this.dgvListadoClientes.Size = new System.Drawing.Size(924, 337);
             this.dgvListadoClientes.TabIndex = 13;
             this.dgvListadoClientes.SelectionChanged += new System.EventHandler(this.dgvListadoClientes_SelectionChanged);
             // 
@@ -157,11 +159,36 @@
             this.txtBuscarClientes.TextoMarcaAgua = "Buscar por nombre o apellido";
             this.txtBuscarClientes.TextChanged += new System.EventHandler(this.txtBuscarClientes_TextChanged);
             // 
+            // btnCerrar
+            // 
+            this.btnCerrar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrar.Location = new System.Drawing.Point(827, 463);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(100, 30);
+            this.btnCerrar.TabIndex = 15;
+            this.btnCerrar.Text = "Cerrar";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSeleccionar.Location = new System.Drawing.Point(688, 463);
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.Size = new System.Drawing.Size(112, 30);
+            this.btnSeleccionar.TabIndex = 16;
+            this.btnSeleccionar.Text = "Seleccionar";
+            this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Visible = false;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
+            // 
             // FrmClientes
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(950, 515);
+            this.ClientSize = new System.Drawing.Size(950, 516);
+            this.Controls.Add(this.btnSeleccionar);
+            this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.txtBuscarClientes);
             this.Controls.Add(this.btnEliminarCliente);
             this.Controls.Add(this.btnEditarCliente);
@@ -193,5 +220,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvDireccion;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvTelefono;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvCorreo;
+        private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Button btnSeleccionar;
     }
 }

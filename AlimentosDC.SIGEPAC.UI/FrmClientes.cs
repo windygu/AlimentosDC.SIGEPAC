@@ -19,9 +19,18 @@ namespace AlimentosDC.SIGEPAC.UI
     {
         List<Cliente> listadoClientes;
         FrmClientes objetoClientesActual;
+        FrmPedido objetoPedidoActual = null;
+        public Cliente clienteSeleccionado { get; set; }
         public FrmClientes()
         {
             InitializeComponent();
+            objetoClientesActual = this;
+        }
+
+        public FrmClientes(FrmPedido objetoPedidoActual)
+        {
+            InitializeComponent();
+            this.objetoPedidoActual = objetoPedidoActual;
             objetoClientesActual = this;
         }
 
@@ -111,17 +120,58 @@ namespace AlimentosDC.SIGEPAC.UI
             {
                 btnEditarCliente.Enabled = true;
                 btnEliminarCliente.Enabled = true;
+                
             }
             else
             {
                 btnEliminarCliente.Enabled = false;
                 btnEditarCliente.Enabled = false;
             }
+
+            if (objetoPedidoActual != null)
+            {
+                if (dgvListadoClientes.SelectedRows.Count >= 1)
+                {
+                    btnSeleccionar.Enabled = true;
+
+                }
+                else
+                {
+                    btnSeleccionar.Enabled = false;
+                }
+            }
+
         }
 
         private void FrmClientes_Load(object sender, EventArgs e)
         {
             CargarClientes();
+            if (objetoPedidoActual != null)
+            {
+                btnEditarCliente.Visible = false;
+                btnEliminarCliente.Visible = false;
+                btnNuevoCliente.Visible = false;
+                btnSeleccionar.Visible = true;
+                btnCerrar.Text = "Cancelar";
+            }
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            int idCliente = int.Parse(dgvListadoClientes.SelectedRows[0].Cells[0].Value.ToString());
+            clienteSeleccionado = ClienteBL.BuscarPorId(idCliente);
+            DialogResult = DialogResult.OK;
+            Close();
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            if (objetoPedidoActual != null)
+            {
+                DialogResult = DialogResult.Cancel;
+            }
+            Close();
+
         }
     }
 }
