@@ -14,6 +14,7 @@ using System.IO;
 using AlimentosDC.SIGEPAC.BL;
 using AlimentosDC.SIGEPAC.EN;
 using System.Drawing.Imaging;
+using System.Globalization;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
@@ -24,6 +25,10 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             InitializeComponent();
             usuarioActual = usuario;
+            CultureInfo cultura = new CultureInfo("es-SV");
+            CultureInfo copia = (CultureInfo)cultura.Clone();
+            CultureInfo.DefaultThreadCurrentCulture = copia;
+            CultureInfo.DefaultThreadCurrentUICulture = copia;
         }
 
         private void FrmPrincipal_Load(object sender, EventArgs e)

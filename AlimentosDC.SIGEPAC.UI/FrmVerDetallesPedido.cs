@@ -23,15 +23,9 @@ namespace AlimentosDC.SIGEPAC.UI
         Pedido pedido;
         Cliente cliente;
         int idPedido, numeroPedido;
-        //Objeto a ser utilizado para cambiar coma por punto en numeros decimales
-        CultureInfo cultura = (CultureInfo)Thread.CurrentThread.CurrentCulture.Clone();
         public FrmVerDetallesPedido(int idPedido, int numeroPedido)
         {
             InitializeComponent();
-            //Cambiamos el separador por un punto
-            cultura.NumberFormat.NumberDecimalSeparator = ".";
-            //Establecemos el hilo de ejecucion actual por la copia que hicimos anteriormente
-            Thread.CurrentThread.CurrentCulture = cultura;
             this.idPedido = idPedido;
             this.numeroPedido = numeroPedido;
         }

@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmVerDetallesPedido));
             this.label8 = new System.Windows.Forms.Label();
             this.btnCerrar = new System.Windows.Forms.Button();
@@ -50,6 +52,10 @@
             this.label12 = new System.Windows.Forms.Label();
             this.label14 = new System.Windows.Forms.Label();
             this.dgvListadoDetallesPedido = new System.Windows.Forms.DataGridView();
+            this.lblFechaEntrega = new System.Windows.Forms.Label();
+            this.lblFechaCreacion = new System.Windows.Forms.Label();
+            this.lblEstadoPedido = new System.Windows.Forms.Label();
+            this.lblDireccionEntrega = new System.Windows.Forms.Label();
             this.dgvId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -57,10 +63,6 @@
             this.dgvPrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvSubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lblFechaEntrega = new System.Windows.Forms.Label();
-            this.lblFechaCreacion = new System.Windows.Forms.Label();
-            this.lblEstadoPedido = new System.Windows.Forms.Label();
-            this.lblDireccionEntrega = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDetallesPedido)).BeginInit();
             this.SuspendLayout();
@@ -284,52 +286,6 @@
             this.dgvListadoDetallesPedido.Size = new System.Drawing.Size(813, 263);
             this.dgvListadoDetallesPedido.TabIndex = 48;
             // 
-            // dgvId
-            // 
-            this.dgvId.HeaderText = "ID";
-            this.dgvId.Name = "dgvId";
-            this.dgvId.ReadOnly = true;
-            this.dgvId.Width = 50;
-            // 
-            // dgvProducto
-            // 
-            this.dgvProducto.HeaderText = "Producto";
-            this.dgvProducto.Name = "dgvProducto";
-            this.dgvProducto.ReadOnly = true;
-            this.dgvProducto.Width = 140;
-            // 
-            // dgvDescripcion
-            // 
-            this.dgvDescripcion.HeaderText = "Descripción";
-            this.dgvDescripcion.Name = "dgvDescripcion";
-            this.dgvDescripcion.ReadOnly = true;
-            this.dgvDescripcion.Width = 160;
-            // 
-            // dgvCantidad
-            // 
-            this.dgvCantidad.HeaderText = "Cantidad";
-            this.dgvCantidad.Name = "dgvCantidad";
-            this.dgvCantidad.ReadOnly = true;
-            // 
-            // dgvPrecioUnitario
-            // 
-            this.dgvPrecioUnitario.HeaderText = "Precio Unitario";
-            this.dgvPrecioUnitario.Name = "dgvPrecioUnitario";
-            this.dgvPrecioUnitario.ReadOnly = true;
-            // 
-            // dgvSubTotal
-            // 
-            this.dgvSubTotal.HeaderText = "Sub Total";
-            this.dgvSubTotal.Name = "dgvSubTotal";
-            this.dgvSubTotal.ReadOnly = true;
-            // 
-            // dgvEstado
-            // 
-            this.dgvEstado.HeaderText = "Estado";
-            this.dgvEstado.Name = "dgvEstado";
-            this.dgvEstado.ReadOnly = true;
-            this.dgvEstado.Width = 120;
-            // 
             // lblFechaEntrega
             // 
             this.lblFechaEntrega.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
@@ -365,6 +321,60 @@
             this.lblDireccionEntrega.Name = "lblDireccionEntrega";
             this.lblDireccionEntrega.Size = new System.Drawing.Size(314, 50);
             this.lblDireccionEntrega.TabIndex = 52;
+            // 
+            // dgvId
+            // 
+            this.dgvId.HeaderText = "ID";
+            this.dgvId.Name = "dgvId";
+            this.dgvId.ReadOnly = true;
+            this.dgvId.Width = 50;
+            // 
+            // dgvProducto
+            // 
+            this.dgvProducto.HeaderText = "Producto";
+            this.dgvProducto.Name = "dgvProducto";
+            this.dgvProducto.ReadOnly = true;
+            this.dgvProducto.Width = 140;
+            // 
+            // dgvDescripcion
+            // 
+            this.dgvDescripcion.HeaderText = "Descripción";
+            this.dgvDescripcion.Name = "dgvDescripcion";
+            this.dgvDescripcion.ReadOnly = true;
+            this.dgvDescripcion.Width = 160;
+            // 
+            // dgvCantidad
+            // 
+            this.dgvCantidad.HeaderText = "Cantidad";
+            this.dgvCantidad.Name = "dgvCantidad";
+            this.dgvCantidad.ReadOnly = true;
+            // 
+            // dgvPrecioUnitario
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "$ #.##";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dgvPrecioUnitario.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvPrecioUnitario.HeaderText = "Precio Unitario";
+            this.dgvPrecioUnitario.Name = "dgvPrecioUnitario";
+            this.dgvPrecioUnitario.ReadOnly = true;
+            // 
+            // dgvSubTotal
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.dgvSubTotal.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvSubTotal.HeaderText = "Sub Total";
+            this.dgvSubTotal.Name = "dgvSubTotal";
+            this.dgvSubTotal.ReadOnly = true;
+            // 
+            // dgvEstado
+            // 
+            this.dgvEstado.HeaderText = "Estado";
+            this.dgvEstado.Name = "dgvEstado";
+            this.dgvEstado.ReadOnly = true;
+            this.dgvEstado.Width = 120;
             // 
             // FrmVerDetallesPedido
             // 

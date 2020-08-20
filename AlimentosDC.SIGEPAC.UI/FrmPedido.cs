@@ -12,6 +12,8 @@ using AlimentosDC.SIGEPAC.EN;
 using MetroFramework;
 using MetroFramework.Forms;
 using MetroFramework.Controls;
+using System.Globalization;
+using System.Threading;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
@@ -23,34 +25,37 @@ namespace AlimentosDC.SIGEPAC.UI
         int? idDetallePedidoAEditar = null;
         Producto producto;
         int? idPedido = null;
-        //Listado a usarse en un nuevo pedido
         public List<DetallePedido> listadoDetallesPedido = new List<DetallePedido>();
-        //Listados a usarse en la modificación de un pedido
         public List<DetallePedido> listadoViejoDetallesPedido = new List<DetallePedido>();
         public List<int> detallesViejosAEliminarDeLaBD = new List<int>();
         Cliente cliente = null;
-        //Constructor para un nuevo pedido
+        
         public FrmPedido(ref FrmPedidos objetoPedidosActual)
         {
             InitializeComponent();
+            btnGuardarPedido.Enabled = false;
+            btnEliminarDetallePedido.Enabled = false;
+            btnEditarDetallePedido.Enabled = false;
             this.objetoPedidosActual = objetoPedidosActual;
             objetoPedidoActual = this;
-            dtpFechaCreacion.Focus();
+
         }
 
         //Constructor para editar un pedido
         public FrmPedido(ref FrmPedidos objetoPedidosActual, int idPedido)
         {
             InitializeComponent();
+            btnGuardarPedido.Enabled = false;
+            btnEliminarDetallePedido.Enabled = false;
+            btnEditarDetallePedido.Enabled = false;
             objetoPedidoActual = this;
             this.objetoPedidosActual = objetoPedidosActual;
             this.idPedido = idPedido;
-            dtpFechaCreacion.Focus();
+            
         }
 
         private void FrmPedido_Load(object sender, EventArgs e)
         {
-            btnGuardarPedido.Enabled = false;
             try
             {
                 if (idPedido == null)
@@ -59,12 +64,13 @@ namespace AlimentosDC.SIGEPAC.UI
                     lblNumeroPedido.Text = PedidoBL.GenerarNumeroPedido();
                     lblCCF.Text = PedidoBL.generarNumeroCCF();
                     cmbEstadoPedido.SelectedIndex = 0;
-
+                    dtpFechaCreacion.Focus();
                 }
                 else
                 {
                     CargarDatosAlFormulario();
-
+                    btnGuardarPedido.Text = "Actualizar pedido";
+                    dtpFechaCreacion.Focus();
                 }
             }
             catch (Exception error)
@@ -106,26 +112,35 @@ namespace AlimentosDC.SIGEPAC.UI
             }
         }
 
-        //Método para ir agregando cada detalle (anteriormente agregado a la lista) al datagrid
+        //Método para ir agregando cada detalle (anteriormente agregado a la 'listadoDetallesPedido') al datagrid
         public void CargarListadoDetalles()
         {
-            int indiceFilaAgregada = dgvListadoDetallesPedido.Rows.Add();
-            bool existeSumas = false;
-            for (int i = 0; i < dgvListadoDetallesPedido.RowCount; i++)
+            //Eliminamos los totales para poder colocar los nuevos
+            if (dgvListadoDetallesPedido.RowCount>=1)
             {
-                if (dgvListadoDetallesPedido.Rows[i].Cells[5].Value!=null)
+                int indiceSumas = 0, indiceIva = 0, indiceTotal = 0;
+                for (int i = 0; i < dgvListadoDetallesPedido.Rows.Count; i++)
                 {
-                    if (dgvListadoDetallesPedido.Rows[i].Cells[5].Value.ToString()=="SUMAS")
+                    switch (dgvListadoDetallesPedido.Rows[i].Cells[5].Value.ToString())
                     {
-                        existeSumas = true;
+                        case "TOTAL":
+                            indiceTotal = i;
+                            break;
+                        case "IVA (13%)":
+                            indiceIva = i;
+                            break;
+                        case "SUMAS": indiceSumas = i;
+                            break;
                     }
                 }
+                dgvListadoDetallesPedido.Rows.RemoveAt(indiceTotal);
+                dgvListadoDetallesPedido.Rows.RemoveAt(indiceIva);
+                dgvListadoDetallesPedido.Rows.RemoveAt(indiceSumas);
             }
-            if (existeSumas == true)
-            {
-                indiceFilaAgregada = indiceFilaAgregada - 3;
-            }
-
+            //Agregamos un a fila al datagrid y obtenemos su indice
+            int indiceFilaAgregada = dgvListadoDetallesPedido.Rows.Add();
+            //Trasladamos los datos del detalle agregado la 'listadoDetallesPedido' a la fila agregada al datagrid
+            //Sus indices coinciden perfectamente
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[0].Value = listadoDetallesPedido[indiceFilaAgregada].Id;
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[1].Value = listadoDetallesPedido[indiceFilaAgregada].Cantidad;
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[2].Value = listadoDetallesPedido[indiceFilaAgregada].Producto;
@@ -135,6 +150,83 @@ namespace AlimentosDC.SIGEPAC.UI
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[6].Value = listadoDetallesPedido[indiceFilaAgregada].SubTotal;
             CalcularTotales();
         }
+        
+        void AgregarDetalles()
+        {
+            if (idDetallePedidoAEditar != null)
+            {
+                foreach (DetallePedido detalle in listadoDetallesPedido.Where(x => x.Id == idDetallePedidoAEditar))
+                {
+                    detalle.IdProducto = producto.Id;
+                    detalle.Producto = producto.Nombre;
+                    detalle.Descripcion = producto.Descripcion;
+                    detalle.Cantidad = ushort.Parse(txtCantidad.Text);
+                    detalle.PrecioUnitario = producto.Precio;
+                    detalle.SubTotal = float.Parse(lblSubTotal.Text);
+                    detalle.Estado = cmbEstadoDetallePedido.SelectedItem.ToString();
+                }
+                ActualizarDatagridView();
+                LimpiarDetalles();
+                btnAgregarDetalle.Text = "Agregar detalle";
+            }
+
+            else
+            {
+                DetallePedido detallePedidoAAgregar = new DetallePedido();
+                detallePedidoAAgregar.IdProducto = producto.Id;
+                detallePedidoAAgregar.Producto = producto.Nombre;
+                detallePedidoAAgregar.Descripcion = producto.Descripcion;
+                detallePedidoAAgregar.Cantidad = ushort.Parse(txtCantidad.Text);
+                detallePedidoAAgregar.PrecioUnitario = producto.Precio;
+                detallePedidoAAgregar.SubTotal = float.Parse(lblSubTotal.Text);
+                detallePedidoAAgregar.Estado = cmbEstadoDetallePedido.SelectedItem.ToString();
+                int idUltimoDetalle;
+                if (listadoDetallesPedido.Count >= 1)
+                {
+                    idUltimoDetalle = listadoDetallesPedido[listadoDetallesPedido.Count - 1].Id;
+                }
+                else idUltimoDetalle = 0;
+                detallePedidoAAgregar.Id = idUltimoDetalle + 1;
+                if (listadoDetallesPedido.Exists(x => x.IdProducto == detallePedidoAAgregar.IdProducto))
+                {
+                    MetroMessageBox.Show(this, "Ya agregó este producto a la lista.", "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning,
+                        MessageBoxDefaultButton.Button1);
+                    txtCantidad.Clear();
+                    txtCantidad.Focus();
+                }
+                else
+                {
+                    listadoDetallesPedido.Add(detallePedidoAAgregar);
+                    CargarListadoDetalles();
+                    LimpiarDetalles();
+                }
+            }
+        }
+
+        void CalcularTotales()
+        {
+            double sumas = 0.00f, iva = 0.00f, total = 0.00f;
+            if (listadoDetallesPedido.Count >= 1)
+            {
+                foreach (var item in listadoDetallesPedido)
+                {
+                    sumas += item.SubTotal;
+                }
+                iva = sumas * 0.13;
+                total = sumas + iva;
+            }
+            int indiceFilaSumasAgregada = dgvListadoDetallesPedido.Rows.Add();
+            int indiceFilaIvaAgregada = dgvListadoDetallesPedido.Rows.Add();
+            int indiceFilaTotalAgregada = dgvListadoDetallesPedido.Rows.Add();
+            dgvListadoDetallesPedido.Rows[indiceFilaSumasAgregada].Cells[5].Value = "SUMAS";
+            dgvListadoDetallesPedido.Rows[indiceFilaSumasAgregada].Cells[6].Value = sumas;
+            dgvListadoDetallesPedido.Rows[indiceFilaIvaAgregada].Cells[5].Value = "IVA (13%)";
+            dgvListadoDetallesPedido.Rows[indiceFilaIvaAgregada].Cells[6].Value = iva;
+            dgvListadoDetallesPedido.Rows[indiceFilaTotalAgregada].Cells[5].Value = "TOTAL";
+            dgvListadoDetallesPedido.Rows[indiceFilaTotalAgregada].Cells[6].Value = total;
+        }
+
+        //Mètodo para actualizar los datos del datagrid solo en el caso que el usuario modifique un detalle
         public void ActualizarDatagridView()
         {
             dgvListadoDetallesPedido.Rows.Clear();
@@ -143,7 +235,10 @@ namespace AlimentosDC.SIGEPAC.UI
                 CargarListadoDetalles();
             }
         }
-
+        private void btnAgregarDetalle_Click(object sender, EventArgs e)
+        {
+            AgregarDetalles();
+        }
         private void btnCerrar_Click(object sender, EventArgs e)
         {
             Close();
@@ -317,10 +412,12 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void dgvListadoDetallesPedido_SelectionChanged(object sender, EventArgs e)
         {
-            if (dgvListadoDetallesPedido.SelectedRows.Count > 0)
+            if (dgvListadoDetallesPedido.SelectedRows.Count > 0 && 
+                dgvListadoDetallesPedido.SelectedRows[0].Cells[0].Value != null)
             {
                 btnEditarDetallePedido.Enabled = true;
                 btnEliminarDetallePedido.Enabled = true;
+
             }
             else
             {
@@ -426,102 +523,6 @@ namespace AlimentosDC.SIGEPAC.UI
             
         }
 
-        private void btnAgregarDetalle_Click(object sender, EventArgs e)
-        {
-            AgregarDetalles();
-        }
-        void AgregarDetalles()
-        {
-            if (idDetallePedidoAEditar != null)
-            {
-                foreach (DetallePedido detalle in listadoDetallesPedido.Where(x => x.Id == idDetallePedidoAEditar))
-                {
-                    detalle.IdProducto = producto.Id;
-                    detalle.Producto = producto.Nombre;
-                    detalle.Descripcion = producto.Descripcion;
-                    detalle.Cantidad = ushort.Parse(txtCantidad.Text);
-                    detalle.PrecioUnitario = producto.Precio;
-                    detalle.SubTotal = float.Parse(lblSubTotal.Text);
-                    detalle.Estado = cmbEstadoDetallePedido.SelectedItem.ToString();
-                }
-                ActualizarDatagridView();
-                LimpiarDetalles();
-                btnAgregarDetalle.Text = "Agregar detalle";
-            }
-
-            else
-            {
-                DetallePedido detallePedidoAAgregar = new DetallePedido();
-                detallePedidoAAgregar.IdProducto = producto.Id;
-                detallePedidoAAgregar.Producto = producto.Nombre;
-                detallePedidoAAgregar.Descripcion = producto.Descripcion;
-                detallePedidoAAgregar.Cantidad = ushort.Parse(txtCantidad.Text);
-                detallePedidoAAgregar.PrecioUnitario = producto.Precio;
-                detallePedidoAAgregar.SubTotal = float.Parse(lblSubTotal.Text);
-                detallePedidoAAgregar.Estado = cmbEstadoDetallePedido.SelectedItem.ToString();
-                int idUltimoDetalle;
-                if (listadoDetallesPedido.Count >= 1)
-                {
-                    idUltimoDetalle = objetoPedidoActual.listadoDetallesPedido[listadoDetallesPedido.Count - 1].Id;
-                }
-                else idUltimoDetalle = 0;
-                detallePedidoAAgregar.Id = idUltimoDetalle + 1;
-                if (listadoDetallesPedido.Exists(x => x.IdProducto == detallePedidoAAgregar.IdProducto))
-                {
-                    MetroMessageBox.Show(this, "Ya agregó este producto a la lista.", "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning,
-                        MessageBoxDefaultButton.Button1);
-                    txtCantidad.Clear();
-                    txtCantidad.Focus();
-                }
-                else
-                {
-                    listadoDetallesPedido.Add(detallePedidoAAgregar);
-                    CargarListadoDetalles();
-                    LimpiarDetalles();
-                }
-            }
-        }
-
-        void CalcularTotales()
-        {
-            double sumas = 0.00f, iva = 0.00f, total = 0.00f;
-            if (listadoDetallesPedido.Count>=1)
-            {
-                foreach (var item in listadoDetallesPedido)
-                {
-                    sumas += item.SubTotal;
-                }
-                iva = sumas * 0.13;
-                total = sumas + iva;
-                
-                for (int i = 0; i < dgvListadoDetallesPedido.RowCount; i++)
-                {
-                    if (dgvListadoDetallesPedido.Rows[i].Cells[5].Value!=null)
-                    {
-                        if (dgvListadoDetallesPedido.Rows[i].Cells[5].Value.ToString() == "SUMAS" ||
-                            dgvListadoDetallesPedido.Rows[i].Cells[5].Value.ToString() == "IVA" ||
-                            dgvListadoDetallesPedido.Rows[i].Cells[5].Value.ToString() == "TOTAL")
-                        {
-                            dgvListadoDetallesPedido.Rows.RemoveAt(i);
-                        }
-                    }
-
-                    //ME QUEDE AQUI BUSCANDO EL ERROR QUE AL AGREGAR UN SEGUNDO DETALLE NO SE AGREGAN CORRECTAMENTE LOS TOTALES
-                }
-                
-            }
-
-            int indiceFilaSumasAgregada = dgvListadoDetallesPedido.Rows.Add();
-            int indiceFilaIvaAgregada = dgvListadoDetallesPedido.Rows.Add();
-            int indiceFilaTotalAgregada = dgvListadoDetallesPedido.Rows.Add();
-            dgvListadoDetallesPedido.Rows[indiceFilaSumasAgregada].Cells[5].Value = "SUMAS";
-            dgvListadoDetallesPedido.Rows[indiceFilaSumasAgregada].Cells[6].Value = sumas;
-            dgvListadoDetallesPedido.Rows[indiceFilaIvaAgregada].Cells[5].Value = "IVA";
-            dgvListadoDetallesPedido.Rows[indiceFilaIvaAgregada].Cells[6].Value = iva;
-            dgvListadoDetallesPedido.Rows[indiceFilaTotalAgregada].Cells[5].Value = "TOTAL";
-            dgvListadoDetallesPedido.Rows[indiceFilaTotalAgregada].Cells[6].Value = total;
-        }
-
         private void btnEditarDetallePedido_Click(object sender, EventArgs e)
         {
             idDetallePedidoAEditar = (int)dgvListadoDetallesPedido.SelectedRows[0].Cells[0].Value;
@@ -539,6 +540,7 @@ namespace AlimentosDC.SIGEPAC.UI
             txtCantidad.Text = detalleAEditar.Cantidad.ToString();
             lblSubTotal.Text = detalleAEditar.SubTotal.ToString();
             cmbEstadoDetallePedido.SelectedItem = detalleAEditar.Estado;
+            HabilitarBotonAgregarDetalle();
         }
         void LimpiarDetalles()
         {
@@ -551,6 +553,7 @@ namespace AlimentosDC.SIGEPAC.UI
             cmbEstadoDetallePedido.SelectedIndex = 0;
             producto = null;
             idDetallePedidoAEditar = null;
+            epValidadorControles.SetError(txtCantidad, "");
         }
 
         private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
@@ -655,6 +658,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 HabilitarBotonGuardarPedido();
             }
         }
+
     }
 
     //CONTINUAR CORRIENDO LOS ERRORES 

@@ -16,7 +16,7 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new FrmPedidos());
+            Application.Run(new FrmLogin());
         }
     }
 }
