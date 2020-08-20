@@ -697,6 +697,7 @@
                               <Value>=Sum(Fields!SubTotal.Value, "DataSet1")</Value>
                               <Style>
                                 <FontWeight>Heavy</FontWeight>
+                                <Format>'$' 0.00;('$' 0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -714,6 +715,7 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>es-SV</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -834,6 +836,7 @@
                               <Value>=Sum(Fields!SubTotal.Value, "DataSet1") * 0.13</Value>
                               <Style>
                                 <FontWeight>Heavy</FontWeight>
+                                <Format>'$' 0.00;('$' 0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -851,6 +854,7 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>es-SV</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>
@@ -974,6 +978,7 @@
                               <Value>=Sum(Fields!SubTotal.Value, "DataSet1") * 1.13</Value>
                               <Style>
                                 <FontWeight>Heavy</FontWeight>
+                                <Format>'$' 0.00;('$' 0.00)</Format>
                               </Style>
                             </TextRun>
                           </TextRuns>
@@ -991,6 +996,7 @@
                         <PaddingRight>2pt</PaddingRight>
                         <PaddingTop>2pt</PaddingTop>
                         <PaddingBottom>2pt</PaddingBottom>
+                        <rd:FormatSymbolCulture>es-SV</rd:FormatSymbolCulture>
                       </Style>
                     </Textbox>
                   </CellContents>

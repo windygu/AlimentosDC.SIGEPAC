@@ -35,6 +35,7 @@ namespace AlimentosDC.SIGEPAC.UI
             InitializeComponent();
             this.objetoPedidosActual = objetoPedidosActual;
             objetoPedidoActual = this;
+            dtpFechaCreacion.Focus();
         }
 
         //Constructor para editar un pedido
@@ -44,24 +45,32 @@ namespace AlimentosDC.SIGEPAC.UI
             objetoPedidoActual = this;
             this.objetoPedidosActual = objetoPedidosActual;
             this.idPedido = idPedido;
+            dtpFechaCreacion.Focus();
         }
 
         private void FrmPedido_Load(object sender, EventArgs e)
         {
             btnGuardarPedido.Enabled = false;
-            
-            if (idPedido == null)
+            try
             {
-                
-                lblNumeroPedido.Text = PedidoBL.GenerarNumeroPedido();
-                lblCCF.Text = PedidoBL.generarNumeroCCF();
-                cmbEstadoPedido.SelectedIndex = 0;
-                dtpFechaCreacion.Focus();
+                if (idPedido == null)
+                {
+
+                    lblNumeroPedido.Text = PedidoBL.GenerarNumeroPedido();
+                    lblCCF.Text = PedidoBL.generarNumeroCCF();
+                    cmbEstadoPedido.SelectedIndex = 0;
+
+                }
+                else
+                {
+                    CargarDatosAlFormulario();
+
+                }
             }
-            else
+            catch (Exception error)
             {
-                CargarDatosAlFormulario();
-                dtpFechaCreacion.Focus();
+                MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\nMÁS INFORMACIÓN: {error.Message}", "Error", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
         }
 
@@ -93,6 +102,7 @@ namespace AlimentosDC.SIGEPAC.UI
                     dgvListadoDetallesPedido.Rows[i].Cells[6].Value = listadoViejoDetallesPedido[i].SubTotal;
                     listadoDetallesPedido.Add(listadoViejoDetallesPedido[i]);
                 }
+                CalcularTotales();
             }
         }
 
@@ -100,6 +110,22 @@ namespace AlimentosDC.SIGEPAC.UI
         public void CargarListadoDetalles()
         {
             int indiceFilaAgregada = dgvListadoDetallesPedido.Rows.Add();
+            bool existeSumas = false;
+            for (int i = 0; i < dgvListadoDetallesPedido.RowCount; i++)
+            {
+                if (dgvListadoDetallesPedido.Rows[i].Cells[5].Value!=null)
+                {
+                    if (dgvListadoDetallesPedido.Rows[i].Cells[5].Value.ToString()=="SUMAS")
+                    {
+                        existeSumas = true;
+                    }
+                }
+            }
+            if (existeSumas == true)
+            {
+                indiceFilaAgregada = indiceFilaAgregada - 3;
+            }
+
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[0].Value = listadoDetallesPedido[indiceFilaAgregada].Id;
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[1].Value = listadoDetallesPedido[indiceFilaAgregada].Cantidad;
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[2].Value = listadoDetallesPedido[indiceFilaAgregada].Producto;
@@ -107,6 +133,7 @@ namespace AlimentosDC.SIGEPAC.UI
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[4].Value = listadoDetallesPedido[indiceFilaAgregada].Estado;
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[5].Value = listadoDetallesPedido[indiceFilaAgregada].PrecioUnitario;
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[6].Value = listadoDetallesPedido[indiceFilaAgregada].SubTotal;
+            CalcularTotales();
         }
         public void ActualizarDatagridView()
         {
@@ -149,8 +176,8 @@ namespace AlimentosDC.SIGEPAC.UI
 
         void GuardarPedido()
         {
-           // try
-            //{
+            try
+            {
                 if (dgvListadoDetallesPedido.Rows.Count < 1)
                 {
                     epValidadorControles.SetError(dgvListadoDetallesPedido, "Debe agregar al menos un detalle.");
@@ -243,13 +270,13 @@ namespace AlimentosDC.SIGEPAC.UI
                         }
                     }
                 }
-         /*   }
+           }
         
             catch (Exception error)
             {
                 MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\nMÁS INFORMACIÓN: {error.Message}", "Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-            } */
+            } 
             
         }
 
@@ -368,6 +395,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 lblCliente.Text = string.Concat(cliente.PrimerNombre, " ", cliente.SegundoNombre, " ",
                     cliente.PrimerApellido, " ", cliente.SegundoApellido);
                 lblDui.Text = cliente.DUI;
+                btnElegirProducto.Focus();
             }
             if (cliente==null) epValidadorControles.SetError(btnElegirCliente, "Debe elegir un cliente");
             else epValidadorControles.SetError(btnElegirCliente, "");
@@ -390,6 +418,7 @@ namespace AlimentosDC.SIGEPAC.UI
                     lblDescripcionProducto.Text = producto.Descripcion;
                     lblPrecioUnitario.Text = producto.Precio.ToString();
                     lblStockProducto.Text = producto.Stock.ToString();
+                    cmbEstadoDetallePedido.DroppedDown = true;
                 }
                 if (producto == null) epValidadorControles.SetError(btnElegirProducto, "Debe elegir un producto");
                 else epValidadorControles.SetError(btnElegirProducto, "");
@@ -433,7 +462,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 int idUltimoDetalle;
                 if (listadoDetallesPedido.Count >= 1)
                 {
-                    idUltimoDetalle = objetoPedidoActual.listadoDetallesPedido[objetoPedidoActual.listadoDetallesPedido.Count - 1].Id;
+                    idUltimoDetalle = objetoPedidoActual.listadoDetallesPedido[listadoDetallesPedido.Count - 1].Id;
                 }
                 else idUltimoDetalle = 0;
                 detallePedidoAAgregar.Id = idUltimoDetalle + 1;
@@ -451,6 +480,46 @@ namespace AlimentosDC.SIGEPAC.UI
                     LimpiarDetalles();
                 }
             }
+        }
+
+        void CalcularTotales()
+        {
+            double sumas = 0.00f, iva = 0.00f, total = 0.00f;
+            if (listadoDetallesPedido.Count>=1)
+            {
+                foreach (var item in listadoDetallesPedido)
+                {
+                    sumas += item.SubTotal;
+                }
+                iva = sumas * 0.13;
+                total = sumas + iva;
+                
+                for (int i = 0; i < dgvListadoDetallesPedido.RowCount; i++)
+                {
+                    if (dgvListadoDetallesPedido.Rows[i].Cells[5].Value!=null)
+                    {
+                        if (dgvListadoDetallesPedido.Rows[i].Cells[5].Value.ToString() == "SUMAS" ||
+                            dgvListadoDetallesPedido.Rows[i].Cells[5].Value.ToString() == "IVA" ||
+                            dgvListadoDetallesPedido.Rows[i].Cells[5].Value.ToString() == "TOTAL")
+                        {
+                            dgvListadoDetallesPedido.Rows.RemoveAt(i);
+                        }
+                    }
+
+                    //ME QUEDE AQUI BUSCANDO EL ERROR QUE AL AGREGAR UN SEGUNDO DETALLE NO SE AGREGAN CORRECTAMENTE LOS TOTALES
+                }
+                
+            }
+
+            int indiceFilaSumasAgregada = dgvListadoDetallesPedido.Rows.Add();
+            int indiceFilaIvaAgregada = dgvListadoDetallesPedido.Rows.Add();
+            int indiceFilaTotalAgregada = dgvListadoDetallesPedido.Rows.Add();
+            dgvListadoDetallesPedido.Rows[indiceFilaSumasAgregada].Cells[5].Value = "SUMAS";
+            dgvListadoDetallesPedido.Rows[indiceFilaSumasAgregada].Cells[6].Value = sumas;
+            dgvListadoDetallesPedido.Rows[indiceFilaIvaAgregada].Cells[5].Value = "IVA";
+            dgvListadoDetallesPedido.Rows[indiceFilaIvaAgregada].Cells[6].Value = iva;
+            dgvListadoDetallesPedido.Rows[indiceFilaTotalAgregada].Cells[5].Value = "TOTAL";
+            dgvListadoDetallesPedido.Rows[indiceFilaTotalAgregada].Cells[6].Value = total;
         }
 
         private void btnEditarDetallePedido_Click(object sender, EventArgs e)
@@ -473,11 +542,11 @@ namespace AlimentosDC.SIGEPAC.UI
         }
         void LimpiarDetalles()
         {
+            txtCantidad.Clear();
             lblNombreProducto.Text = "";
             lblDescripcionProducto.Text = "";
             lblPrecioUnitario.Text = "";
             lblStockProducto.Text = "";
-            txtCantidad.Clear();
             lblSubTotal.Text = "";
             cmbEstadoDetallePedido.SelectedIndex = 0;
             producto = null;
@@ -542,7 +611,48 @@ namespace AlimentosDC.SIGEPAC.UI
             if (cmbEstadoPedido.SelectedIndex>0)
             {
                 epValidadorControles.SetError(cmbEstadoPedido, "");
+                HabilitarBotonAgregarDetalle();
+                HabilitarBotonGuardarPedido();
                 txtDireccionEntregaPedido.Focus();
+            }
+            else
+            {
+                epValidadorControles.SetError(cmbEstadoPedido, "Debe seleccionar un estado");
+                HabilitarBotonAgregarDetalle();
+                HabilitarBotonGuardarPedido();
+            }
+        }
+
+        private void cmbEstadoPedido_DropDownClosed_1(object sender, EventArgs e)
+        {
+            if (cmbEstadoPedido.SelectedIndex==0)
+            {
+                epValidadorControles.SetError(cmbEstadoPedido, "Debe seleccionar un estado");
+            }
+        }
+
+        private void cmbEstadoDetallePedido_DropDownClosed(object sender, EventArgs e)
+        {
+            if (cmbEstadoDetallePedido.SelectedIndex == 0)
+            {
+                epValidadorControles.SetError(cmbEstadoDetallePedido, "Debe seleccionar un estado del detalle");
+            }
+        }
+
+        private void cmbEstadoDetallePedido_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            if (cmbEstadoDetallePedido.SelectedIndex > 0)
+            {
+                epValidadorControles.SetError(cmbEstadoDetallePedido, "");
+                HabilitarBotonAgregarDetalle();
+                HabilitarBotonGuardarPedido();
+                txtCantidad.Focus();
+            }
+            else
+            {
+                epValidadorControles.SetError(cmbEstadoDetallePedido, "Debe seleccionar un estado del detalle");
+                HabilitarBotonAgregarDetalle();
+                HabilitarBotonGuardarPedido();
             }
         }
     }

@@ -89,7 +89,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(437, 28);
+            this.label1.Location = new System.Drawing.Point(598, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 17);
             this.label1.TabIndex = 0;
@@ -98,7 +98,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(10, 28);
+            this.label2.Location = new System.Drawing.Point(171, 33);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(52, 17);
             this.label2.TabIndex = 1;
@@ -122,7 +122,7 @@
             // btnElegirCliente
             // 
             this.btnElegirCliente.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnElegirCliente.Location = new System.Drawing.Point(688, 23);
+            this.btnElegirCliente.Location = new System.Drawing.Point(13, 25);
             this.btnElegirCliente.Name = "btnElegirCliente";
             this.btnElegirCliente.Size = new System.Drawing.Size(130, 30);
             this.btnElegirCliente.TabIndex = 37;
@@ -133,7 +133,7 @@
             // lblCliente
             // 
             this.lblCliente.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblCliente.Location = new System.Drawing.Point(68, 28);
+            this.lblCliente.Location = new System.Drawing.Point(229, 33);
             this.lblCliente.Name = "lblCliente";
             this.lblCliente.Size = new System.Drawing.Size(311, 25);
             this.lblCliente.TabIndex = 7;
@@ -141,7 +141,7 @@
             // lblDui
             // 
             this.lblDui.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblDui.Location = new System.Drawing.Point(478, 27);
+            this.lblDui.Location = new System.Drawing.Point(639, 32);
             this.lblDui.Name = "lblDui";
             this.lblDui.Size = new System.Drawing.Size(181, 25);
             this.lblDui.TabIndex = 6;
@@ -190,6 +190,7 @@
             // 
             this.txtDireccionEntregaPedido.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtDireccionEntregaPedido.Location = new System.Drawing.Point(440, 128);
+            this.txtDireccionEntregaPedido.MaxLength = 200;
             this.txtDireccionEntregaPedido.Multiline = true;
             this.txtDireccionEntregaPedido.Name = "txtDireccionEntregaPedido";
             this.txtDireccionEntregaPedido.Size = new System.Drawing.Size(229, 50);
@@ -411,7 +412,7 @@
             // btnElegirProducto
             // 
             this.btnElegirProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnElegirProducto.Location = new System.Drawing.Point(688, 20);
+            this.btnElegirProducto.Location = new System.Drawing.Point(13, 28);
             this.btnElegirProducto.Name = "btnElegirProducto";
             this.btnElegirProducto.Size = new System.Drawing.Size(130, 30);
             this.btnElegirProducto.TabIndex = 38;
@@ -452,15 +453,17 @@
             "Revisado",
             "Enviado",
             "Finalizado"});
-            this.cmbEstadoDetallePedido.Location = new System.Drawing.Point(419, 22);
+            this.cmbEstadoDetallePedido.Location = new System.Drawing.Point(639, 32);
             this.cmbEstadoDetallePedido.Name = "cmbEstadoDetallePedido";
-            this.cmbEstadoDetallePedido.Size = new System.Drawing.Size(231, 25);
+            this.cmbEstadoDetallePedido.Size = new System.Drawing.Size(181, 25);
             this.cmbEstadoDetallePedido.TabIndex = 42;
+            this.cmbEstadoDetallePedido.SelectionChangeCommitted += new System.EventHandler(this.cmbEstadoDetallePedido_SelectionChangeCommitted);
+            this.cmbEstadoDetallePedido.DropDownClosed += new System.EventHandler(this.cmbEstadoDetallePedido_DropDownClosed);
             // 
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(357, 26);
+            this.label20.Location = new System.Drawing.Point(577, 36);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(56, 17);
             this.label20.TabIndex = 41;
@@ -504,9 +507,9 @@
             // 
             this.lblNombreProducto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblNombreProducto.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreProducto.Location = new System.Drawing.Point(78, 24);
+            this.lblNombreProducto.Location = new System.Drawing.Point(239, 32);
             this.lblNombreProducto.Name = "lblNombreProducto";
-            this.lblNombreProducto.Size = new System.Drawing.Size(255, 25);
+            this.lblNombreProducto.Size = new System.Drawing.Size(301, 25);
             this.lblNombreProducto.TabIndex = 36;
             // 
             // lblDescripcionProducto
@@ -529,7 +532,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(10, 28);
+            this.label12.Location = new System.Drawing.Point(171, 36);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(69, 17);
             this.label12.TabIndex = 1;
@@ -584,6 +587,7 @@
             this.cmbEstadoPedido.Size = new System.Drawing.Size(204, 25);
             this.cmbEstadoPedido.TabIndex = 45;
             this.cmbEstadoPedido.SelectionChangeCommitted += new System.EventHandler(this.cmbEstadoPedido_SelectionChangeCommitted_1);
+            this.cmbEstadoPedido.DropDownClosed += new System.EventHandler(this.cmbEstadoPedido_DropDownClosed_1);
             // 
             // FrmPedido
             // 
