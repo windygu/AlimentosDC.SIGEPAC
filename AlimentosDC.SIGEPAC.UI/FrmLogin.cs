@@ -12,6 +12,7 @@ using MetroFramework.Forms;
 using MetroFramework.Controls;
 using AlimentosDC.SIGEPAC.BL;
 using AlimentosDC.SIGEPAC.EN;
+using System.Data.SqlClient;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
@@ -24,20 +25,32 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
-            Usuario usuario = UsuarioBL.ObtenerUsuario(txtUsuario.Text, txtClave.Text);
-            if (usuario.Usuario1 == txtUsuario.Text && usuario.Clave == txtClave.Text)
+            try
             {
-                MetroMessageBox.Show(this, "¡Bienvenido!", "Sesión iniciada", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                FrmPrincipal menuPrincipal = new FrmPrincipal(usuario);
-                this.Hide();
-                menuPrincipal.Show();
+                Usuario usuario = UsuarioBL.ObtenerUsuario(txtUsuario.Text, txtClave.Text);
+                if (usuario.NombreUsuario == txtUsuario.Text && usuario.Clave == txtClave.Text)
+                {
+                    MetroMessageBox.Show(this, "¡Bienvenido!", "Sesión iniciada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    FrmPrincipal menuPrincipal = new FrmPrincipal(usuario);
+                    this.Hide();
+                    menuPrincipal.Show();
+                }
+                else
+                {
+                    MetroMessageBox.Show(this, "Clave o usuario incorrectos.", "Datos incorrectos", MessageBoxButtons.OK,
+                    MessageBoxIcon.Warning);
+                }
             }
-            else
+            catch (SqlException error)
             {
-                MetroMessageBox.Show(this, "Clave o usuario incorrectos.", "Datos incorrectos", MessageBoxButtons.OK,
-                MessageBoxIcon.Warning);
+                MetroMessageBox.Show(this, 
+               $"La conexión con la base de datos ha fallado.\nMÁS INFORMACIÓN: {error.Message}", "Error de conexión", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
+            catch(Exception error)
+            {
+                MetroMessageBox.Show(this,
+               $"¡Ha ocurrido un error!.\nMÁS INFORMACIÓN: {error.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnSalir_Click(object sender, EventArgs e)

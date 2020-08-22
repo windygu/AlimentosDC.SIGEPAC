@@ -33,7 +33,7 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void FrmPrincipal_Load(object sender, EventArgs e)
         {
-            lblUsuario.Text = usuarioActual.Usuario1;
+            lblUsuario.Text = string.Concat(usuarioActual.Nombres, " ", usuarioActual.Apellidos);
             if (usuarioActual.Imagen != null)
             {
                 MemoryStream secuenciaBytes = new MemoryStream(usuarioActual.Imagen);
@@ -44,9 +44,9 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void btnPedidos_Click(object sender, EventArgs e)
         {
-            FrmPedidos fm = new FrmPedidos();
-            fm.Owner = this;
-            fm.ShowDialog();
+            FrmPedido nuevoPedido = new FrmPedido(usuarioActual);
+            nuevoPedido.Owner = this;
+            nuevoPedido.ShowDialog();
         }
 
         private void btnProductos_Click(object sender, EventArgs e)
@@ -111,5 +111,13 @@ namespace AlimentosDC.SIGEPAC.UI
             informe.Owner = this;
             informe.ShowDialog();
         }
+
+        private void btnHistorial_Click(object sender, EventArgs e)
+        {
+            FrmPedidos historialPedidos = new FrmPedidos();
+            historialPedidos.Owner = this;
+            historialPedidos.ShowDialog();
+        }
     }
 }
+// CONTINUAR EN CREAR LA VENTANA DE PERFIL DE USUARIO Y MEJORAR LA VENTANA DE VERDETALLEPEDIDO

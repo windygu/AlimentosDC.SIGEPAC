@@ -94,7 +94,7 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             if ((int)cmbMarcas.SelectedValue > 0 && !string.IsNullOrWhiteSpace(txtNombreProducto.Text) &&
                 !string.IsNullOrWhiteSpace(txtDescripcionProducto.Text) && ((!string.IsNullOrWhiteSpace(txtPrecioProducto.Text)) 
-                && ValidarPrecio(txtPrecioProducto.Text) == 0) && !string.IsNullOrWhiteSpace(txtStock.Text))
+                && Validaciones.ValidarPrecio(txtPrecioProducto.Text) == 0) && !string.IsNullOrWhiteSpace(txtStock.Text))
             {
                 btnGuardarProducto.Enabled = true;
             }
@@ -177,7 +177,7 @@ namespace AlimentosDC.SIGEPAC.UI
             }
             else
             {
-                switch (ValidarPrecio(txtPrecioProducto.Text))
+                switch (Validaciones.ValidarPrecio(txtPrecioProducto.Text))
                 {
                     case 1: epValidarControles.SetError(txtPrecioProducto, "Se permite hasta dos decimales.");
                         break;
@@ -191,33 +191,6 @@ namespace AlimentosDC.SIGEPAC.UI
                 HabilitarBotonGuardar();
             }
         }
-
-        byte ValidarPrecio(string textoDelPrecio)
-        {
-            string patronTresDecimales = @"\d+[.]\d{3}";
-            Regex objetoValidador = new Regex(patronTresDecimales);
-            byte valorDeRetorno;
-            float c;
-            if (float.TryParse(textoDelPrecio.Trim(), out c) && (objetoValidador.IsMatch(textoDelPrecio.Trim())))
-            {
-                valorDeRetorno = 1;
-            }
-            else if (float.TryParse(textoDelPrecio.Trim(), out c)==false)
-            {
-                valorDeRetorno = 2;
-            }
-            else
-            {
-                if (txtPrecioProducto.Text.Trim().Substring(txtPrecioProducto.Text.Trim().Length-1,1)==".")
-                {
-                    valorDeRetorno = 2;
-                }
-                else valorDeRetorno = 0;
-
-            }
-            return valorDeRetorno;
-        }
-
         private void txtDescripcionProducto_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(txtDescripcionProducto.Text))

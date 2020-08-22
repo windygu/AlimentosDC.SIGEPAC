@@ -179,6 +179,7 @@
     <Compile Include="TextBoxWaterMark.Designer.cs">
       <DependentUpon>TextBoxWaterMark.cs</DependentUpon>
     </Compile>
+    <Compile Include="Validaciones.cs" />
     <EmbeddedResource Include="FrmCCF.resx">
       <DependentUpon>FrmCCF.cs</DependentUpon>
     </EmbeddedResource>

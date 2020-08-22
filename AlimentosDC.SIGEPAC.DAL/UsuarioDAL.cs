@@ -12,27 +12,30 @@ namespace AlimentosDC.SIGEPAC.DAL
     {
         public static int Guardar(Usuario pUsuario)
         {
-            string consulta = @"INSERT INTO Usuario (Usuario, Clave, StatusAdmin, Imagen) 
-            values (@Usuario, @Clave, @StatusAdmin, @Imagen)";
+            string consulta = @"INSERT INTO Usuario (Nombres, Apellidos, NombreUsuario, Clave, StatusAdministrador, Imagen) 
+            values (@Nombres, @Apellidos, @NombreUsuario, @Clave, @StatusAdministrador, @Imagen)";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
-            comando.Parameters.AddWithValue("@Usuario", pUsuario.Usuario1);
+            comando.Parameters.AddWithValue("@Nombres", pUsuario.Nombres);
+            comando.Parameters.AddWithValue("@Apellidos", pUsuario.Apellidos);
+            comando.Parameters.AddWithValue("@NombreUsuario", pUsuario.NombreUsuario);
             comando.Parameters.AddWithValue("@Clave", pUsuario.Clave);
-            comando.Parameters.AddWithValue("@StatusAdmin", pUsuario.StatusAdmin);
+            comando.Parameters.AddWithValue("@StatusAdministrador", pUsuario.StatusAdmin);
             comando.Parameters.AddWithValue("@Imagen", pUsuario.Imagen);
             return ComunDB.EjecutarComando(comando);
         }
 
         public static int Modificar(Usuario pUsuario)
         {
-            string consulta = @"UPDATE Usuario SET Usuario = @Usuario, Clave = @Clave, StatusAdmin = @StatusAdmin, Imagen = @Imagen
-            WHERE Id = @Id";
+            string consulta = string.Concat("UPDATE Usuario SET Nombres = @Nombres, Apellidos = @Apellidos, NombreUsuario = @NombreUsuario, ",
+            "Clave = @Clave, StatusAdministrador = @StatusAdministrador, Imagen = @Imagen WHERE Id = @Id");
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
-            comando.Parameters.AddWithValue("@Id", pUsuario.Id);
-            comando.Parameters.AddWithValue("@Usuario", pUsuario.Usuario1);
+            comando.Parameters.AddWithValue("@Nombres", pUsuario.Nombres);
+            comando.Parameters.AddWithValue("@Apellidos", pUsuario.Apellidos);
+            comando.Parameters.AddWithValue("@NombreUsuario", pUsuario.NombreUsuario);
             comando.Parameters.AddWithValue("@Clave", pUsuario.Clave);
-            comando.Parameters.AddWithValue("@StatusAdmin", pUsuario.StatusAdmin);
+            comando.Parameters.AddWithValue("@StatusAdministrador", pUsuario.StatusAdmin);
             comando.Parameters.AddWithValue("@Imagen", pUsuario.Imagen);
             return ComunDB.EjecutarComando(comando);
         }
@@ -47,20 +50,22 @@ namespace AlimentosDC.SIGEPAC.DAL
         }
         public static Usuario ObtenerUsuario(string pUsuario, string pClave)
         {
-            string consulta = @"SELECT * FROM Usuario WHERE Usuario = @pUsuario AND Clave = @pClave";
+            string consulta = @"SELECT * FROM Usuario WHERE NombreUsuario = @NombreUsuario AND Clave = @Clave";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
-            comando.Parameters.AddWithValue("@pUsuario", pUsuario);
-            comando.Parameters.AddWithValue("@pClave", pClave);
+            comando.Parameters.AddWithValue("@NombreUsuario", pUsuario);
+            comando.Parameters.AddWithValue("@Clave", pClave);
             SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
             Usuario usuario = new Usuario();
             while (reader.Read())
             {
                 usuario.Id = reader.GetByte(0);
-                usuario.Usuario1 = reader.GetString(1);
-                usuario.Clave = reader.GetString(2);
-                usuario.StatusAdmin = reader.GetBoolean(3);
-                usuario.Imagen = (reader[4]!=DBNull.Value)?((byte[])reader[4]):null;
+                usuario.Nombres = reader.GetString(1);
+                usuario.Apellidos = reader.GetString(2);
+                usuario.NombreUsuario = reader.GetString(3);
+                usuario.Clave = reader.GetString(4);
+                usuario.StatusAdmin = reader.GetBoolean(5);
+                usuario.Imagen = (reader[6]!=DBNull.Value)?((byte[])reader[6]):null;
             }
             return usuario;
         }

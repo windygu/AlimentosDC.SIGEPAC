@@ -133,27 +133,17 @@ namespace AlimentosDC.SIGEPAC.UI
         void HabilitarBoton()
         {
             if (!string.IsNullOrWhiteSpace(txtPrimerNombre.Text) && !string.IsNullOrWhiteSpace(txtPrimerApellido.Text) 
-                && !string.IsNullOrWhiteSpace(txtSegundoApellido.Text) && (!string.IsNullOrWhiteSpace(txtDui.Text) && ValidarDui(txtDui.Text) == 1) 
+                && !string.IsNullOrWhiteSpace(txtSegundoApellido.Text) && (!string.IsNullOrWhiteSpace(txtDui.Text) && Validaciones.ValidarDui(txtDui.Text) == 1) 
                 && !string.IsNullOrWhiteSpace(txtTelefono.Text) && !string.IsNullOrWhiteSpace(txtDireccion.Text) 
-                && (!string.IsNullOrWhiteSpace(txtCorreo.Text) && ValidarCorreo(txtCorreo.Text) == 1))
+                && (!string.IsNullOrWhiteSpace(txtCorreo.Text) && Validaciones.ValidarCorreo(txtCorreo.Text) == 1))
             {
                 btnGuardarCliente.Enabled = true;
             }
             else btnGuardarCliente.Enabled = false;
         }
 
-        int ValidarDui(string pTextoDui)
-        {
-            string patronDuiValido = @"\d{8}[-]\d";
-            Regex objetoValidador = new Regex(patronDuiValido);
-            return objetoValidador.IsMatch(pTextoDui) ? 1 : 0;
-        }
-        int ValidarCorreo(string pTextoCorreo)
-        {
-            string patronCorreoValido = @"^\w+([.]\w+)*[@]\w+([.]\w+)*[.]\w+$";
-            Regex objetoValidador = new Regex(patronCorreoValido);
-            return objetoValidador.IsMatch(pTextoCorreo) ? 1 : 0;
-        }
+        
+        
 
         private void txtPrimerApellido_TextChanged(object sender, EventArgs e)
         {
@@ -190,7 +180,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 epValidarControles.SetError(txtDui, "Este campo es obligatorio.");
                 HabilitarBoton();
             }
-            else if(ValidarDui(txtDui.Text)==0)
+            else if(Validaciones.ValidarDui(txtDui.Text)==0)
             {
                 epValidarControles.SetError(txtDui, "DUI no válido.");
                 HabilitarBoton();
@@ -238,7 +228,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 epValidarControles.SetError(txtCorreo, "Este campo es obligatorio.");
                 HabilitarBoton();
             }
-            else if (ValidarCorreo(txtCorreo.Text) == 0)
+            else if (Validaciones.ValidarCorreo(txtCorreo.Text) == 0)
             {
                 epValidarControles.SetError(txtCorreo, "Correo no válido.");
                 HabilitarBoton();

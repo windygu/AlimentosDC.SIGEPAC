@@ -51,6 +51,13 @@
             this.btnGuardarPedido = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.dgvListadoDetallesPedido = new System.Windows.Forms.DataGridView();
+            this.dgvId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvPrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvSubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lblNumeroPedido = new System.Windows.Forms.Label();
             this.epValidadorControles = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -74,13 +81,10 @@
             this.lblCCF = new System.Windows.Forms.Label();
             this.label13 = new System.Windows.Forms.Label();
             this.cmbEstadoPedido = new System.Windows.Forms.ComboBox();
-            this.dgvId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvCantidad = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvProducto = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvPrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvSubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.txtPagaCon = new System.Windows.Forms.TextBox();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.lblCambio = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDetallesPedido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epValidadorControles)).BeginInit();
@@ -231,7 +235,7 @@
             // 
             this.btnEditarDetallePedido.Enabled = false;
             this.btnEditarDetallePedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarDetallePedido.Location = new System.Drawing.Point(334, 697);
+            this.btnEditarDetallePedido.Location = new System.Drawing.Point(23, 693);
             this.btnEditarDetallePedido.Name = "btnEditarDetallePedido";
             this.btnEditarDetallePedido.Size = new System.Drawing.Size(120, 30);
             this.btnEditarDetallePedido.TabIndex = 19;
@@ -243,7 +247,7 @@
             // 
             this.btnEliminarDetallePedido.Enabled = false;
             this.btnEliminarDetallePedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarDetallePedido.Location = new System.Drawing.Point(482, 697);
+            this.btnEliminarDetallePedido.Location = new System.Drawing.Point(169, 693);
             this.btnEliminarDetallePedido.Name = "btnEliminarDetallePedido";
             this.btnEliminarDetallePedido.Size = new System.Drawing.Size(125, 30);
             this.btnEliminarDetallePedido.TabIndex = 20;
@@ -254,7 +258,7 @@
             // btnGuardarPedido
             // 
             this.btnGuardarPedido.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarPedido.Location = new System.Drawing.Point(629, 697);
+            this.btnGuardarPedido.Location = new System.Drawing.Point(629, 747);
             this.btnGuardarPedido.Name = "btnGuardarPedido";
             this.btnGuardarPedido.Size = new System.Drawing.Size(128, 30);
             this.btnGuardarPedido.TabIndex = 25;
@@ -265,7 +269,7 @@
             // btnCerrar
             // 
             this.btnCerrar.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrar.Location = new System.Drawing.Point(777, 697);
+            this.btnCerrar.Location = new System.Drawing.Point(777, 747);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(100, 30);
             this.btnCerrar.TabIndex = 24;
@@ -297,6 +301,62 @@
             this.dgvListadoDetallesPedido.TabIndex = 29;
             this.dgvListadoDetallesPedido.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvListadoDetallesPedido_RowsAdded);
             this.dgvListadoDetallesPedido.SelectionChanged += new System.EventHandler(this.dgvListadoDetallesPedido_SelectionChanged);
+            // 
+            // dgvId
+            // 
+            this.dgvId.HeaderText = "ID";
+            this.dgvId.Name = "dgvId";
+            this.dgvId.ReadOnly = true;
+            this.dgvId.Width = 50;
+            // 
+            // dgvCantidad
+            // 
+            this.dgvCantidad.HeaderText = "CANTIDAD";
+            this.dgvCantidad.Name = "dgvCantidad";
+            this.dgvCantidad.ReadOnly = true;
+            this.dgvCantidad.Width = 70;
+            // 
+            // dgvProducto
+            // 
+            this.dgvProducto.HeaderText = "PRODUCTO";
+            this.dgvProducto.Name = "dgvProducto";
+            this.dgvProducto.ReadOnly = true;
+            this.dgvProducto.Width = 140;
+            // 
+            // dgvDescripcion
+            // 
+            this.dgvDescripcion.HeaderText = "DESCRIPCIÓN";
+            this.dgvDescripcion.Name = "dgvDescripcion";
+            this.dgvDescripcion.ReadOnly = true;
+            this.dgvDescripcion.Width = 195;
+            // 
+            // dgvEstado
+            // 
+            this.dgvEstado.HeaderText = "ESTADO";
+            this.dgvEstado.Name = "dgvEstado";
+            this.dgvEstado.ReadOnly = true;
+            this.dgvEstado.Width = 120;
+            // 
+            // dgvPrecioUnitario
+            // 
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle1.Format = "C2";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dgvPrecioUnitario.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvPrecioUnitario.HeaderText = "P. UNITARIO";
+            this.dgvPrecioUnitario.Name = "dgvPrecioUnitario";
+            this.dgvPrecioUnitario.ReadOnly = true;
+            // 
+            // dgvSubTotal
+            // 
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "C2";
+            dataGridViewCellStyle2.NullValue = null;
+            this.dgvSubTotal.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvSubTotal.HeaderText = "SUB-TOTALES";
+            this.dgvSubTotal.Name = "dgvSubTotal";
+            this.dgvSubTotal.ReadOnly = true;
+            this.dgvSubTotal.Width = 110;
             // 
             // lblNumeroPedido
             // 
@@ -522,7 +582,7 @@
             // 
             this.label13.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.label13.Font = new System.Drawing.Font("Lucida Sans Typewriter", 15F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(0, 0);
+            this.label13.Location = new System.Drawing.Point(-1, -1);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(174, 25);
             this.label13.TabIndex = 45;
@@ -548,67 +608,55 @@
             this.cmbEstadoPedido.SelectionChangeCommitted += new System.EventHandler(this.cmbEstadoPedido_SelectionChangeCommitted_1);
             this.cmbEstadoPedido.DropDownClosed += new System.EventHandler(this.cmbEstadoPedido_DropDownClosed_1);
             // 
-            // dgvId
+            // txtPagaCon
             // 
-            this.dgvId.HeaderText = "ID";
-            this.dgvId.Name = "dgvId";
-            this.dgvId.ReadOnly = true;
-            this.dgvId.Width = 50;
+            this.txtPagaCon.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPagaCon.Location = new System.Drawing.Point(393, 694);
+            this.txtPagaCon.MaxLength = 200;
+            this.txtPagaCon.Multiline = true;
+            this.txtPagaCon.Name = "txtPagaCon";
+            this.txtPagaCon.Size = new System.Drawing.Size(157, 25);
+            this.txtPagaCon.TabIndex = 47;
+            this.txtPagaCon.TextChanged += new System.EventHandler(this.txtPagaCon_TextChanged);
             // 
-            // dgvCantidad
+            // label8
             // 
-            this.dgvCantidad.HeaderText = "CANTIDAD";
-            this.dgvCantidad.Name = "dgvCantidad";
-            this.dgvCantidad.ReadOnly = true;
-            this.dgvCantidad.Width = 70;
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(319, 698);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(68, 19);
+            this.label8.TabIndex = 46;
+            this.label8.Text = "Paga con:";
             // 
-            // dgvProducto
+            // label11
             // 
-            this.dgvProducto.HeaderText = "PRODUCTO";
-            this.dgvProducto.Name = "dgvProducto";
-            this.dgvProducto.ReadOnly = true;
-            this.dgvProducto.Width = 140;
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(586, 697);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(59, 19);
+            this.label11.TabIndex = 48;
+            this.label11.Text = "Cambio:";
             // 
-            // dgvDescripcion
+            // lblCambio
             // 
-            this.dgvDescripcion.HeaderText = "DESCRIPCIÓN";
-            this.dgvDescripcion.Name = "dgvDescripcion";
-            this.dgvDescripcion.ReadOnly = true;
-            this.dgvDescripcion.Width = 195;
-            // 
-            // dgvEstado
-            // 
-            this.dgvEstado.HeaderText = "ESTADO";
-            this.dgvEstado.Name = "dgvEstado";
-            this.dgvEstado.ReadOnly = true;
-            this.dgvEstado.Width = 120;
-            // 
-            // dgvPrecioUnitario
-            // 
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle1.Format = "C2";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dgvPrecioUnitario.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvPrecioUnitario.HeaderText = "P. UNITARIO";
-            this.dgvPrecioUnitario.Name = "dgvPrecioUnitario";
-            this.dgvPrecioUnitario.ReadOnly = true;
-            // 
-            // dgvSubTotal
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "C2";
-            dataGridViewCellStyle2.NullValue = null;
-            this.dgvSubTotal.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvSubTotal.HeaderText = "SUB-TOTALES";
-            this.dgvSubTotal.Name = "dgvSubTotal";
-            this.dgvSubTotal.ReadOnly = true;
-            this.dgvSubTotal.Width = 110;
+            this.lblCambio.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblCambio.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCambio.Location = new System.Drawing.Point(657, 694);
+            this.lblCambio.Name = "lblCambio";
+            this.lblCambio.Size = new System.Drawing.Size(192, 25);
+            this.lblCambio.TabIndex = 48;
             // 
             // FrmPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(900, 750);
+            this.ClientSize = new System.Drawing.Size(900, 795);
+            this.Controls.Add(this.lblCambio);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.txtPagaCon);
+            this.Controls.Add(this.label8);
             this.Controls.Add(this.cmbEstadoPedido);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.groupBox2);
@@ -697,5 +745,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvEstado;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvPrecioUnitario;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvSubTotal;
+        private System.Windows.Forms.Label lblCambio;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.TextBox txtPagaCon;
+        private System.Windows.Forms.Label label8;
     }
 }

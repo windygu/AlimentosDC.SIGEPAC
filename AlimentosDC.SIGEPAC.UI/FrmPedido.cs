@@ -20,7 +20,6 @@ namespace AlimentosDC.SIGEPAC.UI
     public partial class FrmPedido : MetroForm
     {
         FrmPedido objetoPedidoActual;
-        FrmPedidos objetoPedidosActual;
         Pedido pedidoEditando;
         int? idDetallePedidoAEditar = null;
         Producto producto;
@@ -29,27 +28,27 @@ namespace AlimentosDC.SIGEPAC.UI
         public List<DetallePedido> listadoViejoDetallesPedido = new List<DetallePedido>();
         public List<int> detallesViejosAEliminarDeLaBD = new List<int>();
         Cliente cliente = null;
-        
-        public FrmPedido(ref FrmPedidos objetoPedidosActual)
+        Usuario usuarioActual;
+        double totalAPagar = 0;
+        public FrmPedido(Usuario usuarioActual)
         {
             InitializeComponent();
             btnGuardarPedido.Enabled = false;
             btnEliminarDetallePedido.Enabled = false;
             btnEditarDetallePedido.Enabled = false;
-            this.objetoPedidosActual = objetoPedidosActual;
             objetoPedidoActual = this;
+            this.usuarioActual = usuarioActual;
 
         }
 
         //Constructor para editar un pedido
-        public FrmPedido(ref FrmPedidos objetoPedidosActual, int idPedido)
+        public FrmPedido(int idPedido)
         {
             InitializeComponent();
             btnGuardarPedido.Enabled = false;
             btnEliminarDetallePedido.Enabled = false;
             btnEditarDetallePedido.Enabled = false;
             objetoPedidoActual = this;
-            this.objetoPedidosActual = objetoPedidosActual;
             this.idPedido = idPedido;
             
         }
@@ -60,10 +59,10 @@ namespace AlimentosDC.SIGEPAC.UI
             {
                 if (idPedido == null)
                 {
-
                     lblNumeroPedido.Text = PedidoBL.GenerarNumeroPedido();
                     lblCCF.Text = PedidoBL.generarNumeroCCF();
                     cmbEstadoPedido.SelectedIndex = 0;
+                    cmbEstadoDetallePedido.SelectedIndex = 0;
                     dtpFechaCreacion.Focus();
                 }
                 else
@@ -162,7 +161,7 @@ namespace AlimentosDC.SIGEPAC.UI
                     detalle.Descripcion = producto.Descripcion;
                     detalle.Cantidad = ushort.Parse(txtCantidad.Text);
                     detalle.PrecioUnitario = producto.Precio;
-                    detalle.SubTotal = float.Parse(lblSubTotal.Text);
+                    detalle.SubTotal = ushort.Parse(txtCantidad.Text) * producto.Precio;
                     detalle.Estado = cmbEstadoDetallePedido.SelectedItem.ToString();
                 }
                 ActualizarDatagridView();
@@ -178,7 +177,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 detallePedidoAAgregar.Descripcion = producto.Descripcion;
                 detallePedidoAAgregar.Cantidad = ushort.Parse(txtCantidad.Text);
                 detallePedidoAAgregar.PrecioUnitario = producto.Precio;
-                detallePedidoAAgregar.SubTotal = float.Parse(lblSubTotal.Text);
+                detallePedidoAAgregar.SubTotal = ushort.Parse(txtCantidad.Text) * producto.Precio;
                 detallePedidoAAgregar.Estado = cmbEstadoDetallePedido.SelectedItem.ToString();
                 int idUltimoDetalle;
                 if (listadoDetallesPedido.Count >= 1)
@@ -214,6 +213,8 @@ namespace AlimentosDC.SIGEPAC.UI
                 }
                 iva = sumas * 0.13;
                 total = sumas + iva;
+                totalAPagar = 0;
+                totalAPagar = total;
             }
             int indiceFilaSumasAgregada = dgvListadoDetallesPedido.Rows.Add();
             int indiceFilaIvaAgregada = dgvListadoDetallesPedido.Rows.Add();
@@ -224,6 +225,7 @@ namespace AlimentosDC.SIGEPAC.UI
             dgvListadoDetallesPedido.Rows[indiceFilaIvaAgregada].Cells[6].Value = iva;
             dgvListadoDetallesPedido.Rows[indiceFilaTotalAgregada].Cells[5].Value = "TOTAL";
             dgvListadoDetallesPedido.Rows[indiceFilaTotalAgregada].Cells[6].Value = total;
+            txtPagaCon.Clear();
         }
 
         //Mètodo para actualizar los datos del datagrid solo en el caso que el usuario modifique un detalle
@@ -234,6 +236,7 @@ namespace AlimentosDC.SIGEPAC.UI
             {
                 CargarListadoDetalles();
             }
+            txtPagaCon.Clear();
         }
         private void btnAgregarDetalle_Click(object sender, EventArgs e)
         {
@@ -246,7 +249,6 @@ namespace AlimentosDC.SIGEPAC.UI
 
         void Limpiar()
         {
-            
             lblNumeroPedido.Text = PedidoBL.GenerarNumeroPedido();
             lblCCF.Text = PedidoBL.generarNumeroCCF();
             dtpFechaCreacion.Value = DateTime.Now;
@@ -262,6 +264,8 @@ namespace AlimentosDC.SIGEPAC.UI
             listadoViejoDetallesPedido.Clear();
             epValidadorControles.Clear();
             dtpFechaCreacion.Focus();
+            txtPagaCon.Clear();
+            totalAPagar = 0;
         }
 
         private void btnGuardarPedido_Click(object sender, EventArgs e)
@@ -283,9 +287,9 @@ namespace AlimentosDC.SIGEPAC.UI
                     {
                         int resultadoPedido = 0;
                         int resultadoDetallePedido = 0;
-
                         Pedido pedidoARegistrar = new Pedido();
                         pedidoARegistrar.IdCliente = cliente.Id;
+                        pedidoARegistrar.IdUsuario = usuarioActual.Id;
                         pedidoARegistrar.NumeroPedido = int.Parse(lblNumeroPedido.Text);
                         pedidoARegistrar.FechaCreacion = dtpFechaCreacion.Value;
                         pedidoARegistrar.FechaEntrega = dtpFechaEntrega.Value;
@@ -295,7 +299,6 @@ namespace AlimentosDC.SIGEPAC.UI
                         resultadoPedido += PedidoBL.Guardar(pedidoARegistrar);
                         for (int i = 0; i < listadoDetallesPedido.Count; i++)
                         {
-
                             DetallePedido detallePedidoARegistrar = new DetallePedido();
                             detallePedidoARegistrar.IdPedido = (PedidoBL.BuscarPorNumeroPedido(int.Parse(lblNumeroPedido.Text))).Id;
                             detallePedidoARegistrar.IdProducto = listadoDetallesPedido[i].IdProducto;
@@ -305,14 +308,12 @@ namespace AlimentosDC.SIGEPAC.UI
                             detallePedidoARegistrar.Estado = listadoDetallesPedido[i].Estado;
                             resultadoDetallePedido += DetallePedidoBL.Guardar(detallePedidoARegistrar);
                         }
-                        objetoPedidosActual.CargarPedidos();
                         MetroMessageBox.Show(this, $"{resultadoPedido} pedido registrado.\n{resultadoDetallePedido} detalle(s) del pedido registrado(s).",
                             "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
                         FrmCCF comprobanteCreditoFiscal = new FrmCCF(int.Parse(lblNumeroPedido.Text));
                         comprobanteCreditoFiscal.Owner = this;
                         comprobanteCreditoFiscal.ShowDialog();
                         Limpiar();
-
                 }
                     else
                     {
@@ -354,7 +355,6 @@ namespace AlimentosDC.SIGEPAC.UI
                                 resultadoEliminados += DetallePedidoBL.Eliminar(detallesViejosAEliminarDeLaBD[i]);
                             }
                         }
-                        objetoPedidosActual.CargarPedidos();
                         DialogResult resultadoDelDialgo = MetroMessageBox.Show
                         (this, $"{resultadoPedido} pedido actualizado.\n{resultDetallesModificados} detalle(s) actualizado(s).\n" +
                         $"{resultDetallesAñadidos} detalle(s) registrado(s).\n{resultadoEliminados} detalle(s) eliminado(s).\n¿Desea cerrar el editor?",
@@ -366,13 +366,11 @@ namespace AlimentosDC.SIGEPAC.UI
                     }
                 }
            }
-        
             catch (Exception error)
             {
                 MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\nMÁS INFORMACIÓN: {error.Message}", "Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             } 
-            
         }
 
         private void btnEliminarDetallePedido_Click(object sender, EventArgs e)
@@ -387,7 +385,6 @@ namespace AlimentosDC.SIGEPAC.UI
                     dgvListadoDetallesPedido.Rows.RemoveAt(dgvListadoDetallesPedido.SelectedRows[0].Index);
                     listadoDetallesPedido.Remove(listadoDetallesPedido.Find(x => x.Id == idDetallePedidoAEliminar));
                     ActualizarDatagridView();
-                    
                 }
                 else
                 {
@@ -417,7 +414,6 @@ namespace AlimentosDC.SIGEPAC.UI
             {
                 btnEditarDetallePedido.Enabled = true;
                 btnEliminarDetallePedido.Enabled = true;
-
             }
             else
             {
@@ -513,14 +509,13 @@ namespace AlimentosDC.SIGEPAC.UI
                     producto = productos.productoSeleccionado;
                     lblNombreProducto.Text = producto.Nombre;
                     lblDescripcionProducto.Text = producto.Descripcion;
-                    lblPrecioUnitario.Text = producto.Precio.ToString();
+                    lblPrecioUnitario.Text = string.Concat("$ ", producto.Precio.ToString("N"));
                     lblStockProducto.Text = producto.Stock.ToString();
                     cmbEstadoDetallePedido.DroppedDown = true;
                 }
                 if (producto == null) epValidadorControles.SetError(btnElegirProducto, "Debe elegir un producto");
                 else epValidadorControles.SetError(btnElegirProducto, "");
             }
-            
         }
 
         private void btnEditarDetallePedido_Click(object sender, EventArgs e)
@@ -534,11 +529,11 @@ namespace AlimentosDC.SIGEPAC.UI
             DetallePedido detalleAEditar = listadoDetallesPedido.Find(x => x.Id == idDetallePedidoAEditar);
             producto = ProductoBL.BuscarPorId(detalleAEditar.IdProducto);
             lblNombreProducto.Text = producto.Nombre;
-            lblPrecioUnitario.Text = producto.Precio.ToString();
+            lblPrecioUnitario.Text = string.Concat("$ ", producto.Precio.ToString("N"));
             lblDescripcionProducto.Text = producto.Descripcion;
             lblStockProducto.Text = producto.Stock.ToString();
             txtCantidad.Text = detalleAEditar.Cantidad.ToString();
-            lblSubTotal.Text = detalleAEditar.SubTotal.ToString();
+            lblSubTotal.Text = string.Concat("$ ", detalleAEditar.SubTotal.ToString("N"));
             cmbEstadoDetallePedido.SelectedItem = detalleAEditar.Estado;
             HabilitarBotonAgregarDetalle();
         }
@@ -570,7 +565,7 @@ namespace AlimentosDC.SIGEPAC.UI
             if (txtCantidad.Text.Length > 0 && lblPrecioUnitario.Text.Length > 0)
             {
                 epValidadorControles.SetError(txtCantidad, "");
-                lblSubTotal.Text = (float.Parse(lblPrecioUnitario.Text) * float.Parse(txtCantidad.Text)).ToString();
+                lblSubTotal.Text = string.Concat("$ ", (producto.Precio * float.Parse(txtCantidad.Text)).ToString("N"));
                 int stock = producto.Stock;
                 int stockMinimo = 10;
                 lblStockProducto.Text = (stock - int.Parse(txtCantidad.Text)).ToString();
@@ -659,7 +654,34 @@ namespace AlimentosDC.SIGEPAC.UI
             }
         }
 
+        private void txtPagaCon_TextChanged(object sender, EventArgs e)
+        {
+            if (dgvListadoDetallesPedido.RowCount>=1)
+            {
+                if (txtPagaCon.Text.Length>=1)
+                {
+                    switch (Validaciones.ValidarPrecio(txtPagaCon.Text))
+                    {
+                        case 1:
+                            epValidadorControles.SetError(txtPagaCon, "Se permite hasta dos decimales");
+                            break;
+                        case 2:
+                            epValidadorControles.SetError(txtPagaCon, "Dato incorrecto");
+                            break;
+                        case 0:
+                            epValidadorControles.SetError(txtPagaCon, "");
+                            lblCambio.Text = string.Concat("$ ", (float.Parse(txtPagaCon.Text) - totalAPagar).ToString("N"));
+                            break;
+                        default:
+                            break;
+                    }
+                }
+                else
+                {
+                    lblCambio.Text = "";
+                }
+                
+            }
+        }
     }
-
-    //CONTINUAR CORRIENDO LOS ERRORES 
 }

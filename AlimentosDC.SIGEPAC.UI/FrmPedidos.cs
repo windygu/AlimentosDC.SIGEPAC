@@ -28,7 +28,6 @@ namespace AlimentosDC.SIGEPAC.UI
             btnVerDetallePedido.Enabled = false;
             btnEliminarPedido.Enabled = false;
             txtBuscadorPedidos.GotFocus += TxtBuscadorPedidos_GotFocus;
-            btnNuevoPedido.Focus();
         }
 
         private void TxtBuscadorPedidos_GotFocus(object sender, EventArgs e)
@@ -39,30 +38,23 @@ namespace AlimentosDC.SIGEPAC.UI
         private void btnVerDetallePedido_Click(object sender, EventArgs e)
         {
             int idPedido = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[0].Value.ToString());
-            int numeroPedido = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[3].Value.ToString());
+            int numeroPedido = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[4].Value.ToString());
             FrmVerDetallesPedido verDetallesPedido = new FrmVerDetallesPedido(idPedido, numeroPedido);
             verDetallesPedido.Owner = this;
             verDetallesPedido.ShowDialog();
         }
 
-        public void btnNuevoPedido_Click(object sender, EventArgs e)
-        {
-            FrmPedido p = new FrmPedido(ref objetoPedidosActual);
-            p.Owner = objetoPedidosActual;
-            p.ShowDialog();
-        }
 
         private void btnEditarPedido_Click(object sender, EventArgs e)
         {
             int idPedido = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[0].Value.ToString());
-            FrmPedido p = new FrmPedido(ref objetoPedidosActual, idPedido);
+            FrmPedido p = new FrmPedido(idPedido);
             p.Owner = objetoPedidosActual;
             p.ShowDialog();
         }
 
         private void FrmPedidos_Click(object sender, EventArgs e)
         {
-            btnNuevoPedido.Focus();
             dgvListadoPedidos.ClearSelection();
         }
 
@@ -95,12 +87,14 @@ namespace AlimentosDC.SIGEPAC.UI
                 dgvListadoPedidos.Rows.Add();
                 dgvListadoPedidos.Rows[i].Cells[0].Value = listadoPedidos[i].Id.ToString();
                 dgvListadoPedidos.Rows[i].Cells[1].Value = listadoPedidos[i].Cliente.ToString();
-                dgvListadoPedidos.Rows[i].Cells[2].Value = listadoPedidos[i].Dui.ToString();
-                dgvListadoPedidos.Rows[i].Cells[3].Value = listadoPedidos[i].NumeroPedido.ToString();
-                dgvListadoPedidos.Rows[i].Cells[4].Value = listadoPedidos[i].FechaCreacion.ToString();
-                dgvListadoPedidos.Rows[i].Cells[5].Value = listadoPedidos[i].FechaEntrega.ToString();
-                dgvListadoPedidos.Rows[i].Cells[6].Value = listadoPedidos[i].DireccionEntrega.ToString();
-                dgvListadoPedidos.Rows[i].Cells[7].Value = listadoPedidos[i].Estado.ToString();
+                dgvListadoPedidos.Rows[i].Cells[2].Value = listadoPedidos[i].Usuario.ToString();
+                dgvListadoPedidos.Rows[i].Cells[3].Value = listadoPedidos[i].Dui.ToString();
+                dgvListadoPedidos.Rows[i].Cells[4].Value = listadoPedidos[i].NumeroPedido.ToString();
+                dgvListadoPedidos.Rows[i].Cells[5].Value = listadoPedidos[i].NumeroCCF.ToString();
+                dgvListadoPedidos.Rows[i].Cells[6].Value = listadoPedidos[i].FechaCreacion.ToString();
+                dgvListadoPedidos.Rows[i].Cells[7].Value = listadoPedidos[i].FechaEntrega.ToString();
+                dgvListadoPedidos.Rows[i].Cells[8].Value = listadoPedidos[i].DireccionEntrega.ToString();
+                dgvListadoPedidos.Rows[i].Cells[9].Value = listadoPedidos[i].Estado.ToString();
             }
         }
 
