@@ -23,9 +23,11 @@ namespace AlimentosDC.SIGEPAC.UI
         Pedido pedido;
         Cliente cliente;
         int idPedido, numeroPedido;
-        public FrmVerDetallesPedido(int idPedido, int numeroPedido)
+        Usuario usuarioActual;
+        public FrmVerDetallesPedido(int idPedido, int numeroPedido, Usuario usuarioActual)
         {
             InitializeComponent();
+            this.usuarioActual = usuarioActual;
             this.idPedido = idPedido;
             this.numeroPedido = numeroPedido;
         }
@@ -40,6 +42,14 @@ namespace AlimentosDC.SIGEPAC.UI
             CargarDetalles();
         }
 
+        private void lblNumeroPedido_Paint(object sender, PaintEventArgs e)
+        {
+            ControlPaint.DrawBorder(e.Graphics, e.ClipRectangle, Color.DarkGray, 0, ButtonBorderStyle.None,
+                Color.Transparent, 0, ButtonBorderStyle.None, Color.Transparent, 0, ButtonBorderStyle.None,
+                Color.Black, 1, ButtonBorderStyle.Solid);
+        }
+
+
         void CargarDetalles()
         {
             try
@@ -47,37 +57,33 @@ namespace AlimentosDC.SIGEPAC.UI
                 listadoDetallesPedido = DetallePedidoBL.ObtenerTodos(idPedido);
                 dgvListadoDetallesPedido.Rows.Clear();
                 pedido = PedidoBL.BuscarPorId(idPedido);
-                lblIdPedido.Text = pedido.Id.ToString();
                 lblNumeroPedido.Text = pedido.NumeroPedido.ToString();
-                lblFechaCreacion.Text = pedido.FechaCreacion.ToString();
+                lblNumeroCCF.Text = pedido.NumeroCCF;
+                lblFechaCreacion.Text = pedido.FechaCreacion.ToString("d");
                 lblEstadoPedido.Text = pedido.Estado;
-                lblFechaEntrega.Text = pedido.FechaEntrega.ToString();
+                lblFechaEntrega.Text = pedido.FechaEntrega.ToString("d");
                 lblDireccionEntrega.Text = pedido.DireccionEntrega;
                 cliente = ClienteBL.BuscarPorId(pedido.IdCliente);
                 lblCliente.Text = string.Concat(cliente.PrimerNombre, " ", cliente.SegundoNombre, " ",
                     cliente.PrimerApellido, " ", cliente.SegundoApellido);
                 lblDuiCliente.Text = cliente.DUI;
-                int sumaProductos = 0;
-                float total = 0;
+                lblUsuario.Text = string.Concat(usuarioActual.Nombres, " ", usuarioActual.Apellidos);
+                float sumas = 0.00f;
                 for (int i = 0; i < listadoDetallesPedido.Count; i++)
                 {
                     dgvListadoDetallesPedido.Rows.Add();
                     dgvListadoDetallesPedido.Rows[i].Cells[0].Value = listadoDetallesPedido[i].Id;
-                    dgvListadoDetallesPedido.Rows[i].Cells[1].Value = listadoDetallesPedido[i].Producto;
-                    dgvListadoDetallesPedido.Rows[i].Cells[2].Value = listadoDetallesPedido[i].Descripcion;
-                    dgvListadoDetallesPedido.Rows[i].Cells[3].Value = listadoDetallesPedido[i].Cantidad;
-                    dgvListadoDetallesPedido.Rows[i].Cells[4].Value = listadoDetallesPedido[i].PrecioUnitario;
-                    dgvListadoDetallesPedido.Rows[i].Cells[5].Value = listadoDetallesPedido[i].SubTotal;
-                    dgvListadoDetallesPedido.Rows[i].Cells[6].Value = listadoDetallesPedido[i].Estado;
-                    sumaProductos += listadoDetallesPedido[i].Cantidad;
-                    total += listadoDetallesPedido[i].SubTotal;
+                    dgvListadoDetallesPedido.Rows[i].Cells[1].Value = listadoDetallesPedido[i].Estado;
+                    dgvListadoDetallesPedido.Rows[i].Cells[2].Value = listadoDetallesPedido[i].Producto;
+                    dgvListadoDetallesPedido.Rows[i].Cells[3].Value = listadoDetallesPedido[i].Descripcion;
+                    dgvListadoDetallesPedido.Rows[i].Cells[4].Value = listadoDetallesPedido[i].Cantidad;
+                    dgvListadoDetallesPedido.Rows[i].Cells[5].Value = listadoDetallesPedido[i].PrecioUnitario.ToString("C");
+                    dgvListadoDetallesPedido.Rows[i].Cells[6].Value = listadoDetallesPedido[i].SubTotal.ToString("C");
+                    sumas += listadoDetallesPedido[i].SubTotal;
                 }
-
-                lblProductos.Text = sumaProductos.ToString();
-                int cantidad;
-                lblTotal.Text =
-                "$ " + ((int.TryParse(total.ToString(), out cantidad) == true) ? (total.ToString() + ".00") : total.ToString());
-
+                lblSumas.Text = sumas.ToString("C");
+                lblIva.Text = (sumas * 0.13).ToString("C");
+                lblTotal.Text = (sumas * 1.13).ToString("C");
             }
             catch (Exception error)
             {

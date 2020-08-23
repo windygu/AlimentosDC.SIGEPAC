@@ -114,10 +114,9 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void btnHistorial_Click(object sender, EventArgs e)
         {
-            FrmPedidos historialPedidos = new FrmPedidos();
+            FrmPedidos historialPedidos = new FrmPedidos(usuarioActual);
             historialPedidos.Owner = this;
             historialPedidos.ShowDialog();
         }
     }
 }
-// CONTINUAR EN CREAR LA VENTANA DE PERFIL DE USUARIO Y MEJORAR LA VENTANA DE VERDETALLEPEDIDO

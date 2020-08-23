@@ -20,9 +20,11 @@ namespace AlimentosDC.SIGEPAC.UI
     {
         List<Pedido> listadoPedidos = new List<Pedido>();
         FrmPedidos objetoPedidosActual;
-        public FrmPedidos()
+        Usuario usuarioActual;
+        public FrmPedidos(Usuario usuarioActual)
         {
             InitializeComponent();
+            this.usuarioActual = usuarioActual;
             objetoPedidosActual = this;
             btnEditarPedido.Enabled = false;
             btnVerDetallePedido.Enabled = false;
@@ -39,7 +41,7 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             int idPedido = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[0].Value.ToString());
             int numeroPedido = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[4].Value.ToString());
-            FrmVerDetallesPedido verDetallesPedido = new FrmVerDetallesPedido(idPedido, numeroPedido);
+            FrmVerDetallesPedido verDetallesPedido = new FrmVerDetallesPedido(idPedido, numeroPedido, usuarioActual);
             verDetallesPedido.Owner = this;
             verDetallesPedido.ShowDialog();
         }

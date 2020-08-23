@@ -173,6 +173,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <Compile Include="TextBoxBorderInferior.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="TextBoxBorderInferior.Designer.cs">
+      <DependentUpon>TextBoxBorderInferior.cs</DependentUpon>
+    </Compile>
     <Compile Include="TextBoxWaterMark.cs">
       <SubType>Component</SubType>
     </Compile>

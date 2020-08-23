@@ -33,8 +33,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnIngresar = new System.Windows.Forms.Button();
-            this.txtUsuario = new System.Windows.Forms.TextBox();
-            this.txtClave = new System.Windows.Forms.TextBox();
+            this.txtClave = new AlimentosDC.SIGEPAC.UI.TextBoxBorderInferior();
+            this.txtUsuario = new AlimentosDC.SIGEPAC.UI.TextBoxBorderInferior();
             this.SuspendLayout();
             // 
             // label1
@@ -79,24 +79,28 @@
             this.btnIngresar.UseVisualStyleBackColor = true;
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
             // 
-            // txtUsuario
-            // 
-            this.txtUsuario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtUsuario.Location = new System.Drawing.Point(27, 99);
-            this.txtUsuario.Name = "txtUsuario";
-            this.txtUsuario.Size = new System.Drawing.Size(230, 25);
-            this.txtUsuario.TabIndex = 0;
-            this.txtUsuario.TextChanged += new System.EventHandler(this.txtUsuario_TextChanged);
-            // 
             // txtClave
             // 
+            this.txtClave.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtClave.ColorBorde = System.Drawing.Color.DimGray;
             this.txtClave.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtClave.Location = new System.Drawing.Point(281, 99);
             this.txtClave.Name = "txtClave";
-            this.txtClave.PasswordChar = '•';
-            this.txtClave.Size = new System.Drawing.Size(230, 25);
-            this.txtClave.TabIndex = 1;
+            this.txtClave.PasswordChar = '*';
+            this.txtClave.Size = new System.Drawing.Size(230, 20);
+            this.txtClave.TabIndex = 9;
             this.txtClave.TextChanged += new System.EventHandler(this.txtClave_TextChanged);
+            // 
+            // txtUsuario
+            // 
+            this.txtUsuario.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtUsuario.ColorBorde = System.Drawing.Color.DimGray;
+            this.txtUsuario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtUsuario.Location = new System.Drawing.Point(27, 99);
+            this.txtUsuario.Name = "txtUsuario";
+            this.txtUsuario.Size = new System.Drawing.Size(230, 20);
+            this.txtUsuario.TabIndex = 8;
+            this.txtUsuario.TextChanged += new System.EventHandler(this.txtUsuario_TextChanged);
             // 
             // FrmLogin
             // 
@@ -110,6 +114,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "FrmLogin";
             this.Text = "Inicio Sesión";
             this.Load += new System.EventHandler(this.FrmLogin_Load);
@@ -123,7 +129,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.Button btnIngresar;
-        private System.Windows.Forms.TextBox txtUsuario;
-        private System.Windows.Forms.TextBox txtClave;
+        private TextBoxBorderInferior txtUsuario;
+        private TextBoxBorderInferior txtClave;
     }
 }
