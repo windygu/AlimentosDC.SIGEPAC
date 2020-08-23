@@ -20,7 +20,8 @@ namespace AlimentosDC.SIGEPAC.UI
 {
     public partial class FrmPrincipal : MetroForm
     {
-        Usuario usuarioActual;
+        static public Usuario usuarioActual { get; set; }
+        FrmPrincipal objetoActualPrincipal;
         public FrmPrincipal(Usuario usuario)
         {
             InitializeComponent();
@@ -29,9 +30,10 @@ namespace AlimentosDC.SIGEPAC.UI
             CultureInfo copia = (CultureInfo)cultura.Clone();
             CultureInfo.DefaultThreadCurrentCulture = copia;
             CultureInfo.DefaultThreadCurrentUICulture = copia;
+            objetoActualPrincipal = this;
         }
 
-        private void FrmPrincipal_Load(object sender, EventArgs e)
+        public void FrmPrincipal_Load(object sender, EventArgs e)
         {
             lblUsuario.Text = string.Concat(usuarioActual.Nombres, " ", usuarioActual.Apellidos);
             if (usuarioActual.Imagen != null)
@@ -39,7 +41,6 @@ namespace AlimentosDC.SIGEPAC.UI
                 MemoryStream secuenciaBytes = new MemoryStream(usuarioActual.Imagen);
                 pcbFotoPerfil.Image = Image.FromStream(secuenciaBytes);
             }
-            
         }
 
         private void btnPedidos_Click(object sender, EventArgs e)
@@ -82,22 +83,9 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void pcbFotoPerfil_Click(object sender, EventArgs e)
         {
-            DialogResult resultadoCuadro = MetroMessageBox.Show(this, "¿Desea cambiar su foto de perfil?", "Cambiar foto de perfil", MessageBoxButtons.YesNo,
-               MessageBoxIcon.Question);
-            if (resultadoCuadro == DialogResult.Yes)
-            {
-                string rutaImagen;
-                DialogResult resultado = ofdEscogerFoto.ShowDialog();
-                if (resultado == DialogResult.OK)
-                {
-                    rutaImagen = ofdEscogerFoto.FileName;
-                    pcbFotoPerfil.Image = Image.FromFile(rutaImagen);
-                    MemoryStream secuenciaBytes = new MemoryStream();
-                    pcbFotoPerfil.Image.Save(secuenciaBytes, ImageFormat.Jpeg);
-                    usuarioActual.Imagen = secuenciaBytes.GetBuffer();
-                    UsuarioBL.Modificar(usuarioActual);
-                }
-            }
+            FrmPerfilUsuario ventanaPerfil = new FrmPerfilUsuario(ref objetoActualPrincipal);
+            ventanaPerfil.Owner = this;
+            ventanaPerfil.ShowDialog();
         }
 
         private void FrmPrincipal_FormClosing(object sender, FormClosingEventArgs e)

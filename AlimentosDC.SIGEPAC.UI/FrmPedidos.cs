@@ -98,6 +98,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 dgvListadoPedidos.Rows[i].Cells[8].Value = listadoPedidos[i].DireccionEntrega.ToString();
                 dgvListadoPedidos.Rows[i].Cells[9].Value = listadoPedidos[i].Estado.ToString();
             }
+            dgvListadoPedidos.ClearSelection();
         }
 
         private void dgvListadoPedidos_SelectionChanged(object sender, EventArgs e)

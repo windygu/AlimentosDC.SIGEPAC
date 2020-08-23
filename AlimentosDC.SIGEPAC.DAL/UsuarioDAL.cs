@@ -31,6 +31,7 @@ namespace AlimentosDC.SIGEPAC.DAL
             "Clave = @Clave, StatusAdministrador = @StatusAdministrador, Imagen = @Imagen WHERE Id = @Id");
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
+            comando.Parameters.AddWithValue("@Id", pUsuario.Id);
             comando.Parameters.AddWithValue("@Nombres", pUsuario.Nombres);
             comando.Parameters.AddWithValue("@Apellidos", pUsuario.Apellidos);
             comando.Parameters.AddWithValue("@NombreUsuario", pUsuario.NombreUsuario);
@@ -68,6 +69,27 @@ namespace AlimentosDC.SIGEPAC.DAL
                 usuario.Imagen = (reader[6]!=DBNull.Value)?((byte[])reader[6]):null;
             }
             return usuario;
+        }
+        public static List<Usuario> ObtenerTodos()
+        {
+            string consulta = "SELECT * FROM Usuario";
+            SqlCommand comando = ComunDB.ObtenerComando();
+            comando.CommandText = consulta;
+            SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
+            List<Usuario> listadoUsuarios = new List<Usuario>();
+            while (reader.Read())
+            {
+                Usuario usuario = new Usuario();
+                usuario.Id = reader.GetByte(0);
+                usuario.Nombres = reader.GetString(1);
+                usuario.Apellidos = reader.GetString(2);
+                usuario.NombreUsuario = reader.GetString(3);
+                usuario.Clave = reader.GetString(4);
+                usuario.StatusAdmin = reader.GetBoolean(5);
+                usuario.Imagen = (reader[6] != DBNull.Value) ? ((byte[])reader[6]) : null;
+                listadoUsuarios.Add(usuario);
+            }
+            return listadoUsuarios;
         }
     }
 }

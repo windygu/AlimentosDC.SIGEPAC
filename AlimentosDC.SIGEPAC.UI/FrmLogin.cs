@@ -30,7 +30,8 @@ namespace AlimentosDC.SIGEPAC.UI
                 Usuario usuario = UsuarioBL.ObtenerUsuario(txtUsuario.Text, txtClave.Text);
                 if (usuario.NombreUsuario == txtUsuario.Text && usuario.Clave == txtClave.Text)
                 {
-                    MetroMessageBox.Show(this, "¡Bienvenido!", "Sesión iniciada", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MetroMessageBox.Show(this, $"¡Bienvenido Sr(a). {usuario.Nombres} {usuario.Apellidos}!", 
+                        "Sesión iniciada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     FrmPrincipal menuPrincipal = new FrmPrincipal(usuario);
                     this.Hide();
                     menuPrincipal.Show();

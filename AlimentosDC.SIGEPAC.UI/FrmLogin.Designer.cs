@@ -43,9 +43,9 @@
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.Location = new System.Drawing.Point(23, 77);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(56, 19);
+            this.label1.Size = new System.Drawing.Size(127, 19);
             this.label1.TabIndex = 2;
-            this.label1.Text = "Usuario";
+            this.label1.Text = "Nombre de usuario";
             // 
             // label2
             // 
@@ -70,6 +70,7 @@
             // 
             // btnIngresar
             // 
+            this.btnIngresar.Enabled = false;
             this.btnIngresar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnIngresar.Location = new System.Drawing.Point(295, 164);
             this.btnIngresar.Name = "btnIngresar";
@@ -86,7 +87,7 @@
             this.txtClave.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtClave.Location = new System.Drawing.Point(281, 99);
             this.txtClave.Name = "txtClave";
-            this.txtClave.PasswordChar = '*';
+            this.txtClave.PasswordChar = '●';
             this.txtClave.Size = new System.Drawing.Size(230, 20);
             this.txtClave.TabIndex = 9;
             this.txtClave.TextChanged += new System.EventHandler(this.txtClave_TextChanged);
@@ -117,6 +118,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmLogin";
+            this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Inicio Sesión";
             this.Load += new System.EventHandler(this.FrmLogin_Load);
             this.ResumeLayout(false);

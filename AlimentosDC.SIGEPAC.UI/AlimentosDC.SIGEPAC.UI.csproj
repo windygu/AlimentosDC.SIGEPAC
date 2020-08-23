@@ -72,6 +72,18 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="FrmAdministrarUsuarios.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmAdministrarUsuarios.Designer.cs">
+      <DependentUpon>FrmAdministrarUsuarios.cs</DependentUpon>
+    </Compile>
+    <Compile Include="FrmCambiarClave.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmCambiarClave.Designer.cs">
+      <DependentUpon>FrmCambiarClave.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmCCF.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -126,6 +138,12 @@
     <Compile Include="FrmPedidos.Designer.cs">
       <DependentUpon>FrmPedidos.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmPerfilUsuario.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmPerfilUsuario.Designer.cs">
+      <DependentUpon>FrmPerfilUsuario.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmPrincipal.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -166,6 +184,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>GestionPedidosAlimentosDCDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="LableBordeInferior.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LableBordeInferior.Designer.cs">
+      <DependentUpon>LableBordeInferior.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Properties\Resources.Designer.cs">
@@ -186,6 +210,12 @@
       <DependentUpon>TextBoxWaterMark.cs</DependentUpon>
     </Compile>
     <Compile Include="Validaciones.cs" />
+    <EmbeddedResource Include="FrmAdministrarUsuarios.resx">
+      <DependentUpon>FrmAdministrarUsuarios.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmCambiarClave.resx">
+      <DependentUpon>FrmCambiarClave.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FrmCCF.resx">
       <DependentUpon>FrmCCF.cs</DependentUpon>
     </EmbeddedResource>
@@ -212,6 +242,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPedidos.resx">
       <DependentUpon>FrmPedidos.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmPerfilUsuario.resx">
+      <DependentUpon>FrmPerfilUsuario.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmPrincipal.resx">
       <DependentUpon>FrmPrincipal.cs</DependentUpon>

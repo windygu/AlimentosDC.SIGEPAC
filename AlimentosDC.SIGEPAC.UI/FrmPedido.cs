@@ -93,6 +93,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 cliente.PrimerApellido, " ", cliente.SegundoApellido);
             lblDui.Text = cliente.DUI;
             listadoViejoDetallesPedido = DetallePedidoBL.ObtenerTodos((int)idPedido);
+            cmbEstadoDetallePedido.SelectedIndex = 0;
             if (listadoViejoDetallesPedido!=null)
             {
                 for (int i = 0; i < listadoViejoDetallesPedido.Count; i++)
@@ -108,6 +109,7 @@ namespace AlimentosDC.SIGEPAC.UI
                     listadoDetallesPedido.Add(listadoViejoDetallesPedido[i]);
                 }
                 CalcularTotales();
+                dgvListadoDetallesPedido.ClearSelection();
             }
         }
 
@@ -148,6 +150,7 @@ namespace AlimentosDC.SIGEPAC.UI
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[5].Value = listadoDetallesPedido[indiceFilaAgregada].PrecioUnitario;
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[6].Value = listadoDetallesPedido[indiceFilaAgregada].SubTotal;
             CalcularTotales();
+            dgvListadoDetallesPedido.ClearSelection();
         }
         
         void AgregarDetalles()
@@ -254,6 +257,7 @@ namespace AlimentosDC.SIGEPAC.UI
             dtpFechaCreacion.Value = DateTime.Now;
             dtpFechaEntrega.Value = DateTime.Now;
             cmbEstadoPedido.SelectedIndex = 0;
+            cmbEstadoDetallePedido.SelectedIndex = 0;
             txtDireccionEntregaPedido.Clear();
             lblCliente.Text = "";
             lblDui.Text = "";
@@ -670,7 +674,7 @@ namespace AlimentosDC.SIGEPAC.UI
                             break;
                         case 0:
                             epValidadorControles.SetError(txtPagaCon, "");
-                            lblCambio.Text = string.Concat("$ ", (float.Parse(txtPagaCon.Text) - totalAPagar).ToString("N"));
+                            lblCambio.Text = (float.Parse(txtPagaCon.Text) - Math.Round(totalAPagar, 2)).ToString("C");
                             break;
                         default:
                             break;

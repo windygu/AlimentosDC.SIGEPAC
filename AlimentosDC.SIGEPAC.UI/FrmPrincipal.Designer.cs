@@ -40,7 +40,6 @@
             this.btnClientes = new System.Windows.Forms.Button();
             this.pcbFotoPerfil = new System.Windows.Forms.PictureBox();
             this.lblUsuario = new System.Windows.Forms.Label();
-            this.ofdEscogerFoto = new System.Windows.Forms.OpenFileDialog();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -184,6 +183,7 @@
             // 
             // pcbFotoPerfil
             // 
+            this.pcbFotoPerfil.AccessibleDescription = "";
             this.pcbFotoPerfil.Image = ((System.Drawing.Image)(resources.GetObject("pcbFotoPerfil.Image")));
             this.pcbFotoPerfil.Location = new System.Drawing.Point(1426, 34);
             this.pcbFotoPerfil.Name = "pcbFotoPerfil";
@@ -204,14 +204,10 @@
             this.lblUsuario.Text = "usuario";
             this.lblUsuario.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // ofdEscogerFoto
-            // 
-            this.ofdEscogerFoto.FileName = "openFileDialog1";
-            // 
             // pictureBox2
             // 
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(747, 316);
+            this.pictureBox2.Location = new System.Drawing.Point(746, 291);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(189, 104);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -255,11 +251,10 @@
         private System.Windows.Forms.Button btnPedidos;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.Button btnCerraSesion;
-        private System.Windows.Forms.PictureBox pcbFotoPerfil;
         private System.Windows.Forms.Label lblUsuario;
-        private System.Windows.Forms.OpenFileDialog ofdEscogerFoto;
         private System.Windows.Forms.Button btnReportes;
         private System.Windows.Forms.Button btnHistorial;
         private System.Windows.Forms.PictureBox pictureBox2;
+        public System.Windows.Forms.PictureBox pcbFotoPerfil;
     }
 }
