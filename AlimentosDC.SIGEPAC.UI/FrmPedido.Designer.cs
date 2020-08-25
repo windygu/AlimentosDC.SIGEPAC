@@ -257,6 +257,7 @@
             // 
             // btnGuardarPedido
             // 
+            this.btnGuardarPedido.Enabled = false;
             this.btnGuardarPedido.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnGuardarPedido.Location = new System.Drawing.Point(629, 747);
             this.btnGuardarPedido.Name = "btnGuardarPedido";

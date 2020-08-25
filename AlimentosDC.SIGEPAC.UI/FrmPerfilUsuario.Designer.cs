@@ -32,15 +32,15 @@
             this.ofdEscogerFoto = new System.Windows.Forms.OpenFileDialog();
             this.btnUsuarios = new System.Windows.Forms.Button();
             this.btnCambiarClave = new System.Windows.Forms.Button();
-            this.lblNombreUsuario = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
-            this.lblApellidos = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
-            this.lblNombres = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.btnCambiarFoto = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.pcbFotoPerfil = new System.Windows.Forms.PictureBox();
+            this.lblNombreUsuario = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
+            this.lblApellidos = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
+            this.lblNombres = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             ((System.ComponentModel.ISupportInitialize)(this.pcbFotoPerfil)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,7 +50,6 @@
             // 
             // btnUsuarios
             // 
-            this.btnUsuarios.Enabled = false;
             this.btnUsuarios.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUsuarios.Location = new System.Drawing.Point(357, 115);
             this.btnUsuarios.Name = "btnUsuarios";
@@ -58,11 +57,11 @@
             this.btnUsuarios.TabIndex = 92;
             this.btnUsuarios.Text = "Usuarios";
             this.btnUsuarios.UseVisualStyleBackColor = true;
+            this.btnUsuarios.Visible = false;
             this.btnUsuarios.Click += new System.EventHandler(this.btnUsuarios_Click);
             // 
             // btnCambiarClave
             // 
-            this.btnCambiarClave.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCambiarClave.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCambiarClave.Location = new System.Drawing.Point(357, 226);
             this.btnCambiarClave.Name = "btnCambiarClave";
@@ -72,33 +71,8 @@
             this.btnCambiarClave.UseVisualStyleBackColor = true;
             this.btnCambiarClave.Click += new System.EventHandler(this.btnCambiarClave_Click);
             // 
-            // lblNombreUsuario
-            // 
-            this.lblNombreUsuario.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreUsuario.Location = new System.Drawing.Point(20, 408);
-            this.lblNombreUsuario.Name = "lblNombreUsuario";
-            this.lblNombreUsuario.Size = new System.Drawing.Size(286, 20);
-            this.lblNombreUsuario.TabIndex = 90;
-            // 
-            // lblApellidos
-            // 
-            this.lblApellidos.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblApellidos.Location = new System.Drawing.Point(20, 345);
-            this.lblApellidos.Name = "lblApellidos";
-            this.lblApellidos.Size = new System.Drawing.Size(286, 20);
-            this.lblApellidos.TabIndex = 89;
-            // 
-            // lblNombres
-            // 
-            this.lblNombres.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombres.Location = new System.Drawing.Point(20, 286);
-            this.lblNombres.Name = "lblNombres";
-            this.lblNombres.Size = new System.Drawing.Size(283, 20);
-            this.lblNombres.TabIndex = 88;
-            // 
             // btnCambiarFoto
             // 
-            this.btnCambiarFoto.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCambiarFoto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCambiarFoto.Location = new System.Drawing.Point(357, 171);
             this.btnCambiarFoto.Name = "btnCambiarFoto";
@@ -159,6 +133,30 @@
             this.pcbFotoPerfil.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pcbFotoPerfil.TabIndex = 82;
             this.pcbFotoPerfil.TabStop = false;
+            // 
+            // lblNombreUsuario
+            // 
+            this.lblNombreUsuario.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombreUsuario.Location = new System.Drawing.Point(20, 408);
+            this.lblNombreUsuario.Name = "lblNombreUsuario";
+            this.lblNombreUsuario.Size = new System.Drawing.Size(286, 20);
+            this.lblNombreUsuario.TabIndex = 90;
+            // 
+            // lblApellidos
+            // 
+            this.lblApellidos.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblApellidos.Location = new System.Drawing.Point(20, 345);
+            this.lblApellidos.Name = "lblApellidos";
+            this.lblApellidos.Size = new System.Drawing.Size(286, 20);
+            this.lblApellidos.TabIndex = 89;
+            // 
+            // lblNombres
+            // 
+            this.lblNombres.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombres.Location = new System.Drawing.Point(20, 286);
+            this.lblNombres.Name = "lblNombres";
+            this.lblNombres.Size = new System.Drawing.Size(283, 20);
+            this.lblNombres.TabIndex = 88;
             // 
             // FrmPerfilUsuario
             // 

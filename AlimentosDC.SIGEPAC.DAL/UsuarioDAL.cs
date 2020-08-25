@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using AlimentosDC.SIGEPAC.EN;
 using System.Data.SqlClient;
+using Microsoft.SqlServer.Server;
+using System.Data;
+using System.Data.SqlTypes;
 
 namespace AlimentosDC.SIGEPAC.DAL
 {
@@ -21,7 +24,7 @@ namespace AlimentosDC.SIGEPAC.DAL
             comando.Parameters.AddWithValue("@NombreUsuario", pUsuario.NombreUsuario);
             comando.Parameters.AddWithValue("@Clave", pUsuario.Clave);
             comando.Parameters.AddWithValue("@StatusAdministrador", pUsuario.StatusAdmin);
-            comando.Parameters.AddWithValue("@Imagen", pUsuario.Imagen);
+            comando.Parameters.AddWithValue("@Imagen", (pUsuario.Imagen==null)?SqlBinary.Null:pUsuario.Imagen);
             return ComunDB.EjecutarComando(comando);
         }
 
@@ -70,11 +73,35 @@ namespace AlimentosDC.SIGEPAC.DAL
             }
             return usuario;
         }
-        public static List<Usuario> ObtenerTodos()
+
+        public static Usuario BuscarPorId(int pIdUsuario)
         {
-            string consulta = "SELECT * FROM Usuario";
+            string consulta = @"SELECT * FROM Usuario WHERE Id = @Id";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
+            comando.Parameters.AddWithValue("@Id", pIdUsuario);
+            SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
+            Usuario usuario = new Usuario();
+            while (reader.Read())
+            {
+                usuario.Id = reader.GetByte(0);
+                usuario.Nombres = reader.GetString(1);
+                usuario.Apellidos = reader.GetString(2);
+                usuario.NombreUsuario = reader.GetString(3);
+                usuario.Clave = reader.GetString(4);
+                usuario.StatusAdmin = reader.GetBoolean(5);
+                usuario.Imagen = (reader[6] != DBNull.Value) ? ((byte[])reader[6]) : null;
+            }
+            return usuario;
+        }
+        public static List<Usuario> ObtenerTodos(string pCondicion = "%")
+        {
+            string consulta = string.Concat("SELECT u.Id, u.Nombres, u.Apellidos, u.NombreUsuario, u.Clave, u.StatusAdministrador, ",
+            "u.Imagen FROM Usuario u WHERE u.Nombres LIKE CONCAT(@pCondicion, '%') OR u.Apellidos LIKE CONCAT(@pCondicion, '%') OR ",
+            "u.NombreUsuario LIKE CONCAT(@pCondicion, '%')");
+            SqlCommand comando = ComunDB.ObtenerComando();
+            comando.CommandText = consulta;
+            comando.Parameters.AddWithValue("@pCondicion", pCondicion);
             SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
             List<Usuario> listadoUsuarios = new List<Usuario>();
             while (reader.Read())

@@ -17,28 +17,28 @@ namespace AlimentosDC.SIGEPAC.UI
 {
     public partial class FrmPerfilUsuario : MetroForm
     {
-        FrmPrincipal objetoPrincipal;
-        public FrmPerfilUsuario(ref FrmPrincipal objetoPrincipal)
+        FrmPrincipal objetoActualPrincipal;
+        public FrmPerfilUsuario(ref FrmPrincipal objetoActualPrincipal)
         {
             InitializeComponent();
-            this.objetoPrincipal = objetoPrincipal;
+            this.objetoActualPrincipal = objetoActualPrincipal;
         }
 
         private void FrmPerfilUsuario_Load(object sender, EventArgs e)
         {
-            if (FrmPrincipal.usuarioActual.StatusAdmin)
+            if (objetoActualPrincipal.usuarioActual.StatusAdmin)
             {
-                btnUsuarios.Enabled = true;
+                btnUsuarios.Visible = true;
                 Text = "Perfil Administrador";
             }
-            if (FrmPrincipal.usuarioActual.Imagen != null)
+            if (objetoActualPrincipal.usuarioActual.Imagen != null)
             {
-                MemoryStream secuenciaBytes = new MemoryStream(FrmPrincipal.usuarioActual.Imagen);
+                MemoryStream secuenciaBytes = new MemoryStream(objetoActualPrincipal.usuarioActual.Imagen);
                 pcbFotoPerfil.Image = Image.FromStream(secuenciaBytes);
             }
-            lblNombres.Text = FrmPrincipal.usuarioActual.Nombres;
-            lblApellidos.Text = FrmPrincipal.usuarioActual.Apellidos;
-            lblNombreUsuario.Text = FrmPrincipal.usuarioActual.NombreUsuario;
+            lblNombres.Text = objetoActualPrincipal.usuarioActual.Nombres;
+            lblApellidos.Text = objetoActualPrincipal.usuarioActual.Apellidos;
+            lblNombreUsuario.Text = objetoActualPrincipal.usuarioActual.NombreUsuario;
         }
 
         private void btnCambiarFoto_Click(object sender, EventArgs e)
@@ -51,16 +51,16 @@ namespace AlimentosDC.SIGEPAC.UI
                 rutaImagen = ofdEscogerFoto.FileName;
                 pcbFotoPerfil.Image = Image.FromFile(rutaImagen);
                 pcbFotoPerfil.Image.Save(secuenciaBytes, ImageFormat.Jpeg);
-                FrmPrincipal.usuarioActual.Imagen = secuenciaBytes.GetBuffer();
-                UsuarioBL.Modificar(FrmPrincipal.usuarioActual);
-                secuenciaBytes = new MemoryStream(FrmPrincipal.usuarioActual.Imagen);
-                objetoPrincipal.pcbFotoPerfil.Image = Image.FromStream(secuenciaBytes);
+                objetoActualPrincipal.usuarioActual.Imagen = secuenciaBytes.GetBuffer();
+                UsuarioBL.Modificar(objetoActualPrincipal.usuarioActual);
+                secuenciaBytes = new MemoryStream(objetoActualPrincipal.usuarioActual.Imagen);
+                objetoActualPrincipal.pcbFotoPerfil.Image = Image.FromStream(secuenciaBytes);
             }
         }
 
         private void btnCambiarClave_Click(object sender, EventArgs e)
         {
-            FrmCambiarClave ventanaCambiarClave = new FrmCambiarClave();
+            FrmCambiarClave ventanaCambiarClave = new FrmCambiarClave(ref objetoActualPrincipal);
             ventanaCambiarClave.Owner = this;
             ventanaCambiarClave.ShowDialog();
         }
@@ -72,7 +72,7 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void btnUsuarios_Click(object sender, EventArgs e)
         {
-            FrmAdministrarUsuarios listadoUsuarios = new FrmAdministrarUsuarios();
+            FrmUsuarios listadoUsuarios = new FrmUsuarios();
             listadoUsuarios.Owner = this;
             listadoUsuarios.ShowDialog();
         }

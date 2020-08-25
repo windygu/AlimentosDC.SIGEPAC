@@ -41,14 +41,20 @@
             this.pcbFotoPerfil = new System.Windows.Forms.PictureBox();
             this.lblUsuario = new System.Windows.Forms.Label();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbFotoPerfil)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            this.panel2.SuspendLayout();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.Color.MediumAquamarine;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.panel1.Controls.Add(this.btnHistorial);
@@ -59,20 +65,20 @@
             this.panel1.Controls.Add(this.btnMarcas);
             this.panel1.Controls.Add(this.btnProductos);
             this.panel1.Controls.Add(this.btnClientes);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Left;
-            this.panel1.Location = new System.Drawing.Point(20, 60);
+            this.panel1.Location = new System.Drawing.Point(3, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(174, 681);
+            this.panel1.Size = new System.Drawing.Size(178, 747);
             this.panel1.TabIndex = 0;
             // 
             // btnHistorial
             // 
+            this.btnHistorial.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnHistorial.BackColor = System.Drawing.Color.White;
             this.btnHistorial.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHistorial.Image = ((System.Drawing.Image)(resources.GetObject("btnHistorial.Image")));
-            this.btnHistorial.Location = new System.Drawing.Point(17, 196);
+            this.btnHistorial.Location = new System.Drawing.Point(20, 203);
             this.btnHistorial.Name = "btnHistorial";
-            this.btnHistorial.Size = new System.Drawing.Size(140, 44);
+            this.btnHistorial.Size = new System.Drawing.Size(140, 45);
             this.btnHistorial.TabIndex = 5;
             this.btnHistorial.Text = " Historial";
             this.btnHistorial.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -82,12 +88,13 @@
             // 
             // btnReportes
             // 
+            this.btnReportes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnReportes.BackColor = System.Drawing.Color.White;
             this.btnReportes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportes.Image = ((System.Drawing.Image)(resources.GetObject("btnReportes.Image")));
-            this.btnReportes.Location = new System.Drawing.Point(17, 435);
+            this.btnReportes.Location = new System.Drawing.Point(20, 442);
             this.btnReportes.Name = "btnReportes";
-            this.btnReportes.Size = new System.Drawing.Size(140, 44);
+            this.btnReportes.Size = new System.Drawing.Size(140, 45);
             this.btnReportes.TabIndex = 4;
             this.btnReportes.Text = " Reportes";
             this.btnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -97,13 +104,14 @@
             // 
             // btnCerraSesion
             // 
+            this.btnCerraSesion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCerraSesion.BackColor = System.Drawing.Color.White;
             this.btnCerraSesion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnCerraSesion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerraSesion.Image = ((System.Drawing.Image)(resources.GetObject("btnCerraSesion.Image")));
-            this.btnCerraSesion.Location = new System.Drawing.Point(17, 495);
+            this.btnCerraSesion.Location = new System.Drawing.Point(20, 502);
             this.btnCerraSesion.Name = "btnCerraSesion";
-            this.btnCerraSesion.Size = new System.Drawing.Size(140, 44);
+            this.btnCerraSesion.Size = new System.Drawing.Size(140, 45);
             this.btnCerraSesion.TabIndex = 1;
             this.btnCerraSesion.Text = " Salir";
             this.btnCerraSesion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -113,22 +121,24 @@
             // 
             // pictureBox1
             // 
+            this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(17, 23);
+            this.pictureBox1.Location = new System.Drawing.Point(20, 47);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(140, 67);
+            this.pictureBox1.Size = new System.Drawing.Size(140, 73);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 1;
             this.pictureBox1.TabStop = false;
             // 
             // btnPedidos
             // 
+            this.btnPedidos.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnPedidos.BackColor = System.Drawing.Color.White;
             this.btnPedidos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPedidos.Image = ((System.Drawing.Image)(resources.GetObject("btnPedidos.Image")));
-            this.btnPedidos.Location = new System.Drawing.Point(17, 134);
+            this.btnPedidos.Location = new System.Drawing.Point(20, 141);
             this.btnPedidos.Name = "btnPedidos";
-            this.btnPedidos.Size = new System.Drawing.Size(140, 44);
+            this.btnPedidos.Size = new System.Drawing.Size(140, 45);
             this.btnPedidos.TabIndex = 0;
             this.btnPedidos.Text = " Pedidos";
             this.btnPedidos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -138,12 +148,13 @@
             // 
             // btnMarcas
             // 
+            this.btnMarcas.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnMarcas.BackColor = System.Drawing.Color.White;
             this.btnMarcas.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMarcas.Image = ((System.Drawing.Image)(resources.GetObject("btnMarcas.Image")));
-            this.btnMarcas.Location = new System.Drawing.Point(17, 376);
+            this.btnMarcas.Location = new System.Drawing.Point(20, 383);
             this.btnMarcas.Name = "btnMarcas";
-            this.btnMarcas.Size = new System.Drawing.Size(140, 44);
+            this.btnMarcas.Size = new System.Drawing.Size(140, 45);
             this.btnMarcas.TabIndex = 3;
             this.btnMarcas.Text = " Marcas";
             this.btnMarcas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -153,12 +164,13 @@
             // 
             // btnProductos
             // 
+            this.btnProductos.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnProductos.BackColor = System.Drawing.Color.White;
             this.btnProductos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnProductos.Image")));
-            this.btnProductos.Location = new System.Drawing.Point(17, 255);
+            this.btnProductos.Location = new System.Drawing.Point(20, 262);
             this.btnProductos.Name = "btnProductos";
-            this.btnProductos.Size = new System.Drawing.Size(140, 44);
+            this.btnProductos.Size = new System.Drawing.Size(140, 45);
             this.btnProductos.TabIndex = 1;
             this.btnProductos.Text = " Productos";
             this.btnProductos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -168,12 +180,13 @@
             // 
             // btnClientes
             // 
+            this.btnClientes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnClientes.BackColor = System.Drawing.Color.White;
             this.btnClientes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnClientes.Image")));
-            this.btnClientes.Location = new System.Drawing.Point(17, 316);
+            this.btnClientes.Location = new System.Drawing.Point(20, 323);
             this.btnClientes.Name = "btnClientes";
-            this.btnClientes.Size = new System.Drawing.Size(140, 44);
+            this.btnClientes.Size = new System.Drawing.Size(140, 45);
             this.btnClientes.TabIndex = 2;
             this.btnClientes.Text = " Clientes";
             this.btnClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
@@ -185,7 +198,7 @@
             // 
             this.pcbFotoPerfil.AccessibleDescription = "";
             this.pcbFotoPerfil.Image = ((System.Drawing.Image)(resources.GetObject("pcbFotoPerfil.Image")));
-            this.pcbFotoPerfil.Location = new System.Drawing.Point(1426, 34);
+            this.pcbFotoPerfil.Location = new System.Drawing.Point(372, 4);
             this.pcbFotoPerfil.Name = "pcbFotoPerfil";
             this.pcbFotoPerfil.Size = new System.Drawing.Size(35, 35);
             this.pcbFotoPerfil.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -197,22 +210,45 @@
             // lblUsuario
             // 
             this.lblUsuario.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(1212, 38);
+            this.lblUsuario.Location = new System.Drawing.Point(3, 4);
             this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(208, 23);
+            this.lblUsuario.Size = new System.Drawing.Size(363, 23);
             this.lblUsuario.TabIndex = 2;
             this.lblUsuario.Text = "usuario";
             this.lblUsuario.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
             // pictureBox2
             // 
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(746, 291);
+            this.pictureBox2.Location = new System.Drawing.Point(606, 284);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(15);
             this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(189, 104);
+            this.pictureBox2.Size = new System.Drawing.Size(299, 159);
             this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox2.TabIndex = 3;
             this.pictureBox2.TabStop = false;
+            // 
+            // panel2
+            // 
+            this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.panel2.Controls.Add(this.pcbFotoPerfil);
+            this.panel2.Controls.Add(this.lblUsuario);
+            this.panel2.Location = new System.Drawing.Point(1047, 3);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(410, 42);
+            this.panel2.TabIndex = 5;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.panel1);
+            this.panel3.Controls.Add(this.panel2);
+            this.panel3.Controls.Add(this.pictureBox2);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(20, 60);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1460, 720);
+            this.panel3.TabIndex = 6;
             // 
             // FrmPrincipal
             // 
@@ -221,15 +257,11 @@
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
             this.BackImage = ((System.Drawing.Image)(resources.GetObject("$this.BackImage")));
-            this.ClientSize = new System.Drawing.Size(1484, 761);
-            this.Controls.Add(this.pictureBox2);
-            this.Controls.Add(this.lblUsuario);
-            this.Controls.Add(this.pcbFotoPerfil);
-            this.Controls.Add(this.panel1);
+            this.ClientSize = new System.Drawing.Size(1500, 800);
+            this.Controls.Add(this.panel3);
             this.Font = new System.Drawing.Font("Tahoma", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "FrmPrincipal";
-            this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "ALIMENTOS DE CALIDAD";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPrincipal_FormClosing);
@@ -238,6 +270,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbFotoPerfil)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            this.panel2.ResumeLayout(false);
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -256,5 +290,7 @@
         private System.Windows.Forms.Button btnHistorial;
         private System.Windows.Forms.PictureBox pictureBox2;
         public System.Windows.Forms.PictureBox pcbFotoPerfil;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Panel panel3;
     }
 }

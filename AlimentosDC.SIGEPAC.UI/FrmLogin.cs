@@ -21,6 +21,7 @@ namespace AlimentosDC.SIGEPAC.UI
         public FrmLogin()
         {
             InitializeComponent();
+            txtUsuario.Focus();
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -30,7 +31,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 Usuario usuario = UsuarioBL.ObtenerUsuario(txtUsuario.Text, txtClave.Text);
                 if (usuario.NombreUsuario == txtUsuario.Text && usuario.Clave == txtClave.Text)
                 {
-                    MetroMessageBox.Show(this, $"¡Bienvenido Sr(a). {usuario.Nombres} {usuario.Apellidos}!", 
+                    MetroMessageBox.Show(this, $"¡Bienvenido {usuario.Nombres} {usuario.Apellidos}!", 
                         "Sesión iniciada", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     FrmPrincipal menuPrincipal = new FrmPrincipal(usuario);
                     this.Hide();

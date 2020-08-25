@@ -33,9 +33,6 @@ namespace AlimentosDC.SIGEPAC.UI
         public FrmPedido(Usuario usuarioActual)
         {
             InitializeComponent();
-            btnGuardarPedido.Enabled = false;
-            btnEliminarDetallePedido.Enabled = false;
-            btnEditarDetallePedido.Enabled = false;
             objetoPedidoActual = this;
             this.usuarioActual = usuarioActual;
 
@@ -45,9 +42,6 @@ namespace AlimentosDC.SIGEPAC.UI
         public FrmPedido(int idPedido)
         {
             InitializeComponent();
-            btnGuardarPedido.Enabled = false;
-            btnEliminarDetallePedido.Enabled = false;
-            btnEditarDetallePedido.Enabled = false;
             objetoPedidoActual = this;
             this.idPedido = idPedido;
             
@@ -109,7 +103,6 @@ namespace AlimentosDC.SIGEPAC.UI
                     listadoDetallesPedido.Add(listadoViejoDetallesPedido[i]);
                 }
                 CalcularTotales();
-                dgvListadoDetallesPedido.ClearSelection();
             }
         }
 
@@ -150,7 +143,6 @@ namespace AlimentosDC.SIGEPAC.UI
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[5].Value = listadoDetallesPedido[indiceFilaAgregada].PrecioUnitario;
             dgvListadoDetallesPedido.Rows[indiceFilaAgregada].Cells[6].Value = listadoDetallesPedido[indiceFilaAgregada].SubTotal;
             CalcularTotales();
-            dgvListadoDetallesPedido.ClearSelection();
         }
         
         void AgregarDetalles()
@@ -689,3 +681,6 @@ namespace AlimentosDC.SIGEPAC.UI
         }
     }
 }
+
+//ME QUEDÉ EN BUSCAR EL ERROR QUE AL UNO O MÁS DETALLES PEDIDO AL PEDIDO NO SE HABILITAN
+//LOS BOTONES DE EDITAR DETALLE PEDIDO NI EL BOTON DE ELIMINAR UN DETALLE PEDIDO

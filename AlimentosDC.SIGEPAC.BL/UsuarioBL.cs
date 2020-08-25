@@ -29,9 +29,14 @@ namespace AlimentosDC.SIGEPAC.BL
             return UsuarioDAL.ObtenerUsuario(pUsuario, pClave);
         }
 
-        public static List<Usuario> ObtenerTodos()
+        public static Usuario BuscarPorId(int pIdUsuario)
         {
-            return UsuarioDAL.ObtenerTodos();
+            return UsuarioDAL.BuscarPorId(pIdUsuario);
+        }
+
+        public static List<Usuario> ObtenerTodos(string pCondicion = "%")
+        {
+            return UsuarioDAL.ObtenerTodos(pCondicion);
         }
     }
 }

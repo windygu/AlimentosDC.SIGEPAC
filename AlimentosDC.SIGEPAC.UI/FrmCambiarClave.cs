@@ -17,22 +17,22 @@ namespace AlimentosDC.SIGEPAC.UI
 {
     public partial class FrmCambiarClave : MetroForm
     {
-        public FrmCambiarClave()
+        FrmPrincipal objetoActualPrincipal;
+        public FrmCambiarClave(ref FrmPrincipal objetoActualPrincipal)
         {
             InitializeComponent();
-            btnActualizarClave.Enabled = false;
+            this.objetoActualPrincipal = objetoActualPrincipal;
         }
 
         private void txtClaveActual_TextChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtClaveActual.Text))
             {
-                if (FrmPrincipal.usuarioActual.Clave != txtClaveActual.Text)
+                if (objetoActualPrincipal.usuarioActual.Clave != txtClaveActual.Text)
                 {
                     epComprobadorClave.SetError(txtClaveActual, "La clave ingresada no coincide con su clave actual");
                 }
                 else epComprobadorClave.SetError(txtClaveActual, "");
-                
             }
             else
             {
@@ -44,7 +44,7 @@ namespace AlimentosDC.SIGEPAC.UI
 
         void HabilitarBotonActualizarClave()
         {
-            if (txtClaveActual.Text == FrmPrincipal.usuarioActual.Clave &&
+            if (txtClaveActual.Text == objetoActualPrincipal.usuarioActual.Clave &&
                 !string.IsNullOrWhiteSpace(txtNuevaClave.Text))
             {
                 btnActualizarClave.Enabled = true;
@@ -54,8 +54,8 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void btnActualizarClave_Click(object sender, EventArgs e)
         {
-            FrmPrincipal.usuarioActual.Clave = txtNuevaClave.Text;
-            UsuarioBL.Modificar(FrmPrincipal.usuarioActual);
+            objetoActualPrincipal.usuarioActual.Clave = txtNuevaClave.Text;
+            UsuarioBL.Modificar(objetoActualPrincipal.usuarioActual);
             MetroMessageBox.Show(this, "Clave actualizada.", "Cambiar clave", MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
             Close();
@@ -70,9 +70,5 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             HabilitarBotonActualizarClave();
         }
-
-        //ME QUEDE AQUI CREANDO EL FORMULARIO DE LISTADO DE USUARIOS Y ENCONTRAR EL 
-        //ERROR QUE AL CERRAR LA VENTANA DE CAMBIAR CLAVE SE ME CIERRA AUTOMATICAMENTE
-        //LA VENTANA DE PERFIL DE USUARIO
     }
 }

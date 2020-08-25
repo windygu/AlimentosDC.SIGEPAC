@@ -20,7 +20,7 @@ namespace AlimentosDC.SIGEPAC.UI
 {
     public partial class FrmPrincipal : MetroForm
     {
-        static public Usuario usuarioActual { get; set; }
+        public Usuario usuarioActual { get; set; }
         FrmPrincipal objetoActualPrincipal;
         public FrmPrincipal(Usuario usuario)
         {
