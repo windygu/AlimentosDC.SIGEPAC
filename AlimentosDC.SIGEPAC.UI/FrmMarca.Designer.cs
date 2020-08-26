@@ -121,6 +121,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmMarca";
+            this.Resizable = false;
             this.RightToLeftLayout = true;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Mantenimiento Marcas";

@@ -125,6 +125,7 @@
             this.Controls.Add(this.txtClaveActual);
             this.MaximizeBox = false;
             this.Name = "FrmCambiarClave";
+            this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Cambiar clave";
             ((System.ComponentModel.ISupportInitialize)(this.epComprobadorClave)).EndInit();

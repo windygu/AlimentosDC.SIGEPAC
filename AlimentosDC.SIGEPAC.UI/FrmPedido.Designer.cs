@@ -679,6 +679,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmPedido";
+            this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Tag = "";
             this.Text = "Mantenimiento Pedidos";

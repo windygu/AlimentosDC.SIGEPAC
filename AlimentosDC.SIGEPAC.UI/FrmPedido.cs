@@ -306,10 +306,17 @@ namespace AlimentosDC.SIGEPAC.UI
                         }
                         MetroMessageBox.Show(this, $"{resultadoPedido} pedido registrado.\n{resultadoDetallePedido} detalle(s) del pedido registrado(s).",
                             "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                        FrmGenerandoInforme progreso = new FrmGenerandoInforme();
+                        BackgroundWorker miSegundoHilo = new BackgroundWorker();
+                        miSegundoHilo.WorkerReportsProgress = true;
+                        miSegundoHilo.WorkerSupportsCancellation = true;
                         FrmCCF comprobanteCreditoFiscal = new FrmCCF(int.Parse(lblNumeroPedido.Text));
                         comprobanteCreditoFiscal.Owner = this;
                         comprobanteCreditoFiscal.ShowDialog();
+                        miSegundoHilo.DoWork += MiSegundoHilo_DoWork;
+
                         Limpiar();
+                        //ME QUEDE AQUI
                 }
                     else
                     {
@@ -369,6 +376,12 @@ namespace AlimentosDC.SIGEPAC.UI
             } 
         }
 
+        private void MiSegundoHilo_DoWork(object sender, DoWorkEventArgs e)
+        {
+            FrmGenerandoInforme progreso = new FrmGenerandoInforme();
+            progreso.ShowDialog();
+        }
+
         private void btnEliminarDetallePedido_Click(object sender, EventArgs e)
         {
             DialogResult resultadoDelCuadro = MetroFramework.MetroMessageBox.Show(this, "¿Desea eliminar el detalle del pedido?", "Aviso", 
@@ -426,17 +439,14 @@ namespace AlimentosDC.SIGEPAC.UI
                 txtDireccionEntregaPedido.Focus();
                 HabilitarBotonGuardarPedido();
             }
-            else
-            {
-                HabilitarBotonGuardarPedido();
-            }
+            else HabilitarBotonGuardarPedido();
         }
 
         void HabilitarBotonGuardarPedido()
         {
             if (
                 cmbEstadoPedido.SelectedIndex > 0 && cliente!=null &&
-                (!string.IsNullOrWhiteSpace(txtDireccionEntregaPedido.Text)) && dgvListadoDetallesPedido.Rows.Count > 0
+                (!string.IsNullOrWhiteSpace(txtDireccionEntregaPedido.Text)) && dgvListadoDetallesPedido.RowCount > 0
                 )
             {
                 btnGuardarPedido.Enabled = true;
@@ -462,6 +472,8 @@ namespace AlimentosDC.SIGEPAC.UI
         private void dgvListadoDetallesPedido_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
             epValidadorControles.SetError(dgvListadoDetallesPedido, "");
+            btnEditarDetallePedido.Enabled = true;
+            btnEliminarDetallePedido.Enabled = true;
             HabilitarBotonGuardarPedido();
         }
 
@@ -471,6 +483,7 @@ namespace AlimentosDC.SIGEPAC.UI
             {
                 epValidadorControles.SetError(cmbEstadoPedido, "Debe seleccionar un estado.");
             }
+            HabilitarBotonGuardarPedido();
         }
 
         private void btnElegirCliente_Click(object sender, EventArgs e)
@@ -639,14 +652,12 @@ namespace AlimentosDC.SIGEPAC.UI
             {
                 epValidadorControles.SetError(cmbEstadoDetallePedido, "");
                 HabilitarBotonAgregarDetalle();
-                HabilitarBotonGuardarPedido();
                 txtCantidad.Focus();
             }
             else
             {
                 epValidadorControles.SetError(cmbEstadoDetallePedido, "Debe seleccionar un estado del detalle");
                 HabilitarBotonAgregarDetalle();
-                HabilitarBotonGuardarPedido();
             }
         }
 
@@ -676,11 +687,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 {
                     lblCambio.Text = "";
                 }
-                
             }
         }
     }
 }
-
-//ME QUEDÉ EN BUSCAR EL ERROR QUE AL UNO O MÁS DETALLES PEDIDO AL PEDIDO NO SE HABILITAN
-//LOS BOTONES DE EDITAR DETALLE PEDIDO NI EL BOTON DE ELIMINAR UN DETALLE PEDIDO

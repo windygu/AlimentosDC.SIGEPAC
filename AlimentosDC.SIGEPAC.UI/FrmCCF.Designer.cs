@@ -29,36 +29,36 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource2 = new Microsoft.Reporting.WinForms.ReportDataSource();
-            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
-            this.GestionPedidosAlimentosDCDataSet = new AlimentosDC.SIGEPAC.UI.GestionPedidosAlimentosDCDataSet();
+            Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
             this.DatosNotaRemisionBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.GestionPedidosAlimentosDCDataSet = new AlimentosDC.SIGEPAC.UI.GestionPedidosAlimentosDCDataSet();
+            this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
             this.DatosNotaRemisionTableAdapter = new AlimentosDC.SIGEPAC.UI.GestionPedidosAlimentosDCDataSetTableAdapters.DatosNotaRemisionTableAdapter();
-            ((System.ComponentModel.ISupportInitialize)(this.GestionPedidosAlimentosDCDataSet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DatosNotaRemisionBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GestionPedidosAlimentosDCDataSet)).BeginInit();
             this.SuspendLayout();
             // 
-            // reportViewer1
+            // DatosNotaRemisionBindingSource
             // 
-            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
-            reportDataSource2.Name = "DataSet1";
-            reportDataSource2.Value = this.DatosNotaRemisionBindingSource;
-            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource2);
-            this.reportViewer1.LocalReport.ReportEmbeddedResource = "AlimentosDC.SIGEPAC.UI.InformeNotaRemision.rdlc";
-            this.reportViewer1.Location = new System.Drawing.Point(20, 60);
-            this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(660, 670);
-            this.reportViewer1.TabIndex = 0;
+            this.DatosNotaRemisionBindingSource.DataMember = "DatosNotaRemision";
+            this.DatosNotaRemisionBindingSource.DataSource = this.GestionPedidosAlimentosDCDataSet;
             // 
             // GestionPedidosAlimentosDCDataSet
             // 
             this.GestionPedidosAlimentosDCDataSet.DataSetName = "GestionPedidosAlimentosDCDataSet";
             this.GestionPedidosAlimentosDCDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // DatosNotaRemisionBindingSource
+            // reportViewer1
             // 
-            this.DatosNotaRemisionBindingSource.DataMember = "DatosNotaRemision";
-            this.DatosNotaRemisionBindingSource.DataSource = this.GestionPedidosAlimentosDCDataSet;
+            this.reportViewer1.Dock = System.Windows.Forms.DockStyle.Fill;
+            reportDataSource1.Name = "DataSet1";
+            reportDataSource1.Value = this.DatosNotaRemisionBindingSource;
+            this.reportViewer1.LocalReport.DataSources.Add(reportDataSource1);
+            this.reportViewer1.LocalReport.ReportEmbeddedResource = "AlimentosDC.SIGEPAC.UI.InformeNotaRemision.rdlc";
+            this.reportViewer1.Location = new System.Drawing.Point(20, 60);
+            this.reportViewer1.Name = "reportViewer1";
+            this.reportViewer1.Size = new System.Drawing.Size(660, 670);
+            this.reportViewer1.TabIndex = 0;
             // 
             // DatosNotaRemisionTableAdapter
             // 
@@ -72,11 +72,12 @@
             this.Controls.Add(this.reportViewer1);
             this.MaximizeBox = false;
             this.Name = "FrmCCF";
+            this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Comprobante Crédito Fiscal";
             this.Load += new System.EventHandler(this.FrmCCF_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.GestionPedidosAlimentosDCDataSet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.DatosNotaRemisionBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.GestionPedidosAlimentosDCDataSet)).EndInit();
             this.ResumeLayout(false);
 
         }

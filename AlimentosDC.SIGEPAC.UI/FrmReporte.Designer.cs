@@ -128,7 +128,9 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.reportViewer1);
+            this.MaximizeBox = false;
             this.Name = "FrmReporte";
+            this.Resizable = false;
             this.Text = "Informe";
             ((System.ComponentModel.ISupportInitialize)(this.datosInformeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GestionPedidosAlimentosDCDataSet1)).EndInit();

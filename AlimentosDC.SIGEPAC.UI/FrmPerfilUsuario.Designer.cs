@@ -174,7 +174,9 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.pcbFotoPerfil);
+            this.MaximizeBox = false;
             this.Name = "FrmPerfilUsuario";
+            this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Perfil Usuario";
             this.Load += new System.EventHandler(this.FrmPerfilUsuario_Load);

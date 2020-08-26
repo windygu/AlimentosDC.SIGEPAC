@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.dgvListadoUsuarios = new System.Windows.Forms.DataGridView();
-            this.btnEliminarUsuario = new System.Windows.Forms.Button();
-            this.btnEditarUsuario = new System.Windows.Forms.Button();
-            this.btnNuevoUsuario = new System.Windows.Forms.Button();
-            this.btnCerrar = new System.Windows.Forms.Button();
-            this.txtBuscadorUsuarios = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
             this.clmId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmApellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNombreUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmClave = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmStatusAdmin = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEliminarUsuario = new System.Windows.Forms.Button();
+            this.btnEditarUsuario = new System.Windows.Forms.Button();
+            this.btnNuevoUsuario = new System.Windows.Forms.Button();
+            this.btnCerrar = new System.Windows.Forms.Button();
+            this.txtBuscadorUsuarios = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -65,6 +65,53 @@
             this.dgvListadoUsuarios.Size = new System.Drawing.Size(771, 270);
             this.dgvListadoUsuarios.TabIndex = 0;
             this.dgvListadoUsuarios.SelectionChanged += new System.EventHandler(this.dgvListadoUsuarios_SelectionChanged);
+            // 
+            // clmId
+            // 
+            this.clmId.Frozen = true;
+            this.clmId.HeaderText = "ID";
+            this.clmId.Name = "clmId";
+            this.clmId.ReadOnly = true;
+            this.clmId.Width = 50;
+            // 
+            // clmNombres
+            // 
+            this.clmNombres.Frozen = true;
+            this.clmNombres.HeaderText = "NOMBRES";
+            this.clmNombres.Name = "clmNombres";
+            this.clmNombres.ReadOnly = true;
+            this.clmNombres.Width = 160;
+            // 
+            // clmApellidos
+            // 
+            this.clmApellidos.Frozen = true;
+            this.clmApellidos.HeaderText = "APELLIDOS";
+            this.clmApellidos.Name = "clmApellidos";
+            this.clmApellidos.ReadOnly = true;
+            this.clmApellidos.Width = 160;
+            // 
+            // clmNombreUsuario
+            // 
+            this.clmNombreUsuario.Frozen = true;
+            this.clmNombreUsuario.HeaderText = "NOMBRE USUARIO";
+            this.clmNombreUsuario.Name = "clmNombreUsuario";
+            this.clmNombreUsuario.ReadOnly = true;
+            this.clmNombreUsuario.Width = 140;
+            // 
+            // clmClave
+            // 
+            this.clmClave.Frozen = true;
+            this.clmClave.HeaderText = "CLAVE";
+            this.clmClave.Name = "clmClave";
+            this.clmClave.ReadOnly = true;
+            this.clmClave.Width = 120;
+            // 
+            // clmStatusAdmin
+            // 
+            this.clmStatusAdmin.Frozen = true;
+            this.clmStatusAdmin.HeaderText = "STATUS ADMIN";
+            this.clmStatusAdmin.Name = "clmStatusAdmin";
+            this.clmStatusAdmin.ReadOnly = true;
             // 
             // btnEliminarUsuario
             // 
@@ -121,53 +168,6 @@
             this.txtBuscadorUsuarios.TextoMarcaAgua = "Buscar por nombre o nombre de usuario";
             this.txtBuscadorUsuarios.TextChanged += new System.EventHandler(this.txtBuscadorUsuarios_TextChanged);
             // 
-            // clmId
-            // 
-            this.clmId.Frozen = true;
-            this.clmId.HeaderText = "ID";
-            this.clmId.Name = "clmId";
-            this.clmId.ReadOnly = true;
-            this.clmId.Width = 50;
-            // 
-            // clmNombres
-            // 
-            this.clmNombres.Frozen = true;
-            this.clmNombres.HeaderText = "NOMBRES";
-            this.clmNombres.Name = "clmNombres";
-            this.clmNombres.ReadOnly = true;
-            this.clmNombres.Width = 160;
-            // 
-            // clmApellidos
-            // 
-            this.clmApellidos.Frozen = true;
-            this.clmApellidos.HeaderText = "APELLIDOS";
-            this.clmApellidos.Name = "clmApellidos";
-            this.clmApellidos.ReadOnly = true;
-            this.clmApellidos.Width = 160;
-            // 
-            // clmNombreUsuario
-            // 
-            this.clmNombreUsuario.Frozen = true;
-            this.clmNombreUsuario.HeaderText = "NOMBRE USUARIO";
-            this.clmNombreUsuario.Name = "clmNombreUsuario";
-            this.clmNombreUsuario.ReadOnly = true;
-            this.clmNombreUsuario.Width = 140;
-            // 
-            // clmClave
-            // 
-            this.clmClave.Frozen = true;
-            this.clmClave.HeaderText = "CLAVE";
-            this.clmClave.Name = "clmClave";
-            this.clmClave.ReadOnly = true;
-            this.clmClave.Width = 120;
-            // 
-            // clmStatusAdmin
-            // 
-            this.clmStatusAdmin.Frozen = true;
-            this.clmStatusAdmin.HeaderText = "STATUS ADMIN";
-            this.clmStatusAdmin.Name = "clmStatusAdmin";
-            this.clmStatusAdmin.ReadOnly = true;
-            // 
             // FrmUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -179,7 +179,9 @@
             this.Controls.Add(this.btnEditarUsuario);
             this.Controls.Add(this.btnNuevoUsuario);
             this.Controls.Add(this.dgvListadoUsuarios);
+            this.MaximizeBox = false;
             this.Name = "FrmUsuarios";
+            this.Resizable = false;
             this.Text = "Administrar Usuarios";
             this.Load += new System.EventHandler(this.FrmAdministrarUsuarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoUsuarios)).EndInit();

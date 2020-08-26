@@ -273,6 +273,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmCliente";
+            this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Mantenimiento Clientes";
             ((System.ComponentModel.ISupportInitialize)(this.epValidarControles)).EndInit();

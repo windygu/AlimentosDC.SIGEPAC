@@ -182,7 +182,9 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnCancelar);
             this.Controls.Add(this.label6);
+            this.MaximizeBox = false;
             this.Name = "FrmUsuario";
+            this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Mantenimiento Usuarios";
             this.Load += new System.EventHandler(this.FrmUsuario_Load);
