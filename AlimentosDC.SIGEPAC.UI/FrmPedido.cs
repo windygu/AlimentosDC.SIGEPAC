@@ -30,6 +30,7 @@ namespace AlimentosDC.SIGEPAC.UI
         Cliente cliente = null;
         Usuario usuarioActual;
         double totalAPagar = 0;
+        FrmGenerandoInforme progreso;
         public FrmPedido(Usuario usuarioActual)
         {
             InitializeComponent();
@@ -78,9 +79,9 @@ namespace AlimentosDC.SIGEPAC.UI
             pedidoEditando = PedidoBL.BuscarPorId((int) idPedido);
             lblNumeroPedido.Text = pedidoEditando.NumeroPedido.ToString();
             lblCCF.Text = pedidoEditando.NumeroCCF;
-            dtpFechaCreacion.Value = pedidoEditando.FechaCreacion;
             dtpFechaEntrega.Value = pedidoEditando.FechaEntrega;
             cmbEstadoPedido.SelectedItem = pedidoEditando.Estado;
+            dtpFechaCreacion.Value = pedidoEditando.FechaCreacion;
             txtDireccionEntregaPedido.Text = pedidoEditando.DireccionEntrega;
             cliente = ClienteBL.BuscarPorId(pedidoEditando.IdCliente);
             lblCliente.Text = string.Concat(cliente.PrimerNombre, " ", cliente.SegundoNombre, " ",
@@ -262,6 +263,7 @@ namespace AlimentosDC.SIGEPAC.UI
             dtpFechaCreacion.Focus();
             txtPagaCon.Clear();
             totalAPagar = 0;
+            lblCambio.Text = "";
         }
 
         private void btnGuardarPedido_Click(object sender, EventArgs e)
@@ -305,18 +307,13 @@ namespace AlimentosDC.SIGEPAC.UI
                             resultadoDetallePedido += DetallePedidoBL.Guardar(detallePedidoARegistrar);
                         }
                         MetroMessageBox.Show(this, $"{resultadoPedido} pedido registrado.\n{resultadoDetallePedido} detalle(s) del pedido registrado(s).",
-                            "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-                        FrmGenerandoInforme progreso = new FrmGenerandoInforme();
-                        BackgroundWorker miSegundoHilo = new BackgroundWorker();
-                        miSegundoHilo.WorkerReportsProgress = true;
-                        miSegundoHilo.WorkerSupportsCancellation = true;
-                        FrmCCF comprobanteCreditoFiscal = new FrmCCF(int.Parse(lblNumeroPedido.Text));
-                        comprobanteCreditoFiscal.Owner = this;
-                        comprobanteCreditoFiscal.ShowDialog();
-                        miSegundoHilo.DoWork += MiSegundoHilo_DoWork;
-
+                            "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        progreso = new FrmGenerandoInforme();
+                        Thread hiloDos = new Thread(new ThreadStart(MostrarBarra));
+                        hiloDos.Start();
+                        FrmCCF informe = new FrmCCF(int.Parse(lblNumeroPedido.Text), ref hiloDos);
+                        informe.ShowDialog();
                         Limpiar();
-                        //ME QUEDE AQUI
                 }
                     else
                     {
@@ -376,9 +373,8 @@ namespace AlimentosDC.SIGEPAC.UI
             } 
         }
 
-        private void MiSegundoHilo_DoWork(object sender, DoWorkEventArgs e)
+        void MostrarBarra()
         {
-            FrmGenerandoInforme progreso = new FrmGenerandoInforme();
             progreso.ShowDialog();
         }
 
@@ -689,5 +685,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 }
             }
         }
+
+        
     }
 }

@@ -11,6 +11,7 @@ using MetroFramework;
 using MetroFramework.Controls;
 using MetroFramework.Forms;
 using Microsoft.Reporting.WinForms;
+using System.Threading;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
@@ -23,6 +24,9 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void btnGenerarInforme_Click(object sender, EventArgs e)
         {
+
+            Thread hiloDos = new Thread(new ThreadStart(MostrarBarra));
+            hiloDos.Start();
             DateTime primeraFecha = dtpPrimeraFecha.Value;
             DateTime segundaFecha = dtpSegundaFecha.Value;
             ReportParameter[] parametrosDelInforme = new ReportParameter[2];
@@ -31,6 +35,14 @@ namespace AlimentosDC.SIGEPAC.UI
             this.datosInformeTableAdapter.Fill(this.GestionPedidosAlimentosDCDataSet1.datosInforme, primeraFecha, segundaFecha);
             reportViewer1.LocalReport.SetParameters(parametrosDelInforme);
             this.reportViewer1.RefreshReport();
+            hiloDos.Abort();
+        }
+
+        void MostrarBarra()
+        {
+            FrmGenerandoInforme progreso = new FrmGenerandoInforme();
+            progreso.Text = "Generando Informe";
+            progreso.ShowDialog();
         }
     }
 }
