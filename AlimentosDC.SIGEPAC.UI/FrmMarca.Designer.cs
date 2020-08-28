@@ -47,7 +47,7 @@
             this.txtNombreMarca.MaxLength = 75;
             this.txtNombreMarca.Name = "txtNombreMarca";
             this.txtNombreMarca.Size = new System.Drawing.Size(200, 25);
-            this.txtNombreMarca.TabIndex = 6;
+            this.txtNombreMarca.TabIndex = 0;
             this.txtNombreMarca.TextChanged += new System.EventHandler(this.txtNombreMarca_TextChanged);
             // 
             // label3
@@ -68,7 +68,7 @@
             this.txtComentarioMarca.Multiline = true;
             this.txtComentarioMarca.Name = "txtComentarioMarca";
             this.txtComentarioMarca.Size = new System.Drawing.Size(200, 50);
-            this.txtComentarioMarca.TabIndex = 8;
+            this.txtComentarioMarca.TabIndex = 1;
             this.txtComentarioMarca.TextChanged += new System.EventHandler(this.txtComentarioMarca_TextChanged);
             // 
             // label1
@@ -87,7 +87,7 @@
             this.btnGuardarMarca.Location = new System.Drawing.Point(219, 174);
             this.btnGuardarMarca.Name = "btnGuardarMarca";
             this.btnGuardarMarca.Size = new System.Drawing.Size(100, 30);
-            this.btnGuardarMarca.TabIndex = 29;
+            this.btnGuardarMarca.TabIndex = 2;
             this.btnGuardarMarca.Text = "Guardar";
             this.btnGuardarMarca.UseVisualStyleBackColor = true;
             this.btnGuardarMarca.Click += new System.EventHandler(this.btnGuardarMarca_Click);
@@ -98,7 +98,7 @@
             this.btnCerrar.Location = new System.Drawing.Point(334, 174);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(100, 30);
-            this.btnCerrar.TabIndex = 30;
+            this.btnCerrar.TabIndex = 3;
             this.btnCerrar.Text = "Cancelar";
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);

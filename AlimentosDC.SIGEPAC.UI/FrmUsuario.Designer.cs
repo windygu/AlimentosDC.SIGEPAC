@@ -50,7 +50,7 @@
             this.btnCancelar.Location = new System.Drawing.Point(435, 236);
             this.btnCancelar.Name = "btnCancelar";
             this.btnCancelar.Size = new System.Drawing.Size(100, 30);
-            this.btnCancelar.TabIndex = 53;
+            this.btnCancelar.TabIndex = 6;
             this.btnCancelar.Text = "Cancelar";
             this.btnCancelar.UseVisualStyleBackColor = true;
             this.btnCancelar.Click += new System.EventHandler(this.btnCancelar_Click);
@@ -103,7 +103,7 @@
             this.txtNombres.Location = new System.Drawing.Point(27, 99);
             this.txtNombres.Name = "txtNombres";
             this.txtNombres.Size = new System.Drawing.Size(230, 20);
-            this.txtNombres.TabIndex = 61;
+            this.txtNombres.TabIndex = 0;
             this.txtNombres.TextChanged += new System.EventHandler(this.txtNombres_TextChanged);
             // 
             // txtApellidos
@@ -114,7 +114,7 @@
             this.txtApellidos.Location = new System.Drawing.Point(305, 99);
             this.txtApellidos.Name = "txtApellidos";
             this.txtApellidos.Size = new System.Drawing.Size(230, 20);
-            this.txtApellidos.TabIndex = 62;
+            this.txtApellidos.TabIndex = 1;
             this.txtApellidos.TextChanged += new System.EventHandler(this.txtApellidos_TextChanged);
             // 
             // txtNombreUsuario
@@ -125,7 +125,7 @@
             this.txtNombreUsuario.Location = new System.Drawing.Point(27, 160);
             this.txtNombreUsuario.Name = "txtNombreUsuario";
             this.txtNombreUsuario.Size = new System.Drawing.Size(230, 20);
-            this.txtNombreUsuario.TabIndex = 63;
+            this.txtNombreUsuario.TabIndex = 2;
             this.txtNombreUsuario.TextChanged += new System.EventHandler(this.txtNombreUsuario_TextChanged);
             // 
             // txtClave
@@ -136,7 +136,7 @@
             this.txtClave.Location = new System.Drawing.Point(305, 160);
             this.txtClave.Name = "txtClave";
             this.txtClave.Size = new System.Drawing.Size(230, 20);
-            this.txtClave.TabIndex = 64;
+            this.txtClave.TabIndex = 3;
             this.txtClave.TextChanged += new System.EventHandler(this.txtClave_TextChanged);
             // 
             // chkAdministrador
@@ -146,7 +146,7 @@
             this.chkAdministrador.Location = new System.Drawing.Point(27, 201);
             this.chkAdministrador.Name = "chkAdministrador";
             this.chkAdministrador.Size = new System.Drawing.Size(115, 23);
-            this.chkAdministrador.TabIndex = 65;
+            this.chkAdministrador.TabIndex = 4;
             this.chkAdministrador.Text = "Administrador";
             this.chkAdministrador.UseVisualStyleBackColor = true;
             // 
@@ -157,7 +157,7 @@
             this.btnGuardar.Location = new System.Drawing.Point(305, 237);
             this.btnGuardar.Name = "btnGuardar";
             this.btnGuardar.Size = new System.Drawing.Size(100, 30);
-            this.btnGuardar.TabIndex = 66;
+            this.btnGuardar.TabIndex = 5;
             this.btnGuardar.Text = "Guardar";
             this.btnGuardar.UseVisualStyleBackColor = true;
             this.btnGuardar.Click += new System.EventHandler(this.btnGuardar_Click);

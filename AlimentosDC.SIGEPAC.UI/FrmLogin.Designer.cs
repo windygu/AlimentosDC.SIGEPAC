@@ -33,8 +33,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnIngresar = new System.Windows.Forms.Button();
+            this.pbxShowPassword = new System.Windows.Forms.PictureBox();
             this.txtClave = new AlimentosDC.SIGEPAC.UI.TextBoxBorderInferior();
             this.txtUsuario = new AlimentosDC.SIGEPAC.UI.TextBoxBorderInferior();
+            ((System.ComponentModel.ISupportInitialize)(this.pbxShowPassword)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -60,10 +62,10 @@
             // btnSalir
             // 
             this.btnSalir.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(407, 164);
+            this.btnSalir.Location = new System.Drawing.Point(436, 162);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(100, 30);
-            this.btnSalir.TabIndex = 6;
+            this.btnSalir.TabIndex = 3;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
@@ -72,13 +74,24 @@
             // 
             this.btnIngresar.Enabled = false;
             this.btnIngresar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIngresar.Location = new System.Drawing.Point(295, 164);
+            this.btnIngresar.Location = new System.Drawing.Point(324, 162);
             this.btnIngresar.Name = "btnIngresar";
             this.btnIngresar.Size = new System.Drawing.Size(100, 30);
-            this.btnIngresar.TabIndex = 7;
+            this.btnIngresar.TabIndex = 2;
             this.btnIngresar.Text = "Ingresar";
             this.btnIngresar.UseVisualStyleBackColor = true;
             this.btnIngresar.Click += new System.EventHandler(this.btnIngresar_Click);
+            // 
+            // pbxShowPassword
+            // 
+            this.pbxShowPassword.Image = global::AlimentosDC.SIGEPAC.UI.Properties.Resources.icons8_hide_30;
+            this.pbxShowPassword.Location = new System.Drawing.Point(517, 99);
+            this.pbxShowPassword.Name = "pbxShowPassword";
+            this.pbxShowPassword.Size = new System.Drawing.Size(20, 20);
+            this.pbxShowPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbxShowPassword.TabIndex = 4;
+            this.pbxShowPassword.TabStop = false;
+            this.pbxShowPassword.Click += new System.EventHandler(this.pbxShowPassword_Click);
             // 
             // txtClave
             // 
@@ -89,8 +102,9 @@
             this.txtClave.Name = "txtClave";
             this.txtClave.PasswordChar = '●';
             this.txtClave.Size = new System.Drawing.Size(230, 20);
-            this.txtClave.TabIndex = 9;
+            this.txtClave.TabIndex = 1;
             this.txtClave.TextChanged += new System.EventHandler(this.txtClave_TextChanged);
+            this.txtClave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtClave_KeyPress);
             // 
             // txtUsuario
             // 
@@ -100,14 +114,15 @@
             this.txtUsuario.Location = new System.Drawing.Point(27, 99);
             this.txtUsuario.Name = "txtUsuario";
             this.txtUsuario.Size = new System.Drawing.Size(230, 20);
-            this.txtUsuario.TabIndex = 8;
+            this.txtUsuario.TabIndex = 0;
             this.txtUsuario.TextChanged += new System.EventHandler(this.txtUsuario_TextChanged);
             // 
             // FrmLogin
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(530, 215);
+            this.ClientSize = new System.Drawing.Size(553, 215);
+            this.Controls.Add(this.pbxShowPassword);
             this.Controls.Add(this.txtClave);
             this.Controls.Add(this.txtUsuario);
             this.Controls.Add(this.btnSalir);
@@ -120,7 +135,7 @@
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Inicio Sesión";
-            this.Load += new System.EventHandler(this.FrmLogin_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbxShowPassword)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -133,5 +148,6 @@
         private System.Windows.Forms.Button btnIngresar;
         private TextBoxBorderInferior txtUsuario;
         private TextBoxBorderInferior txtClave;
+        private System.Windows.Forms.PictureBox pbxShowPassword;
     }
 }

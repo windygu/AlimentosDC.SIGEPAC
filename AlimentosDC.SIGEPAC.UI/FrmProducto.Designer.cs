@@ -42,12 +42,13 @@
             this.label5 = new System.Windows.Forms.Label();
             this.txtPrecioProducto = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtStock = new System.Windows.Forms.TextBox();
             this.btnGuardarProducto = new System.Windows.Forms.Button();
             this.btnCancelarProducto = new System.Windows.Forms.Button();
             this.epValidarControles = new System.Windows.Forms.ErrorProvider(this.components);
+            this.nudStock = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epValidarControles)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudStock)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -81,7 +82,7 @@
             this.cmbMarcas.Location = new System.Drawing.Point(13, 45);
             this.cmbMarcas.Name = "cmbMarcas";
             this.cmbMarcas.Size = new System.Drawing.Size(215, 25);
-            this.cmbMarcas.TabIndex = 54;
+            this.cmbMarcas.TabIndex = 0;
             this.cmbMarcas.ValueMember = "Id";
             this.cmbMarcas.SelectionChangeCommitted += new System.EventHandler(this.cmbMarcas_SelectionChangeCommitted);
             this.cmbMarcas.DropDownClosed += new System.EventHandler(this.cmbMarcas_DropDownClosed);
@@ -122,7 +123,7 @@
             this.txtNombreProducto.Location = new System.Drawing.Point(22, 212);
             this.txtNombreProducto.Name = "txtNombreProducto";
             this.txtNombreProducto.Size = new System.Drawing.Size(228, 25);
-            this.txtNombreProducto.TabIndex = 5;
+            this.txtNombreProducto.TabIndex = 1;
             this.txtNombreProducto.TextChanged += new System.EventHandler(this.txtNombreProducto_TextChanged);
             // 
             // label4
@@ -143,7 +144,7 @@
             this.txtDescripcionProducto.Multiline = true;
             this.txtDescripcionProducto.Name = "txtDescripcionProducto";
             this.txtDescripcionProducto.Size = new System.Drawing.Size(228, 50);
-            this.txtDescripcionProducto.TabIndex = 47;
+            this.txtDescripcionProducto.TabIndex = 3;
             this.txtDescripcionProducto.TextChanged += new System.EventHandler(this.txtDescripcionProducto_TextChanged);
             // 
             // label5
@@ -164,7 +165,7 @@
             this.txtPrecioProducto.MaxLength = 10;
             this.txtPrecioProducto.Name = "txtPrecioProducto";
             this.txtPrecioProducto.Size = new System.Drawing.Size(242, 25);
-            this.txtPrecioProducto.TabIndex = 49;
+            this.txtPrecioProducto.TabIndex = 2;
             this.txtPrecioProducto.TextChanged += new System.EventHandler(this.txtPrecioProducto_TextChanged);
             // 
             // label6
@@ -176,17 +177,6 @@
             this.label6.Size = new System.Drawing.Size(45, 19);
             this.label6.TabIndex = 51;
             this.label6.Text = "Stock:";
-            // 
-            // txtStock
-            // 
-            this.txtStock.BackColor = System.Drawing.Color.White;
-            this.txtStock.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStock.Location = new System.Drawing.Point(279, 278);
-            this.txtStock.Name = "txtStock";
-            this.txtStock.Size = new System.Drawing.Size(242, 25);
-            this.txtStock.TabIndex = 52;
-            this.txtStock.TextChanged += new System.EventHandler(this.txtStock_TextChanged);
-            this.txtStock.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtStock_KeyPress);
             // 
             // btnGuardarProducto
             // 
@@ -205,7 +195,7 @@
             this.btnCancelarProducto.Location = new System.Drawing.Point(442, 371);
             this.btnCancelarProducto.Name = "btnCancelarProducto";
             this.btnCancelarProducto.Size = new System.Drawing.Size(100, 30);
-            this.btnCancelarProducto.TabIndex = 5;
+            this.btnCancelarProducto.TabIndex = 6;
             this.btnCancelarProducto.Text = "Cancelar";
             this.btnCancelarProducto.UseVisualStyleBackColor = true;
             this.btnCancelarProducto.Click += new System.EventHandler(this.btnCancelarProducto_Click);
@@ -214,14 +204,28 @@
             // 
             this.epValidarControles.ContainerControl = this;
             // 
+            // nudStock
+            // 
+            this.nudStock.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudStock.Location = new System.Drawing.Point(279, 279);
+            this.nudStock.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.nudStock.Name = "nudStock";
+            this.nudStock.Size = new System.Drawing.Size(242, 25);
+            this.nudStock.TabIndex = 52;
+            this.nudStock.ValueChanged += new System.EventHandler(this.nudStock_ValueChanged);
+            // 
             // FrmProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(554, 411);
+            this.Controls.Add(this.nudStock);
             this.Controls.Add(this.btnCancelarProducto);
             this.Controls.Add(this.btnGuardarProducto);
-            this.Controls.Add(this.txtStock);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.txtPrecioProducto);
             this.Controls.Add(this.label5);
@@ -240,6 +244,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epValidarControles)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nudStock)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -256,11 +261,11 @@
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtPrecioProducto;
         private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.TextBox txtStock;
         private System.Windows.Forms.Button btnGuardarProducto;
         private System.Windows.Forms.Button btnCancelarProducto;
         private System.Windows.Forms.ComboBox cmbMarcas;
         private MetroFramework.Controls.MetroLabel lblComentario;
         private System.Windows.Forms.ErrorProvider epValidarControles;
+        private System.Windows.Forms.NumericUpDown nudStock;
     }
 }

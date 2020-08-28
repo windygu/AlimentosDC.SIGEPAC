@@ -1,6 +1,6 @@
 ﻿namespace AlimentosDC.SIGEPAC.UI
 {
-    partial class FrmGenerandoInforme
+    partial class FrmCargando
     {
         /// <summary>
         /// Required designer variable.
@@ -35,19 +35,21 @@
             // 
             this.pbGenerando.Location = new System.Drawing.Point(23, 81);
             this.pbGenerando.Name = "pbGenerando";
-            this.pbGenerando.Size = new System.Drawing.Size(507, 23);
+            this.pbGenerando.Size = new System.Drawing.Size(514, 20);
             this.pbGenerando.Style = System.Windows.Forms.ProgressBarStyle.Marquee;
             this.pbGenerando.TabIndex = 0;
             // 
-            // FrmGenerandoInforme
+            // FrmCargando
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(553, 145);
+            this.ClientSize = new System.Drawing.Size(560, 125);
             this.Controls.Add(this.pbGenerando);
-            this.Name = "FrmGenerandoInforme";
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
+            this.Name = "FrmCargando";
             this.Style = MetroFramework.MetroColorStyle.Green;
-            this.Text = "Generando Comprobante de Crédito Fiscal";
+            this.Text = "Preparando Comprobante";
             this.ResumeLayout(false);
 
         }

@@ -65,7 +65,7 @@
             this.btnCerrar.Location = new System.Drawing.Point(347, 212);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(100, 30);
-            this.btnCerrar.TabIndex = 16;
+            this.btnCerrar.TabIndex = 3;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
@@ -77,7 +77,7 @@
             this.btnActualizarClave.Location = new System.Drawing.Point(186, 212);
             this.btnActualizarClave.Name = "btnActualizarClave";
             this.btnActualizarClave.Size = new System.Drawing.Size(128, 30);
-            this.btnActualizarClave.TabIndex = 17;
+            this.btnActualizarClave.TabIndex = 2;
             this.btnActualizarClave.Text = "Actualizar clave";
             this.btnActualizarClave.UseVisualStyleBackColor = true;
             this.btnActualizarClave.Click += new System.EventHandler(this.btnActualizarClave_Click);
@@ -96,7 +96,7 @@
             this.txtNuevaClave.Name = "txtNuevaClave";
             this.txtNuevaClave.PasswordChar = '●';
             this.txtNuevaClave.Size = new System.Drawing.Size(270, 20);
-            this.txtNuevaClave.TabIndex = 2;
+            this.txtNuevaClave.TabIndex = 1;
             this.txtNuevaClave.TextChanged += new System.EventHandler(this.txtNuevaClave_TextChanged);
             // 
             // txtClaveActual

@@ -21,7 +21,6 @@ namespace AlimentosDC.SIGEPAC.UI
         public FrmLogin()
         {
             InitializeComponent();
-            txtUsuario.Focus();
         }
 
         private void btnIngresar_Click(object sender, EventArgs e)
@@ -78,9 +77,29 @@ namespace AlimentosDC.SIGEPAC.UI
             HabilitarBoton();
         }
 
-        private void FrmLogin_Load(object sender, EventArgs e)
+        private void txtClave_KeyPress(object sender, KeyPressEventArgs e)
         {
-            txtUsuario.Focus();
+            if (btnIngresar.Enabled==true)
+            {
+                if (e.KeyChar == (char)Keys.Enter)
+                {
+                    btnIngresar_Click(null, null);
+                }
+            } 
+        }
+
+        private void pbxShowPassword_Click(object sender, EventArgs e)
+        {
+            if (txtClave.PasswordChar == '●')
+            {
+                txtClave.PasswordChar = '\0';
+                pbxShowPassword.Image = Properties.Resources.icons8_eye_30;
+            }
+            else
+            {
+                txtClave.PasswordChar = '●';
+                pbxShowPassword.Image = Properties.Resources.icons8_hide_30;
+            }
         }
     }
 }

@@ -238,7 +238,7 @@
             this.btnCancelarCliente.Location = new System.Drawing.Point(464, 378);
             this.btnCancelarCliente.Name = "btnCancelarCliente";
             this.btnCancelarCliente.Size = new System.Drawing.Size(100, 30);
-            this.btnCancelarCliente.TabIndex = 10;
+            this.btnCancelarCliente.TabIndex = 9;
             this.btnCancelarCliente.Text = "Cancelar";
             this.btnCancelarCliente.UseVisualStyleBackColor = true;
             this.btnCancelarCliente.Click += new System.EventHandler(this.btnCancelarCliente_Click);

@@ -51,7 +51,7 @@
             this.btnEliminarProducto.Location = new System.Drawing.Point(623, 63);
             this.btnEliminarProducto.Name = "btnEliminarProducto";
             this.btnEliminarProducto.Size = new System.Drawing.Size(100, 30);
-            this.btnEliminarProducto.TabIndex = 12;
+            this.btnEliminarProducto.TabIndex = 3;
             this.btnEliminarProducto.Text = "Eliminar";
             this.btnEliminarProducto.UseVisualStyleBackColor = true;
             this.btnEliminarProducto.Click += new System.EventHandler(this.btnEliminarProducto_Click);
@@ -62,7 +62,7 @@
             this.btnEditarProducto.Location = new System.Drawing.Point(501, 63);
             this.btnEditarProducto.Name = "btnEditarProducto";
             this.btnEditarProducto.Size = new System.Drawing.Size(100, 30);
-            this.btnEditarProducto.TabIndex = 11;
+            this.btnEditarProducto.TabIndex = 2;
             this.btnEditarProducto.Text = "Editar";
             this.btnEditarProducto.UseVisualStyleBackColor = true;
             this.btnEditarProducto.Click += new System.EventHandler(this.btnEditarProducto_Click);
@@ -73,7 +73,7 @@
             this.btnNuevoProducto.Location = new System.Drawing.Point(376, 64);
             this.btnNuevoProducto.Name = "btnNuevoProducto";
             this.btnNuevoProducto.Size = new System.Drawing.Size(100, 30);
-            this.btnNuevoProducto.TabIndex = 10;
+            this.btnNuevoProducto.TabIndex = 1;
             this.btnNuevoProducto.Text = "Nuevo";
             this.btnNuevoProducto.UseVisualStyleBackColor = true;
             this.btnNuevoProducto.Click += new System.EventHandler(this.btnNuevoProducto_Click);
@@ -145,7 +145,7 @@
             this.txtBuscarProductos.Location = new System.Drawing.Point(13, 63);
             this.txtBuscarProductos.Name = "txtBuscarProductos";
             this.txtBuscarProductos.Size = new System.Drawing.Size(322, 27);
-            this.txtBuscarProductos.TabIndex = 13;
+            this.txtBuscarProductos.TabIndex = 0;
             this.txtBuscarProductos.TextoMarcaAgua = "Buscar por nombre o descripción";
             this.txtBuscarProductos.TextChanged += new System.EventHandler(this.txtBuscarProductos_TextChanged);
             // 
@@ -155,7 +155,7 @@
             this.btnCerrar.Location = new System.Drawing.Point(775, 479);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(100, 30);
-            this.btnCerrar.TabIndex = 14;
+            this.btnCerrar.TabIndex = 5;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
@@ -167,7 +167,7 @@
             this.btnSeleccionar.Location = new System.Drawing.Point(644, 479);
             this.btnSeleccionar.Name = "btnSeleccionar";
             this.btnSeleccionar.Size = new System.Drawing.Size(100, 30);
-            this.btnSeleccionar.TabIndex = 15;
+            this.btnSeleccionar.TabIndex = 4;
             this.btnSeleccionar.Text = "Seleccionar";
             this.btnSeleccionar.UseVisualStyleBackColor = true;
             this.btnSeleccionar.Visible = false;

@@ -54,7 +54,7 @@
             this.btnUsuarios.Location = new System.Drawing.Point(357, 115);
             this.btnUsuarios.Name = "btnUsuarios";
             this.btnUsuarios.Size = new System.Drawing.Size(135, 30);
-            this.btnUsuarios.TabIndex = 92;
+            this.btnUsuarios.TabIndex = 0;
             this.btnUsuarios.Text = "Usuarios";
             this.btnUsuarios.UseVisualStyleBackColor = true;
             this.btnUsuarios.Visible = false;
@@ -66,7 +66,7 @@
             this.btnCambiarClave.Location = new System.Drawing.Point(357, 226);
             this.btnCambiarClave.Name = "btnCambiarClave";
             this.btnCambiarClave.Size = new System.Drawing.Size(135, 30);
-            this.btnCambiarClave.TabIndex = 91;
+            this.btnCambiarClave.TabIndex = 2;
             this.btnCambiarClave.Text = "Cambiar clave";
             this.btnCambiarClave.UseVisualStyleBackColor = true;
             this.btnCambiarClave.Click += new System.EventHandler(this.btnCambiarClave_Click);
@@ -77,7 +77,7 @@
             this.btnCambiarFoto.Location = new System.Drawing.Point(357, 171);
             this.btnCambiarFoto.Name = "btnCambiarFoto";
             this.btnCambiarFoto.Size = new System.Drawing.Size(135, 30);
-            this.btnCambiarFoto.TabIndex = 87;
+            this.btnCambiarFoto.TabIndex = 1;
             this.btnCambiarFoto.Text = "Cambiar foto";
             this.btnCambiarFoto.UseVisualStyleBackColor = true;
             this.btnCambiarFoto.Click += new System.EventHandler(this.btnCambiarFoto_Click);
@@ -88,7 +88,7 @@
             this.btnCerrar.Location = new System.Drawing.Point(357, 283);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(135, 30);
-            this.btnCerrar.TabIndex = 86;
+            this.btnCerrar.TabIndex = 3;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);

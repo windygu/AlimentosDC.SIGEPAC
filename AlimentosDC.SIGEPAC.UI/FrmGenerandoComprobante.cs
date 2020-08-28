@@ -12,12 +12,13 @@ using MetroFramework.Forms;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
-    public partial class FrmGenerandoInforme : MetroForm
+    public partial class FrmCargando : MetroForm
     {
-        public FrmGenerandoInforme()
+        public FrmCargando(string Encabezado)
         {
             InitializeComponent();
             pbGenerando.MarqueeAnimationSpeed = 30;
+            Text = Encabezado;
         }
     }
 }

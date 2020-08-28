@@ -52,7 +52,7 @@
             this.btnEliminarCliente.Location = new System.Drawing.Point(688, 62);
             this.btnEliminarCliente.Name = "btnEliminarCliente";
             this.btnEliminarCliente.Size = new System.Drawing.Size(100, 30);
-            this.btnEliminarCliente.TabIndex = 2;
+            this.btnEliminarCliente.TabIndex = 3;
             this.btnEliminarCliente.Text = "Eliminar";
             this.btnEliminarCliente.UseVisualStyleBackColor = true;
             this.btnEliminarCliente.Click += new System.EventHandler(this.btnEliminarCliente_Click);
@@ -63,7 +63,7 @@
             this.btnEditarCliente.Location = new System.Drawing.Point(549, 62);
             this.btnEditarCliente.Name = "btnEditarCliente";
             this.btnEditarCliente.Size = new System.Drawing.Size(100, 30);
-            this.btnEditarCliente.TabIndex = 1;
+            this.btnEditarCliente.TabIndex = 2;
             this.btnEditarCliente.Text = "Editar";
             this.btnEditarCliente.UseVisualStyleBackColor = true;
             this.btnEditarCliente.Click += new System.EventHandler(this.btnEditarCliente_Click);
@@ -74,7 +74,7 @@
             this.btnNuevoCliente.Location = new System.Drawing.Point(413, 63);
             this.btnNuevoCliente.Name = "btnNuevoCliente";
             this.btnNuevoCliente.Size = new System.Drawing.Size(100, 30);
-            this.btnNuevoCliente.TabIndex = 0;
+            this.btnNuevoCliente.TabIndex = 1;
             this.btnNuevoCliente.Text = "Nuevo";
             this.btnNuevoCliente.UseVisualStyleBackColor = true;
             this.btnNuevoCliente.Click += new System.EventHandler(this.btnNuevoCliente_Click);
@@ -155,7 +155,7 @@
             this.txtBuscarClientes.Location = new System.Drawing.Point(12, 64);
             this.txtBuscarClientes.Name = "txtBuscarClientes";
             this.txtBuscarClientes.Size = new System.Drawing.Size(322, 27);
-            this.txtBuscarClientes.TabIndex = 14;
+            this.txtBuscarClientes.TabIndex = 0;
             this.txtBuscarClientes.TextoMarcaAgua = "Buscar por nombre o apellido";
             this.txtBuscarClientes.TextChanged += new System.EventHandler(this.txtBuscarClientes_TextChanged);
             // 
@@ -165,7 +165,7 @@
             this.btnCerrar.Location = new System.Drawing.Point(827, 463);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(100, 30);
-            this.btnCerrar.TabIndex = 15;
+            this.btnCerrar.TabIndex = 5;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
@@ -176,7 +176,7 @@
             this.btnSeleccionar.Location = new System.Drawing.Point(688, 463);
             this.btnSeleccionar.Name = "btnSeleccionar";
             this.btnSeleccionar.Size = new System.Drawing.Size(112, 30);
-            this.btnSeleccionar.TabIndex = 16;
+            this.btnSeleccionar.TabIndex = 4;
             this.btnSeleccionar.Text = "Seleccionar";
             this.btnSeleccionar.UseVisualStyleBackColor = true;
             this.btnSeleccionar.Visible = false;

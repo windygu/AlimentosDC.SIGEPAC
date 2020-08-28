@@ -91,7 +91,7 @@
             this.dtpPrimeraFecha.Location = new System.Drawing.Point(76, 76);
             this.dtpPrimeraFecha.Name = "dtpPrimeraFecha";
             this.dtpPrimeraFecha.Size = new System.Drawing.Size(120, 25);
-            this.dtpPrimeraFecha.TabIndex = 3;
+            this.dtpPrimeraFecha.TabIndex = 0;
             // 
             // dtpSegundaFecha
             // 
@@ -100,7 +100,7 @@
             this.dtpSegundaFecha.Location = new System.Drawing.Point(280, 76);
             this.dtpSegundaFecha.Name = "dtpSegundaFecha";
             this.dtpSegundaFecha.Size = new System.Drawing.Size(120, 25);
-            this.dtpSegundaFecha.TabIndex = 4;
+            this.dtpSegundaFecha.TabIndex = 1;
             // 
             // btnGenerarInforme
             // 
@@ -108,7 +108,7 @@
             this.btnGenerarInforme.Location = new System.Drawing.Point(434, 74);
             this.btnGenerarInforme.Name = "btnGenerarInforme";
             this.btnGenerarInforme.Size = new System.Drawing.Size(100, 30);
-            this.btnGenerarInforme.TabIndex = 5;
+            this.btnGenerarInforme.TabIndex = 2;
             this.btnGenerarInforme.Text = "Generar";
             this.btnGenerarInforme.UseVisualStyleBackColor = true;
             this.btnGenerarInforme.Click += new System.EventHandler(this.btnGenerarInforme_Click);

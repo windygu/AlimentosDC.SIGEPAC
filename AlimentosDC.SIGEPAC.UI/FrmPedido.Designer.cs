@@ -61,11 +61,11 @@
             this.lblNumeroPedido = new System.Windows.Forms.Label();
             this.epValidadorControles = new System.Windows.Forms.ErrorProvider(this.components);
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.nudCantidad = new System.Windows.Forms.NumericUpDown();
             this.lblSubTotal = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.btnAgregarDetalle = new System.Windows.Forms.Button();
             this.btnElegirProducto = new System.Windows.Forms.Button();
-            this.txtCantidad = new System.Windows.Forms.TextBox();
             this.label19 = new System.Windows.Forms.Label();
             this.cmbEstadoDetallePedido = new System.Windows.Forms.ComboBox();
             this.label20 = new System.Windows.Forms.Label();
@@ -89,6 +89,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDetallesPedido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epValidadorControles)).BeginInit();
             this.groupBox2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -131,7 +132,7 @@
             this.btnElegirCliente.Location = new System.Drawing.Point(13, 25);
             this.btnElegirCliente.Name = "btnElegirCliente";
             this.btnElegirCliente.Size = new System.Drawing.Size(130, 30);
-            this.btnElegirCliente.TabIndex = 37;
+            this.btnElegirCliente.TabIndex = 4;
             this.btnElegirCliente.Text = "Elegir cliente";
             this.btnElegirCliente.UseVisualStyleBackColor = true;
             this.btnElegirCliente.Click += new System.EventHandler(this.btnElegirCliente_Click);
@@ -200,7 +201,7 @@
             this.txtDireccionEntregaPedido.Multiline = true;
             this.txtDireccionEntregaPedido.Name = "txtDireccionEntregaPedido";
             this.txtDireccionEntregaPedido.Size = new System.Drawing.Size(229, 50);
-            this.txtDireccionEntregaPedido.TabIndex = 11;
+            this.txtDireccionEntregaPedido.TabIndex = 3;
             this.txtDireccionEntregaPedido.TextChanged += new System.EventHandler(this.txtDireccionEntregaPedido_TextChanged);
             // 
             // label7
@@ -220,7 +221,7 @@
             this.dtpFechaCreacion.Location = new System.Drawing.Point(289, 72);
             this.dtpFechaCreacion.Name = "dtpFechaCreacion";
             this.dtpFechaCreacion.Size = new System.Drawing.Size(100, 25);
-            this.dtpFechaCreacion.TabIndex = 14;
+            this.dtpFechaCreacion.TabIndex = 0;
             // 
             // dtpFechaEntrega
             // 
@@ -229,7 +230,7 @@
             this.dtpFechaEntrega.Location = new System.Drawing.Point(569, 74);
             this.dtpFechaEntrega.Name = "dtpFechaEntrega";
             this.dtpFechaEntrega.Size = new System.Drawing.Size(100, 25);
-            this.dtpFechaEntrega.TabIndex = 15;
+            this.dtpFechaEntrega.TabIndex = 1;
             // 
             // btnEditarDetallePedido
             // 
@@ -238,7 +239,7 @@
             this.btnEditarDetallePedido.Location = new System.Drawing.Point(23, 693);
             this.btnEditarDetallePedido.Name = "btnEditarDetallePedido";
             this.btnEditarDetallePedido.Size = new System.Drawing.Size(120, 30);
-            this.btnEditarDetallePedido.TabIndex = 19;
+            this.btnEditarDetallePedido.TabIndex = 9;
             this.btnEditarDetallePedido.Text = "Editar detalle";
             this.btnEditarDetallePedido.UseVisualStyleBackColor = true;
             this.btnEditarDetallePedido.Click += new System.EventHandler(this.btnEditarDetallePedido_Click);
@@ -250,7 +251,7 @@
             this.btnEliminarDetallePedido.Location = new System.Drawing.Point(169, 693);
             this.btnEliminarDetallePedido.Name = "btnEliminarDetallePedido";
             this.btnEliminarDetallePedido.Size = new System.Drawing.Size(125, 30);
-            this.btnEliminarDetallePedido.TabIndex = 20;
+            this.btnEliminarDetallePedido.TabIndex = 10;
             this.btnEliminarDetallePedido.Text = "Eliminar detalle";
             this.btnEliminarDetallePedido.UseVisualStyleBackColor = true;
             this.btnEliminarDetallePedido.Click += new System.EventHandler(this.btnEliminarDetallePedido_Click);
@@ -262,7 +263,7 @@
             this.btnGuardarPedido.Location = new System.Drawing.Point(629, 747);
             this.btnGuardarPedido.Name = "btnGuardarPedido";
             this.btnGuardarPedido.Size = new System.Drawing.Size(128, 30);
-            this.btnGuardarPedido.TabIndex = 25;
+            this.btnGuardarPedido.TabIndex = 12;
             this.btnGuardarPedido.Text = "Registrar pedido";
             this.btnGuardarPedido.UseVisualStyleBackColor = true;
             this.btnGuardarPedido.Click += new System.EventHandler(this.btnGuardarPedido_Click);
@@ -273,7 +274,7 @@
             this.btnCerrar.Location = new System.Drawing.Point(777, 747);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(100, 30);
-            this.btnCerrar.TabIndex = 24;
+            this.btnCerrar.TabIndex = 13;
             this.btnCerrar.Text = "Cancelar";
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
@@ -376,11 +377,11 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.nudCantidad);
             this.groupBox2.Controls.Add(this.lblSubTotal);
             this.groupBox2.Controls.Add(this.label9);
             this.groupBox2.Controls.Add(this.btnAgregarDetalle);
             this.groupBox2.Controls.Add(this.btnElegirProducto);
-            this.groupBox2.Controls.Add(this.txtCantidad);
             this.groupBox2.Controls.Add(this.label19);
             this.groupBox2.Controls.Add(this.cmbEstadoDetallePedido);
             this.groupBox2.Controls.Add(this.label20);
@@ -399,6 +400,20 @@
             this.groupBox2.TabIndex = 33;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalle Pedido";
+            // 
+            // nudCantidad
+            // 
+            this.nudCantidad.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.nudCantidad.Location = new System.Drawing.Point(102, 124);
+            this.nudCantidad.Maximum = new decimal(new int[] {
+            1000,
+            0,
+            0,
+            0});
+            this.nudCantidad.Name = "nudCantidad";
+            this.nudCantidad.Size = new System.Drawing.Size(231, 25);
+            this.nudCantidad.TabIndex = 8;
+            this.nudCantidad.ValueChanged += new System.EventHandler(this.nudCantidad_ValueChanged);
             // 
             // lblSubTotal
             // 
@@ -424,7 +439,7 @@
             this.btnAgregarDetalle.Location = new System.Drawing.Point(709, 119);
             this.btnAgregarDetalle.Name = "btnAgregarDetalle";
             this.btnAgregarDetalle.Size = new System.Drawing.Size(130, 30);
-            this.btnAgregarDetalle.TabIndex = 45;
+            this.btnAgregarDetalle.TabIndex = 8;
             this.btnAgregarDetalle.Text = "Agregar detalle";
             this.btnAgregarDetalle.UseVisualStyleBackColor = true;
             this.btnAgregarDetalle.Click += new System.EventHandler(this.btnAgregarDetalle_Click);
@@ -435,21 +450,10 @@
             this.btnElegirProducto.Location = new System.Drawing.Point(13, 28);
             this.btnElegirProducto.Name = "btnElegirProducto";
             this.btnElegirProducto.Size = new System.Drawing.Size(130, 30);
-            this.btnElegirProducto.TabIndex = 38;
+            this.btnElegirProducto.TabIndex = 5;
             this.btnElegirProducto.Text = "Elegir producto";
             this.btnElegirProducto.UseVisualStyleBackColor = true;
             this.btnElegirProducto.Click += new System.EventHandler(this.btnElegirProducto_Click);
-            // 
-            // txtCantidad
-            // 
-            this.txtCantidad.BackColor = System.Drawing.Color.White;
-            this.txtCantidad.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtCantidad.Location = new System.Drawing.Point(102, 126);
-            this.txtCantidad.Name = "txtCantidad";
-            this.txtCantidad.Size = new System.Drawing.Size(231, 25);
-            this.txtCantidad.TabIndex = 44;
-            this.txtCantidad.TextChanged += new System.EventHandler(this.txtCantidad_TextChanged);
-            this.txtCantidad.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCantidad_KeyPress);
             // 
             // label19
             // 
@@ -476,7 +480,7 @@
             this.cmbEstadoDetallePedido.Location = new System.Drawing.Point(668, 30);
             this.cmbEstadoDetallePedido.Name = "cmbEstadoDetallePedido";
             this.cmbEstadoDetallePedido.Size = new System.Drawing.Size(181, 25);
-            this.cmbEstadoDetallePedido.TabIndex = 42;
+            this.cmbEstadoDetallePedido.TabIndex = 6;
             this.cmbEstadoDetallePedido.SelectionChangeCommitted += new System.EventHandler(this.cmbEstadoDetallePedido_SelectionChangeCommitted);
             this.cmbEstadoDetallePedido.DropDownClosed += new System.EventHandler(this.cmbEstadoDetallePedido_DropDownClosed);
             // 
@@ -605,7 +609,7 @@
             this.cmbEstadoPedido.Location = new System.Drawing.Point(69, 128);
             this.cmbEstadoPedido.Name = "cmbEstadoPedido";
             this.cmbEstadoPedido.Size = new System.Drawing.Size(204, 25);
-            this.cmbEstadoPedido.TabIndex = 45;
+            this.cmbEstadoPedido.TabIndex = 2;
             this.cmbEstadoPedido.SelectionChangeCommitted += new System.EventHandler(this.cmbEstadoPedido_SelectionChangeCommitted_1);
             this.cmbEstadoPedido.DropDownClosed += new System.EventHandler(this.cmbEstadoPedido_DropDownClosed_1);
             // 
@@ -617,7 +621,7 @@
             this.txtPagaCon.Multiline = true;
             this.txtPagaCon.Name = "txtPagaCon";
             this.txtPagaCon.Size = new System.Drawing.Size(157, 25);
-            this.txtPagaCon.TabIndex = 47;
+            this.txtPagaCon.TabIndex = 11;
             this.txtPagaCon.TextChanged += new System.EventHandler(this.txtPagaCon_TextChanged);
             // 
             // label8
@@ -690,6 +694,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.epValidadorControles)).EndInit();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).EndInit();
             this.panel1.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -728,7 +733,6 @@
         private System.Windows.Forms.Label label18;
         private System.Windows.Forms.Label label20;
         private System.Windows.Forms.ComboBox cmbEstadoDetallePedido;
-        private System.Windows.Forms.TextBox txtCantidad;
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Label label13;
@@ -751,5 +755,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtPagaCon;
         private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown nudCantidad;
     }
 }

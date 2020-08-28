@@ -79,7 +79,7 @@
             this.btnHistorial.Location = new System.Drawing.Point(20, 203);
             this.btnHistorial.Name = "btnHistorial";
             this.btnHistorial.Size = new System.Drawing.Size(140, 45);
-            this.btnHistorial.TabIndex = 5;
+            this.btnHistorial.TabIndex = 1;
             this.btnHistorial.Text = " Historial";
             this.btnHistorial.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnHistorial.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -95,7 +95,7 @@
             this.btnReportes.Location = new System.Drawing.Point(20, 442);
             this.btnReportes.Name = "btnReportes";
             this.btnReportes.Size = new System.Drawing.Size(140, 45);
-            this.btnReportes.TabIndex = 4;
+            this.btnReportes.TabIndex = 5;
             this.btnReportes.Text = " Reportes";
             this.btnReportes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnReportes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -112,7 +112,7 @@
             this.btnCerraSesion.Location = new System.Drawing.Point(20, 502);
             this.btnCerraSesion.Name = "btnCerraSesion";
             this.btnCerraSesion.Size = new System.Drawing.Size(140, 45);
-            this.btnCerraSesion.TabIndex = 1;
+            this.btnCerraSesion.TabIndex = 6;
             this.btnCerraSesion.Text = " Salir";
             this.btnCerraSesion.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnCerraSesion.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -155,7 +155,7 @@
             this.btnMarcas.Location = new System.Drawing.Point(20, 383);
             this.btnMarcas.Name = "btnMarcas";
             this.btnMarcas.Size = new System.Drawing.Size(140, 45);
-            this.btnMarcas.TabIndex = 3;
+            this.btnMarcas.TabIndex = 4;
             this.btnMarcas.Text = " Marcas";
             this.btnMarcas.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnMarcas.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -171,7 +171,7 @@
             this.btnProductos.Location = new System.Drawing.Point(20, 262);
             this.btnProductos.Name = "btnProductos";
             this.btnProductos.Size = new System.Drawing.Size(140, 45);
-            this.btnProductos.TabIndex = 1;
+            this.btnProductos.TabIndex = 2;
             this.btnProductos.Text = " Productos";
             this.btnProductos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProductos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
@@ -187,7 +187,7 @@
             this.btnClientes.Location = new System.Drawing.Point(20, 323);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Size = new System.Drawing.Size(140, 45);
-            this.btnClientes.TabIndex = 2;
+            this.btnClientes.TabIndex = 3;
             this.btnClientes.Text = " Clientes";
             this.btnClientes.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnClientes.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;

@@ -30,7 +30,6 @@ namespace AlimentosDC.SIGEPAC.UI
         Cliente cliente = null;
         Usuario usuarioActual;
         double totalAPagar = 0;
-        FrmGenerandoInforme progreso;
         public FrmPedido(Usuario usuarioActual)
         {
             InitializeComponent();
@@ -45,7 +44,6 @@ namespace AlimentosDC.SIGEPAC.UI
             InitializeComponent();
             objetoPedidoActual = this;
             this.idPedido = idPedido;
-            
         }
 
         private void FrmPedido_Load(object sender, EventArgs e)
@@ -66,12 +64,23 @@ namespace AlimentosDC.SIGEPAC.UI
                     btnGuardarPedido.Text = "Actualizar pedido";
                     dtpFechaCreacion.Focus();
                 }
+                nudCantidad.TextChanged += NudCantidad_TextChanged;
             }
             catch (Exception error)
             {
                 MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\nMÁS INFORMACIÓN: {error.Message}", "Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+                Close();
             }
+        }
+
+        private void NudCantidad_TextChanged(object sender, EventArgs e)
+        {
+            if (string.IsNullOrEmpty(nudCantidad.Text))
+            {
+                nudCantidad.Value = 0;
+            }
+            HabilitarBotonAgregarDetalle();
         }
 
         void CargarDatosAlFormulario()
@@ -155,9 +164,9 @@ namespace AlimentosDC.SIGEPAC.UI
                     detalle.IdProducto = producto.Id;
                     detalle.Producto = producto.Nombre;
                     detalle.Descripcion = producto.Descripcion;
-                    detalle.Cantidad = ushort.Parse(txtCantidad.Text);
+                    detalle.Cantidad = ushort.Parse(nudCantidad.Text);
                     detalle.PrecioUnitario = producto.Precio;
-                    detalle.SubTotal = ushort.Parse(txtCantidad.Text) * producto.Precio;
+                    detalle.SubTotal = ushort.Parse(nudCantidad.Text) * producto.Precio;
                     detalle.Estado = cmbEstadoDetallePedido.SelectedItem.ToString();
                 }
                 ActualizarDatagridView();
@@ -171,9 +180,9 @@ namespace AlimentosDC.SIGEPAC.UI
                 detallePedidoAAgregar.IdProducto = producto.Id;
                 detallePedidoAAgregar.Producto = producto.Nombre;
                 detallePedidoAAgregar.Descripcion = producto.Descripcion;
-                detallePedidoAAgregar.Cantidad = ushort.Parse(txtCantidad.Text);
+                detallePedidoAAgregar.Cantidad = ushort.Parse(nudCantidad.Text);
                 detallePedidoAAgregar.PrecioUnitario = producto.Precio;
-                detallePedidoAAgregar.SubTotal = ushort.Parse(txtCantidad.Text) * producto.Precio;
+                detallePedidoAAgregar.SubTotal = ushort.Parse(nudCantidad.Text) * producto.Precio;
                 detallePedidoAAgregar.Estado = cmbEstadoDetallePedido.SelectedItem.ToString();
                 int idUltimoDetalle;
                 if (listadoDetallesPedido.Count >= 1)
@@ -186,8 +195,8 @@ namespace AlimentosDC.SIGEPAC.UI
                 {
                     MetroMessageBox.Show(this, "Ya agregó este producto a la lista.", "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning,
                         MessageBoxDefaultButton.Button1);
-                    txtCantidad.Clear();
-                    txtCantidad.Focus();
+                    nudCantidad.ResetText();
+                    nudCantidad.Focus();
                 }
                 else
                 {
@@ -308,7 +317,6 @@ namespace AlimentosDC.SIGEPAC.UI
                         }
                         MetroMessageBox.Show(this, $"{resultadoPedido} pedido registrado.\n{resultadoDetallePedido} detalle(s) del pedido registrado(s).",
                             "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        progreso = new FrmGenerandoInforme();
                         Thread hiloDos = new Thread(new ThreadStart(MostrarBarra));
                         hiloDos.Start();
                         FrmCCF informe = new FrmCCF(int.Parse(lblNumeroPedido.Text), ref hiloDos);
@@ -375,7 +383,7 @@ namespace AlimentosDC.SIGEPAC.UI
 
         void MostrarBarra()
         {
-            progreso.ShowDialog();
+            Application.Run(new FrmCargando("Preparando comprobante..."));
         }
 
         private void btnEliminarDetallePedido_Click(object sender, EventArgs e)
@@ -537,14 +545,14 @@ namespace AlimentosDC.SIGEPAC.UI
             lblPrecioUnitario.Text = string.Concat("$ ", producto.Precio.ToString("N"));
             lblDescripcionProducto.Text = producto.Descripcion;
             lblStockProducto.Text = producto.Stock.ToString();
-            txtCantidad.Text = detalleAEditar.Cantidad.ToString();
+            nudCantidad.Text = detalleAEditar.Cantidad.ToString();
             lblSubTotal.Text = string.Concat("$ ", detalleAEditar.SubTotal.ToString("N"));
             cmbEstadoDetallePedido.SelectedItem = detalleAEditar.Estado;
             HabilitarBotonAgregarDetalle();
         }
         void LimpiarDetalles()
         {
-            txtCantidad.Clear();
+            nudCantidad.Value = 0;
             lblNombreProducto.Text = "";
             lblDescripcionProducto.Text = "";
             lblPrecioUnitario.Text = "";
@@ -553,56 +561,22 @@ namespace AlimentosDC.SIGEPAC.UI
             cmbEstadoDetallePedido.SelectedIndex = 0;
             producto = null;
             idDetallePedidoAEditar = null;
-            epValidadorControles.SetError(txtCantidad, "");
+            epValidadorControles.SetError(nudCantidad, "");
         }
 
-        private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
-            {
-                e.Handled = false;
-            }
-            else e.Handled = true;
-        }
+        //private void txtCantidad_KeyPress(object sender, KeyPressEventArgs e)
+        //{
+        //    if (char.IsNumber(e.KeyChar) || e.KeyChar == (char)Keys.Back)
+        //    {
+        //        e.Handled = false;
+        //    }
+        //    else e.Handled = true;
+        //}
 
-        private void txtCantidad_TextChanged(object sender, EventArgs e)
-        {
-            if (txtCantidad.Text.Length > 0 && lblPrecioUnitario.Text.Length > 0)
-            {
-                epValidadorControles.SetError(txtCantidad, "");
-                lblSubTotal.Text = string.Concat("$ ", (producto.Precio * float.Parse(txtCantidad.Text)).ToString("N"));
-                int stock = producto.Stock;
-                int stockMinimo = 10;
-                lblStockProducto.Text = (stock - int.Parse(txtCantidad.Text)).ToString();
-                if ((stock - int.Parse(txtCantidad.Text)) < stockMinimo)
-                {
-                    MetroMessageBox.Show(this, "Las existencias mínimas de este producto deben ser 10 unidades.", "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    txtCantidad.Text = "";
-                }
-                HabilitarBotonAgregarDetalle();
-            }
-            else if (txtCantidad.TextLength >= 1)
-            {
-                epValidadorControles.SetError(txtCantidad, "");
-                epValidadorControles.SetError(btnElegirProducto, "Debe seleccionar un producto");
-                if (cmbEstadoDetallePedido.SelectedIndex == 0) epValidadorControles.SetError(cmbEstadoDetallePedido, "Debe seleccionar un estado");
-            }
-            else
-            {
-                lblSubTotal.Text = "0.00";
-                if (producto!=null)
-                {
-                    lblStockProducto.Text = producto.Stock.ToString();
-                }
-                epValidadorControles.SetError(txtCantidad, "Este campo es obligatorio");
-                HabilitarBotonAgregarDetalle();
-            }
-        }
         void HabilitarBotonAgregarDetalle()
         {
             if (producto!=null && cmbEstadoDetallePedido.SelectedIndex > 0 &&
-                txtCantidad.Text.Length >= 1
-                )
+                nudCantidad.Value > 0)
             {
                 btnAgregarDetalle.Enabled = true;
             }
@@ -648,7 +622,7 @@ namespace AlimentosDC.SIGEPAC.UI
             {
                 epValidadorControles.SetError(cmbEstadoDetallePedido, "");
                 HabilitarBotonAgregarDetalle();
-                txtCantidad.Focus();
+                nudCantidad.Focus();
             }
             else
             {
@@ -686,6 +660,38 @@ namespace AlimentosDC.SIGEPAC.UI
             }
         }
 
-        
+        private void nudCantidad_ValueChanged(object sender, EventArgs e)
+        {
+            if (nudCantidad.Value > 0 && lblPrecioUnitario.Text.Length > 0)
+            {
+                epValidadorControles.SetError(nudCantidad, "");
+                lblSubTotal.Text = string.Concat("$ ", (producto.Precio * (float)nudCantidad.Value).ToString("N"));
+                int stock = producto.Stock;
+                int stockMinimo = 10;
+                lblStockProducto.Text = (stock - nudCantidad.Value).ToString();
+                if ((stock - nudCantidad.Value) < stockMinimo)
+                {
+                    MetroMessageBox.Show(this, "Las existencias mínimas de este producto deben ser 10 unidades.", "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    nudCantidad.Text = "";
+                }
+                HabilitarBotonAgregarDetalle();
+            }
+            else if (nudCantidad.Value > 0)
+            {
+                epValidadorControles.SetError(nudCantidad, "");
+                epValidadorControles.SetError(btnElegirProducto, "Debe seleccionar un producto");
+                if (cmbEstadoDetallePedido.SelectedIndex == 0) epValidadorControles.SetError(cmbEstadoDetallePedido, "Debe seleccionar un estado");
+            }
+            else
+            {
+                lblSubTotal.Text = "$ 0.00";
+                if (producto != null)
+                {
+                    lblStockProducto.Text = producto.Stock.ToString();
+                }
+                epValidadorControles.SetError(nudCantidad, "Este campo es obligatorio");
+                HabilitarBotonAgregarDetalle();
+            }
+        }
     }
 }

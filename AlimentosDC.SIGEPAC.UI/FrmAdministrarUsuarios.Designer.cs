@@ -119,7 +119,7 @@
             this.btnEliminarUsuario.Location = new System.Drawing.Point(655, 69);
             this.btnEliminarUsuario.Name = "btnEliminarUsuario";
             this.btnEliminarUsuario.Size = new System.Drawing.Size(100, 30);
-            this.btnEliminarUsuario.TabIndex = 17;
+            this.btnEliminarUsuario.TabIndex = 3;
             this.btnEliminarUsuario.Text = "Eliminar";
             this.btnEliminarUsuario.UseVisualStyleBackColor = true;
             this.btnEliminarUsuario.Click += new System.EventHandler(this.btnEliminarUsuario_Click);
@@ -131,7 +131,7 @@
             this.btnEditarUsuario.Location = new System.Drawing.Point(516, 69);
             this.btnEditarUsuario.Name = "btnEditarUsuario";
             this.btnEditarUsuario.Size = new System.Drawing.Size(100, 30);
-            this.btnEditarUsuario.TabIndex = 16;
+            this.btnEditarUsuario.TabIndex = 2;
             this.btnEditarUsuario.Text = "Editar";
             this.btnEditarUsuario.UseVisualStyleBackColor = true;
             this.btnEditarUsuario.Click += new System.EventHandler(this.btnEditarUsuario_Click);
@@ -142,7 +142,7 @@
             this.btnNuevoUsuario.Location = new System.Drawing.Point(380, 70);
             this.btnNuevoUsuario.Name = "btnNuevoUsuario";
             this.btnNuevoUsuario.Size = new System.Drawing.Size(100, 30);
-            this.btnNuevoUsuario.TabIndex = 15;
+            this.btnNuevoUsuario.TabIndex = 1;
             this.btnNuevoUsuario.Text = "Nuevo";
             this.btnNuevoUsuario.UseVisualStyleBackColor = true;
             this.btnNuevoUsuario.Click += new System.EventHandler(this.btnNuevoUsuario_Click);
@@ -153,7 +153,7 @@
             this.btnCerrar.Location = new System.Drawing.Point(695, 410);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(100, 30);
-            this.btnCerrar.TabIndex = 19;
+            this.btnCerrar.TabIndex = 4;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
@@ -164,7 +164,7 @@
             this.txtBuscadorUsuarios.Location = new System.Drawing.Point(23, 72);
             this.txtBuscadorUsuarios.Name = "txtBuscadorUsuarios";
             this.txtBuscadorUsuarios.Size = new System.Drawing.Size(322, 27);
-            this.txtBuscadorUsuarios.TabIndex = 18;
+            this.txtBuscadorUsuarios.TabIndex = 0;
             this.txtBuscadorUsuarios.TextoMarcaAgua = "Buscar por nombre o nombre de usuario";
             this.txtBuscadorUsuarios.TextChanged += new System.EventHandler(this.txtBuscadorUsuarios_TextChanged);
             // 

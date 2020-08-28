@@ -30,11 +30,6 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPedidos));
             this.dgvListadoPedidos = new System.Windows.Forms.DataGridView();
-            this.btnEditarPedido = new System.Windows.Forms.Button();
-            this.btnEliminarPedido = new System.Windows.Forms.Button();
-            this.btnVerDetallePedido = new System.Windows.Forms.Button();
-            this.cmbMostrando = new MetroFramework.Controls.MetroComboBox();
-            this.txtBuscadorPedidos = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
             this.dgvId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -45,6 +40,11 @@
             this.dgvFechaEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvDireccionEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnEditarPedido = new System.Windows.Forms.Button();
+            this.btnEliminarPedido = new System.Windows.Forms.Button();
+            this.btnVerDetallePedido = new System.Windows.Forms.Button();
+            this.cmbMostrando = new MetroFramework.Controls.MetroComboBox();
+            this.txtBuscadorPedidos = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoPedidos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -74,71 +74,6 @@
             this.dgvListadoPedidos.Size = new System.Drawing.Size(1178, 396);
             this.dgvListadoPedidos.TabIndex = 0;
             this.dgvListadoPedidos.SelectionChanged += new System.EventHandler(this.dgvListadoPedidos_SelectionChanged);
-            // 
-            // btnEditarPedido
-            // 
-            this.btnEditarPedido.Enabled = false;
-            this.btnEditarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarPedido.Location = new System.Drawing.Point(683, 60);
-            this.btnEditarPedido.Name = "btnEditarPedido";
-            this.btnEditarPedido.Size = new System.Drawing.Size(100, 30);
-            this.btnEditarPedido.TabIndex = 4;
-            this.btnEditarPedido.Text = "Editar";
-            this.btnEditarPedido.UseVisualStyleBackColor = true;
-            this.btnEditarPedido.Click += new System.EventHandler(this.btnEditarPedido_Click);
-            // 
-            // btnEliminarPedido
-            // 
-            this.btnEliminarPedido.Enabled = false;
-            this.btnEliminarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarPedido.Location = new System.Drawing.Point(803, 60);
-            this.btnEliminarPedido.Name = "btnEliminarPedido";
-            this.btnEliminarPedido.Size = new System.Drawing.Size(100, 30);
-            this.btnEliminarPedido.TabIndex = 5;
-            this.btnEliminarPedido.Text = "Eliminar";
-            this.btnEliminarPedido.UseVisualStyleBackColor = true;
-            this.btnEliminarPedido.Click += new System.EventHandler(this.btnEliminarPedido_Click);
-            // 
-            // btnVerDetallePedido
-            // 
-            this.btnVerDetallePedido.Enabled = false;
-            this.btnVerDetallePedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerDetallePedido.Location = new System.Drawing.Point(558, 60);
-            this.btnVerDetallePedido.Name = "btnVerDetallePedido";
-            this.btnVerDetallePedido.Size = new System.Drawing.Size(100, 30);
-            this.btnVerDetallePedido.TabIndex = 6;
-            this.btnVerDetallePedido.Text = "Ver detalle";
-            this.btnVerDetallePedido.UseVisualStyleBackColor = true;
-            this.btnVerDetallePedido.Click += new System.EventHandler(this.btnVerDetallePedido_Click);
-            // 
-            // cmbMostrando
-            // 
-            this.cmbMostrando.FormattingEnabled = true;
-            this.cmbMostrando.ItemHeight = 23;
-            this.cmbMostrando.Items.AddRange(new object[] {
-            "Todos",
-            "No iniciados",
-            "Iniciados",
-            "Revisados",
-            "Enviados",
-            "Finalizados"});
-            this.cmbMostrando.Location = new System.Drawing.Point(333, 62);
-            this.cmbMostrando.Name = "cmbMostrando";
-            this.cmbMostrando.Size = new System.Drawing.Size(200, 29);
-            this.cmbMostrando.TabIndex = 9;
-            this.cmbMostrando.UseSelectable = true;
-            this.cmbMostrando.SelectionChangeCommitted += new System.EventHandler(this.cmbMostrando_SelectionChangeCommitted);
-            this.cmbMostrando.SelectedValueChanged += new System.EventHandler(this.cmbMostrando_SelectionChangeCommitted);
-            // 
-            // txtBuscadorPedidos
-            // 
-            this.txtBuscadorPedidos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscadorPedidos.Location = new System.Drawing.Point(23, 62);
-            this.txtBuscadorPedidos.Name = "txtBuscadorPedidos";
-            this.txtBuscadorPedidos.Size = new System.Drawing.Size(288, 27);
-            this.txtBuscadorPedidos.TabIndex = 10;
-            this.txtBuscadorPedidos.TextoMarcaAgua = "Buscar por número de pedido o cliente";
-            this.txtBuscadorPedidos.TextChanged += new System.EventHandler(this.txtBuscadorPedidos_TextChanged);
             // 
             // dgvId
             // 
@@ -213,6 +148,71 @@
             this.dgvEstado.Name = "dgvEstado";
             this.dgvEstado.ReadOnly = true;
             this.dgvEstado.Width = 140;
+            // 
+            // btnEditarPedido
+            // 
+            this.btnEditarPedido.Enabled = false;
+            this.btnEditarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditarPedido.Location = new System.Drawing.Point(683, 60);
+            this.btnEditarPedido.Name = "btnEditarPedido";
+            this.btnEditarPedido.Size = new System.Drawing.Size(100, 30);
+            this.btnEditarPedido.TabIndex = 3;
+            this.btnEditarPedido.Text = "Editar";
+            this.btnEditarPedido.UseVisualStyleBackColor = true;
+            this.btnEditarPedido.Click += new System.EventHandler(this.btnEditarPedido_Click);
+            // 
+            // btnEliminarPedido
+            // 
+            this.btnEliminarPedido.Enabled = false;
+            this.btnEliminarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarPedido.Location = new System.Drawing.Point(803, 60);
+            this.btnEliminarPedido.Name = "btnEliminarPedido";
+            this.btnEliminarPedido.Size = new System.Drawing.Size(100, 30);
+            this.btnEliminarPedido.TabIndex = 4;
+            this.btnEliminarPedido.Text = "Eliminar";
+            this.btnEliminarPedido.UseVisualStyleBackColor = true;
+            this.btnEliminarPedido.Click += new System.EventHandler(this.btnEliminarPedido_Click);
+            // 
+            // btnVerDetallePedido
+            // 
+            this.btnVerDetallePedido.Enabled = false;
+            this.btnVerDetallePedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnVerDetallePedido.Location = new System.Drawing.Point(558, 60);
+            this.btnVerDetallePedido.Name = "btnVerDetallePedido";
+            this.btnVerDetallePedido.Size = new System.Drawing.Size(100, 30);
+            this.btnVerDetallePedido.TabIndex = 2;
+            this.btnVerDetallePedido.Text = "Ver detalle";
+            this.btnVerDetallePedido.UseVisualStyleBackColor = true;
+            this.btnVerDetallePedido.Click += new System.EventHandler(this.btnVerDetallePedido_Click);
+            // 
+            // cmbMostrando
+            // 
+            this.cmbMostrando.FormattingEnabled = true;
+            this.cmbMostrando.ItemHeight = 23;
+            this.cmbMostrando.Items.AddRange(new object[] {
+            "Todos",
+            "No iniciados",
+            "Iniciados",
+            "Revisados",
+            "Enviados",
+            "Finalizados"});
+            this.cmbMostrando.Location = new System.Drawing.Point(333, 62);
+            this.cmbMostrando.Name = "cmbMostrando";
+            this.cmbMostrando.Size = new System.Drawing.Size(200, 29);
+            this.cmbMostrando.TabIndex = 1;
+            this.cmbMostrando.UseSelectable = true;
+            this.cmbMostrando.SelectionChangeCommitted += new System.EventHandler(this.cmbMostrando_SelectionChangeCommitted);
+            this.cmbMostrando.SelectedValueChanged += new System.EventHandler(this.cmbMostrando_SelectionChangeCommitted);
+            // 
+            // txtBuscadorPedidos
+            // 
+            this.txtBuscadorPedidos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscadorPedidos.Location = new System.Drawing.Point(23, 62);
+            this.txtBuscadorPedidos.Name = "txtBuscadorPedidos";
+            this.txtBuscadorPedidos.Size = new System.Drawing.Size(288, 27);
+            this.txtBuscadorPedidos.TabIndex = 0;
+            this.txtBuscadorPedidos.TextoMarcaAgua = "Buscar por número de pedido o cliente";
+            this.txtBuscadorPedidos.TextChanged += new System.EventHandler(this.txtBuscadorPedidos_TextChanged);
             // 
             // FrmPedidos
             // 

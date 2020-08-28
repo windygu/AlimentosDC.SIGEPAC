@@ -46,7 +46,7 @@
             this.btnEliminarMarca.Location = new System.Drawing.Point(605, 61);
             this.btnEliminarMarca.Name = "btnEliminarMarca";
             this.btnEliminarMarca.Size = new System.Drawing.Size(100, 30);
-            this.btnEliminarMarca.TabIndex = 30;
+            this.btnEliminarMarca.TabIndex = 3;
             this.btnEliminarMarca.Text = "Eliminar";
             this.btnEliminarMarca.UseVisualStyleBackColor = true;
             this.btnEliminarMarca.Click += new System.EventHandler(this.btnEliminarMarca_Click);
@@ -57,7 +57,7 @@
             this.btnEditarMarca.Location = new System.Drawing.Point(489, 62);
             this.btnEditarMarca.Name = "btnEditarMarca";
             this.btnEditarMarca.Size = new System.Drawing.Size(100, 30);
-            this.btnEditarMarca.TabIndex = 29;
+            this.btnEditarMarca.TabIndex = 2;
             this.btnEditarMarca.Text = "Editar";
             this.btnEditarMarca.UseVisualStyleBackColor = true;
             this.btnEditarMarca.Click += new System.EventHandler(this.btnEditarMarca_Click);
@@ -68,7 +68,7 @@
             this.btnNuevaMarca.Location = new System.Drawing.Point(371, 61);
             this.btnNuevaMarca.Name = "btnNuevaMarca";
             this.btnNuevaMarca.Size = new System.Drawing.Size(100, 30);
-            this.btnNuevaMarca.TabIndex = 28;
+            this.btnNuevaMarca.TabIndex = 1;
             this.btnNuevaMarca.Text = "Nuevo";
             this.btnNuevaMarca.UseVisualStyleBackColor = true;
             this.btnNuevaMarca.Click += new System.EventHandler(this.btnNuevaMarca_Click);
@@ -119,7 +119,7 @@
             this.txtBuscarMarcas.Location = new System.Drawing.Point(10, 61);
             this.txtBuscarMarcas.Name = "txtBuscarMarcas";
             this.txtBuscarMarcas.Size = new System.Drawing.Size(290, 27);
-            this.txtBuscarMarcas.TabIndex = 31;
+            this.txtBuscarMarcas.TabIndex = 0;
             this.txtBuscarMarcas.TextoMarcaAgua = "Buscar por nombre o comentario";
             this.txtBuscarMarcas.TextChanged += new System.EventHandler(this.textBoxWaterMark1_TextChanged);
             // 
