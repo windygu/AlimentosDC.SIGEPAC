@@ -23,6 +23,7 @@ namespace AlimentosDC.SIGEPAC.UI
         public static Usuario usuarioActual { get; set; }
         FrmPrincipal objetoActualPrincipal;
         public static cerrarSesion delegadoCerrarSesion;
+        public delegate void cerrarSesion(object sender, EventArgs e);
         public FrmPrincipal(Usuario usuario)
         {
             InitializeComponent();
@@ -34,6 +35,7 @@ namespace AlimentosDC.SIGEPAC.UI
             CultureInfo.DefaultThreadCurrentUICulture = copia;
             objetoActualPrincipal = this;
         }
+        
 
         public void FrmPrincipal_Load(object sender, EventArgs e)
         {
@@ -121,5 +123,5 @@ namespace AlimentosDC.SIGEPAC.UI
             Cursor = Cursors.Arrow;
         }
     }
-    public delegate void cerrarSesion(object sender, EventArgs e);
+    
 }
