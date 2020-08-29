@@ -40,15 +40,15 @@
             this.btnClientes = new System.Windows.Forms.Button();
             this.pcbFotoPerfil = new System.Windows.Forms.PictureBox();
             this.lblUsuario = new System.Windows.Forms.Label();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbFotoPerfil)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -76,7 +76,7 @@
             this.btnHistorial.BackColor = System.Drawing.Color.White;
             this.btnHistorial.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHistorial.Image = ((System.Drawing.Image)(resources.GetObject("btnHistorial.Image")));
-            this.btnHistorial.Location = new System.Drawing.Point(20, 203);
+            this.btnHistorial.Location = new System.Drawing.Point(20, 195);
             this.btnHistorial.Name = "btnHistorial";
             this.btnHistorial.Size = new System.Drawing.Size(140, 45);
             this.btnHistorial.TabIndex = 1;
@@ -92,7 +92,7 @@
             this.btnReportes.BackColor = System.Drawing.Color.White;
             this.btnReportes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportes.Image = ((System.Drawing.Image)(resources.GetObject("btnReportes.Image")));
-            this.btnReportes.Location = new System.Drawing.Point(20, 442);
+            this.btnReportes.Location = new System.Drawing.Point(20, 431);
             this.btnReportes.Name = "btnReportes";
             this.btnReportes.Size = new System.Drawing.Size(140, 45);
             this.btnReportes.TabIndex = 5;
@@ -109,7 +109,7 @@
             this.btnCerraSesion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnCerraSesion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerraSesion.Image = ((System.Drawing.Image)(resources.GetObject("btnCerraSesion.Image")));
-            this.btnCerraSesion.Location = new System.Drawing.Point(20, 502);
+            this.btnCerraSesion.Location = new System.Drawing.Point(20, 490);
             this.btnCerraSesion.Name = "btnCerraSesion";
             this.btnCerraSesion.Size = new System.Drawing.Size(140, 45);
             this.btnCerraSesion.TabIndex = 6;
@@ -123,7 +123,7 @@
             // 
             this.pictureBox1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(20, 47);
+            this.pictureBox1.Location = new System.Drawing.Point(20, 37);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(140, 73);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -136,7 +136,7 @@
             this.btnPedidos.BackColor = System.Drawing.Color.White;
             this.btnPedidos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPedidos.Image = ((System.Drawing.Image)(resources.GetObject("btnPedidos.Image")));
-            this.btnPedidos.Location = new System.Drawing.Point(20, 141);
+            this.btnPedidos.Location = new System.Drawing.Point(20, 136);
             this.btnPedidos.Name = "btnPedidos";
             this.btnPedidos.Size = new System.Drawing.Size(140, 45);
             this.btnPedidos.TabIndex = 0;
@@ -152,7 +152,7 @@
             this.btnMarcas.BackColor = System.Drawing.Color.White;
             this.btnMarcas.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMarcas.Image = ((System.Drawing.Image)(resources.GetObject("btnMarcas.Image")));
-            this.btnMarcas.Location = new System.Drawing.Point(20, 383);
+            this.btnMarcas.Location = new System.Drawing.Point(20, 372);
             this.btnMarcas.Name = "btnMarcas";
             this.btnMarcas.Size = new System.Drawing.Size(140, 45);
             this.btnMarcas.TabIndex = 4;
@@ -168,7 +168,7 @@
             this.btnProductos.BackColor = System.Drawing.Color.White;
             this.btnProductos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnProductos.Image")));
-            this.btnProductos.Location = new System.Drawing.Point(20, 262);
+            this.btnProductos.Location = new System.Drawing.Point(20, 254);
             this.btnProductos.Name = "btnProductos";
             this.btnProductos.Size = new System.Drawing.Size(140, 45);
             this.btnProductos.TabIndex = 2;
@@ -184,7 +184,7 @@
             this.btnClientes.BackColor = System.Drawing.Color.White;
             this.btnClientes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnClientes.Image")));
-            this.btnClientes.Location = new System.Drawing.Point(20, 323);
+            this.btnClientes.Location = new System.Drawing.Point(20, 313);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Size = new System.Drawing.Size(140, 45);
             this.btnClientes.TabIndex = 3;
@@ -217,18 +217,6 @@
             this.lblUsuario.Text = "usuario";
             this.lblUsuario.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
-            // pictureBox2
-            // 
-            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
-            this.pictureBox2.Location = new System.Drawing.Point(606, 284);
-            this.pictureBox2.Margin = new System.Windows.Forms.Padding(15);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(299, 159);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.pictureBox2.TabIndex = 3;
-            this.pictureBox2.TabStop = false;
-            // 
             // panel2
             // 
             this.panel2.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
@@ -250,6 +238,19 @@
             this.panel3.Size = new System.Drawing.Size(1460, 720);
             this.panel3.TabIndex = 6;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
+            this.pictureBox2.Image = global::AlimentosDC.SIGEPAC.UI.Properties.Resources.Logo_Sin_Nombre;
+            this.pictureBox2.Location = new System.Drawing.Point(615, 278);
+            this.pictureBox2.Margin = new System.Windows.Forms.Padding(15);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(250, 163);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 3;
+            this.pictureBox2.TabStop = false;
+            // 
             // FrmPrincipal
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -264,15 +265,15 @@
             this.Name = "FrmPrincipal";
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Green;
-            this.Text = "ALIMENTOS DE CALIDAD";
+            this.Text = "SIGEPAC - Alimentos de Calidad";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmPrincipal_FormClosing);
             this.Load += new System.EventHandler(this.FrmPrincipal_Load);
             this.panel1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pcbFotoPerfil)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -285,13 +286,13 @@
         private System.Windows.Forms.Button btnClientes;
         private System.Windows.Forms.Button btnPedidos;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.Button btnCerraSesion;
         private System.Windows.Forms.Label lblUsuario;
         private System.Windows.Forms.Button btnReportes;
         private System.Windows.Forms.Button btnHistorial;
-        private System.Windows.Forms.PictureBox pictureBox2;
         public System.Windows.Forms.PictureBox pcbFotoPerfil;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        public System.Windows.Forms.Button btnCerraSesion;
     }
 }

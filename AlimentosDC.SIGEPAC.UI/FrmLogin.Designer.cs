@@ -61,6 +61,7 @@
             // 
             // btnSalir
             // 
+            this.btnSalir.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnSalir.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSalir.Location = new System.Drawing.Point(436, 162);
             this.btnSalir.Name = "btnSalir";
@@ -85,7 +86,7 @@
             // pbxShowPassword
             // 
             this.pbxShowPassword.Image = global::AlimentosDC.SIGEPAC.UI.Properties.Resources.icons8_hide_30;
-            this.pbxShowPassword.Location = new System.Drawing.Point(517, 99);
+            this.pbxShowPassword.Location = new System.Drawing.Point(515, 99);
             this.pbxShowPassword.Name = "pbxShowPassword";
             this.pbxShowPassword.Size = new System.Drawing.Size(20, 20);
             this.pbxShowPassword.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -135,6 +136,8 @@
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Inicio Sesión";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmLogin_FormClosed);
+            this.Load += new System.EventHandler(this.FrmLogin_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pbxShowPassword)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();

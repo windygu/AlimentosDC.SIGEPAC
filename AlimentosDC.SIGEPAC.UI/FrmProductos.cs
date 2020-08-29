@@ -76,6 +76,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 btnEliminarProducto.Visible = false;
                 btnCerrar.Text = "Cancelar";
                 btnSeleccionar.Visible = true;
+                btnSalir.Visible = false;
             }
         }
 
@@ -134,6 +135,11 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             DialogResult = DialogResult.Cancel;
             Close();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            FrmPrincipal.delegadoCerrarSesion(null, null);
         }
     }
 }

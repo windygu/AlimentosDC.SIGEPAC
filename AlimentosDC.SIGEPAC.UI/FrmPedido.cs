@@ -20,6 +20,7 @@ namespace AlimentosDC.SIGEPAC.UI
     public partial class FrmPedido : MetroForm
     {
         FrmPedido objetoPedidoActual;
+        FrmPedidos objetoPedidosActual;
         Pedido pedidoEditando;
         int? idDetallePedidoAEditar = null;
         Producto producto;
@@ -39,9 +40,10 @@ namespace AlimentosDC.SIGEPAC.UI
         }
 
         //Constructor para editar un pedido
-        public FrmPedido(int idPedido)
+        public FrmPedido(FrmPedidos objetoPedidosActual, int idPedido)
         {
             InitializeComponent();
+            this.objetoPedidosActual = objetoPedidosActual;
             objetoPedidoActual = this;
             this.idPedido = idPedido;
         }
@@ -282,6 +284,7 @@ namespace AlimentosDC.SIGEPAC.UI
 
         void GuardarPedido()
         {
+            Cursor = Cursors.WaitCursor;
             try
             {
                 if (dgvListadoDetallesPedido.Rows.Count < 1)
@@ -363,6 +366,7 @@ namespace AlimentosDC.SIGEPAC.UI
                                 resultadoEliminados += DetallePedidoBL.Eliminar(detallesViejosAEliminarDeLaBD[i]);
                             }
                         }
+                        objetoPedidosActual.CargarPedidos();
                         DialogResult resultadoDelDialgo = MetroMessageBox.Show
                         (this, $"{resultadoPedido} pedido actualizado.\n{resultDetallesModificados} detalle(s) actualizado(s).\n" +
                         $"{resultDetallesAñadidos} detalle(s) registrado(s).\n{resultadoEliminados} detalle(s) eliminado(s).\n¿Desea cerrar el editor?",
@@ -378,7 +382,8 @@ namespace AlimentosDC.SIGEPAC.UI
             {
                 MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\nMÁS INFORMACIÓN: {error.Message}", "Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
-            } 
+            }
+            Cursor = Cursors.Arrow;
         }
 
         void MostrarBarra()
@@ -692,6 +697,11 @@ namespace AlimentosDC.SIGEPAC.UI
                 epValidadorControles.SetError(nudCantidad, "Este campo es obligatorio");
                 HabilitarBotonAgregarDetalle();
             }
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            FrmPrincipal.delegadoCerrarSesion(null, null);
         }
     }
 }

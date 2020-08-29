@@ -43,10 +43,10 @@
             // txtNombreMarca
             // 
             this.txtNombreMarca.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombreMarca.Location = new System.Drawing.Point(13, 94);
+            this.txtNombreMarca.Location = new System.Drawing.Point(23, 84);
             this.txtNombreMarca.MaxLength = 75;
             this.txtNombreMarca.Name = "txtNombreMarca";
-            this.txtNombreMarca.Size = new System.Drawing.Size(200, 25);
+            this.txtNombreMarca.Size = new System.Drawing.Size(225, 25);
             this.txtNombreMarca.TabIndex = 0;
             this.txtNombreMarca.TextChanged += new System.EventHandler(this.txtNombreMarca_TextChanged);
             // 
@@ -54,7 +54,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(13, 74);
+            this.label3.Location = new System.Drawing.Point(19, 60);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 19);
             this.label3.TabIndex = 7;
@@ -63,11 +63,10 @@
             // txtComentarioMarca
             // 
             this.txtComentarioMarca.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtComentarioMarca.Location = new System.Drawing.Point(233, 94);
+            this.txtComentarioMarca.Location = new System.Drawing.Point(267, 84);
             this.txtComentarioMarca.MaxLength = 500;
-            this.txtComentarioMarca.Multiline = true;
             this.txtComentarioMarca.Name = "txtComentarioMarca";
-            this.txtComentarioMarca.Size = new System.Drawing.Size(200, 50);
+            this.txtComentarioMarca.Size = new System.Drawing.Size(225, 25);
             this.txtComentarioMarca.TabIndex = 1;
             this.txtComentarioMarca.TextChanged += new System.EventHandler(this.txtComentarioMarca_TextChanged);
             // 
@@ -75,7 +74,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(229, 72);
+            this.label1.Location = new System.Drawing.Point(263, 60);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(81, 19);
             this.label1.TabIndex = 9;
@@ -84,7 +83,7 @@
             // btnGuardarMarca
             // 
             this.btnGuardarMarca.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarMarca.Location = new System.Drawing.Point(219, 174);
+            this.btnGuardarMarca.Location = new System.Drawing.Point(267, 124);
             this.btnGuardarMarca.Name = "btnGuardarMarca";
             this.btnGuardarMarca.Size = new System.Drawing.Size(100, 30);
             this.btnGuardarMarca.TabIndex = 2;
@@ -95,7 +94,7 @@
             // btnCerrar
             // 
             this.btnCerrar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrar.Location = new System.Drawing.Point(334, 174);
+            this.btnCerrar.Location = new System.Drawing.Point(392, 124);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(100, 30);
             this.btnCerrar.TabIndex = 3;
@@ -111,7 +110,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(450, 217);
+            this.ClientSize = new System.Drawing.Size(515, 169);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.btnGuardarMarca);
             this.Controls.Add(this.txtComentarioMarca);

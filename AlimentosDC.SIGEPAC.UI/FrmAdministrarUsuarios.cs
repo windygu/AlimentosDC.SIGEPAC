@@ -96,5 +96,10 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             Close();
         }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            FrmPrincipal.delegadoCerrarSesion(null, null);
+        }
     }
 }

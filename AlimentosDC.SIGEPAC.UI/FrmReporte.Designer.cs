@@ -30,6 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             Microsoft.Reporting.WinForms.ReportDataSource reportDataSource1 = new Microsoft.Reporting.WinForms.ReportDataSource();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmReporte));
             this.datosInformeBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.GestionPedidosAlimentosDCDataSet1 = new AlimentosDC.SIGEPAC.UI.GestionPedidosAlimentosDCDataSet1();
             this.reportViewer1 = new Microsoft.Reporting.WinForms.ReportViewer();
@@ -128,9 +129,11 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.reportViewer1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmReporte";
             this.Resizable = false;
+            this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Informe";
             ((System.ComponentModel.ISupportInitialize)(this.datosInformeBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.GestionPedidosAlimentosDCDataSet1)).EndInit();

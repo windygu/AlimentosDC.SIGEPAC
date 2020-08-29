@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProducto));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblComentario = new MetroFramework.Controls.MetroLabel();
             this.cmbMarcas = new System.Windows.Forms.ComboBox();
+            this.lblComentario = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -53,8 +53,8 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.lblComentario);
             this.groupBox1.Controls.Add(this.cmbMarcas);
+            this.groupBox1.Controls.Add(this.lblComentario);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -65,21 +65,13 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Marca";
             // 
-            // lblComentario
-            // 
-            this.lblComentario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblComentario.Location = new System.Drawing.Point(257, 45);
-            this.lblComentario.Name = "lblComentario";
-            this.lblComentario.Size = new System.Drawing.Size(242, 45);
-            this.lblComentario.TabIndex = 55;
-            // 
             // cmbMarcas
             // 
             this.cmbMarcas.DisplayMember = "Nombre";
             this.cmbMarcas.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbMarcas.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbMarcas.FormattingEnabled = true;
-            this.cmbMarcas.Location = new System.Drawing.Point(13, 45);
+            this.cmbMarcas.Location = new System.Drawing.Point(13, 48);
             this.cmbMarcas.Name = "cmbMarcas";
             this.cmbMarcas.Size = new System.Drawing.Size(215, 25);
             this.cmbMarcas.TabIndex = 0;
@@ -87,6 +79,15 @@
             this.cmbMarcas.SelectionChangeCommitted += new System.EventHandler(this.cmbMarcas_SelectionChangeCommitted);
             this.cmbMarcas.DropDownClosed += new System.EventHandler(this.cmbMarcas_DropDownClosed);
             this.cmbMarcas.SelectedValueChanged += new System.EventHandler(this.cmbMarcas_SelectionChangeCommitted);
+            // 
+            // lblComentario
+            // 
+            this.lblComentario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.lblComentario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComentario.Location = new System.Drawing.Point(257, 48);
+            this.lblComentario.Name = "lblComentario";
+            this.lblComentario.Size = new System.Drawing.Size(242, 45);
+            this.lblComentario.TabIndex = 53;
             // 
             // label1
             // 
@@ -181,7 +182,7 @@
             // btnGuardarProducto
             // 
             this.btnGuardarProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarProducto.Location = new System.Drawing.Point(330, 371);
+            this.btnGuardarProducto.Location = new System.Drawing.Point(330, 367);
             this.btnGuardarProducto.Name = "btnGuardarProducto";
             this.btnGuardarProducto.Size = new System.Drawing.Size(100, 30);
             this.btnGuardarProducto.TabIndex = 5;
@@ -192,7 +193,7 @@
             // btnCancelarProducto
             // 
             this.btnCancelarProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelarProducto.Location = new System.Drawing.Point(442, 371);
+            this.btnCancelarProducto.Location = new System.Drawing.Point(442, 367);
             this.btnCancelarProducto.Name = "btnCancelarProducto";
             this.btnCancelarProducto.Size = new System.Drawing.Size(100, 30);
             this.btnCancelarProducto.TabIndex = 6;
@@ -206,6 +207,7 @@
             // 
             // nudStock
             // 
+            this.nudStock.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.nudStock.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.nudStock.Location = new System.Drawing.Point(279, 279);
             this.nudStock.Maximum = new decimal(new int[] {
@@ -264,8 +266,8 @@
         private System.Windows.Forms.Button btnGuardarProducto;
         private System.Windows.Forms.Button btnCancelarProducto;
         private System.Windows.Forms.ComboBox cmbMarcas;
-        private MetroFramework.Controls.MetroLabel lblComentario;
         private System.Windows.Forms.ErrorProvider epValidarControles;
         private System.Windows.Forms.NumericUpDown nudStock;
+        private System.Windows.Forms.Label lblComentario;
     }
 }

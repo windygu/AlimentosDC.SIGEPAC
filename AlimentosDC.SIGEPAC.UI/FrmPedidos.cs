@@ -50,7 +50,7 @@ namespace AlimentosDC.SIGEPAC.UI
         private void btnEditarPedido_Click(object sender, EventArgs e)
         {
             int idPedido = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[0].Value.ToString());
-            FrmPedido p = new FrmPedido(idPedido);
+            FrmPedido p = new FrmPedido(objetoPedidosActual, idPedido);
             p.Owner = objetoPedidosActual;
             p.ShowDialog();
         }
@@ -93,8 +93,8 @@ namespace AlimentosDC.SIGEPAC.UI
                 dgvListadoPedidos.Rows[i].Cells[3].Value = listadoPedidos[i].Dui.ToString();
                 dgvListadoPedidos.Rows[i].Cells[4].Value = listadoPedidos[i].NumeroPedido.ToString();
                 dgvListadoPedidos.Rows[i].Cells[5].Value = listadoPedidos[i].NumeroCCF.ToString();
-                dgvListadoPedidos.Rows[i].Cells[6].Value = listadoPedidos[i].FechaCreacion.ToString();
-                dgvListadoPedidos.Rows[i].Cells[7].Value = listadoPedidos[i].FechaEntrega.ToString();
+                dgvListadoPedidos.Rows[i].Cells[6].Value = listadoPedidos[i].FechaCreacion.ToString("d");
+                dgvListadoPedidos.Rows[i].Cells[7].Value = listadoPedidos[i].FechaEntrega.ToString("d");
                 dgvListadoPedidos.Rows[i].Cells[8].Value = listadoPedidos[i].DireccionEntrega.ToString();
                 dgvListadoPedidos.Rows[i].Cells[9].Value = listadoPedidos[i].Estado.ToString();
             }
@@ -186,6 +186,16 @@ namespace AlimentosDC.SIGEPAC.UI
         private void FrmPedidos_Load(object sender, EventArgs e)
         {
             cmbMostrando.SelectedItem = "Todos";
+        }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            FrmPrincipal.delegadoCerrarSesion(null, null);
         }
     }
 }

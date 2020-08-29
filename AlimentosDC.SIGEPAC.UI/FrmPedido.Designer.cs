@@ -85,6 +85,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
             this.lblCambio = new System.Windows.Forms.Label();
+            this.btnSalir = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDetallesPedido)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.epValidadorControles)).BeginInit();
@@ -96,7 +97,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(624, 31);
+            this.label1.Location = new System.Drawing.Point(603, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 17);
             this.label1.TabIndex = 0;
@@ -119,9 +120,9 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox1.Location = new System.Drawing.Point(10, 184);
+            this.groupBox1.Location = new System.Drawing.Point(23, 184);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(862, 76);
+            this.groupBox1.Size = new System.Drawing.Size(849, 76);
             this.groupBox1.TabIndex = 2;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Cliente";
@@ -148,7 +149,7 @@
             // lblDui
             // 
             this.lblDui.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblDui.Location = new System.Drawing.Point(665, 30);
+            this.lblDui.Location = new System.Drawing.Point(644, 32);
             this.lblDui.Name = "lblDui";
             this.lblDui.Size = new System.Drawing.Size(181, 25);
             this.lblDui.TabIndex = 6;
@@ -157,7 +158,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(12, 78);
+            this.label3.Location = new System.Drawing.Point(19, 77);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(78, 19);
             this.label3.TabIndex = 5;
@@ -208,7 +209,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(12, 131);
+            this.label7.Location = new System.Drawing.Point(19, 131);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(53, 19);
             this.label7.TabIndex = 12;
@@ -260,7 +261,7 @@
             // 
             this.btnGuardarPedido.Enabled = false;
             this.btnGuardarPedido.Font = new System.Drawing.Font("Segoe UI", 11F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarPedido.Location = new System.Drawing.Point(629, 747);
+            this.btnGuardarPedido.Location = new System.Drawing.Point(631, 747);
             this.btnGuardarPedido.Name = "btnGuardarPedido";
             this.btnGuardarPedido.Size = new System.Drawing.Size(128, 30);
             this.btnGuardarPedido.TabIndex = 12;
@@ -365,7 +366,7 @@
             this.lblNumeroPedido.AutoSize = true;
             this.lblNumeroPedido.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblNumeroPedido.Font = new System.Drawing.Font("HP Simplified", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumeroPedido.Location = new System.Drawing.Point(96, 76);
+            this.lblNumeroPedido.Location = new System.Drawing.Point(103, 75);
             this.lblNumeroPedido.Name = "lblNumeroPedido";
             this.lblNumeroPedido.Size = new System.Drawing.Size(21, 23);
             this.lblNumeroPedido.TabIndex = 30;
@@ -394,9 +395,9 @@
             this.groupBox2.Controls.Add(this.label10);
             this.groupBox2.Controls.Add(this.label12);
             this.groupBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.groupBox2.Location = new System.Drawing.Point(10, 266);
+            this.groupBox2.Location = new System.Drawing.Point(23, 266);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(862, 162);
+            this.groupBox2.Size = new System.Drawing.Size(849, 162);
             this.groupBox2.TabIndex = 33;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalle Pedido";
@@ -404,14 +405,14 @@
             // nudCantidad
             // 
             this.nudCantidad.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudCantidad.Location = new System.Drawing.Point(102, 124);
+            this.nudCantidad.Location = new System.Drawing.Point(101, 124);
             this.nudCantidad.Maximum = new decimal(new int[] {
             1000,
             0,
             0,
             0});
             this.nudCantidad.Name = "nudCantidad";
-            this.nudCantidad.Size = new System.Drawing.Size(231, 25);
+            this.nudCantidad.Size = new System.Drawing.Size(232, 25);
             this.nudCantidad.TabIndex = 8;
             this.nudCantidad.ValueChanged += new System.EventHandler(this.nudCantidad_ValueChanged);
             // 
@@ -436,7 +437,7 @@
             // 
             this.btnAgregarDetalle.Enabled = false;
             this.btnAgregarDetalle.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAgregarDetalle.Location = new System.Drawing.Point(709, 119);
+            this.btnAgregarDetalle.Location = new System.Drawing.Point(695, 119);
             this.btnAgregarDetalle.Name = "btnAgregarDetalle";
             this.btnAgregarDetalle.Size = new System.Drawing.Size(130, 30);
             this.btnAgregarDetalle.TabIndex = 8;
@@ -459,7 +460,7 @@
             // 
             this.label19.AutoSize = true;
             this.label19.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label19.Location = new System.Drawing.Point(29, 126);
+            this.label19.Location = new System.Drawing.Point(9, 127);
             this.label19.Name = "label19";
             this.label19.Size = new System.Drawing.Size(67, 19);
             this.label19.TabIndex = 43;
@@ -477,7 +478,7 @@
             "Revisado",
             "Enviado",
             "Finalizado"});
-            this.cmbEstadoDetallePedido.Location = new System.Drawing.Point(668, 30);
+            this.cmbEstadoDetallePedido.Location = new System.Drawing.Point(644, 30);
             this.cmbEstadoDetallePedido.Name = "cmbEstadoDetallePedido";
             this.cmbEstadoDetallePedido.Size = new System.Drawing.Size(181, 25);
             this.cmbEstadoDetallePedido.TabIndex = 6;
@@ -487,7 +488,7 @@
             // label20
             // 
             this.label20.AutoSize = true;
-            this.label20.Location = new System.Drawing.Point(603, 34);
+            this.label20.Location = new System.Drawing.Point(582, 34);
             this.label20.Name = "label20";
             this.label20.Size = new System.Drawing.Size(56, 17);
             this.label20.TabIndex = 41;
@@ -513,7 +514,7 @@
             // lblStockProducto
             // 
             this.lblStockProducto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.lblStockProducto.Location = new System.Drawing.Point(746, 74);
+            this.lblStockProducto.Location = new System.Drawing.Point(725, 76);
             this.lblStockProducto.Name = "lblStockProducto";
             this.lblStockProducto.Size = new System.Drawing.Size(100, 25);
             this.lblStockProducto.TabIndex = 38;
@@ -531,7 +532,7 @@
             // 
             this.lblNombreProducto.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblNombreProducto.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreProducto.Location = new System.Drawing.Point(239, 32);
+            this.lblNombreProducto.Location = new System.Drawing.Point(229, 32);
             this.lblNombreProducto.Name = "lblNombreProducto";
             this.lblNombreProducto.Size = new System.Drawing.Size(301, 25);
             this.lblNombreProducto.TabIndex = 36;
@@ -556,7 +557,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(171, 36);
+            this.label12.Location = new System.Drawing.Point(161, 36);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(69, 17);
             this.label12.TabIndex = 1;
@@ -606,7 +607,7 @@
             "Revisado",
             "Enviado",
             "Finalizado"});
-            this.cmbEstadoPedido.Location = new System.Drawing.Point(69, 128);
+            this.cmbEstadoPedido.Location = new System.Drawing.Point(76, 128);
             this.cmbEstadoPedido.Name = "cmbEstadoPedido";
             this.cmbEstadoPedido.Size = new System.Drawing.Size(204, 25);
             this.cmbEstadoPedido.TabIndex = 2;
@@ -653,11 +654,23 @@
             this.lblCambio.Size = new System.Drawing.Size(192, 25);
             this.lblCambio.TabIndex = 48;
             // 
+            // btnSalir
+            // 
+            this.btnSalir.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.Location = new System.Drawing.Point(513, 747);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(100, 30);
+            this.btnSalir.TabIndex = 49;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
             // FrmPedido
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(900, 795);
+            this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.lblCambio);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.txtPagaCon);
@@ -756,5 +769,6 @@
         private System.Windows.Forms.TextBox txtPagaCon;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.NumericUpDown nudCantidad;
+        private System.Windows.Forms.Button btnSalir;
     }
 }

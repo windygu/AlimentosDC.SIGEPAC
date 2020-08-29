@@ -41,6 +41,7 @@
             this.lblNombreUsuario = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.lblApellidos = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.lblNombres = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
+            this.btnCerrarSesion = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pcbFotoPerfil)).BeginInit();
             this.SuspendLayout();
             // 
@@ -63,7 +64,7 @@
             // btnCambiarClave
             // 
             this.btnCambiarClave.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCambiarClave.Location = new System.Drawing.Point(357, 226);
+            this.btnCambiarClave.Location = new System.Drawing.Point(357, 204);
             this.btnCambiarClave.Name = "btnCambiarClave";
             this.btnCambiarClave.Size = new System.Drawing.Size(135, 30);
             this.btnCambiarClave.TabIndex = 2;
@@ -74,7 +75,7 @@
             // btnCambiarFoto
             // 
             this.btnCambiarFoto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCambiarFoto.Location = new System.Drawing.Point(357, 171);
+            this.btnCambiarFoto.Location = new System.Drawing.Point(357, 160);
             this.btnCambiarFoto.Name = "btnCambiarFoto";
             this.btnCambiarFoto.Size = new System.Drawing.Size(135, 30);
             this.btnCambiarFoto.TabIndex = 1;
@@ -85,7 +86,7 @@
             // btnCerrar
             // 
             this.btnCerrar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrar.Location = new System.Drawing.Point(357, 283);
+            this.btnCerrar.Location = new System.Drawing.Point(357, 295);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(135, 30);
             this.btnCerrar.TabIndex = 3;
@@ -158,11 +159,23 @@
             this.lblNombres.Size = new System.Drawing.Size(283, 20);
             this.lblNombres.TabIndex = 88;
             // 
+            // btnCerrarSesion
+            // 
+            this.btnCerrarSesion.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrarSesion.Location = new System.Drawing.Point(357, 249);
+            this.btnCerrarSesion.Name = "btnCerrarSesion";
+            this.btnCerrarSesion.Size = new System.Drawing.Size(135, 30);
+            this.btnCerrarSesion.TabIndex = 91;
+            this.btnCerrarSesion.Text = "Cerrar sesión";
+            this.btnCerrarSesion.UseVisualStyleBackColor = true;
+            this.btnCerrarSesion.Click += new System.EventHandler(this.btnCerrarSesion_Click);
+            // 
             // FrmPerfilUsuario
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(515, 458);
+            this.Controls.Add(this.btnCerrarSesion);
             this.Controls.Add(this.btnUsuarios);
             this.Controls.Add(this.btnCambiarClave);
             this.Controls.Add(this.lblNombreUsuario);
@@ -174,6 +187,7 @@
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.pcbFotoPerfil);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmPerfilUsuario";
             this.Resizable = false;
@@ -199,5 +213,6 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.PictureBox pcbFotoPerfil;
+        private System.Windows.Forms.Button btnCerrarSesion;
     }
 }

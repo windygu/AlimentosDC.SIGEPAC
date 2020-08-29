@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUsuarios));
             this.dgvListadoUsuarios = new System.Windows.Forms.DataGridView();
             this.clmId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.clmNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,6 +41,7 @@
             this.btnNuevoUsuario = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.txtBuscadorUsuarios = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
+            this.btnSalir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -168,17 +170,30 @@
             this.txtBuscadorUsuarios.TextoMarcaAgua = "Buscar por nombre o nombre de usuario";
             this.txtBuscadorUsuarios.TextChanged += new System.EventHandler(this.txtBuscadorUsuarios_TextChanged);
             // 
+            // btnSalir
+            // 
+            this.btnSalir.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.Location = new System.Drawing.Point(563, 410);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(100, 30);
+            this.btnSalir.TabIndex = 7;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
             // FrmUsuarios
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(818, 458);
+            this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.txtBuscadorUsuarios);
             this.Controls.Add(this.btnEliminarUsuario);
             this.Controls.Add(this.btnEditarUsuario);
             this.Controls.Add(this.btnNuevoUsuario);
             this.Controls.Add(this.dgvListadoUsuarios);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmUsuarios";
             this.Resizable = false;
@@ -204,5 +219,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNombreUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmClave;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatusAdmin;
+        private System.Windows.Forms.Button btnSalir;
     }
 }

@@ -42,13 +42,14 @@
             this.txtBuscarProductos = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.btnSeleccionar = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoProductos)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEliminarProducto
             // 
             this.btnEliminarProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarProducto.Location = new System.Drawing.Point(623, 63);
+            this.btnEliminarProducto.Location = new System.Drawing.Point(617, 58);
             this.btnEliminarProducto.Name = "btnEliminarProducto";
             this.btnEliminarProducto.Size = new System.Drawing.Size(100, 30);
             this.btnEliminarProducto.TabIndex = 3;
@@ -59,7 +60,7 @@
             // btnEditarProducto
             // 
             this.btnEditarProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarProducto.Location = new System.Drawing.Point(501, 63);
+            this.btnEditarProducto.Location = new System.Drawing.Point(495, 58);
             this.btnEditarProducto.Name = "btnEditarProducto";
             this.btnEditarProducto.Size = new System.Drawing.Size(100, 30);
             this.btnEditarProducto.TabIndex = 2;
@@ -70,7 +71,7 @@
             // btnNuevoProducto
             // 
             this.btnNuevoProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoProducto.Location = new System.Drawing.Point(376, 64);
+            this.btnNuevoProducto.Location = new System.Drawing.Point(370, 59);
             this.btnNuevoProducto.Name = "btnNuevoProducto";
             this.btnNuevoProducto.Size = new System.Drawing.Size(100, 30);
             this.btnNuevoProducto.TabIndex = 1;
@@ -90,7 +91,7 @@
             this.dgvMarca,
             this.dgvPrecio,
             this.dgvStock});
-            this.dgvListadoProductos.Location = new System.Drawing.Point(13, 113);
+            this.dgvListadoProductos.Location = new System.Drawing.Point(23, 111);
             this.dgvListadoProductos.Name = "dgvListadoProductos";
             this.dgvListadoProductos.ReadOnly = true;
             this.dgvListadoProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
@@ -142,7 +143,7 @@
             // txtBuscarProductos
             // 
             this.txtBuscarProductos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscarProductos.Location = new System.Drawing.Point(13, 63);
+            this.txtBuscarProductos.Location = new System.Drawing.Point(23, 61);
             this.txtBuscarProductos.Name = "txtBuscarProductos";
             this.txtBuscarProductos.Size = new System.Drawing.Size(322, 27);
             this.txtBuscarProductos.TabIndex = 0;
@@ -152,7 +153,7 @@
             // btnCerrar
             // 
             this.btnCerrar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrar.Location = new System.Drawing.Point(775, 479);
+            this.btnCerrar.Location = new System.Drawing.Point(785, 469);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(100, 30);
             this.btnCerrar.TabIndex = 5;
@@ -164,7 +165,7 @@
             // 
             this.btnSeleccionar.Enabled = false;
             this.btnSeleccionar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSeleccionar.Location = new System.Drawing.Point(644, 479);
+            this.btnSeleccionar.Location = new System.Drawing.Point(667, 469);
             this.btnSeleccionar.Name = "btnSeleccionar";
             this.btnSeleccionar.Size = new System.Drawing.Size(100, 30);
             this.btnSeleccionar.TabIndex = 4;
@@ -173,11 +174,23 @@
             this.btnSeleccionar.Visible = false;
             this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
             // 
+            // btnSalir
+            // 
+            this.btnSalir.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.Location = new System.Drawing.Point(667, 469);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(100, 30);
+            this.btnSalir.TabIndex = 8;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
+            // 
             // FrmProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(898, 522);
+            this.ClientSize = new System.Drawing.Size(908, 517);
+            this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.txtBuscarProductos);
@@ -212,5 +225,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvStock;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button btnSeleccionar;
+        private System.Windows.Forms.Button btnSalir;
     }
 }

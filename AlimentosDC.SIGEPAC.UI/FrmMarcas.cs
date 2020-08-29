@@ -123,5 +123,15 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             CargarMarcas();
         }
+
+        private void btnCerrar_Click(object sender, EventArgs e)
+        {
+            Close();
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            FrmPrincipal.delegadoCerrarSesion(null, null);
+        }
     }
 }

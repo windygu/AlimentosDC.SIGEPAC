@@ -26,19 +26,19 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void FrmPerfilUsuario_Load(object sender, EventArgs e)
         {
-            if (objetoActualPrincipal.usuarioActual.StatusAdmin)
+            if (FrmPrincipal.usuarioActual.StatusAdmin)
             {
                 btnUsuarios.Visible = true;
                 Text = "Perfil Administrador";
             }
-            if (objetoActualPrincipal.usuarioActual.Imagen != null)
+            if (FrmPrincipal.usuarioActual.Imagen != null)
             {
-                MemoryStream secuenciaBytes = new MemoryStream(objetoActualPrincipal.usuarioActual.Imagen);
+                MemoryStream secuenciaBytes = new MemoryStream(FrmPrincipal.usuarioActual.Imagen);
                 pcbFotoPerfil.Image = Image.FromStream(secuenciaBytes);
             }
-            lblNombres.Text = objetoActualPrincipal.usuarioActual.Nombres;
-            lblApellidos.Text = objetoActualPrincipal.usuarioActual.Apellidos;
-            lblNombreUsuario.Text = objetoActualPrincipal.usuarioActual.NombreUsuario;
+            lblNombres.Text = FrmPrincipal.usuarioActual.Nombres;
+            lblApellidos.Text = FrmPrincipal.usuarioActual.Apellidos;
+            lblNombreUsuario.Text = FrmPrincipal.usuarioActual.NombreUsuario;
         }
 
         private void btnCambiarFoto_Click(object sender, EventArgs e)
@@ -51,16 +51,16 @@ namespace AlimentosDC.SIGEPAC.UI
                 rutaImagen = ofdEscogerFoto.FileName;
                 pcbFotoPerfil.Image = Image.FromFile(rutaImagen);
                 pcbFotoPerfil.Image.Save(secuenciaBytes, ImageFormat.Jpeg);
-                objetoActualPrincipal.usuarioActual.Imagen = secuenciaBytes.GetBuffer();
-                UsuarioBL.Modificar(objetoActualPrincipal.usuarioActual);
-                secuenciaBytes = new MemoryStream(objetoActualPrincipal.usuarioActual.Imagen);
+                FrmPrincipal.usuarioActual.Imagen = secuenciaBytes.GetBuffer();
+                UsuarioBL.Modificar(FrmPrincipal.usuarioActual);
+                secuenciaBytes = new MemoryStream(FrmPrincipal.usuarioActual.Imagen);
                 objetoActualPrincipal.pcbFotoPerfil.Image = Image.FromStream(secuenciaBytes);
             }
         }
 
         private void btnCambiarClave_Click(object sender, EventArgs e)
         {
-            FrmCambiarClave ventanaCambiarClave = new FrmCambiarClave(ref objetoActualPrincipal);
+            FrmCambiarClave ventanaCambiarClave = new FrmCambiarClave();
             ventanaCambiarClave.Owner = this;
             ventanaCambiarClave.ShowDialog();
         }
@@ -75,6 +75,11 @@ namespace AlimentosDC.SIGEPAC.UI
             FrmUsuarios listadoUsuarios = new FrmUsuarios();
             listadoUsuarios.Owner = this;
             listadoUsuarios.ShowDialog();
+        }
+
+        private void btnCerrarSesion_Click(object sender, EventArgs e)
+        {
+            FrmPrincipal.delegadoCerrarSesion(null, null);
         }
     }
 }

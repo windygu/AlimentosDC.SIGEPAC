@@ -37,13 +37,15 @@
             this.dgvNombreMarca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvComentarioMarca = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtBuscarMarcas = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
+            this.btnCerrar = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoMarcas)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEliminarMarca
             // 
             this.btnEliminarMarca.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarMarca.Location = new System.Drawing.Point(605, 61);
+            this.btnEliminarMarca.Location = new System.Drawing.Point(601, 61);
             this.btnEliminarMarca.Name = "btnEliminarMarca";
             this.btnEliminarMarca.Size = new System.Drawing.Size(100, 30);
             this.btnEliminarMarca.TabIndex = 3;
@@ -54,7 +56,7 @@
             // btnEditarMarca
             // 
             this.btnEditarMarca.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarMarca.Location = new System.Drawing.Point(489, 62);
+            this.btnEditarMarca.Location = new System.Drawing.Point(484, 61);
             this.btnEditarMarca.Name = "btnEditarMarca";
             this.btnEditarMarca.Size = new System.Drawing.Size(100, 30);
             this.btnEditarMarca.TabIndex = 2;
@@ -65,7 +67,7 @@
             // btnNuevaMarca
             // 
             this.btnNuevaMarca.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevaMarca.Location = new System.Drawing.Point(371, 61);
+            this.btnNuevaMarca.Location = new System.Drawing.Point(368, 61);
             this.btnNuevaMarca.Name = "btnNuevaMarca";
             this.btnNuevaMarca.Size = new System.Drawing.Size(100, 30);
             this.btnNuevaMarca.TabIndex = 1;
@@ -83,7 +85,7 @@
             this.dgvIdMarca,
             this.dgvNombreMarca,
             this.dgvComentarioMarca});
-            this.dgvListadoMarcas.Location = new System.Drawing.Point(10, 109);
+            this.dgvListadoMarcas.Location = new System.Drawing.Point(23, 109);
             this.dgvListadoMarcas.MultiSelect = false;
             this.dgvListadoMarcas.Name = "dgvListadoMarcas";
             this.dgvListadoMarcas.ReadOnly = true;
@@ -116,18 +118,42 @@
             // txtBuscarMarcas
             // 
             this.txtBuscarMarcas.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscarMarcas.Location = new System.Drawing.Point(10, 61);
+            this.txtBuscarMarcas.Location = new System.Drawing.Point(23, 61);
             this.txtBuscarMarcas.Name = "txtBuscarMarcas";
-            this.txtBuscarMarcas.Size = new System.Drawing.Size(290, 27);
+            this.txtBuscarMarcas.Size = new System.Drawing.Size(292, 27);
             this.txtBuscarMarcas.TabIndex = 0;
             this.txtBuscarMarcas.TextoMarcaAgua = "Buscar por nombre o comentario";
             this.txtBuscarMarcas.TextChanged += new System.EventHandler(this.textBoxWaterMark1_TextChanged);
+            // 
+            // btnCerrar
+            // 
+            this.btnCerrar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrar.Location = new System.Drawing.Point(637, 401);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(100, 30);
+            this.btnCerrar.TabIndex = 26;
+            this.btnCerrar.Text = "Cerrar";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.Location = new System.Drawing.Point(510, 401);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(100, 30);
+            this.btnSalir.TabIndex = 27;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // FrmMarcas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(735, 400);
+            this.ClientSize = new System.Drawing.Size(760, 443);
+            this.Controls.Add(this.btnSalir);
+            this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.txtBuscarMarcas);
             this.Controls.Add(this.btnEliminarMarca);
             this.Controls.Add(this.btnEditarMarca);
@@ -156,5 +182,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvNombreMarca;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvComentarioMarca;
         private TextBoxWaterMark txtBuscarMarcas;
+        private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Button btnSalir;
     }
 }

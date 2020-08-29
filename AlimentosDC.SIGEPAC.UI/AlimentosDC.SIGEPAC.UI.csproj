@@ -8,7 +8,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>AlimentosDC.SIGEPAC.UI</RootNamespace>
-    <AssemblyName>AlimentosDC.SIGEPAC.UI</AssemblyName>
+    <AssemblyName>SIGEPAC</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -31,6 +31,17 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>AlimentosDC.SIGEPAC.UI.Program</StartupObject>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>
+    </ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Win32Resource>
+    </Win32Resource>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="DevComponents.DotNetBar2">
@@ -336,6 +347,11 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Logo.ico" />
+    <Content Include="Logo_Sin_Nombre.ico" />
+    <None Include="Resources\Logo_Sin_Nombre.png" />
+    <None Include="Resources\Logo_Con_Nombre.PNG" />
+    <None Include="Resources\Logo.png" />
     <None Include="Iconos\1596300078997.png" />
     <Content Include="Iconos\ADC %281%29.ico" />
     <Content Include="Iconos\icons8-client-management-50.png" />

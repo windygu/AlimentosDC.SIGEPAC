@@ -25,6 +25,7 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void btnIngresar_Click(object sender, EventArgs e)
         {
+            Cursor = Cursors.WaitCursor;
             try
             {
                 Usuario usuario = UsuarioBL.ObtenerUsuario(txtUsuario.Text, txtClave.Text);
@@ -52,6 +53,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 MetroMessageBox.Show(this,
                $"¡Ha ocurrido un error!.\nMÁS INFORMACIÓN: {error.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+            Cursor = Cursors.Arrow;
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -100,6 +102,16 @@ namespace AlimentosDC.SIGEPAC.UI
                 txtClave.PasswordChar = '●';
                 pbxShowPassword.Image = Properties.Resources.icons8_hide_30;
             }
+        }
+
+        private void FrmLogin_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
+
+        private void FrmLogin_Load(object sender, EventArgs e)
+        {
+            FrmSplashScreen.ObjetoSplashScreen.Hide();
         }
     }
 }

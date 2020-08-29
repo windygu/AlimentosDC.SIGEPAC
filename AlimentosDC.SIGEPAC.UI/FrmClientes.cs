@@ -152,6 +152,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 btnEliminarCliente.Visible = false;
                 btnNuevoCliente.Visible = false;
                 btnSeleccionar.Visible = true;
+                btnSalir.Visible = false;
                 btnCerrar.Text = "Cancelar";
             }
         }
@@ -172,6 +173,11 @@ namespace AlimentosDC.SIGEPAC.UI
             }
             Close();
 
+        }
+
+        private void btnSalir_Click(object sender, EventArgs e)
+        {
+            FrmPrincipal.delegadoCerrarSesion(null, null);
         }
     }
 }

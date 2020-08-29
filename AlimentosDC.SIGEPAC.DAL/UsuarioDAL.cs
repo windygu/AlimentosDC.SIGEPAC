@@ -40,7 +40,7 @@ namespace AlimentosDC.SIGEPAC.DAL
             comando.Parameters.AddWithValue("@NombreUsuario", pUsuario.NombreUsuario);
             comando.Parameters.AddWithValue("@Clave", pUsuario.Clave);
             comando.Parameters.AddWithValue("@StatusAdministrador", pUsuario.StatusAdmin);
-            comando.Parameters.AddWithValue("@Imagen", pUsuario.Imagen);
+            comando.Parameters.AddWithValue("@Imagen", (pUsuario.Imagen == null) ? SqlBinary.Null : pUsuario.Imagen);
             return ComunDB.EjecutarComando(comando);
         }
 
@@ -120,3 +120,6 @@ namespace AlimentosDC.SIGEPAC.DAL
         }
     }
 }
+
+//Finalizado solo falta colocar en rojo los stock en la tabla de Productos cuando el stock alcanza
+//El stock minimo

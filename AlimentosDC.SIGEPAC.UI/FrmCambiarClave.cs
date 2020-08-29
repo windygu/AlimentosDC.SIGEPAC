@@ -17,18 +17,16 @@ namespace AlimentosDC.SIGEPAC.UI
 {
     public partial class FrmCambiarClave : MetroForm
     {
-        FrmPrincipal objetoActualPrincipal;
-        public FrmCambiarClave(ref FrmPrincipal objetoActualPrincipal)
+        public FrmCambiarClave()
         {
             InitializeComponent();
-            this.objetoActualPrincipal = objetoActualPrincipal;
         }
 
         private void txtClaveActual_TextChanged(object sender, EventArgs e)
         {
             if (!string.IsNullOrEmpty(txtClaveActual.Text))
             {
-                if (objetoActualPrincipal.usuarioActual.Clave != txtClaveActual.Text)
+                if (FrmPrincipal.usuarioActual.Clave != txtClaveActual.Text)
                 {
                     epComprobadorClave.SetError(txtClaveActual, "La clave ingresada no coincide con su clave actual");
                 }
@@ -44,7 +42,7 @@ namespace AlimentosDC.SIGEPAC.UI
 
         void HabilitarBotonActualizarClave()
         {
-            if (txtClaveActual.Text == objetoActualPrincipal.usuarioActual.Clave &&
+            if (txtClaveActual.Text == FrmPrincipal.usuarioActual.Clave &&
                 !string.IsNullOrWhiteSpace(txtNuevaClave.Text))
             {
                 btnActualizarClave.Enabled = true;
@@ -54,8 +52,8 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void btnActualizarClave_Click(object sender, EventArgs e)
         {
-            objetoActualPrincipal.usuarioActual.Clave = txtNuevaClave.Text;
-            UsuarioBL.Modificar(objetoActualPrincipal.usuarioActual);
+            FrmPrincipal.usuarioActual.Clave = txtNuevaClave.Text;
+            UsuarioBL.Modificar(FrmPrincipal.usuarioActual);
             MetroMessageBox.Show(this, "Clave actualizada.", "Cambiar clave", MessageBoxButtons.OK,
                 MessageBoxIcon.Information);
             Close();

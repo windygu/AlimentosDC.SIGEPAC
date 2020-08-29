@@ -28,6 +28,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPedidos));
             this.dgvListadoPedidos = new System.Windows.Forms.DataGridView();
             this.dgvId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,7 +46,9 @@
             this.btnEliminarPedido = new System.Windows.Forms.Button();
             this.btnVerDetallePedido = new System.Windows.Forms.Button();
             this.cmbMostrando = new MetroFramework.Controls.MetroComboBox();
+            this.btnCerrar = new System.Windows.Forms.Button();
             this.txtBuscadorPedidos = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
+            this.btnSalir = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoPedidos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -66,7 +70,7 @@
             this.dgvFechaEntrega,
             this.dgvDireccionEntrega,
             this.dgvEstado});
-            this.dgvListadoPedidos.Location = new System.Drawing.Point(12, 113);
+            this.dgvListadoPedidos.Location = new System.Drawing.Point(23, 111);
             this.dgvListadoPedidos.MultiSelect = false;
             this.dgvListadoPedidos.Name = "dgvListadoPedidos";
             this.dgvListadoPedidos.ReadOnly = true;
@@ -120,9 +124,13 @@
             this.dgvNumeroCCF.HeaderText = "NO. CCF";
             this.dgvNumeroCCF.Name = "dgvNumeroCCF";
             this.dgvNumeroCCF.ReadOnly = true;
+            this.dgvNumeroCCF.Width = 80;
             // 
             // dgvFechaCreacion
             // 
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dgvFechaCreacion.DefaultCellStyle = dataGridViewCellStyle1;
             this.dgvFechaCreacion.HeaderText = "F. CREACIÓN";
             this.dgvFechaCreacion.Name = "dgvFechaCreacion";
             this.dgvFechaCreacion.ReadOnly = true;
@@ -130,6 +138,9 @@
             // 
             // dgvFechaEntrega
             // 
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.dgvFechaEntrega.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgvFechaEntrega.HeaderText = "F. ENTREGA";
             this.dgvFechaEntrega.Name = "dgvFechaEntrega";
             this.dgvFechaEntrega.ReadOnly = true;
@@ -153,7 +164,7 @@
             // 
             this.btnEditarPedido.Enabled = false;
             this.btnEditarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarPedido.Location = new System.Drawing.Point(683, 60);
+            this.btnEditarPedido.Location = new System.Drawing.Point(729, 60);
             this.btnEditarPedido.Name = "btnEditarPedido";
             this.btnEditarPedido.Size = new System.Drawing.Size(100, 30);
             this.btnEditarPedido.TabIndex = 3;
@@ -165,7 +176,7 @@
             // 
             this.btnEliminarPedido.Enabled = false;
             this.btnEliminarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarPedido.Location = new System.Drawing.Point(803, 60);
+            this.btnEliminarPedido.Location = new System.Drawing.Point(849, 60);
             this.btnEliminarPedido.Name = "btnEliminarPedido";
             this.btnEliminarPedido.Size = new System.Drawing.Size(100, 30);
             this.btnEliminarPedido.TabIndex = 4;
@@ -177,7 +188,7 @@
             // 
             this.btnVerDetallePedido.Enabled = false;
             this.btnVerDetallePedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerDetallePedido.Location = new System.Drawing.Point(558, 60);
+            this.btnVerDetallePedido.Location = new System.Drawing.Point(604, 60);
             this.btnVerDetallePedido.Name = "btnVerDetallePedido";
             this.btnVerDetallePedido.Size = new System.Drawing.Size(100, 30);
             this.btnVerDetallePedido.TabIndex = 2;
@@ -196,7 +207,7 @@
             "Revisados",
             "Enviados",
             "Finalizados"});
-            this.cmbMostrando.Location = new System.Drawing.Point(333, 62);
+            this.cmbMostrando.Location = new System.Drawing.Point(379, 62);
             this.cmbMostrando.Name = "cmbMostrando";
             this.cmbMostrando.Size = new System.Drawing.Size(200, 29);
             this.cmbMostrando.TabIndex = 1;
@@ -204,21 +215,45 @@
             this.cmbMostrando.SelectionChangeCommitted += new System.EventHandler(this.cmbMostrando_SelectionChangeCommitted);
             this.cmbMostrando.SelectedValueChanged += new System.EventHandler(this.cmbMostrando_SelectionChangeCommitted);
             // 
+            // btnCerrar
+            // 
+            this.btnCerrar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrar.Location = new System.Drawing.Point(1101, 521);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(100, 30);
+            this.btnCerrar.TabIndex = 5;
+            this.btnCerrar.Text = "Cerrar";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
             // txtBuscadorPedidos
             // 
             this.txtBuscadorPedidos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscadorPedidos.Location = new System.Drawing.Point(23, 62);
+            this.txtBuscadorPedidos.Location = new System.Drawing.Point(23, 63);
             this.txtBuscadorPedidos.Name = "txtBuscadorPedidos";
-            this.txtBuscadorPedidos.Size = new System.Drawing.Size(288, 27);
+            this.txtBuscadorPedidos.Size = new System.Drawing.Size(335, 27);
             this.txtBuscadorPedidos.TabIndex = 0;
             this.txtBuscadorPedidos.TextoMarcaAgua = "Buscar por número de pedido o cliente";
             this.txtBuscadorPedidos.TextChanged += new System.EventHandler(this.txtBuscadorPedidos_TextChanged);
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.Location = new System.Drawing.Point(983, 521);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(100, 30);
+            this.btnSalir.TabIndex = 6;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // FrmPedidos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1197, 521);
+            this.ClientSize = new System.Drawing.Size(1220, 566);
+            this.Controls.Add(this.btnSalir);
+            this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.txtBuscadorPedidos);
             this.Controls.Add(this.cmbMostrando);
             this.Controls.Add(this.btnVerDetallePedido);
@@ -249,6 +284,7 @@
         private System.Windows.Forms.Button btnVerDetallePedido;
         private MetroFramework.Controls.MetroComboBox cmbMostrando;
         private TextBoxWaterMark txtBuscadorPedidos;
+        private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvUsuario;
@@ -259,5 +295,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvFechaEntrega;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvDireccionEntrega;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvEstado;
+        private System.Windows.Forms.Button btnSalir;
     }
 }
