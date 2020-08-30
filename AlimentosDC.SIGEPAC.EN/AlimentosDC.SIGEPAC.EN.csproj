@@ -41,7 +41,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Cliente.cs" />
+    <Compile Include="DetalleIngreso.cs" />
     <Compile Include="DetallePedido.cs" />
+    <Compile Include="Ingreso.cs" />
     <Compile Include="Marca.cs" />
     <Compile Include="Pedido.cs" />
     <Compile Include="Producto.cs" />

@@ -243,7 +243,7 @@
             this.pictureBox2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox2.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox2.Image = global::AlimentosDC.SIGEPAC.UI.Properties.Resources.Logo_Sin_Nombre;
-            this.pictureBox2.Location = new System.Drawing.Point(615, 278);
+            this.pictureBox2.Location = new System.Drawing.Point(624, 270);
             this.pictureBox2.Margin = new System.Windows.Forms.Padding(15);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(250, 163);

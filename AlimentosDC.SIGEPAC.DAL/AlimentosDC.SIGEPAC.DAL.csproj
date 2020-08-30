@@ -42,7 +42,9 @@
   <ItemGroup>
     <Compile Include="ClienteDAL.cs" />
     <Compile Include="ComunDB.cs" />
+    <Compile Include="DetalleIngresoDAL.cs" />
     <Compile Include="DetallePedidoDAL.cs" />
+    <Compile Include="IngresoDAL.cs" />
     <Compile Include="MarcaDAL.cs" />
     <Compile Include="PedidoDAL.cs" />
     <Compile Include="ProductoDAL.cs" />

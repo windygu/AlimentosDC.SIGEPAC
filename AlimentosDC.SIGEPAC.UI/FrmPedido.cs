@@ -671,13 +671,11 @@ namespace AlimentosDC.SIGEPAC.UI
             {
                 epValidadorControles.SetError(nudCantidad, "");
                 lblSubTotal.Text = string.Concat("$ ", (producto.Precio * (float)nudCantidad.Value).ToString("N"));
-                int stock = producto.Stock;
-                int stockMinimo = 10;
-                lblStockProducto.Text = (stock - nudCantidad.Value).ToString();
-                if ((stock - nudCantidad.Value) < stockMinimo)
+                lblStockProducto.Text = (producto.Stock - nudCantidad.Value).ToString();
+                if (nudCantidad.Value>producto.Stock)
                 {
-                    MetroMessageBox.Show(this, "Las existencias mínimas de este producto deben ser 10 unidades.", "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    nudCantidad.Text = "";
+                    MetroMessageBox.Show(this, "Hay menos productos en Stock que los solicitados.", "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    nudCantidad.Value = 0;
                 }
                 HabilitarBotonAgregarDetalle();
             }

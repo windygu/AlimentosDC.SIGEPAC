@@ -218,7 +218,6 @@
             this.nudStock.Name = "nudStock";
             this.nudStock.Size = new System.Drawing.Size(242, 25);
             this.nudStock.TabIndex = 52;
-            this.nudStock.ValueChanged += new System.EventHandler(this.nudStock_ValueChanged);
             // 
             // FrmProducto
             // 

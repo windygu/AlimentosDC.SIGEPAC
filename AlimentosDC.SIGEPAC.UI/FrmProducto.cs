@@ -105,7 +105,7 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             if ((int)cmbMarcas.SelectedValue > 0 && !string.IsNullOrWhiteSpace(txtNombreProducto.Text) &&
                 !string.IsNullOrWhiteSpace(txtDescripcionProducto.Text) && ((!string.IsNullOrWhiteSpace(txtPrecioProducto.Text)) 
-                && Validaciones.ValidarPrecio(txtPrecioProducto.Text) == 0) && nudStock.Value>0)
+                && Validaciones.ValidarPrecio(txtPrecioProducto.Text) == 0) && nudStock.Value>=0)
             {
                 btnGuardarProducto.Enabled = true;
             }
@@ -233,7 +233,8 @@ namespace AlimentosDC.SIGEPAC.UI
                 epValidarControles.SetError(cmbMarcas, "Debe seleccionar una marca");
             }
         }
-
+        
+        /*
         private void nudStock_ValueChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(nudStock.Text) || nudStock.Value == 0)
@@ -248,6 +249,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 HabilitarBotonGuardar();
             }
         }
+        */
 
         private void NudStock_TextChanged(object sender, EventArgs e)
         {
@@ -257,9 +259,5 @@ namespace AlimentosDC.SIGEPAC.UI
             }
             HabilitarBotonGuardar();
         }
-
-        //Continuar corrigiendo el error que al presionar dos veces el punto en un nudStock
-        //con un valor de tres cifras mayor a cero, se coloca un cero como valor y el boton de agregar 
-        //registrar producto queda habilitado permitiendo agregar el producto con stock en cero
     }
 }

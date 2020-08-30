@@ -20,7 +20,6 @@ namespace AlimentosDC.SIGEPAC.DAL
             comando.Parameters.AddWithValue("@IdProducto", pDetallePedido.IdProducto);
             comando.Parameters.AddWithValue("@Cantidad", (int) pDetallePedido.Cantidad);
             comando.Parameters.AddWithValue("@PrecioUnitario", (decimal) pDetallePedido.PrecioUnitario);
-            comando.Parameters.AddWithValue("@SubTotal", (decimal) pDetallePedido.SubTotal);
             comando.Parameters.AddWithValue("@Estado", pDetallePedido.Estado);
             return ComunDB.EjecutarComando(comando);
         }
@@ -36,7 +35,6 @@ namespace AlimentosDC.SIGEPAC.DAL
             comando.Parameters.AddWithValue("@IdProducto", pDetallePedido.IdProducto);
             comando.Parameters.AddWithValue("@Cantidad", (int) pDetallePedido.Cantidad);
             comando.Parameters.AddWithValue("@PrecioUnitario", (decimal) pDetallePedido.PrecioUnitario);
-            comando.Parameters.AddWithValue("@SubTotal", (decimal) pDetallePedido.SubTotal);
             comando.Parameters.AddWithValue("@Estado", pDetallePedido.Estado);
             return ComunDB.EjecutarComando(comando);
         }
