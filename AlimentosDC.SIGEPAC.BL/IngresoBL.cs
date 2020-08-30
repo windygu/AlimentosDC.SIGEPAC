@@ -34,5 +34,10 @@ namespace AlimentosDC.SIGEPAC.BL
         {
             return IngresoDAL.BuscarPorId(pId);
         }
+
+        public static Ingreso BuscarPorNumeroCCF(int pNumeroCCF)
+        {
+            return IngresoDAL.BuscarPorNumeroCCF(pNumeroCCF);
+        }
     }
 }

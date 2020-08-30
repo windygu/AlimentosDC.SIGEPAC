@@ -32,7 +32,7 @@ namespace AlimentosDC.SIGEPAC.DAL
         {
             string consulta = string.Concat("UPDATE Pedido SET IdCliente = @IdCliente, IdUsuario = @IdUsuario, ",
             "NumeroPedido = @NumeroPedido, NumeroCCF = @NumeroCCF, FechaCreacion = @FechaCreacion, FechaEntrega = @FechaEntrega, ",
-            "DireccionEntrega = @DireccionEntrega, Estado = @Estado WHERE Id = @Id;");
+            "DireccionEntrega = @DireccionEntrega, Estado = @Estado, Sumas = @Sumas, Iva = @Iva, Total = @Total WHERE Id = @Id;");
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
             comando.Parameters.AddWithValue("@Id", pPedido.Id);
@@ -44,6 +44,9 @@ namespace AlimentosDC.SIGEPAC.DAL
             comando.Parameters.AddWithValue("@FechaEntrega", pPedido.FechaEntrega);
             comando.Parameters.AddWithValue("@DireccionEntrega", pPedido.DireccionEntrega);
             comando.Parameters.AddWithValue("@Estado", pPedido.Estado);
+            comando.Parameters.AddWithValue("@Sumas", pPedido.Sumas);
+            comando.Parameters.AddWithValue("@Iva", pPedido.Iva);
+            comando.Parameters.AddWithValue("@Total", pPedido.Total);
             return ComunDB.EjecutarComando(comando);
         }
 

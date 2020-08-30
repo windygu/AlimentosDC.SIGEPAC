@@ -23,11 +23,9 @@ namespace AlimentosDC.SIGEPAC.UI
         Pedido pedido;
         Cliente cliente;
         int idPedido, numeroPedido;
-        Usuario usuarioActual;
-        public FrmVerDetallesPedido(int idPedido, int numeroPedido, Usuario usuarioActual)
+        public FrmVerDetallesPedido(int idPedido, int numeroPedido)
         {
             InitializeComponent();
-            this.usuarioActual = usuarioActual;
             this.idPedido = idPedido;
             this.numeroPedido = numeroPedido;
         }
@@ -67,8 +65,8 @@ namespace AlimentosDC.SIGEPAC.UI
                 lblCliente.Text = string.Concat(cliente.PrimerNombre, " ", cliente.SegundoNombre, " ",
                     cliente.PrimerApellido, " ", cliente.SegundoApellido);
                 lblDuiCliente.Text = cliente.DUI;
-                lblUsuario.Text = string.Concat(usuarioActual.Nombres, " ", usuarioActual.Apellidos);
-                float sumas = 0.00f;
+                lblUsuario.Text = string.Concat(FrmPrincipal.usuarioActual.Nombres, " ", FrmPrincipal.usuarioActual.Apellidos);
+                double sumas = 0.00f;
                 for (int i = 0; i < listadoDetallesPedido.Count; i++)
                 {
                     dgvListadoDetallesPedido.Rows.Add();

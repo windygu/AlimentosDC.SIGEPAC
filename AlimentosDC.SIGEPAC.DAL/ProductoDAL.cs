@@ -19,7 +19,7 @@ namespace AlimentosDC.SIGEPAC.DAL
             comando.Parameters.AddWithValue("@IdMarca", pProducto.IdMarca);
             comando.Parameters.AddWithValue("@Nombre", pProducto.Nombre);
             comando.Parameters.AddWithValue("@Descripcion", pProducto.Descripcion);
-            comando.Parameters.AddWithValue("@Precio", pProducto.Precio);
+            comando.Parameters.AddWithValue("@Precio", pProducto.PrecioVenta);
             comando.Parameters.AddWithValue("@Stock", pProducto.Stock);
             return ComunDB.EjecutarComando(comando);
         }
@@ -34,7 +34,7 @@ namespace AlimentosDC.SIGEPAC.DAL
             comando.Parameters.AddWithValue("@IdMarca", pProducto.IdMarca);
             comando.Parameters.AddWithValue("@Nombre", pProducto.Nombre);
             comando.Parameters.AddWithValue("@Descripcion", pProducto.Descripcion);
-            comando.Parameters.AddWithValue("@Precio", pProducto.Precio);
+            comando.Parameters.AddWithValue("@Precio", pProducto.PrecioVenta);
             comando.Parameters.AddWithValue("@Stock", pProducto.Stock);
             return ComunDB.EjecutarComando(comando);
         }
@@ -71,7 +71,7 @@ namespace AlimentosDC.SIGEPAC.DAL
                 producto.Nombre = reader.GetString(1);
                 producto.Descripcion = reader.GetString(2);
                 producto.Marca = reader.GetString(3);
-                producto.Precio = (float) reader.GetDecimal(4);
+                producto.PrecioVenta = (double)reader.GetDecimal(4);
                 producto.Stock = reader.GetInt32(5);
                 listaProductos.Add(producto);
             }
@@ -92,7 +92,7 @@ namespace AlimentosDC.SIGEPAC.DAL
                 producto.IdMarca = reader.GetInt32(1);
                 producto.Nombre = reader.GetString(2);
                 producto.Descripcion = reader.GetString(3);
-                producto.Precio = (float) reader.GetDecimal(4);
+                producto.PrecioVenta = (double) reader.GetDecimal(4);
                 producto.Stock = reader.GetInt32(5);
             }
             return producto;

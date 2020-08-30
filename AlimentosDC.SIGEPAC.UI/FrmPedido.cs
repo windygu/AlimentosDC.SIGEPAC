@@ -20,7 +20,7 @@ namespace AlimentosDC.SIGEPAC.UI
     public partial class FrmPedido : MetroForm
     {
         FrmPedido objetoPedidoActual;
-        FrmPedidos objetoPedidosActual;
+        FrmHistoriales objetoPedidosActual;
         Pedido pedidoEditando;
         int? idDetallePedidoAEditar = null;
         Producto producto;
@@ -28,7 +28,7 @@ namespace AlimentosDC.SIGEPAC.UI
         public List<DetallePedido> listadoDetallesPedido = new List<DetallePedido>();
         public List<DetallePedido> listadoViejoDetallesPedido = new List<DetallePedido>();
         public List<int> detallesViejosAEliminarDeLaBD = new List<int>();
-        Cliente cliente = null;
+        Cliente cliente;
         Usuario usuarioActual;
         double totalAPagar = 0;
         public FrmPedido(Usuario usuarioActual)
@@ -40,7 +40,7 @@ namespace AlimentosDC.SIGEPAC.UI
         }
 
         //Constructor para editar un pedido
-        public FrmPedido(FrmPedidos objetoPedidosActual, int idPedido)
+        public FrmPedido(FrmHistoriales objetoPedidosActual, int idPedido)
         {
             InitializeComponent();
             this.objetoPedidosActual = objetoPedidosActual;
@@ -167,8 +167,8 @@ namespace AlimentosDC.SIGEPAC.UI
                     detalle.Producto = producto.Nombre;
                     detalle.Descripcion = producto.Descripcion;
                     detalle.Cantidad = ushort.Parse(nudCantidad.Text);
-                    detalle.PrecioUnitario = producto.Precio;
-                    detalle.SubTotal = ushort.Parse(nudCantidad.Text) * producto.Precio;
+                    detalle.PrecioUnitario = producto.PrecioVenta;
+                    detalle.SubTotal = ushort.Parse(nudCantidad.Text) * producto.PrecioVenta;
                     detalle.Estado = cmbEstadoDetallePedido.SelectedItem.ToString();
                 }
                 ActualizarDatagridView();
@@ -183,8 +183,8 @@ namespace AlimentosDC.SIGEPAC.UI
                 detallePedidoAAgregar.Producto = producto.Nombre;
                 detallePedidoAAgregar.Descripcion = producto.Descripcion;
                 detallePedidoAAgregar.Cantidad = ushort.Parse(nudCantidad.Text);
-                detallePedidoAAgregar.PrecioUnitario = producto.Precio;
-                detallePedidoAAgregar.SubTotal = ushort.Parse(nudCantidad.Text) * producto.Precio;
+                detallePedidoAAgregar.PrecioUnitario = producto.PrecioVenta;
+                detallePedidoAAgregar.SubTotal = ushort.Parse(nudCantidad.Text) * producto.PrecioVenta;
                 detallePedidoAAgregar.Estado = cmbEstadoDetallePedido.SelectedItem.ToString();
                 int idUltimoDetalle;
                 if (listadoDetallesPedido.Count >= 1)
@@ -527,7 +527,7 @@ namespace AlimentosDC.SIGEPAC.UI
                     producto = productos.productoSeleccionado;
                     lblNombreProducto.Text = producto.Nombre;
                     lblDescripcionProducto.Text = producto.Descripcion;
-                    lblPrecioUnitario.Text = string.Concat("$ ", producto.Precio.ToString("N"));
+                    lblPrecioUnitario.Text = string.Concat("$ ", producto.PrecioVenta.ToString("N"));
                     lblStockProducto.Text = producto.Stock.ToString();
                     cmbEstadoDetallePedido.DroppedDown = true;
                 }
@@ -547,7 +547,7 @@ namespace AlimentosDC.SIGEPAC.UI
             DetallePedido detalleAEditar = listadoDetallesPedido.Find(x => x.Id == idDetallePedidoAEditar);
             producto = ProductoBL.BuscarPorId(detalleAEditar.IdProducto);
             lblNombreProducto.Text = producto.Nombre;
-            lblPrecioUnitario.Text = string.Concat("$ ", producto.Precio.ToString("N"));
+            lblPrecioUnitario.Text = string.Concat("$ ", producto.PrecioVenta.ToString("N"));
             lblDescripcionProducto.Text = producto.Descripcion;
             lblStockProducto.Text = producto.Stock.ToString();
             nudCantidad.Text = detalleAEditar.Cantidad.ToString();
@@ -670,7 +670,7 @@ namespace AlimentosDC.SIGEPAC.UI
             if (nudCantidad.Value > 0 && lblPrecioUnitario.Text.Length > 0)
             {
                 epValidadorControles.SetError(nudCantidad, "");
-                lblSubTotal.Text = string.Concat("$ ", (producto.Precio * (float)nudCantidad.Value).ToString("N"));
+                lblSubTotal.Text = string.Concat("$ ", (producto.PrecioVenta * (float)nudCantidad.Value).ToString("N"));
                 lblStockProducto.Text = (producto.Stock - nudCantidad.Value).ToString();
                 if (nudCantidad.Value>producto.Stock)
                 {

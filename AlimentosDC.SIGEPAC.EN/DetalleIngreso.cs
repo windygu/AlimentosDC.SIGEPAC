@@ -14,5 +14,7 @@ namespace AlimentosDC.SIGEPAC.EN
         public string Producto { get; set; }
         public string Descripcion { get; set; }
         public int Cantidad { get; set; }
+        public double PrecioUnitario { get; set; }
+        public double SubTotal { get; set; }
     }
 }

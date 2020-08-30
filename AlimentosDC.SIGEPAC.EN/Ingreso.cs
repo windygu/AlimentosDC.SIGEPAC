@@ -15,5 +15,8 @@ namespace AlimentosDC.SIGEPAC.EN
         public string Marca { get; set; }
         public DateTime FechaIngreso { get; set; }
         public string NumeroCCF { get; set; }
+        public double Sumas { get; set; }
+        public double Iva { get; set; }
+        public double Total { get; set; }
     }
 }

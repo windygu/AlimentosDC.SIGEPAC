@@ -61,7 +61,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 dgvListadoProductos.Rows[i].Cells[1].Value = listadoProductos[i].Nombre;
                 dgvListadoProductos.Rows[i].Cells[2].Value = listadoProductos[i].Descripcion;
                 dgvListadoProductos.Rows[i].Cells[3].Value = listadoProductos[i].Marca;
-                dgvListadoProductos.Rows[i].Cells[4].Value = listadoProductos[i].Precio;
+                dgvListadoProductos.Rows[i].Cells[4].Value = listadoProductos[i].PrecioVenta;
                 if (listadoProductos[i].Stock<=10 && listadoProductos[i].Stock > 0)
                     dgvListadoProductos.Rows[i].Cells[5].Style.BackColor = Color.Orange;
                 else if (listadoProductos[i].Stock == 0)

@@ -67,7 +67,7 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             cmbMarcas.SelectedValue = productoAEditar.IdMarca;
             txtNombreProducto.Text = productoAEditar.Nombre;
-            txtPrecioProducto.Text = productoAEditar.Precio.ToString();
+            txtPrecioProducto.Text = productoAEditar.PrecioVenta.ToString();
             txtDescripcionProducto.Text = productoAEditar.Descripcion;
             nudStock.Value = productoAEditar.Stock;
         }
@@ -125,7 +125,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 productoAAgregar.IdMarca = int.Parse(cmbMarcas.SelectedValue.ToString());
                 productoAAgregar.Nombre = txtNombreProducto.Text;
                 productoAAgregar.Descripcion = txtDescripcionProducto.Text;
-                productoAAgregar.Precio = float.Parse(txtPrecioProducto.Text);
+                productoAAgregar.PrecioVenta = float.Parse(txtPrecioProducto.Text);
                 productoAAgregar.Stock = (int)nudStock.Value;
                 if (idProductoAEditar == null)
                 {

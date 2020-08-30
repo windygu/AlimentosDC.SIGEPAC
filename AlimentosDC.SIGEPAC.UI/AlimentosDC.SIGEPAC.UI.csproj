@@ -119,12 +119,6 @@
     <Compile Include="FrmCompra.Designer.cs">
       <DependentUpon>FrmCompra.cs</DependentUpon>
     </Compile>
-    <Compile Include="FrmCompras.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="FrmCompras.Designer.cs">
-      <DependentUpon>FrmCompras.cs</DependentUpon>
-    </Compile>
     <Compile Include="FrmGenerandoComprobante.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -203,6 +197,12 @@
     <Compile Include="FrmUsuario.Designer.cs">
       <DependentUpon>FrmUsuario.cs</DependentUpon>
     </Compile>
+    <Compile Include="FrmVerDetalleIngreso.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="FrmVerDetalleIngreso.Designer.cs">
+      <DependentUpon>FrmVerDetalleIngreso.cs</DependentUpon>
+    </Compile>
     <Compile Include="FrmVerDetallesPedido.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -263,9 +263,6 @@
     <EmbeddedResource Include="FrmCompra.resx">
       <DependentUpon>FrmCompra.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="FrmCompras.resx">
-      <DependentUpon>FrmCompras.cs</DependentUpon>
-    </EmbeddedResource>
     <EmbeddedResource Include="FrmGenerandoComprobante.resx">
       <DependentUpon>FrmGenerandoComprobante.cs</DependentUpon>
     </EmbeddedResource>
@@ -304,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="FrmUsuario.resx">
       <DependentUpon>FrmUsuario.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="FrmVerDetalleIngreso.resx">
+      <DependentUpon>FrmVerDetalleIngreso.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="FrmVerDetallesPedido.resx">
       <DependentUpon>FrmVerDetallesPedido.cs</DependentUpon>
@@ -365,8 +365,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Logo.ico" />
-    <Content Include="Logo_Sin_Nombre.ico" />
     <None Include="Resources\Logo_Sin_Nombre.png" />
     <None Include="Resources\Logo_Con_Nombre.PNG" />
     <None Include="Resources\Logo.png" />

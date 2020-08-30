@@ -117,9 +117,16 @@ namespace AlimentosDC.SIGEPAC.UI
         private void btnHistorial_Click(object sender, EventArgs e)
         {
             Cursor = Cursors.WaitCursor;
-            FrmPedidos historialPedidos = new FrmPedidos(usuarioActual);
-            historialPedidos.Owner = this;
-            historialPedidos.ShowDialog();
+            FrmHistoriales historialPedidos = new FrmHistoriales();
+            historialPedidos.ShowDialog(this);
+            Cursor = Cursors.Arrow;
+        }
+
+        private void btnIngresos_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            FrmIngreso ventanaIngresos = new FrmIngreso();
+            ventanaIngresos.ShowDialog(this);
             Cursor = Cursors.Arrow;
         }
     }

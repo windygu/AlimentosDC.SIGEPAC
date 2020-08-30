@@ -16,19 +16,15 @@ using System.Data.SqlClient;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
-    public partial class FrmPedidos : MetroForm
+    public partial class FrmHistoriales : MetroForm
     {
         List<Pedido> listadoPedidos = new List<Pedido>();
-        FrmPedidos objetoPedidosActual;
-        Usuario usuarioActual;
-        public FrmPedidos(Usuario usuarioActual)
+        List<Ingreso> listadoIngresos = new List<Ingreso>();
+        FrmHistoriales objetoHistorialesActual;
+        public FrmHistoriales()
         {
             InitializeComponent();
-            this.usuarioActual = usuarioActual;
-            objetoPedidosActual = this;
-            btnEditarPedido.Enabled = false;
-            btnVerDetallePedido.Enabled = false;
-            btnEliminarPedido.Enabled = false;
+            objetoHistorialesActual = this;
             txtBuscadorPedidos.GotFocus += TxtBuscadorPedidos_GotFocus;
         }
 
@@ -41,7 +37,7 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             int idPedido = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[0].Value.ToString());
             int numeroPedido = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[4].Value.ToString());
-            FrmVerDetallesPedido verDetallesPedido = new FrmVerDetallesPedido(idPedido, numeroPedido, usuarioActual);
+            FrmVerDetallesPedido verDetallesPedido = new FrmVerDetallesPedido(idPedido, numeroPedido);
             verDetallesPedido.Owner = this;
             verDetallesPedido.ShowDialog();
         }
@@ -50,8 +46,8 @@ namespace AlimentosDC.SIGEPAC.UI
         private void btnEditarPedido_Click(object sender, EventArgs e)
         {
             int idPedido = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[0].Value.ToString());
-            FrmPedido p = new FrmPedido(objetoPedidosActual, idPedido);
-            p.Owner = objetoPedidosActual;
+            FrmPedido p = new FrmPedido(objetoHistorialesActual, idPedido);
+            p.Owner = objetoHistorialesActual;
             p.ShowDialog();
         }
 
@@ -97,6 +93,24 @@ namespace AlimentosDC.SIGEPAC.UI
                 dgvListadoPedidos.Rows[i].Cells[7].Value = listadoPedidos[i].FechaEntrega.ToString("d");
                 dgvListadoPedidos.Rows[i].Cells[8].Value = listadoPedidos[i].DireccionEntrega.ToString();
                 dgvListadoPedidos.Rows[i].Cells[9].Value = listadoPedidos[i].Estado.ToString();
+            }
+        }
+
+        public void CargarIngresos(string pCondicion = "%")
+        {
+            dgvListadoIngresos.Rows.Clear();
+            listadoIngresos = IngresoBL.ObtenerTodos(pCondicion);
+            for (int i = 0; i < listadoIngresos.Count; i++)
+            {
+                dgvListadoPedidos.Rows.Add();
+                dgvListadoPedidos.Rows[i].Cells[0].Value = listadoIngresos[i].Id;
+                dgvListadoPedidos.Rows[i].Cells[1].Value = listadoIngresos[i].NumeroCCF;
+                dgvListadoPedidos.Rows[i].Cells[2].Value = listadoIngresos[i].Marca;
+                dgvListadoPedidos.Rows[i].Cells[3].Value = listadoIngresos[i].FechaIngreso;
+                dgvListadoPedidos.Rows[i].Cells[4].Value = listadoIngresos[i].Sumas.ToString("d");
+                dgvListadoPedidos.Rows[i].Cells[5].Value = listadoIngresos[i].Iva.ToString("d");
+                dgvListadoPedidos.Rows[i].Cells[6].Value = listadoIngresos[i].Total.ToString("d");
+                dgvListadoPedidos.Rows[i].Cells[7].Value = listadoIngresos[i].Usuario;
             }
         }
 
@@ -196,6 +210,75 @@ namespace AlimentosDC.SIGEPAC.UI
         private void btnSalir_Click(object sender, EventArgs e)
         {
             FrmPrincipal.delegadoCerrarSesion(null, null);
+        }
+
+        private void btnVerDetalleIngreso_Click(object sender, EventArgs e)
+        {
+            int idIngreso = int.Parse(dgvListadoIngresos.SelectedRows[0].Cells[0].Value.ToString());
+            FrmVerDetalleIngreso verDetallesIngreso = new FrmVerDetalleIngreso(idIngreso);
+            verDetallesIngreso.ShowDialog(this);
+        }
+
+        private void btnEditarIngreso_Click(object sender, EventArgs e)
+        {
+            int idIngreso = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[0].Value.ToString());
+            FrmIngreso ventanaIngreso = new FrmIngreso(objetoHistorialesActual, idIngreso);
+            ventanaIngreso.ShowDialog(this);
+        }
+
+        private void btnEliminarIngreso_Click(object sender, EventArgs e)
+        {
+            int idIngresoAEliminar = int.Parse(dgvListadoIngresos.SelectedRows[0].Cells[0].Value.ToString());
+            DialogResult resultadoDialgo = MetroMessageBox.Show(this, "¿Desea eliminar esta compra?", "¡Aviso!",
+                MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+            if (resultadoDialgo == DialogResult.Yes)
+            {
+                List<DetalleIngreso> listadoDetalles = DetalleIngresoBL.ObtenerTodos(idIngresoAEliminar);
+                if (listadoDetalles.Count >= 1)
+                {
+                    DialogResult resultado = MetroMessageBox.Show(this, "Se eliminarán la compra y todos sus detalles.", "¡Advertencia!",
+                        MessageBoxButtons.OKCancel, MessageBoxIcon.Warning, MessageBoxDefaultButton.Button2);
+                    if (resultado == DialogResult.OK)
+                    {
+                        foreach (var item in listadoDetalles)
+                        {
+                            DetalleIngresoBL.Eliminar(item.Id);
+                        }
+                        IngresoBL.Eliminar(idIngresoAEliminar);
+                    }
+                }
+                else IngresoBL.Eliminar(idIngresoAEliminar);
+                CargarIngresos();
+            }
+        }
+
+        private void txtBuscadorCompras_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                CargarIngresos(txtBuscadorCompras.Text.Trim());
+            }
+            catch (Exception error)
+            {
+
+                throw;
+            }
+        }
+
+        private void dgvListadoIngresos_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvListadoIngresos.SelectedRows.Count > 0)
+            {
+                btnVerDetalleIngreso.Enabled = true;
+                btnEditarIngreso.Enabled = true;
+                btnEliminarIngreso.Enabled = true;
+            }
+            else
+            {
+                btnVerDetalleIngreso.Enabled = false;
+                btnEditarIngreso.Enabled = false;
+                btnEliminarIngreso.Enabled = false;
+            }
         }
     }
 }

@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmPrincipal));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnIngresos = new System.Windows.Forms.Button();
             this.btnHistorial = new System.Windows.Forms.Button();
             this.btnReportes = new System.Windows.Forms.Button();
             this.btnCerraSesion = new System.Windows.Forms.Button();
@@ -57,6 +58,7 @@
             | System.Windows.Forms.AnchorStyles.Left)));
             this.panel1.BackColor = System.Drawing.Color.MediumAquamarine;
             this.panel1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.panel1.Controls.Add(this.btnIngresos);
             this.panel1.Controls.Add(this.btnHistorial);
             this.panel1.Controls.Add(this.btnReportes);
             this.panel1.Controls.Add(this.btnCerraSesion);
@@ -70,17 +72,33 @@
             this.panel1.Size = new System.Drawing.Size(178, 747);
             this.panel1.TabIndex = 0;
             // 
+            // btnIngresos
+            // 
+            this.btnIngresos.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnIngresos.BackColor = System.Drawing.Color.White;
+            this.btnIngresos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIngresos.Image = ((System.Drawing.Image)(resources.GetObject("btnIngresos.Image")));
+            this.btnIngresos.Location = new System.Drawing.Point(20, 238);
+            this.btnIngresos.Name = "btnIngresos";
+            this.btnIngresos.Size = new System.Drawing.Size(140, 45);
+            this.btnIngresos.TabIndex = 7;
+            this.btnIngresos.Text = "Ingresos";
+            this.btnIngresos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnIngresos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnIngresos.UseVisualStyleBackColor = true;
+            this.btnIngresos.Click += new System.EventHandler(this.btnIngresos_Click);
+            // 
             // btnHistorial
             // 
             this.btnHistorial.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnHistorial.BackColor = System.Drawing.Color.White;
             this.btnHistorial.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHistorial.Image = ((System.Drawing.Image)(resources.GetObject("btnHistorial.Image")));
-            this.btnHistorial.Location = new System.Drawing.Point(20, 195);
+            this.btnHistorial.Location = new System.Drawing.Point(20, 289);
             this.btnHistorial.Name = "btnHistorial";
             this.btnHistorial.Size = new System.Drawing.Size(140, 45);
             this.btnHistorial.TabIndex = 1;
-            this.btnHistorial.Text = " Historial";
+            this.btnHistorial.Text = " Historiales";
             this.btnHistorial.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnHistorial.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnHistorial.UseVisualStyleBackColor = true;
@@ -92,7 +110,7 @@
             this.btnReportes.BackColor = System.Drawing.Color.White;
             this.btnReportes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportes.Image = ((System.Drawing.Image)(resources.GetObject("btnReportes.Image")));
-            this.btnReportes.Location = new System.Drawing.Point(20, 431);
+            this.btnReportes.Location = new System.Drawing.Point(20, 442);
             this.btnReportes.Name = "btnReportes";
             this.btnReportes.Size = new System.Drawing.Size(140, 45);
             this.btnReportes.TabIndex = 5;
@@ -109,7 +127,7 @@
             this.btnCerraSesion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnCerraSesion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerraSesion.Image = ((System.Drawing.Image)(resources.GetObject("btnCerraSesion.Image")));
-            this.btnCerraSesion.Location = new System.Drawing.Point(20, 490);
+            this.btnCerraSesion.Location = new System.Drawing.Point(20, 493);
             this.btnCerraSesion.Name = "btnCerraSesion";
             this.btnCerraSesion.Size = new System.Drawing.Size(140, 45);
             this.btnCerraSesion.TabIndex = 6;
@@ -152,7 +170,7 @@
             this.btnMarcas.BackColor = System.Drawing.Color.White;
             this.btnMarcas.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMarcas.Image = ((System.Drawing.Image)(resources.GetObject("btnMarcas.Image")));
-            this.btnMarcas.Location = new System.Drawing.Point(20, 372);
+            this.btnMarcas.Location = new System.Drawing.Point(20, 391);
             this.btnMarcas.Name = "btnMarcas";
             this.btnMarcas.Size = new System.Drawing.Size(140, 45);
             this.btnMarcas.TabIndex = 4;
@@ -168,7 +186,7 @@
             this.btnProductos.BackColor = System.Drawing.Color.White;
             this.btnProductos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnProductos.Image")));
-            this.btnProductos.Location = new System.Drawing.Point(20, 254);
+            this.btnProductos.Location = new System.Drawing.Point(20, 187);
             this.btnProductos.Name = "btnProductos";
             this.btnProductos.Size = new System.Drawing.Size(140, 45);
             this.btnProductos.TabIndex = 2;
@@ -184,7 +202,7 @@
             this.btnClientes.BackColor = System.Drawing.Color.White;
             this.btnClientes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnClientes.Image")));
-            this.btnClientes.Location = new System.Drawing.Point(20, 313);
+            this.btnClientes.Location = new System.Drawing.Point(20, 340);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Size = new System.Drawing.Size(140, 45);
             this.btnClientes.TabIndex = 3;
@@ -294,5 +312,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.PictureBox pictureBox2;
         public System.Windows.Forms.Button btnCerraSesion;
+        private System.Windows.Forms.Button btnIngresos;
     }
 }

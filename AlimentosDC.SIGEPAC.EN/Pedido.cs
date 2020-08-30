@@ -20,6 +20,9 @@ namespace AlimentosDC.SIGEPAC.EN
         public DateTime FechaEntrega { get; set; }
         public string DireccionEntrega { get; set; }
         public string Estado { get; set; }
+        public double Sumas { get; set; }
+        public double Iva { get; set; }
+        public double Total { get; set; }
         
     }
 }
