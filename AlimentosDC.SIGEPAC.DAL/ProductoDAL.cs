@@ -12,14 +12,15 @@ namespace AlimentosDC.SIGEPAC.DAL
     {
         public static int Guardar(Producto pProducto)
         {
-            string consulta = @"INSERT INTO Producto (IdMarca, Nombre, Descripcion, Precio, Stock) 
-            values (@IdMarca, @Nombre, @Descripcion, @Precio, @Stock)";
+            string consulta = @"INSERT INTO Producto (IdMarca, Nombre, Descripcion, PrecioCompra, PrecioVenta, Stock) 
+            values (@IdMarca, @Nombre, @Descripcion, @PrecioCompra, @PrecioVenta, @Stock)";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
             comando.Parameters.AddWithValue("@IdMarca", pProducto.IdMarca);
             comando.Parameters.AddWithValue("@Nombre", pProducto.Nombre);
             comando.Parameters.AddWithValue("@Descripcion", pProducto.Descripcion);
-            comando.Parameters.AddWithValue("@Precio", pProducto.PrecioVenta);
+            comando.Parameters.AddWithValue("@PrecioCompra", pProducto.PrecioCompra);
+            comando.Parameters.AddWithValue("@PrecioVenta", pProducto.PrecioVenta);
             comando.Parameters.AddWithValue("@Stock", pProducto.Stock);
             return ComunDB.EjecutarComando(comando);
         }
@@ -27,14 +28,15 @@ namespace AlimentosDC.SIGEPAC.DAL
         public static int Modificar(Producto pProducto)
         {
             string consulta = @"UPDATE Producto SET IdMarca = @IdMarca, Nombre = @Nombre, 
-            Descripcion = @Descripcion, Precio = @Precio, Stock = @Stock WHERE Id = @Id;";
+            Descripcion = @Descripcion, PrecioCompra = @PrecioCompra, PrecioVenta = @PrecioVenta, Stock = @Stock WHERE Id = @Id;";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
             comando.Parameters.AddWithValue("@Id", pProducto.Id);
             comando.Parameters.AddWithValue("@IdMarca", pProducto.IdMarca);
             comando.Parameters.AddWithValue("@Nombre", pProducto.Nombre);
             comando.Parameters.AddWithValue("@Descripcion", pProducto.Descripcion);
-            comando.Parameters.AddWithValue("@Precio", pProducto.PrecioVenta);
+            comando.Parameters.AddWithValue("@PrecioCompra", pProducto.PrecioCompra);
+            comando.Parameters.AddWithValue("@PrecioVenta", pProducto.PrecioVenta);
             comando.Parameters.AddWithValue("@Stock", pProducto.Stock);
             return ComunDB.EjecutarComando(comando);
         }
@@ -50,13 +52,13 @@ namespace AlimentosDC.SIGEPAC.DAL
 
         public static List<Producto> ObtenerTodos(string pCondicion = "%", int? idMarca = null)
         {
-            string consulta = string.Concat("SELECT TOP(500) pr.Id, pr.Nombre, pr.Descripcion, m.Nombre Marca, pr.Precio, ",
+            string consulta = string.Concat("SELECT TOP(500) pr.Id, pr.Nombre, pr.Descripcion, pr.IdMarca, m.Nombre Marca, pr.PrecioCompra, pr.PrecioVenta, ",
             "pr.Stock FROM Producto pr JOIN Marca m ON pr.IdMarca = m.Id WHERE pr.Nombre LIKE CONCAT(@pCondicion, '%') ",
             "OR pr.Descripcion LIKE CONCAT(@pCondicion, '%')");
             if (idMarca!= null)
             {
-                consulta = string.Concat("SELECT TOP(500) pr.Id, pr.Nombre, pr.Descripcion, m.Nombre Marca, pr.Precio, pr.Stock ", 
-                    "FROM Producto pr JOIN Marca m ON pr.IdMarca = m.Id WHERE m.Id = @idMarca");
+                consulta = string.Concat("SELECT TOP(500) pr.Id, pr.Nombre, pr.Descripcion, pr.IdMarca, m.Nombre Marca, pr.PrecioCompra, pr.PrecioVenta, pr.Stock ", 
+                "FROM Producto pr JOIN Marca m ON pr.IdMarca = m.Id WHERE m.Id = @idMarca");
             }
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
@@ -70,9 +72,11 @@ namespace AlimentosDC.SIGEPAC.DAL
                 producto.Id = reader.GetInt32(0);
                 producto.Nombre = reader.GetString(1);
                 producto.Descripcion = reader.GetString(2);
-                producto.Marca = reader.GetString(3);
-                producto.PrecioVenta = (double)reader.GetDecimal(4);
-                producto.Stock = reader.GetInt32(5);
+                producto.IdMarca = reader.GetInt32(3);
+                producto.Marca = reader.GetString(4);
+                producto.PrecioCompra = (double)reader.GetDecimal(5);
+                producto.PrecioVenta = (double)reader.GetDecimal(6);
+                producto.Stock = reader.GetInt32(7);
                 listaProductos.Add(producto);
             }
             return listaProductos;
@@ -80,7 +84,8 @@ namespace AlimentosDC.SIGEPAC.DAL
 
         public static Producto BuscarPorId(int pId)
         {
-            string consulta = @"SELECT pr.Id, pr.IdMarca, pr.Nombre, pr.Descripcion, pr.Precio, pr.Stock FROM Producto pr WHERE Id = @Id";
+            string consulta = string.Concat("SELECT pr.Id, pr.Nombre, pr.Descripcion, pr.IdMarca, m.Nombre Marca, pr.PrecioCompra, pr.PrecioVenta, pr.Stock ",
+                "FROM Producto pr JOIN Marca m ON pr.IdMarca = m.Id WHERE pr.Id = @Id");
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
             comando.Parameters.AddWithValue("@Id", pId);
@@ -89,11 +94,13 @@ namespace AlimentosDC.SIGEPAC.DAL
             while (reader.Read())
             {
                 producto.Id = reader.GetInt32(0);
-                producto.IdMarca = reader.GetInt32(1);
-                producto.Nombre = reader.GetString(2);
-                producto.Descripcion = reader.GetString(3);
-                producto.PrecioVenta = (double) reader.GetDecimal(4);
-                producto.Stock = reader.GetInt32(5);
+                producto.Nombre = reader.GetString(1);
+                producto.Descripcion = reader.GetString(2);
+                producto.IdMarca = reader.GetInt32(3);
+                producto.Marca = reader.GetString(4);
+                producto.PrecioCompra = (double)reader.GetDecimal(5);
+                producto.PrecioVenta = (double)reader.GetDecimal(6);
+                producto.Stock = reader.GetInt32(7);
             }
             return producto;
         }
