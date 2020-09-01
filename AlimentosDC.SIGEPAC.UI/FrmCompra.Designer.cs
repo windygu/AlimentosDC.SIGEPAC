@@ -45,32 +45,32 @@
             this.btnEditarDetalleIngreso = new System.Windows.Forms.Button();
             this.dtpFechaIngreso = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
-            this.txtNumeroCCF = new AlimentosDC.SIGEPAC.UI.TextBoxBorderInferior();
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.lblSubTotal = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.label9 = new System.Windows.Forms.Label();
-            this.lblStock = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.label10 = new System.Windows.Forms.Label();
-            this.lblPrecioUnitario = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.label7 = new System.Windows.Forms.Label();
-            this.lblDescripcion = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.label6 = new System.Windows.Forms.Label();
-            this.lblNombreProducto = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.nudCantidad = new System.Windows.Forms.NumericUpDown();
             this.btnAgregarDetalle = new System.Windows.Forms.Button();
             this.btnElegirProducto = new System.Windows.Forms.Button();
             this.label19 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
-            this.lblUsuario = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.epValidadorControles = new System.Windows.Forms.ErrorProvider(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnElegirMarca = new System.Windows.Forms.Button();
-            this.lblNombreMarca = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
-            this.lblComentarioMarca = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.lblUsuario = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
+            this.lblSubTotal = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
+            this.lblStock = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
+            this.lblPrecioUnitario = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
+            this.lblDescripcion = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
+            this.lblNombreProducto = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
+            this.txtNumeroCCF = new AlimentosDC.SIGEPAC.UI.TextBoxBorderInferior();
+            this.lblComentarioMarca = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
+            this.lblNombreMarca = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDetallesIngreso)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
@@ -84,7 +84,7 @@
             this.btnSalir.Location = new System.Drawing.Point(432, 692);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(100, 30);
-            this.btnSalir.TabIndex = 70;
+            this.btnSalir.TabIndex = 10;
             this.btnSalir.Text = "Salir";
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
@@ -110,6 +110,8 @@
             this.dgvListadoDetallesIngreso.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvListadoDetallesIngreso.Size = new System.Drawing.Size(785, 233);
             this.dgvListadoDetallesIngreso.TabIndex = 63;
+            this.dgvListadoDetallesIngreso.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dgvListadoDetallesIngreso_RowsAdded);
+            this.dgvListadoDetallesIngreso.SelectionChanged += new System.EventHandler(this.dgvListadoDetallesIngreso_SelectionChanged);
             // 
             // dgvId
             // 
@@ -168,7 +170,7 @@
             this.btnGuardarIngreso.Location = new System.Drawing.Point(550, 692);
             this.btnGuardarIngreso.Name = "btnGuardarIngreso";
             this.btnGuardarIngreso.Size = new System.Drawing.Size(140, 30);
-            this.btnGuardarIngreso.TabIndex = 61;
+            this.btnGuardarIngreso.TabIndex = 8;
             this.btnGuardarIngreso.Text = "Registrar compra";
             this.btnGuardarIngreso.UseVisualStyleBackColor = true;
             this.btnGuardarIngreso.Click += new System.EventHandler(this.btnGuardarCompra_Click);
@@ -179,7 +181,7 @@
             this.btnCerrar.Location = new System.Drawing.Point(708, 692);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(100, 30);
-            this.btnCerrar.TabIndex = 62;
+            this.btnCerrar.TabIndex = 9;
             this.btnCerrar.Text = "Cancelar";
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
@@ -191,7 +193,7 @@
             this.btnEliminarDetalleIngreso.Location = new System.Drawing.Point(168, 654);
             this.btnEliminarDetalleIngreso.Name = "btnEliminarDetalleIngreso";
             this.btnEliminarDetalleIngreso.Size = new System.Drawing.Size(125, 30);
-            this.btnEliminarDetalleIngreso.TabIndex = 58;
+            this.btnEliminarDetalleIngreso.TabIndex = 7;
             this.btnEliminarDetalleIngreso.Text = "Eliminar detalle";
             this.btnEliminarDetalleIngreso.UseVisualStyleBackColor = true;
             this.btnEliminarDetalleIngreso.Click += new System.EventHandler(this.btnEliminarDetalleIngreso_Click);
@@ -203,7 +205,7 @@
             this.btnEditarDetalleIngreso.Location = new System.Drawing.Point(25, 654);
             this.btnEditarDetalleIngreso.Name = "btnEditarDetalleIngreso";
             this.btnEditarDetalleIngreso.Size = new System.Drawing.Size(120, 30);
-            this.btnEditarDetalleIngreso.TabIndex = 56;
+            this.btnEditarDetalleIngreso.TabIndex = 6;
             this.btnEditarDetalleIngreso.Text = "Editar detalle";
             this.btnEditarDetalleIngreso.UseVisualStyleBackColor = true;
             this.btnEditarDetalleIngreso.Click += new System.EventHandler(this.btnEditarDetalleIngreso_Click);
@@ -215,7 +217,7 @@
             this.dtpFechaIngreso.Location = new System.Drawing.Point(341, 64);
             this.dtpFechaIngreso.Name = "dtpFechaIngreso";
             this.dtpFechaIngreso.Size = new System.Drawing.Size(100, 25);
-            this.dtpFechaIngreso.TabIndex = 50;
+            this.dtpFechaIngreso.TabIndex = 1;
             // 
             // label3
             // 
@@ -226,17 +228,6 @@
             this.label3.Size = new System.Drawing.Size(91, 19);
             this.label3.TabIndex = 55;
             this.label3.Text = "Numero CCF:";
-            // 
-            // txtNumeroCCF
-            // 
-            this.txtNumeroCCF.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtNumeroCCF.ColorBorde = System.Drawing.Color.Black;
-            this.txtNumeroCCF.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNumeroCCF.Location = new System.Drawing.Point(113, 68);
-            this.txtNumeroCCF.Name = "txtNumeroCCF";
-            this.txtNumeroCCF.Size = new System.Drawing.Size(80, 19);
-            this.txtNumeroCCF.TabIndex = 71;
-            this.txtNumeroCCF.TextChanged += new System.EventHandler(this.txtNumeroCCF_TextChanged);
             // 
             // label4
             // 
@@ -282,14 +273,6 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalle Compra";
             // 
-            // lblSubTotal
-            // 
-            this.lblSubTotal.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubTotal.Location = new System.Drawing.Point(435, 126);
-            this.lblSubTotal.Name = "lblSubTotal";
-            this.lblSubTotal.Size = new System.Drawing.Size(176, 19);
-            this.lblSubTotal.TabIndex = 55;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -298,14 +281,6 @@
             this.label9.Size = new System.Drawing.Size(70, 19);
             this.label9.TabIndex = 54;
             this.label9.Text = "Sub-Total:";
-            // 
-            // lblStock
-            // 
-            this.lblStock.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStock.Location = new System.Drawing.Point(561, 34);
-            this.lblStock.Name = "lblStock";
-            this.lblStock.Size = new System.Drawing.Size(205, 19);
-            this.lblStock.TabIndex = 53;
             // 
             // label10
             // 
@@ -316,14 +291,6 @@
             this.label10.TabIndex = 52;
             this.label10.Text = "Stock:";
             // 
-            // lblPrecioUnitario
-            // 
-            this.lblPrecioUnitario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecioUnitario.Location = new System.Drawing.Point(116, 75);
-            this.lblPrecioUnitario.Name = "lblPrecioUnitario";
-            this.lblPrecioUnitario.Size = new System.Drawing.Size(205, 19);
-            this.lblPrecioUnitario.TabIndex = 51;
-            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -333,14 +300,6 @@
             this.label7.TabIndex = 50;
             this.label7.Text = "Precio unitario:";
             // 
-            // lblDescripcion
-            // 
-            this.lblDescripcion.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescripcion.Location = new System.Drawing.Point(447, 74);
-            this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(319, 20);
-            this.lblDescripcion.TabIndex = 49;
-            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -349,14 +308,6 @@
             this.label6.Size = new System.Drawing.Size(82, 19);
             this.label6.TabIndex = 48;
             this.label6.Text = "Descripción:";
-            // 
-            // lblNombreProducto
-            // 
-            this.lblNombreProducto.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreProducto.Location = new System.Drawing.Point(230, 34);
-            this.lblNombreProducto.Name = "lblNombreProducto";
-            this.lblNombreProducto.Size = new System.Drawing.Size(245, 19);
-            this.lblNombreProducto.TabIndex = 7;
             // 
             // nudCantidad
             // 
@@ -369,7 +320,7 @@
             0});
             this.nudCantidad.Name = "nudCantidad";
             this.nudCantidad.Size = new System.Drawing.Size(240, 25);
-            this.nudCantidad.TabIndex = 8;
+            this.nudCantidad.TabIndex = 4;
             this.nudCantidad.ValueChanged += new System.EventHandler(this.nudCantidad_ValueChanged);
             // 
             // btnAgregarDetalle
@@ -379,7 +330,7 @@
             this.btnAgregarDetalle.Location = new System.Drawing.Point(636, 122);
             this.btnAgregarDetalle.Name = "btnAgregarDetalle";
             this.btnAgregarDetalle.Size = new System.Drawing.Size(130, 30);
-            this.btnAgregarDetalle.TabIndex = 8;
+            this.btnAgregarDetalle.TabIndex = 5;
             this.btnAgregarDetalle.Text = "Agregar detalle";
             this.btnAgregarDetalle.UseVisualStyleBackColor = true;
             this.btnAgregarDetalle.Click += new System.EventHandler(this.btnAgregarDetalle_Click);
@@ -390,9 +341,10 @@
             this.btnElegirProducto.Location = new System.Drawing.Point(13, 28);
             this.btnElegirProducto.Name = "btnElegirProducto";
             this.btnElegirProducto.Size = new System.Drawing.Size(130, 30);
-            this.btnElegirProducto.TabIndex = 5;
+            this.btnElegirProducto.TabIndex = 3;
             this.btnElegirProducto.Text = "Elegir producto";
             this.btnElegirProducto.UseVisualStyleBackColor = true;
+            this.btnElegirProducto.Click += new System.EventHandler(this.btnElegirProducto_Click);
             // 
             // label19
             // 
@@ -412,14 +364,6 @@
             this.label12.Size = new System.Drawing.Size(68, 19);
             this.label12.TabIndex = 1;
             this.label12.Text = "Producto:";
-            // 
-            // lblUsuario
-            // 
-            this.lblUsuario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(531, 67);
-            this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(276, 19);
-            this.lblUsuario.TabIndex = 76;
             // 
             // epValidadorControles
             // 
@@ -449,25 +393,10 @@
             this.btnElegirMarca.Location = new System.Drawing.Point(13, 25);
             this.btnElegirMarca.Name = "btnElegirMarca";
             this.btnElegirMarca.Size = new System.Drawing.Size(130, 30);
-            this.btnElegirMarca.TabIndex = 4;
+            this.btnElegirMarca.TabIndex = 2;
             this.btnElegirMarca.Text = "Elegir marca";
             this.btnElegirMarca.UseVisualStyleBackColor = true;
-            // 
-            // lblNombreMarca
-            // 
-            this.lblNombreMarca.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreMarca.Location = new System.Drawing.Point(238, 27);
-            this.lblNombreMarca.Name = "lblNombreMarca";
-            this.lblNombreMarca.Size = new System.Drawing.Size(150, 20);
-            this.lblNombreMarca.TabIndex = 5;
-            // 
-            // lblComentarioMarca
-            // 
-            this.lblComentarioMarca.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblComentarioMarca.Location = new System.Drawing.Point(509, 25);
-            this.lblComentarioMarca.Name = "lblComentarioMarca";
-            this.lblComentarioMarca.Size = new System.Drawing.Size(255, 20);
-            this.lblComentarioMarca.TabIndex = 6;
+            this.btnElegirMarca.Click += new System.EventHandler(this.btnElegirMarca_Click);
             // 
             // groupBox1
             // 
@@ -483,6 +412,82 @@
             this.groupBox1.TabIndex = 52;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Marca";
+            // 
+            // lblUsuario
+            // 
+            this.lblUsuario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuario.Location = new System.Drawing.Point(531, 67);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(276, 19);
+            this.lblUsuario.TabIndex = 76;
+            // 
+            // lblSubTotal
+            // 
+            this.lblSubTotal.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubTotal.Location = new System.Drawing.Point(435, 126);
+            this.lblSubTotal.Name = "lblSubTotal";
+            this.lblSubTotal.Size = new System.Drawing.Size(176, 19);
+            this.lblSubTotal.TabIndex = 55;
+            // 
+            // lblStock
+            // 
+            this.lblStock.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStock.Location = new System.Drawing.Point(561, 34);
+            this.lblStock.Name = "lblStock";
+            this.lblStock.Size = new System.Drawing.Size(205, 19);
+            this.lblStock.TabIndex = 53;
+            // 
+            // lblPrecioUnitario
+            // 
+            this.lblPrecioUnitario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrecioUnitario.Location = new System.Drawing.Point(116, 75);
+            this.lblPrecioUnitario.Name = "lblPrecioUnitario";
+            this.lblPrecioUnitario.Size = new System.Drawing.Size(205, 19);
+            this.lblPrecioUnitario.TabIndex = 51;
+            // 
+            // lblDescripcion
+            // 
+            this.lblDescripcion.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescripcion.Location = new System.Drawing.Point(447, 74);
+            this.lblDescripcion.Name = "lblDescripcion";
+            this.lblDescripcion.Size = new System.Drawing.Size(319, 20);
+            this.lblDescripcion.TabIndex = 49;
+            // 
+            // lblNombreProducto
+            // 
+            this.lblNombreProducto.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombreProducto.Location = new System.Drawing.Point(230, 34);
+            this.lblNombreProducto.Name = "lblNombreProducto";
+            this.lblNombreProducto.Size = new System.Drawing.Size(245, 19);
+            this.lblNombreProducto.TabIndex = 7;
+            // 
+            // txtNumeroCCF
+            // 
+            this.txtNumeroCCF.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtNumeroCCF.ColorBorde = System.Drawing.Color.Black;
+            this.txtNumeroCCF.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtNumeroCCF.Location = new System.Drawing.Point(113, 68);
+            this.txtNumeroCCF.MaxLength = 7;
+            this.txtNumeroCCF.Name = "txtNumeroCCF";
+            this.txtNumeroCCF.Size = new System.Drawing.Size(80, 19);
+            this.txtNumeroCCF.TabIndex = 0;
+            this.txtNumeroCCF.TextChanged += new System.EventHandler(this.txtNumeroCCF_TextChanged);
+            // 
+            // lblComentarioMarca
+            // 
+            this.lblComentarioMarca.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComentarioMarca.Location = new System.Drawing.Point(509, 25);
+            this.lblComentarioMarca.Name = "lblComentarioMarca";
+            this.lblComentarioMarca.Size = new System.Drawing.Size(255, 20);
+            this.lblComentarioMarca.TabIndex = 6;
+            // 
+            // lblNombreMarca
+            // 
+            this.lblNombreMarca.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombreMarca.Location = new System.Drawing.Point(238, 27);
+            this.lblNombreMarca.Name = "lblNombreMarca";
+            this.lblNombreMarca.Size = new System.Drawing.Size(150, 20);
+            this.lblNombreMarca.TabIndex = 5;
             // 
             // FrmIngreso
             // 
@@ -505,7 +510,7 @@
             this.Controls.Add(this.groupBox1);
             this.Name = "FrmIngreso";
             this.Style = MetroFramework.MetroColorStyle.Green;
-            this.Text = "Mantenimiento Compras";
+            this.Text = "Mantenimiento Ingresos";
             this.Load += new System.EventHandler(this.FrmCompra_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDetallesIngreso)).EndInit();
             this.groupBox2.ResumeLayout(false);

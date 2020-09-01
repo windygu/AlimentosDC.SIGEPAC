@@ -13,6 +13,7 @@ using MetroFramework;
 using MetroFramework.Forms;
 using MetroFramework.Controls;
 using System.Media;
+using System.Data.SqlClient;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
@@ -20,19 +21,29 @@ namespace AlimentosDC.SIGEPAC.UI
     {
         public List<Producto> listadoProductos = null;
         FrmProductos objetoProductosActual;
-        FrmPedido objetoPedidoActual = null;
+        FrmPedido objetoPedidoActual;
+        FrmIngreso objetoIngresoActual;
         public Producto productoSeleccionado { get; set; }
+        string NombreMarca;
         public FrmProductos()
         {
             InitializeComponent();
-            btnEditarProducto.Enabled = false;
-            btnEliminarProducto.Enabled = false;
             objetoProductosActual = this;
         }
-        public FrmProductos(FrmPedido objetoPedidoActual)
+        public FrmProductos(FrmPedido objetoPedidoActual = null, FrmIngreso objetoIngresoActual = null, string NombreMarca = null)
         {
             InitializeComponent();
-            this.objetoPedidoActual = objetoPedidoActual;
+            btnNuevoProducto.Visible = false;
+            btnEditarProducto.Visible = false;
+            btnEliminarProducto.Visible = false;
+            btnSalir.Visible = false;
+            btnSeleccionar.Visible = true;
+            if (objetoPedidoActual!= null) this.objetoPedidoActual = objetoPedidoActual;
+            else
+            {
+                this.objetoIngresoActual = objetoIngresoActual;
+                this.NombreMarca = NombreMarca;
+            }    
         }
 
         private void btnNuevoProducto_Click(object sender, EventArgs e)
@@ -50,9 +61,9 @@ namespace AlimentosDC.SIGEPAC.UI
             mantenimientoProductos.ShowDialog();
         }
 
-        public void CargarProductos(string pCondicion = "%")
+        public void CargarProductos(string NombreMarca = "%", string pCondicion = "%")
         {
-            listadoProductos = ProductoBL.ObtenerTodos(pCondicion);
+            listadoProductos = ProductoBL.ObtenerTodos(NombreMarca, pCondicion);
             dgvListadoProductos.Rows.Clear();
             for (int i = 0; i < listadoProductos.Count; i++)
             {
@@ -72,8 +83,8 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void FrmProductos_Load(object sender, EventArgs e)
         {
-            CargarProductos();
-            if (objetoPedidoActual != null)
+            CargarMarcasAlCombobox();
+            if (objetoPedidoActual != null || objetoIngresoActual != null)
             {
                 btnNuevoProducto.Visible = false;
                 btnEditarProducto.Visible = false;
@@ -81,7 +92,21 @@ namespace AlimentosDC.SIGEPAC.UI
                 btnCerrar.Text = "Cancelar";
                 btnSeleccionar.Visible = true;
                 btnSalir.Visible = false;
+                if (objetoIngresoActual != null)
+                {
+                    cboMostrando.Visible = false;
+                    cboMostrando.SelectedValue = NombreMarca;
+                    CargarProductos(NombreMarca: NombreMarca);
+                }
             }
+            else CargarProductos();
+        }
+
+        void CargarMarcasAlCombobox()
+        {
+            List<Marca> listadoMarcas = MarcaBL.ObtenerTodos();
+            listadoMarcas.Insert(0, new Marca() { Nombre = "- Todas -" });
+            cboMostrando.DataSource = listadoMarcas;
         }
 
         private void btnEliminarProducto_Click(object sender, EventArgs e)
@@ -99,7 +124,7 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void txtBuscarProductos_TextChanged(object sender, EventArgs e)
         {
-            CargarProductos(txtBuscarProductos.Text.Trim());
+            CargarProductos(cboMostrando.SelectedValue.ToString(), txtBuscarProductos.Text.Trim());
         }
 
         private void dgvListadoProductos_SelectionChanged(object sender, EventArgs e)
@@ -144,6 +169,26 @@ namespace AlimentosDC.SIGEPAC.UI
         private void btnSalir_Click(object sender, EventArgs e)
         {
             FrmPrincipal.delegadoCerrarSesion(null, null);
+        }
+
+        private void cboMostrando_SelectionChangeCommitted(object sender, EventArgs e)
+        {
+            try
+            {
+                txtBuscarProductos.Clear();
+                CargarProductos(NombreMarca: cboMostrando.SelectedValue.ToString());
+            }
+            catch (SqlException error)
+            {
+                MetroMessageBox.Show(this, string.Concat("Hubo un error al intentar conectarse al servidor, ",
+                    $"por favor revise si es posible conectarse al servidor de la base datos.\nMÁS INFORMACIÓN: {error.Message}"), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
+            catch (Exception error)
+            {
+                MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\nMÁS INFORMACIÓN: {error.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Close();
+            }
         }
     }
 }

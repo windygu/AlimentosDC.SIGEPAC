@@ -46,6 +46,7 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             try
             {
+                lblUsuario.Text = string.Concat(FrmPrincipal.usuarioActual.Nombres, " ", FrmPrincipal.usuarioActual.Apellidos);
                 if (idIngreso!=null)
                 {
                     CargarDatosAlFormulario();
@@ -114,7 +115,6 @@ namespace AlimentosDC.SIGEPAC.UI
 
         void GuardarCompra()
         {
-
             Cursor = Cursors.WaitCursor;
             try
             {
@@ -137,10 +137,10 @@ namespace AlimentosDC.SIGEPAC.UI
                         for (int i = 0; i < listadoDetallesIngreso.Count; i++)
                         {
                             DetalleIngreso detalleIngresoARegistrar = new DetalleIngreso();
-                            detalleIngresoARegistrar.Id = IngresoBL.BuscarPorNumeroCCF(int.Parse(txtNumeroCCF.Text.Trim())).Id;
-                            detalleIngresoARegistrar.IdProducto = producto.Id;
-                            detalleIngresoARegistrar.Cantidad = (int)nudCantidad.Value;
-                            detalleIngresoARegistrar.PrecioUnitario = producto.PrecioVenta;
+                            detalleIngresoARegistrar.IdIngreso = IngresoBL.BuscarPorNumeroCCF(txtNumeroCCF.Text.Trim()).Id;
+                            detalleIngresoARegistrar.IdProducto = listadoDetallesIngreso[i].IdProducto;
+                            detalleIngresoARegistrar.Cantidad = listadoDetallesIngreso[i].Cantidad;
+                            detalleIngresoARegistrar.PrecioUnitario = listadoDetallesIngreso[i].PrecioUnitario;
                             resultDetalleIngreso += DetalleIngresoBL.Guardar(detalleIngresoARegistrar);
                         }
                         MetroMessageBox.Show(this, $"{resultIngreso} pedido registrado.\n{resultDetalleIngreso} detalle(s) del pedido registrado(s).",
@@ -162,10 +162,9 @@ namespace AlimentosDC.SIGEPAC.UI
                         for (int i = 0; i < listadoDetallesIngreso.Count; i++)
                         {
                             DetalleIngreso detalleIngresoARegistrar = new DetalleIngreso();
-                            detalleIngresoARegistrar.Id = IngresoBL.BuscarPorNumeroCCF(int.Parse(txtNumeroCCF.Text.Trim())).Id;
-                            detalleIngresoARegistrar.IdProducto = producto.Id;
-                            detalleIngresoARegistrar.Cantidad = (int)nudCantidad.Value;
-                            detalleIngresoARegistrar.PrecioUnitario = producto.PrecioVenta;
+                            detalleIngresoARegistrar.IdProducto = listadoDetallesIngreso[i].IdProducto;
+                            detalleIngresoARegistrar.Cantidad = listadoDetallesIngreso[i].Cantidad;
+                            detalleIngresoARegistrar.PrecioUnitario = listadoDetallesIngreso[i].PrecioUnitario;
                             if (listadoViejoDetallesIngreso.Find(x => x.Id == listadoViejoDetallesIngreso[i].Id) != null)
                             {
                                 resultDetallesModificados += DetalleIngresoBL.Modificar(detalleIngresoARegistrar);
@@ -182,16 +181,15 @@ namespace AlimentosDC.SIGEPAC.UI
                                 resultadoEliminados += DetalleIngresoBL.Eliminar(detallesViejosAEliminarDeLaBD[i]);
                             }
                         }
-                        /*
-                        objetoPedidosActual.CargarPedidos();
+                        objetoIngresosActual.CargarIngresos();
                         DialogResult resultadoDelDialgo = MetroMessageBox.Show
-                        (this, $"{resultadoPedido} pedido actualizado.\n{resultDetallesModificados} detalle(s) actualizado(s).\n" +
+                        (this, $"{resultIngreso} ingreso actualizado.\n{resultDetallesModificados} detalle(s) actualizado(s).\n" +
                         $"{resultDetallesAñadidos} detalle(s) registrado(s).\n{resultadoEliminados} detalle(s) eliminado(s).\n¿Desea cerrar el editor?",
                             "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                         if (resultadoDelDialgo == DialogResult.Yes)
                         {
                             Close();
-                        }*/
+                        }
                     }
                 }
             }
@@ -217,11 +215,23 @@ namespace AlimentosDC.SIGEPAC.UI
             lblDescripcion.Text = "";
             nudCantidad.Value = 0;
             lblSubTotal.Text = "";
+            listadoDetallesIngreso.Clear();
+            LimpiarDetalles();
+            dgvListadoDetallesIngreso.Rows.Clear();
+        }
+
+        void HabilitarBotonGuardarIngreso()
+        {
+            if (!string.IsNullOrWhiteSpace(txtNumeroCCF.Text.Trim()) && marca!=null && dgvListadoDetallesIngreso.RowCount>0)
+            {
+                btnGuardarIngreso.Enabled = true;
+            }
+            else btnGuardarIngreso.Enabled = false;
         }
 
         private void btnAgregarDetalle_Click(object sender, EventArgs e)
         {
-
+            AgregarDetalle();
         }
 
         void AgregarDetalle()
@@ -272,13 +282,15 @@ namespace AlimentosDC.SIGEPAC.UI
                     LimpiarDetalles();
                 }
             }
-
-            
         }
 
         private void ActualizarDatagridView()
         {
-            throw new NotImplementedException();
+            dgvListadoDetallesIngreso.Rows.Clear();
+            for (int i = 0; i < listadoDetallesIngreso.Count; i++)
+            {
+                CargarListadoDetalles();
+            }
         }
 
         void CargarListadoDetalles()
@@ -289,7 +301,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 int indiceSumas = 0, indiceIva = 0, indiceTotal = 0;
                 for (int i = 0; i < dgvListadoDetallesIngreso.Rows.Count; i++)
                 {
-                    switch (dgvListadoDetallesIngreso.Rows[i].Cells[5].Value.ToString())
+                    switch (dgvListadoDetallesIngreso.Rows[i].Cells[4].Value.ToString())
                     {
                         case "TOTAL":
                             indiceTotal = i;
@@ -308,7 +320,7 @@ namespace AlimentosDC.SIGEPAC.UI
             }
             //Agregamos un a fila al datagrid y obtenemos su indice
             int indiceFilaAgregada = dgvListadoDetallesIngreso.Rows.Add();
-            //Trasladamos los datos del detalle agregado la 'listadoDetallesPedido' a la fila agregada al datagrid
+            //Trasladamos los datos del detalle agregado la 'listadoDetallesIngreso' a la fila agregada al datagrid
             //Sus indices coinciden perfectamente
             dgvListadoDetallesIngreso.Rows[indiceFilaAgregada].Cells[0].Value = listadoDetallesIngreso[indiceFilaAgregada].Id;
             dgvListadoDetallesIngreso.Rows[indiceFilaAgregada].Cells[1].Value = listadoDetallesIngreso[indiceFilaAgregada].Cantidad;
@@ -334,12 +346,12 @@ namespace AlimentosDC.SIGEPAC.UI
             int indiceFilaSumasAgregada = dgvListadoDetallesIngreso.Rows.Add();
             int indiceFilaIvaAgregada = dgvListadoDetallesIngreso.Rows.Add();
             int indiceFilaTotalAgregada = dgvListadoDetallesIngreso.Rows.Add();
-            dgvListadoDetallesIngreso.Rows[indiceFilaSumasAgregada].Cells[5].Value = "SUMAS";
-            dgvListadoDetallesIngreso.Rows[indiceFilaSumasAgregada].Cells[6].Value = sumas;
-            dgvListadoDetallesIngreso.Rows[indiceFilaIvaAgregada].Cells[5].Value = "IVA (13%)";
-            dgvListadoDetallesIngreso.Rows[indiceFilaIvaAgregada].Cells[6].Value = iva;
-            dgvListadoDetallesIngreso.Rows[indiceFilaTotalAgregada].Cells[5].Value = "TOTAL";
-            dgvListadoDetallesIngreso.Rows[indiceFilaTotalAgregada].Cells[6].Value = total;
+            dgvListadoDetallesIngreso.Rows[indiceFilaSumasAgregada].Cells[4].Value = "SUMAS";
+            dgvListadoDetallesIngreso.Rows[indiceFilaSumasAgregada].Cells[5].Value = sumas;
+            dgvListadoDetallesIngreso.Rows[indiceFilaIvaAgregada].Cells[4].Value = "IVA (13%)";
+            dgvListadoDetallesIngreso.Rows[indiceFilaIvaAgregada].Cells[5].Value = iva;
+            dgvListadoDetallesIngreso.Rows[indiceFilaTotalAgregada].Cells[4].Value = "TOTAL";
+            dgvListadoDetallesIngreso.Rows[indiceFilaTotalAgregada].Cells[5].Value = total;
         }
 
         void LimpiarDetalles()
@@ -405,17 +417,8 @@ namespace AlimentosDC.SIGEPAC.UI
                     }
                 }
                 if (dgvListadoDetallesIngreso.Rows.Count < 1) epValidadorControles.SetError(dgvListadoDetallesIngreso, "Debe agregar al menos un detalle");
-                HabilitarBotonGuardarPedido();
+                HabilitarBotonGuardarIngreso();
             }
-        }
-
-        void HabilitarBotonGuardarPedido()
-        {
-            if (!string.IsNullOrWhiteSpace(txtNumeroCCF.Text.Trim()) && marca != null && dgvListadoDetallesIngreso.RowCount > 0)
-            {
-                btnGuardarIngreso.Enabled = true;
-            }
-            else btnGuardarIngreso.Enabled = false;
         }
 
         private void nudCantidad_ValueChanged(object sender, EventArgs e)
@@ -447,7 +450,7 @@ namespace AlimentosDC.SIGEPAC.UI
         private void txtNumeroCCF_TextChanged(object sender, EventArgs e)
         {
             HabilitarBotonAgregarDetalle();
-            HabilitarBotonGuardarPedido();
+            HabilitarBotonGuardarIngreso();
         }
 
         private void btnSalir_Click(object sender, EventArgs e)
@@ -459,8 +462,72 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             Close();
         }
+
+        private void btnElegirMarca_Click(object sender, EventArgs e)
+        {
+            FrmMarcas ventanaMarcas = new FrmMarcas(ref objetoIngresoActual);
+            ventanaMarcas.ShowDialog(this);
+            if (ventanaMarcas.DialogResult == DialogResult.OK)
+            {
+                marca = ventanaMarcas.MarcaSeleccionada;
+                lblNombreMarca.Text = marca.Nombre;
+                lblComentarioMarca.Text = marca.Comentario;
+                btnElegirProducto.Focus();
+            }
+            if (marca == null) epValidadorControles.SetError(btnElegirMarca, "Debe elegir una marca.");
+            else epValidadorControles.SetError(btnElegirMarca, "");
+            HabilitarBotonGuardarIngreso();
+        }
+
+        private void btnElegirProducto_Click(object sender, EventArgs e)
+        {
+            if (marca==null)
+            {
+                epValidadorControles.SetError(btnElegirMarca, "Debe elegir una marca");
+            }
+            else
+            {
+                epValidadorControles.SetError(btnElegirMarca, "");
+                FrmProductos ventanaProductos = new FrmProductos(objetoIngresoActual: objetoIngresoActual, NombreMarca: marca.Nombre);
+                ventanaProductos.ShowDialog(this);
+                if (ventanaProductos.DialogResult == DialogResult.OK)
+                {
+                    producto = ventanaProductos.productoSeleccionado;
+                    lblNombreProducto.Text = producto.Nombre;
+                    lblStock.Text = producto.Stock.ToString();
+                    lblPrecioUnitario.Text = producto.PrecioVenta.ToString();
+                    lblDescripcion.Text = producto.Descripcion;
+                    nudCantidad.Focus();
+                }
+                if (producto == null) epValidadorControles.SetError(btnElegirProducto, "Debe elegir un producto.");
+                else epValidadorControles.SetError(btnElegirProducto, "");
+            }
+        }
+
+        private void dgvListadoDetallesIngreso_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            btnEditarDetalleIngreso.Enabled = true;
+            btnEliminarDetalleIngreso.Enabled = true;
+            HabilitarBotonGuardarIngreso();
+        }
+
+        private void dgvListadoDetallesIngreso_SelectionChanged(object sender, EventArgs e)
+        {
+            if (dgvListadoDetallesIngreso.SelectedRows.Count > 0 &&
+                dgvListadoDetallesIngreso.SelectedRows[0].Cells[0].Value != null)
+            {
+                btnEditarDetalleIngreso.Enabled = true;
+                btnEliminarDetalleIngreso.Enabled = true;
+            }
+            else
+            {
+                btnEditarDetalleIngreso.Enabled = false;
+                btnEliminarDetalleIngreso.Enabled = false;
+            }
+        }
     }
 }
 
-// CONTINUAR EN PROBAR QUE FUNCIONE TODO DESPUES DE HABER CREADO LOS TRIGGERS 
-// QUE INCREMENTARAN EL STOCK EN PRODUCTOS Y ACTUALIZARAN EL STOCK
+// CONTINUAR CORRIGIENDO Y MEJORANDO LA LIMPIEZA DE CONTROLES DESPUES DE HABER 
+// DESPUÉS DE HABER REGISTRADO EL INGRESO
+// BUSCAR UN ICONO PARA EL BOTON DE INGRESOS EN LA VENTANA PRINCIPAL

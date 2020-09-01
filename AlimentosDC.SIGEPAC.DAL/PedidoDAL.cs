@@ -13,8 +13,8 @@ namespace AlimentosDC.SIGEPAC.DAL
     {
         public static int Guardar(Pedido pPedido)
         {
-            string consulta = @"INSERT INTO Pedido (IdCliente, NumeroPedido, IdUsuario, FechaCreacion, FechaEntrega, DireccionEntrega, Estado, NumeroCCF) 
-            values (@IdCliente, @NumeroPedido, @IdUsuario, @FechaCreacion, @FechaEntrega, @DireccionEntrega, @Estado, @NumeroCCF)";
+            string consulta = string.Concat("INSERT INTO Pedido (IdCliente, NumeroPedido, IdUsuario, FechaCreacion, FechaEntrega, DireccionEntrega, Estado, NumeroCCF) ",
+            "values (@IdCliente, @NumeroPedido, @IdUsuario, @FechaCreacion, @FechaEntrega, @DireccionEntrega, @Estado, @NumeroCCF)");
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
             comando.Parameters.AddWithValue("@IdCliente", pPedido.IdCliente);

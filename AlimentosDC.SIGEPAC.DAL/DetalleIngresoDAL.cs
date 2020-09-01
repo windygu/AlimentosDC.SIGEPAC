@@ -12,26 +12,26 @@ namespace AlimentosDC.SIGEPAC.DAL
     {
         public static int Guardar(DetalleIngreso pDetalleIngreso)
         {
-            string consulta = @"INSERT INTO DetalleIngreso (IdIngreso, IdProducto, Cantidad, PrecioUnitario, SubTotal) 
-            VALUES (@IdIngreso, @IdProducto, @Cantidad, @PrecioUnitario, @SubTotal))";
+            string consulta = string.Concat("INSERT INTO DetalleIngreso (IdIngreso, IdProducto, Cantidad, PrecioUnitario) ",
+            "VALUES (@IdIngreso, @IdProducto, @Cantidad, @PrecioUnitario)");
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
             comando.Parameters.AddWithValue("@IdIngreso", pDetalleIngreso.IdIngreso);
             comando.Parameters.AddWithValue("@IdProducto", pDetalleIngreso.IdProducto);
             comando.Parameters.AddWithValue("@Cantidad", pDetalleIngreso.Cantidad);
-            comando.Parameters.AddWithValue("@PrecioUnitario", pDetalleIngreso.PrecioUnitario);
+            comando.Parameters.AddWithValue("@PrecioUnitario", (decimal)pDetalleIngreso.PrecioUnitario);
             return ComunDB.EjecutarComando(comando);
         }
 
         public static int Modificar(DetalleIngreso pDetalleIngreso)
         {
-            string consulta = @"UPDATE DetalleIngreso SET IdIngreso = @IdIngreso, IdProducto = @IdProducto, Cantidad = @Cantidad, PrecioUnitario = @PrecioUnitario, SubTotal = @SubTotal WHERE Id = @Id";
+            string consulta = @"UPDATE DetalleIngreso SET IdIngreso = @IdIngreso, IdProducto = @IdProducto, Cantidad = @Cantidad, PrecioUnitario = @PrecioUnitario WHERE Id = @Id";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
             comando.Parameters.AddWithValue("@IdIngreso", pDetalleIngreso.IdIngreso);
             comando.Parameters.AddWithValue("@IdProducto", pDetalleIngreso.IdProducto);
             comando.Parameters.AddWithValue("@Cantidad", pDetalleIngreso.Cantidad);
-            comando.Parameters.AddWithValue("@PrecioUnitario", pDetalleIngreso.PrecioUnitario);
+            comando.Parameters.AddWithValue("@PrecioUnitario", (decimal)pDetalleIngreso.PrecioUnitario);
             comando.Parameters.AddWithValue("@Id", pDetalleIngreso.Id);
             return ComunDB.EjecutarComando(comando);
         }
@@ -39,10 +39,10 @@ namespace AlimentosDC.SIGEPAC.DAL
         public static int Eliminar(int pIdDetalleIngreso, int? pIdIngreso = null)
         {
 
-            string consulta = @"DELETE FROM DetalleIngreso WHERE Id = @Id;";
+            string consulta = @"DELETE FROM DetalleIngreso WHERE Id = @Id";
             if (pIdIngreso != null)
             {
-                consulta = @"DELETE FROM DetalleIngreso WHERE IdIngreso = @IdIngreso;";
+                consulta = @"DELETE FROM DetalleIngreso WHERE IdIngreso = @IdIngreso";
             }
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
@@ -54,10 +54,10 @@ namespace AlimentosDC.SIGEPAC.DAL
         public static List<DetalleIngreso> ObtenerTodos(int pIdIngreso)
         {
             string consulta = string.Concat("SELECT TOP(500) di.Id, di.IdIngreso, di.IdProducto, pr.Nombre Producto, pr.Descripcion, ",
-            "di.Cantidad, di.PrecioUnitario, di.SubTotal from DetalleIngreso di JOIN Producto pr on dp.IdProducto = pr.Id where di.IdIngreso = @IdIngreso");
+            "di.Cantidad, di.PrecioUnitario, di.SubTotal from DetalleIngreso di JOIN Producto pr on di.IdProducto = pr.Id where di.IdIngreso = @IdIngreso");
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
-            comando.Parameters.AddWithValue("@pIdIngreso", pIdIngreso);
+            comando.Parameters.AddWithValue("@IdIngreso", pIdIngreso);
             SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
             List<DetalleIngreso> listaDetallesIngreso = new List<DetalleIngreso>();
             while (reader.Read())
@@ -69,8 +69,8 @@ namespace AlimentosDC.SIGEPAC.DAL
                 detalleIngreso.Producto = reader.GetString(3);
                 detalleIngreso.Descripcion = reader.GetString(4);
                 detalleIngreso.Cantidad = reader.GetInt32(5);
-                detalleIngreso.PrecioUnitario = reader.GetDouble(6);
-                detalleIngreso.SubTotal = reader.GetDouble(7);
+                detalleIngreso.PrecioUnitario = (double)reader.GetDecimal(6);
+                detalleIngreso.SubTotal = (double)reader.GetDecimal(7);
                 listaDetallesIngreso.Add(detalleIngreso);
             }
             return listaDetallesIngreso;
@@ -93,8 +93,8 @@ namespace AlimentosDC.SIGEPAC.DAL
                 detalleIngreso.Producto = reader.GetString(3);
                 detalleIngreso.Descripcion = reader.GetString(4);
                 detalleIngreso.Cantidad = reader.GetInt32(5);
-                detalleIngreso.PrecioUnitario = reader.GetDouble(6);
-                detalleIngreso.SubTotal = reader.GetDouble(7);
+                detalleIngreso.PrecioUnitario = (double)reader.GetDecimal(6);
+                detalleIngreso.SubTotal = (double)reader.GetDecimal(7);
             }
             return detalleIngreso;
         }

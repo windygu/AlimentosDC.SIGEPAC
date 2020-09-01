@@ -50,20 +50,22 @@ namespace AlimentosDC.SIGEPAC.DAL
             return ComunDB.EjecutarComando(comando);
         }
 
-        public static List<Producto> ObtenerTodos(string pCondicion = "%", int? idMarca = null)
+        public static List<Producto> ObtenerTodos(string pNombreMarca = "%", string pCondicion = "%", int? pIdMarca = null)
         {
             string consulta = string.Concat("SELECT TOP(500) pr.Id, pr.Nombre, pr.Descripcion, pr.IdMarca, m.Nombre Marca, pr.PrecioCompra, pr.PrecioVenta, ",
-            "pr.Stock FROM Producto pr JOIN Marca m ON pr.IdMarca = m.Id WHERE pr.Nombre LIKE CONCAT(@pCondicion, '%') ",
-            "OR pr.Descripcion LIKE CONCAT(@pCondicion, '%')");
-            if (idMarca!= null)
-            {
-                consulta = string.Concat("SELECT TOP(500) pr.Id, pr.Nombre, pr.Descripcion, pr.IdMarca, m.Nombre Marca, pr.PrecioCompra, pr.PrecioVenta, pr.Stock ", 
-                "FROM Producto pr JOIN Marca m ON pr.IdMarca = m.Id WHERE m.Id = @idMarca");
-            }
+            "pr.Stock FROM Producto pr JOIN Marca m ON pr.IdMarca = m.Id WHERE (pr.Nombre LIKE CONCAT(@pCondicion, '%') ",
+            "OR pr.Descripcion LIKE CONCAT(@pCondicion, '%')) AND m.Nombre LIKE @NombreMarca");
+            if (pNombreMarca == "- Todas -") pNombreMarca = "%";
+            if (pIdMarca!=null) consulta = "SELECT * FROM Producto WHERE IdMarca = @IdMarca";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
-            if(idMarca!=null) comando.Parameters.AddWithValue("@idMarca", idMarca);
-            else comando.Parameters.AddWithValue("@pCondicion", pCondicion);
+            if (pIdMarca != null) comando.Parameters.AddWithValue("@IdMarca", pIdMarca);
+            else
+            {
+                comando.Parameters.AddWithValue("@NombreMarca", pNombreMarca);
+                comando.Parameters.AddWithValue("@pCondicion", pCondicion);
+            }
+            
             SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
             List<Producto> listaProductos = new List<Producto>();
             while (reader.Read())

@@ -31,20 +31,13 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.lblFechaEntrega = new System.Windows.Forms.Label();
-            this.lblMarca = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.label5 = new System.Windows.Forms.Label();
-            this.lblFechaIngreso = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.label2 = new System.Windows.Forms.Label();
-            this.lblNumeroCCF = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.label10 = new System.Windows.Forms.Label();
             this.label15 = new System.Windows.Forms.Label();
-            this.lblUsuario = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.label4 = new System.Windows.Forms.Label();
-            this.lblSumas = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.label6 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.lblIva = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
-            this.lblTotal = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.dgvListadoDetallesIngreso = new System.Windows.Forms.DataGridView();
             this.dgvId = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +46,13 @@
             this.dgvDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvPrecioUnitario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvSubTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lblUsuario = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
+            this.lblTotal = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
+            this.lblIva = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
+            this.lblSumas = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
+            this.lblMarca = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
+            this.lblNumeroCCF = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
+            this.lblFechaIngreso = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDetallesIngreso)).BeginInit();
             this.SuspendLayout();
             // 
@@ -64,14 +64,6 @@
             this.lblFechaEntrega.Size = new System.Drawing.Size(118, 20);
             this.lblFechaEntrega.TabIndex = 72;
             // 
-            // lblMarca
-            // 
-            this.lblMarca.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblMarca.Location = new System.Drawing.Point(572, 67);
-            this.lblMarca.Name = "lblMarca";
-            this.lblMarca.Size = new System.Drawing.Size(269, 20);
-            this.lblMarca.TabIndex = 85;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -82,14 +74,6 @@
             this.label5.TabIndex = 67;
             this.label5.Text = "Marca:";
             // 
-            // lblFechaIngreso
-            // 
-            this.lblFechaIngreso.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFechaIngreso.Location = new System.Drawing.Point(342, 67);
-            this.lblFechaIngreso.Name = "lblFechaIngreso";
-            this.lblFechaIngreso.Size = new System.Drawing.Size(150, 20);
-            this.lblFechaIngreso.TabIndex = 82;
-            // 
             // label2
             // 
             this.label2.AutoSize = true;
@@ -99,14 +83,6 @@
             this.label2.Size = new System.Drawing.Size(115, 19);
             this.label2.TabIndex = 66;
             this.label2.Text = "Fecha de ingreso:";
-            // 
-            // lblNumeroCCF
-            // 
-            this.lblNumeroCCF.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNumeroCCF.Location = new System.Drawing.Point(88, 66);
-            this.lblNumeroCCF.Name = "lblNumeroCCF";
-            this.lblNumeroCCF.Size = new System.Drawing.Size(110, 20);
-            this.lblNumeroCCF.TabIndex = 83;
             // 
             // label10
             // 
@@ -128,14 +104,6 @@
             this.label15.TabIndex = 80;
             this.label15.Text = "Usuario:";
             // 
-            // lblUsuario
-            // 
-            this.lblUsuario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblUsuario.Location = new System.Drawing.Point(81, 497);
-            this.lblUsuario.Name = "lblUsuario";
-            this.lblUsuario.Size = new System.Drawing.Size(260, 20);
-            this.lblUsuario.TabIndex = 89;
-            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -145,14 +113,6 @@
             this.label4.Size = new System.Drawing.Size(49, 17);
             this.label4.TabIndex = 62;
             this.label4.Text = "Sumas:";
-            // 
-            // lblSumas
-            // 
-            this.lblSumas.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSumas.Location = new System.Drawing.Point(260, 458);
-            this.lblSumas.Name = "lblSumas";
-            this.lblSumas.Size = new System.Drawing.Size(88, 20);
-            this.lblSumas.TabIndex = 86;
             // 
             // label6
             // 
@@ -174,22 +134,6 @@
             this.label3.TabIndex = 78;
             this.label3.Text = "IVA:";
             // 
-            // lblIva
-            // 
-            this.lblIva.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblIva.Location = new System.Drawing.Point(405, 458);
-            this.lblIva.Name = "lblIva";
-            this.lblIva.Size = new System.Drawing.Size(88, 20);
-            this.lblIva.TabIndex = 87;
-            // 
-            // lblTotal
-            // 
-            this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotal.Location = new System.Drawing.Point(558, 458);
-            this.lblTotal.Name = "lblTotal";
-            this.lblTotal.Size = new System.Drawing.Size(88, 20);
-            this.lblTotal.TabIndex = 88;
-            // 
             // btnCerrar
             // 
             this.btnCerrar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -199,6 +143,7 @@
             this.btnCerrar.TabIndex = 59;
             this.btnCerrar.Text = "Cerrar";
             this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // dgvListadoDetallesIngreso
             // 
@@ -271,6 +216,62 @@
             this.dgvSubTotal.Name = "dgvSubTotal";
             this.dgvSubTotal.ReadOnly = true;
             this.dgvSubTotal.Width = 125;
+            // 
+            // lblUsuario
+            // 
+            this.lblUsuario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblUsuario.Location = new System.Drawing.Point(81, 497);
+            this.lblUsuario.Name = "lblUsuario";
+            this.lblUsuario.Size = new System.Drawing.Size(260, 20);
+            this.lblUsuario.TabIndex = 89;
+            // 
+            // lblTotal
+            // 
+            this.lblTotal.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotal.Location = new System.Drawing.Point(557, 460);
+            this.lblTotal.Name = "lblTotal";
+            this.lblTotal.Size = new System.Drawing.Size(88, 19);
+            this.lblTotal.TabIndex = 88;
+            // 
+            // lblIva
+            // 
+            this.lblIva.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblIva.Location = new System.Drawing.Point(404, 460);
+            this.lblIva.Name = "lblIva";
+            this.lblIva.Size = new System.Drawing.Size(88, 19);
+            this.lblIva.TabIndex = 87;
+            // 
+            // lblSumas
+            // 
+            this.lblSumas.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSumas.Location = new System.Drawing.Point(259, 460);
+            this.lblSumas.Name = "lblSumas";
+            this.lblSumas.Size = new System.Drawing.Size(88, 19);
+            this.lblSumas.TabIndex = 86;
+            // 
+            // lblMarca
+            // 
+            this.lblMarca.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblMarca.Location = new System.Drawing.Point(571, 69);
+            this.lblMarca.Name = "lblMarca";
+            this.lblMarca.Size = new System.Drawing.Size(269, 19);
+            this.lblMarca.TabIndex = 85;
+            // 
+            // lblNumeroCCF
+            // 
+            this.lblNumeroCCF.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNumeroCCF.Location = new System.Drawing.Point(87, 68);
+            this.lblNumeroCCF.Name = "lblNumeroCCF";
+            this.lblNumeroCCF.Size = new System.Drawing.Size(110, 19);
+            this.lblNumeroCCF.TabIndex = 83;
+            // 
+            // lblFechaIngreso
+            // 
+            this.lblFechaIngreso.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFechaIngreso.Location = new System.Drawing.Point(341, 69);
+            this.lblFechaIngreso.Name = "lblFechaIngreso";
+            this.lblFechaIngreso.Size = new System.Drawing.Size(150, 19);
+            this.lblFechaIngreso.TabIndex = 82;
             // 
             // FrmVerDetalleIngreso
             // 

@@ -43,13 +43,15 @@
             this.btnCerrar = new System.Windows.Forms.Button();
             this.btnSeleccionar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.cboMostrando = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoProductos)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEliminarProducto
             // 
+            this.btnEliminarProducto.Enabled = false;
             this.btnEliminarProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarProducto.Location = new System.Drawing.Point(617, 58);
+            this.btnEliminarProducto.Location = new System.Drawing.Point(774, 61);
             this.btnEliminarProducto.Name = "btnEliminarProducto";
             this.btnEliminarProducto.Size = new System.Drawing.Size(100, 30);
             this.btnEliminarProducto.TabIndex = 3;
@@ -59,8 +61,9 @@
             // 
             // btnEditarProducto
             // 
+            this.btnEditarProducto.Enabled = false;
             this.btnEditarProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarProducto.Location = new System.Drawing.Point(495, 58);
+            this.btnEditarProducto.Location = new System.Drawing.Point(662, 61);
             this.btnEditarProducto.Name = "btnEditarProducto";
             this.btnEditarProducto.Size = new System.Drawing.Size(100, 30);
             this.btnEditarProducto.TabIndex = 2;
@@ -71,7 +74,7 @@
             // btnNuevoProducto
             // 
             this.btnNuevoProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoProducto.Location = new System.Drawing.Point(370, 59);
+            this.btnNuevoProducto.Location = new System.Drawing.Point(549, 61);
             this.btnNuevoProducto.Name = "btnNuevoProducto";
             this.btnNuevoProducto.Size = new System.Drawing.Size(100, 30);
             this.btnNuevoProducto.TabIndex = 1;
@@ -145,7 +148,7 @@
             this.txtBuscarProductos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtBuscarProductos.Location = new System.Drawing.Point(23, 61);
             this.txtBuscarProductos.Name = "txtBuscarProductos";
-            this.txtBuscarProductos.Size = new System.Drawing.Size(322, 27);
+            this.txtBuscarProductos.Size = new System.Drawing.Size(290, 27);
             this.txtBuscarProductos.TabIndex = 0;
             this.txtBuscarProductos.TextoMarcaAgua = "Buscar por nombre o descripción";
             this.txtBuscarProductos.TextChanged += new System.EventHandler(this.txtBuscarProductos_TextChanged);
@@ -163,7 +166,6 @@
             // 
             // btnSeleccionar
             // 
-            this.btnSeleccionar.Enabled = false;
             this.btnSeleccionar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnSeleccionar.Location = new System.Drawing.Point(667, 469);
             this.btnSeleccionar.Name = "btnSeleccionar";
@@ -185,11 +187,25 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // cboMostrando
+            // 
+            this.cboMostrando.DisplayMember = "Nombre";
+            this.cboMostrando.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboMostrando.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboMostrando.FormattingEnabled = true;
+            this.cboMostrando.Location = new System.Drawing.Point(326, 61);
+            this.cboMostrando.Name = "cboMostrando";
+            this.cboMostrando.Size = new System.Drawing.Size(210, 28);
+            this.cboMostrando.TabIndex = 9;
+            this.cboMostrando.ValueMember = "Nombre";
+            this.cboMostrando.SelectionChangeCommitted += new System.EventHandler(this.cboMostrando_SelectionChangeCommitted);
+            // 
             // FrmProductos
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(908, 517);
+            this.Controls.Add(this.cboMostrando);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.btnCerrar);
@@ -226,5 +242,6 @@
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button btnSeleccionar;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.ComboBox cboMostrando;
     }
 }

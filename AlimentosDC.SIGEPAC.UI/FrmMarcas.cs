@@ -19,12 +19,25 @@ namespace AlimentosDC.SIGEPAC.UI
     {
         FrmMarcas objetoMarcasActual;
         List<Marca> listadoMarcas;
-        //Constructor para una nueva marca
+        Marca marcaSeleccionada;
+        FrmIngreso objetoIngresoActual;
+        public Marca MarcaSeleccionada { get { return marcaSeleccionada; } }
+
         public FrmMarcas()
         {
             InitializeComponent();
-            btnEditarMarca.Enabled = false;
-            btnEliminarMarca.Enabled = false;
+            objetoMarcasActual = this;
+        }
+
+        public FrmMarcas(ref FrmIngreso objetoIngresoActual)
+        {
+            InitializeComponent();
+            this.objetoIngresoActual = objetoIngresoActual;
+            btnNuevaMarca.Visible = false;
+            btnEditarMarca.Visible = false;
+            btnEliminarMarca.Visible = false;
+            btnSalir.Visible = false;
+            btnSeleccionar.Visible = true;
             objetoMarcasActual = this;
         }
 
@@ -65,7 +78,7 @@ namespace AlimentosDC.SIGEPAC.UI
             {
                 if (resultado == DialogResult.Yes)
                 {
-                    if (ProductoBL.ObtenerTodos(idMarca: idMarcaAEliminar).Count>=1)
+                    if (ProductoBL.ObtenerTodos(pIdMarca: idMarcaAEliminar).Count>=1)
                     {
                         MetroMessageBox.Show(this, string.Concat("No puede eliminar esta marca por que existen productos registrados con dicha marca, ", 
                             "para poder eliminarla, debe remover primero sus productos."), "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -122,6 +135,10 @@ namespace AlimentosDC.SIGEPAC.UI
         private void FrmMarcas_Load(object sender, EventArgs e)
         {
             CargarMarcas();
+            if (true)
+            {
+
+            }
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -132,6 +149,14 @@ namespace AlimentosDC.SIGEPAC.UI
         private void btnSalir_Click(object sender, EventArgs e)
         {
             FrmPrincipal.delegadoCerrarSesion(null, null);
+        }
+
+        private void btnSeleccionar_Click(object sender, EventArgs e)
+        {
+            int idMarca = int.Parse(dgvListadoMarcas.SelectedRows[0].Cells[0].Value.ToString());
+            marcaSeleccionada = MarcaBL.BuscarPorId(idMarca);
+            DialogResult = DialogResult.OK;
+            Close();
         }
     }
 }

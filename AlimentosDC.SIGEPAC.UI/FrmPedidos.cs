@@ -20,7 +20,8 @@ namespace AlimentosDC.SIGEPAC.UI
     {
         List<Pedido> listadoPedidos = new List<Pedido>();
         List<Ingreso> listadoIngresos = new List<Ingreso>();
-        FrmHistoriales objetoHistorialesActual;
+        static FrmHistoriales objetoHistorialesActual;
+        public static FrmHistoriales ObjetoHistorialesActual { get { return objetoHistorialesActual; } }
         public FrmHistoriales()
         {
             InitializeComponent();
@@ -102,15 +103,15 @@ namespace AlimentosDC.SIGEPAC.UI
             listadoIngresos = IngresoBL.ObtenerTodos(pCondicion);
             for (int i = 0; i < listadoIngresos.Count; i++)
             {
-                dgvListadoPedidos.Rows.Add();
-                dgvListadoPedidos.Rows[i].Cells[0].Value = listadoIngresos[i].Id;
-                dgvListadoPedidos.Rows[i].Cells[1].Value = listadoIngresos[i].NumeroCCF;
-                dgvListadoPedidos.Rows[i].Cells[2].Value = listadoIngresos[i].Marca;
-                dgvListadoPedidos.Rows[i].Cells[3].Value = listadoIngresos[i].FechaIngreso;
-                dgvListadoPedidos.Rows[i].Cells[4].Value = listadoIngresos[i].Sumas.ToString("d");
-                dgvListadoPedidos.Rows[i].Cells[5].Value = listadoIngresos[i].Iva.ToString("d");
-                dgvListadoPedidos.Rows[i].Cells[6].Value = listadoIngresos[i].Total.ToString("d");
-                dgvListadoPedidos.Rows[i].Cells[7].Value = listadoIngresos[i].Usuario;
+                dgvListadoIngresos.Rows.Add();
+                dgvListadoIngresos.Rows[i].Cells[0].Value = listadoIngresos[i].Id;
+                dgvListadoIngresos.Rows[i].Cells[1].Value = listadoIngresos[i].NumeroCCF;
+                dgvListadoIngresos.Rows[i].Cells[2].Value = listadoIngresos[i].Marca;
+                dgvListadoIngresos.Rows[i].Cells[3].Value = listadoIngresos[i].FechaIngreso.ToString("d");
+                dgvListadoIngresos.Rows[i].Cells[4].Value = listadoIngresos[i].Sumas.ToString("N");
+                dgvListadoIngresos.Rows[i].Cells[5].Value = listadoIngresos[i].Iva.ToString("N");
+                dgvListadoIngresos.Rows[i].Cells[6].Value = listadoIngresos[i].Total.ToString("N");
+                dgvListadoIngresos.Rows[i].Cells[7].Value = listadoIngresos[i].Usuario;
             }
         }
 
@@ -200,6 +201,7 @@ namespace AlimentosDC.SIGEPAC.UI
         private void FrmPedidos_Load(object sender, EventArgs e)
         {
             cmbMostrando.SelectedItem = "Todos";
+            CargarIngresos();
         }
 
         private void btnCerrar_Click(object sender, EventArgs e)
@@ -221,7 +223,7 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void btnEditarIngreso_Click(object sender, EventArgs e)
         {
-            int idIngreso = int.Parse(dgvListadoPedidos.SelectedRows[0].Cells[0].Value.ToString());
+            int idIngreso = int.Parse(dgvListadoIngresos.SelectedRows[0].Cells[0].Value.ToString());
             FrmIngreso ventanaIngreso = new FrmIngreso(objetoHistorialesActual, idIngreso);
             ventanaIngreso.ShowDialog(this);
         }
@@ -282,3 +284,4 @@ namespace AlimentosDC.SIGEPAC.UI
         }
     }
 }
+

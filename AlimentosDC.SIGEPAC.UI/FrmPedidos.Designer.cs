@@ -48,11 +48,9 @@
             this.btnEliminarPedido = new System.Windows.Forms.Button();
             this.btnVerDetallePedido = new System.Windows.Forms.Button();
             this.cmbMostrando = new MetroFramework.Controls.MetroComboBox();
-            this.btnCerrar = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.txtBuscadorPedidos = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbpPedidos = new System.Windows.Forms.TabPage();
+            this.txtBuscadorPedidos = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
             this.tbpIngresos = new System.Windows.Forms.TabPage();
             this.txtBuscadorCompras = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
             this.btnEditarIngreso = new System.Windows.Forms.Button();
@@ -67,8 +65,8 @@
             this.dataGridViewTextBoxColumn7 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnVerDetalleIngreso = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
-            this.button3 = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.btnCerrar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoPedidos)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tbpPedidos.SuspendLayout();
@@ -94,12 +92,12 @@
             this.dgvFechaEntrega,
             this.dgvDireccionEntrega,
             this.dgvEstado});
-            this.dgvListadoPedidos.Location = new System.Drawing.Point(6, 49);
+            this.dgvListadoPedidos.Location = new System.Drawing.Point(6, 59);
             this.dgvListadoPedidos.MultiSelect = false;
             this.dgvListadoPedidos.Name = "dgvListadoPedidos";
             this.dgvListadoPedidos.ReadOnly = true;
             this.dgvListadoPedidos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListadoPedidos.Size = new System.Drawing.Size(1178, 363);
+            this.dgvListadoPedidos.Size = new System.Drawing.Size(1178, 407);
             this.dgvListadoPedidos.TabIndex = 0;
             this.dgvListadoPedidos.SelectionChanged += new System.EventHandler(this.dgvListadoPedidos_SelectionChanged);
             // 
@@ -188,7 +186,7 @@
             // 
             this.btnEditarPedido.Enabled = false;
             this.btnEditarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarPedido.Location = new System.Drawing.Point(712, 3);
+            this.btnEditarPedido.Location = new System.Drawing.Point(689, 14);
             this.btnEditarPedido.Name = "btnEditarPedido";
             this.btnEditarPedido.Size = new System.Drawing.Size(100, 30);
             this.btnEditarPedido.TabIndex = 3;
@@ -200,7 +198,7 @@
             // 
             this.btnEliminarPedido.Enabled = false;
             this.btnEliminarPedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarPedido.Location = new System.Drawing.Point(832, 3);
+            this.btnEliminarPedido.Location = new System.Drawing.Point(805, 14);
             this.btnEliminarPedido.Name = "btnEliminarPedido";
             this.btnEliminarPedido.Size = new System.Drawing.Size(100, 30);
             this.btnEliminarPedido.TabIndex = 4;
@@ -212,7 +210,7 @@
             // 
             this.btnVerDetallePedido.Enabled = false;
             this.btnVerDetallePedido.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerDetallePedido.Location = new System.Drawing.Point(587, 3);
+            this.btnVerDetallePedido.Location = new System.Drawing.Point(573, 14);
             this.btnVerDetallePedido.Name = "btnVerDetallePedido";
             this.btnVerDetallePedido.Size = new System.Drawing.Size(100, 30);
             this.btnVerDetallePedido.TabIndex = 2;
@@ -231,7 +229,7 @@
             "Revisados",
             "Enviados",
             "Finalizados"});
-            this.cmbMostrando.Location = new System.Drawing.Point(362, 5);
+            this.cmbMostrando.Location = new System.Drawing.Point(357, 14);
             this.cmbMostrando.Name = "cmbMostrando";
             this.cmbMostrando.Size = new System.Drawing.Size(200, 29);
             this.cmbMostrando.TabIndex = 1;
@@ -239,65 +237,42 @@
             this.cmbMostrando.SelectionChangeCommitted += new System.EventHandler(this.cmbMostrando_SelectionChangeCommitted);
             this.cmbMostrando.SelectedValueChanged += new System.EventHandler(this.cmbMostrando_SelectionChangeCommitted);
             // 
-            // btnCerrar
-            // 
-            this.btnCerrar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrar.Location = new System.Drawing.Point(1083, 418);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(100, 30);
-            this.btnCerrar.TabIndex = 5;
-            this.btnCerrar.Text = "Cerrar";
-            this.btnCerrar.UseVisualStyleBackColor = true;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(965, 418);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(100, 30);
-            this.btnSalir.TabIndex = 6;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
-            // 
-            // txtBuscadorPedidos
-            // 
-            this.txtBuscadorPedidos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscadorPedidos.Location = new System.Drawing.Point(6, 6);
-            this.txtBuscadorPedidos.Name = "txtBuscadorPedidos";
-            this.txtBuscadorPedidos.Size = new System.Drawing.Size(335, 27);
-            this.txtBuscadorPedidos.TabIndex = 0;
-            this.txtBuscadorPedidos.TextoMarcaAgua = "Buscar por número de pedido o cliente";
-            this.txtBuscadorPedidos.TextChanged += new System.EventHandler(this.txtBuscadorPedidos_TextChanged);
-            // 
             // tabControl1
             // 
             this.tabControl1.Controls.Add(this.tbpPedidos);
             this.tabControl1.Controls.Add(this.tbpIngresos);
+            this.tabControl1.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tabControl1.Location = new System.Drawing.Point(24, 63);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1197, 447);
+            this.tabControl1.Size = new System.Drawing.Size(1197, 499);
             this.tabControl1.TabIndex = 7;
             // 
             // tbpPedidos
             // 
             this.tbpPedidos.Controls.Add(this.txtBuscadorPedidos);
-            this.tbpPedidos.Controls.Add(this.btnSalir);
             this.tbpPedidos.Controls.Add(this.btnEditarPedido);
-            this.tbpPedidos.Controls.Add(this.btnCerrar);
             this.tbpPedidos.Controls.Add(this.btnEliminarPedido);
             this.tbpPedidos.Controls.Add(this.dgvListadoPedidos);
             this.tbpPedidos.Controls.Add(this.btnVerDetallePedido);
             this.tbpPedidos.Controls.Add(this.cmbMostrando);
-            this.tbpPedidos.Location = new System.Drawing.Point(4, 22);
+            this.tbpPedidos.Location = new System.Drawing.Point(4, 26);
             this.tbpPedidos.Name = "tbpPedidos";
             this.tbpPedidos.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpPedidos.Size = new System.Drawing.Size(1189, 421);
+            this.tbpPedidos.Size = new System.Drawing.Size(1189, 469);
             this.tbpPedidos.TabIndex = 0;
             this.tbpPedidos.Text = "PEDIDOS";
             this.tbpPedidos.UseVisualStyleBackColor = true;
+            // 
+            // txtBuscadorPedidos
+            // 
+            this.txtBuscadorPedidos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscadorPedidos.Location = new System.Drawing.Point(6, 16);
+            this.txtBuscadorPedidos.Name = "txtBuscadorPedidos";
+            this.txtBuscadorPedidos.Size = new System.Drawing.Size(335, 27);
+            this.txtBuscadorPedidos.TabIndex = 0;
+            this.txtBuscadorPedidos.TextoMarcaAgua = "Buscar por número de pedido o cliente";
+            this.txtBuscadorPedidos.TextChanged += new System.EventHandler(this.txtBuscadorPedidos_TextChanged);
             // 
             // tbpIngresos
             // 
@@ -306,10 +281,10 @@
             this.tbpIngresos.Controls.Add(this.btnEliminarIngreso);
             this.tbpIngresos.Controls.Add(this.dgvListadoIngresos);
             this.tbpIngresos.Controls.Add(this.btnVerDetalleIngreso);
-            this.tbpIngresos.Location = new System.Drawing.Point(4, 22);
+            this.tbpIngresos.Location = new System.Drawing.Point(4, 26);
             this.tbpIngresos.Name = "tbpIngresos";
             this.tbpIngresos.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpIngresos.Size = new System.Drawing.Size(1189, 421);
+            this.tbpIngresos.Size = new System.Drawing.Size(1189, 469);
             this.tbpIngresos.TabIndex = 1;
             this.tbpIngresos.Text = "COMPRAS";
             this.tbpIngresos.UseVisualStyleBackColor = true;
@@ -317,7 +292,7 @@
             // txtBuscadorCompras
             // 
             this.txtBuscadorCompras.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscadorCompras.Location = new System.Drawing.Point(5, 8);
+            this.txtBuscadorCompras.Location = new System.Drawing.Point(6, 16);
             this.txtBuscadorCompras.Name = "txtBuscadorCompras";
             this.txtBuscadorCompras.Size = new System.Drawing.Size(335, 27);
             this.txtBuscadorCompras.TabIndex = 7;
@@ -328,7 +303,7 @@
             // 
             this.btnEditarIngreso.Enabled = false;
             this.btnEditarIngreso.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarIngreso.Location = new System.Drawing.Point(485, 6);
+            this.btnEditarIngreso.Location = new System.Drawing.Point(468, 14);
             this.btnEditarIngreso.Name = "btnEditarIngreso";
             this.btnEditarIngreso.Size = new System.Drawing.Size(100, 30);
             this.btnEditarIngreso.TabIndex = 11;
@@ -340,7 +315,7 @@
             // 
             this.btnEliminarIngreso.Enabled = false;
             this.btnEliminarIngreso.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarIngreso.Location = new System.Drawing.Point(605, 6);
+            this.btnEliminarIngreso.Location = new System.Drawing.Point(579, 14);
             this.btnEliminarIngreso.Name = "btnEliminarIngreso";
             this.btnEliminarIngreso.Size = new System.Drawing.Size(100, 30);
             this.btnEliminarIngreso.TabIndex = 12;
@@ -364,12 +339,12 @@
             this.dataGridViewTextBoxColumn6,
             this.dataGridViewTextBoxColumn7,
             this.dataGridViewTextBoxColumn8});
-            this.dgvListadoIngresos.Location = new System.Drawing.Point(5, 51);
+            this.dgvListadoIngresos.Location = new System.Drawing.Point(6, 59);
             this.dgvListadoIngresos.MultiSelect = false;
             this.dgvListadoIngresos.Name = "dgvListadoIngresos";
             this.dgvListadoIngresos.ReadOnly = true;
             this.dgvListadoIngresos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListadoIngresos.Size = new System.Drawing.Size(1178, 363);
+            this.dgvListadoIngresos.Size = new System.Drawing.Size(1178, 408);
             this.dgvListadoIngresos.TabIndex = 8;
             this.dgvListadoIngresos.SelectionChanged += new System.EventHandler(this.dgvListadoIngresos_SelectionChanged);
             // 
@@ -422,9 +397,9 @@
             // 
             // dataGridViewTextBoxColumn7
             // 
-            dataGridViewCellStyle3.Format = "d";
             dataGridViewCellStyle3.NullValue = null;
             this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewTextBoxColumn7.Frozen = true;
             this.dataGridViewTextBoxColumn7.HeaderText = "TOTAL";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
@@ -435,6 +410,7 @@
             dataGridViewCellStyle4.Format = "d";
             dataGridViewCellStyle4.NullValue = null;
             this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dataGridViewTextBoxColumn8.Frozen = true;
             this.dataGridViewTextBoxColumn8.HeaderText = "USUARIO";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
@@ -444,7 +420,7 @@
             // 
             this.btnVerDetalleIngreso.Enabled = false;
             this.btnVerDetalleIngreso.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnVerDetalleIngreso.Location = new System.Drawing.Point(360, 6);
+            this.btnVerDetalleIngreso.Location = new System.Drawing.Point(357, 13);
             this.btnVerDetalleIngreso.Name = "btnVerDetalleIngreso";
             this.btnVerDetalleIngreso.Size = new System.Drawing.Size(100, 30);
             this.btnVerDetalleIngreso.TabIndex = 10;
@@ -452,34 +428,36 @@
             this.btnVerDetalleIngreso.UseVisualStyleBackColor = true;
             this.btnVerDetalleIngreso.Click += new System.EventHandler(this.btnVerDetalleIngreso_Click);
             // 
-            // button1
+            // btnSalir
             // 
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button1.Location = new System.Drawing.Point(1003, 516);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 30);
-            this.button1.TabIndex = 14;
-            this.button1.Text = "Salir";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnSalir.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.Location = new System.Drawing.Point(1003, 581);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(100, 30);
+            this.btnSalir.TabIndex = 14;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
-            // button3
+            // btnCerrar
             // 
-            this.button3.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.button3.Location = new System.Drawing.Point(1121, 516);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(100, 30);
-            this.button3.TabIndex = 13;
-            this.button3.Text = "Cerrar";
-            this.button3.UseVisualStyleBackColor = true;
+            this.btnCerrar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrar.Location = new System.Drawing.Point(1121, 581);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(100, 30);
+            this.btnCerrar.TabIndex = 13;
+            this.btnCerrar.Text = "Cerrar";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
             // FrmHistoriales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1244, 566);
+            this.ClientSize = new System.Drawing.Size(1244, 622);
             this.Controls.Add(this.tabControl1);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.button3);
+            this.Controls.Add(this.btnSalir);
+            this.Controls.Add(this.btnCerrar);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.ImeMode = System.Windows.Forms.ImeMode.Disable;
             this.MaximizeBox = false;
@@ -509,7 +487,6 @@
         private System.Windows.Forms.Button btnVerDetallePedido;
         private MetroFramework.Controls.MetroComboBox cmbMostrando;
         private TextBoxWaterMark txtBuscadorPedidos;
-        private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvCliente;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvUsuario;
@@ -520,7 +497,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvFechaEntrega;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvDireccionEntrega;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvEstado;
-        private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.TabControl tabControl1;
         private System.Windows.Forms.TabPage tbpPedidos;
         private System.Windows.Forms.TabPage tbpIngresos;
@@ -529,8 +505,8 @@
         private System.Windows.Forms.Button btnEliminarIngreso;
         private System.Windows.Forms.DataGridView dgvListadoIngresos;
         private System.Windows.Forms.Button btnVerDetalleIngreso;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.Button button3;
+        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;

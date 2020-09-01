@@ -12,8 +12,8 @@ namespace AlimentosDC.SIGEPAC.DAL
     {
         public static int Guardar(DetallePedido pDetallePedido)
         {
-            string consulta = @"INSERT INTO DetallePedido (IdPedido, IdProducto, Cantidad, PrecioUnitario, SubTotal, Estado) 
-            values (@IdPedido, @IdProducto, @Cantidad, @PrecioUnitario, @SubTotal, @Estado)";
+            string consulta = @"INSERT INTO DetallePedido (IdPedido, IdProducto, Cantidad, PrecioUnitario, Estado) 
+            values (@IdPedido, @IdProducto, @Cantidad, @PrecioUnitario, @Estado)";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
             comando.Parameters.AddWithValue("@IdPedido", pDetallePedido.IdPedido);
@@ -27,7 +27,7 @@ namespace AlimentosDC.SIGEPAC.DAL
         public static int Modificar(DetallePedido pDetallePedido)
         {
             string consulta = @"UPDATE DetallePedido SET IdPedido = @IdPedido, IdProducto = @IdProducto, Cantidad = @Cantidad, 
-            PrecioUnitario = @PrecioUnitario, SubTotal = @SubTotal, Estado = @Estado WHERE Id = @Id;";
+            PrecioUnitario = @PrecioUnitario, Estado = @Estado WHERE Id = @Id;";
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
             comando.Parameters.AddWithValue("@Id", pDetallePedido.Id);
@@ -96,7 +96,7 @@ namespace AlimentosDC.SIGEPAC.DAL
                 detallePedido.IdProducto = reader.GetInt32(2);
                 detallePedido.Cantidad = (ushort) reader.GetInt16(3);
                 detallePedido.PrecioUnitario = reader.GetFloat(4);
-                detallePedido.SubTotal = reader.GetFloat(5);
+                detallePedido.SubTotal = (double)reader.GetDecimal(5);
                 detallePedido.Estado = reader.GetString(6);
             }
             return detallePedido;

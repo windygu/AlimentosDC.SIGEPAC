@@ -39,11 +39,13 @@
             this.txtBuscarMarcas = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.btnSeleccionar = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoMarcas)).BeginInit();
             this.SuspendLayout();
             // 
             // btnEliminarMarca
             // 
+            this.btnEliminarMarca.Enabled = false;
             this.btnEliminarMarca.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEliminarMarca.Location = new System.Drawing.Point(601, 61);
             this.btnEliminarMarca.Name = "btnEliminarMarca";
@@ -55,6 +57,7 @@
             // 
             // btnEditarMarca
             // 
+            this.btnEditarMarca.Enabled = false;
             this.btnEditarMarca.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnEditarMarca.Location = new System.Drawing.Point(484, 61);
             this.btnEditarMarca.Name = "btnEditarMarca";
@@ -147,11 +150,24 @@
             this.btnSalir.UseVisualStyleBackColor = true;
             this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
+            // btnSeleccionar
+            // 
+            this.btnSeleccionar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSeleccionar.Location = new System.Drawing.Point(510, 401);
+            this.btnSeleccionar.Name = "btnSeleccionar";
+            this.btnSeleccionar.Size = new System.Drawing.Size(100, 30);
+            this.btnSeleccionar.TabIndex = 28;
+            this.btnSeleccionar.Text = "Seleccionar";
+            this.btnSeleccionar.UseVisualStyleBackColor = true;
+            this.btnSeleccionar.Visible = false;
+            this.btnSeleccionar.Click += new System.EventHandler(this.btnSeleccionar_Click);
+            // 
             // FrmMarcas
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(760, 443);
+            this.Controls.Add(this.btnSeleccionar);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.txtBuscarMarcas);
@@ -184,5 +200,6 @@
         private TextBoxWaterMark txtBuscarMarcas;
         private System.Windows.Forms.Button btnCerrar;
         private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.Button btnSeleccionar;
     }
 }

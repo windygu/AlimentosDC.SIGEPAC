@@ -314,7 +314,6 @@ namespace AlimentosDC.SIGEPAC.UI
                             detallePedidoARegistrar.IdProducto = listadoDetallesPedido[i].IdProducto;
                             detallePedidoARegistrar.Cantidad = listadoDetallesPedido[i].Cantidad;
                             detallePedidoARegistrar.PrecioUnitario = listadoDetallesPedido[i].PrecioUnitario;
-                            detallePedidoARegistrar.SubTotal = listadoDetallesPedido[i].SubTotal;
                             detallePedidoARegistrar.Estado = listadoDetallesPedido[i].Estado;
                             resultadoDetallePedido += DetallePedidoBL.Guardar(detallePedidoARegistrar);
                         }
@@ -347,7 +346,6 @@ namespace AlimentosDC.SIGEPAC.UI
                            detallePedido.IdProducto = listadoDetallesPedido[i].IdProducto;
                            detallePedido.Cantidad = listadoDetallesPedido[i].Cantidad;
                            detallePedido.PrecioUnitario = listadoDetallesPedido[i].PrecioUnitario;
-                           detallePedido.SubTotal = listadoDetallesPedido[i].SubTotal;
                            detallePedido.Estado = listadoDetallesPedido[i].Estado;
 
                             if (listadoViejoDetallesPedido.Find(x => x.Id == listadoDetallesPedido[i].Id) != null)
