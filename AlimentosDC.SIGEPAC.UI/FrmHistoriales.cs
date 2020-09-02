@@ -74,7 +74,6 @@ namespace AlimentosDC.SIGEPAC.UI
                 string parametroEstado = pEstado.Remove(pEstado.Length - 1, 1);
                 CargarPedidos(txtBuscadorPedidos.Text, parametroEstado);
             }
-            
         }
 
         public void CargarPedidos(string pCondicion = "%", string pEstado = "%")
@@ -86,14 +85,17 @@ namespace AlimentosDC.SIGEPAC.UI
                 dgvListadoPedidos.Rows.Add();
                 dgvListadoPedidos.Rows[i].Cells[0].Value = listadoPedidos[i].Id.ToString();
                 dgvListadoPedidos.Rows[i].Cells[1].Value = listadoPedidos[i].Cliente.ToString();
-                dgvListadoPedidos.Rows[i].Cells[2].Value = listadoPedidos[i].Usuario.ToString();
-                dgvListadoPedidos.Rows[i].Cells[3].Value = listadoPedidos[i].Dui.ToString();
-                dgvListadoPedidos.Rows[i].Cells[4].Value = listadoPedidos[i].NumeroPedido.ToString();
-                dgvListadoPedidos.Rows[i].Cells[5].Value = listadoPedidos[i].NumeroCCF.ToString();
-                dgvListadoPedidos.Rows[i].Cells[6].Value = listadoPedidos[i].FechaCreacion.ToString("d");
-                dgvListadoPedidos.Rows[i].Cells[7].Value = listadoPedidos[i].FechaEntrega.ToString("d");
-                dgvListadoPedidos.Rows[i].Cells[8].Value = listadoPedidos[i].DireccionEntrega.ToString();
-                dgvListadoPedidos.Rows[i].Cells[9].Value = listadoPedidos[i].Estado.ToString();
+                dgvListadoPedidos.Rows[i].Cells[2].Value = listadoPedidos[i].Dui.ToString();
+                dgvListadoPedidos.Rows[i].Cells[3].Value = listadoPedidos[i].NumeroPedido.ToString();
+                dgvListadoPedidos.Rows[i].Cells[4].Value = listadoPedidos[i].NumeroCCF.ToString();
+                dgvListadoPedidos.Rows[i].Cells[5].Value = listadoPedidos[i].FechaCreacion.ToString("d");
+                dgvListadoPedidos.Rows[i].Cells[6].Value = listadoPedidos[i].FechaEntrega.ToString("d");
+                dgvListadoPedidos.Rows[i].Cells[7].Value = listadoPedidos[i].DireccionEntrega.ToString();
+                dgvListadoPedidos.Rows[i].Cells[8].Value = listadoPedidos[i].Estado.ToString();
+                dgvListadoPedidos.Rows[i].Cells[9].Value = listadoPedidos[i].Sumas.ToString("c");
+                dgvListadoPedidos.Rows[i].Cells[10].Value = listadoPedidos[i].Iva.ToString("c");
+                dgvListadoPedidos.Rows[i].Cells[11].Value = listadoPedidos[i].Total.ToString("c");
+                dgvListadoPedidos.Rows[i].Cells[12].Value = listadoPedidos[i].Usuario.ToString();
             }
         }
 

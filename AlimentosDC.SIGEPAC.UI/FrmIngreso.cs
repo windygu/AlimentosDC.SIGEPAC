@@ -143,8 +143,8 @@ namespace AlimentosDC.SIGEPAC.UI
                             detalleIngresoARegistrar.PrecioUnitario = listadoDetallesIngreso[i].PrecioUnitario;
                             resultDetalleIngreso += DetalleIngresoBL.Guardar(detalleIngresoARegistrar);
                         }
-                        MetroMessageBox.Show(this, $"{resultIngreso} pedido registrado.\n{resultDetalleIngreso} detalle(s) del pedido registrado(s).",
-                                    "¡Aviso!", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        MetroMessageBox.Show(this, $"{resultIngreso} ingreso registrado.\n{resultDetalleIngreso} detalle(s) registrado(s).",
+                                    "Registro de ingresos", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         Limpiar();
                     }
                     else
@@ -153,7 +153,6 @@ namespace AlimentosDC.SIGEPAC.UI
                         int resultDetallesModificados = 0;
                         int resultDetallesAñadidos = 0;
                         int resultadoEliminados = 0;
-
                         ingresoEditando.IdUsuario = FrmPrincipal.usuarioActual.Id;
                         ingresoEditando.IdMarca = marca.Id;
                         ingresoEditando.FechaIngreso = dtpFechaIngreso.Value;
@@ -185,7 +184,7 @@ namespace AlimentosDC.SIGEPAC.UI
                         DialogResult resultadoDelDialgo = MetroMessageBox.Show
                         (this, $"{resultIngreso} ingreso actualizado.\n{resultDetallesModificados} detalle(s) actualizado(s).\n" +
                         $"{resultDetallesAñadidos} detalle(s) registrado(s).\n{resultadoEliminados} detalle(s) eliminado(s).\n¿Desea cerrar el editor?",
-                            "Aviso", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
+                            "Actualización de ingresos", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button1);
                         if (resultadoDelDialgo == DialogResult.Yes)
                         {
                             Close();
@@ -197,6 +196,7 @@ namespace AlimentosDC.SIGEPAC.UI
             {
                 MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\nMÁS INFORMACIÓN: {error.Message}", "Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
+                Close();
             }
             Cursor = Cursors.Arrow;
         }
@@ -209,15 +209,10 @@ namespace AlimentosDC.SIGEPAC.UI
             lblNombreMarca.Text = "";
             lblComentarioMarca.Text = "";
             producto = null;
-            lblNombreProducto.Text = "";
-            lblStock.Text = "";
-            lblPrecioUnitario.Text = "";
-            lblDescripcion.Text = "";
-            nudCantidad.Value = 0;
-            lblSubTotal.Text = "";
             listadoDetallesIngreso.Clear();
             LimpiarDetalles();
             dgvListadoDetallesIngreso.Rows.Clear();
+            txtNumeroCCF.Focus();
         }
 
         void HabilitarBotonGuardarIngreso()
@@ -426,8 +421,8 @@ namespace AlimentosDC.SIGEPAC.UI
             if (nudCantidad.Value > 0 && lblPrecioUnitario.Text.Length > 0)
             {
                 epValidadorControles.SetError(nudCantidad, "");
-                lblSubTotal.Text = string.Concat("$ ", (producto.PrecioVenta * (float)nudCantidad.Value).ToString("N"));
-                lblStock.Text = (producto.Stock + nudCantidad.Value).ToString();
+                lblSubTotal.Text = (producto.PrecioVenta * (float)nudCantidad.Value).ToString("c");
+                lblStock.Text = (producto.Stock + nudCantidad.Value).ToString("c");
                 HabilitarBotonAgregarDetalle();
             }
             else if (nudCantidad.Value > 0)
@@ -495,7 +490,7 @@ namespace AlimentosDC.SIGEPAC.UI
                     producto = ventanaProductos.productoSeleccionado;
                     lblNombreProducto.Text = producto.Nombre;
                     lblStock.Text = producto.Stock.ToString();
-                    lblPrecioUnitario.Text = producto.PrecioVenta.ToString();
+                    lblPrecioUnitario.Text = producto.PrecioVenta.ToString("c");
                     lblDescripcion.Text = producto.Descripcion;
                     nudCantidad.Focus();
                 }
@@ -527,7 +522,3 @@ namespace AlimentosDC.SIGEPAC.UI
         }
     }
 }
-
-// CONTINUAR CORRIGIENDO Y MEJORANDO LA LIMPIEZA DE CONTROLES DESPUES DE HABER 
-// DESPUÉS DE HABER REGISTRADO EL INGRESO
-// BUSCAR UN ICONO PARA EL BOTON DE INGRESOS EN LA VENTANA PRINCIPAL

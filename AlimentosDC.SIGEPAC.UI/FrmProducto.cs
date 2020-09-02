@@ -52,7 +52,7 @@ namespace AlimentosDC.SIGEPAC.UI
                     CargarDatosAlFormulario();
                     btnGuardarProducto.Text = "Actualizar";
                 }
-                nudStock.TextChanged += NudStock_TextChanged;
+                //nudStock.TextChanged += NudStock_TextChanged;
             }
             catch (Exception error)
             {
@@ -69,7 +69,7 @@ namespace AlimentosDC.SIGEPAC.UI
             txtNombreProducto.Text = productoAEditar.Nombre;
             txtPrecioProducto.Text = productoAEditar.PrecioVenta.ToString();
             txtDescripcionProducto.Text = productoAEditar.Descripcion;
-            nudStock.Value = productoAEditar.Stock;
+            //nudStock.Value = productoAEditar.Stock;
         }
 
         void CargarMarcasAlCombobox()
@@ -105,7 +105,7 @@ namespace AlimentosDC.SIGEPAC.UI
         {
             if ((int)cmbMarcas.SelectedValue > 0 && !string.IsNullOrWhiteSpace(txtNombreProducto.Text) &&
                 !string.IsNullOrWhiteSpace(txtDescripcionProducto.Text) && ((!string.IsNullOrWhiteSpace(txtPrecioProducto.Text)) 
-                && Validaciones.ValidarPrecio(txtPrecioProducto.Text) == 0) && nudStock.Value>=0)
+                && Validaciones.ValidarPrecio(txtPrecioProducto.Text) == 0)/* && nudStock.Value>=0*/)
             {
                 btnGuardarProducto.Enabled = true;
             }
@@ -126,7 +126,7 @@ namespace AlimentosDC.SIGEPAC.UI
                 productoAAgregar.Nombre = txtNombreProducto.Text;
                 productoAAgregar.Descripcion = txtDescripcionProducto.Text;
                 productoAAgregar.PrecioVenta = float.Parse(txtPrecioProducto.Text);
-                productoAAgregar.Stock = (int)nudStock.Value;
+                productoAAgregar.Stock = 0 /*(int)nudStock.Value*/;
                 if (idProductoAEditar == null)
                 {
 
@@ -157,7 +157,7 @@ namespace AlimentosDC.SIGEPAC.UI
             lblComentario.Text = "";
             txtNombreProducto.Clear();
             txtDescripcionProducto.Clear();
-            nudStock.Value = 0;
+            //nudStock.Value = 0;
             txtPrecioProducto.Clear();
             epValidarControles.Clear();
         }
@@ -250,7 +250,7 @@ namespace AlimentosDC.SIGEPAC.UI
             }
         }
         */
-
+        /*
         private void NudStock_TextChanged(object sender, EventArgs e)
         {
             if (string.IsNullOrEmpty(nudStock.Text))
@@ -259,5 +259,6 @@ namespace AlimentosDC.SIGEPAC.UI
             }
             HabilitarBotonGuardar();
         }
+        */
     }
 }

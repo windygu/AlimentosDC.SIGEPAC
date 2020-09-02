@@ -76,9 +76,9 @@
             // 
             this.btnIngresos.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnIngresos.BackColor = System.Drawing.Color.White;
-            this.btnIngresos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnIngresos.Image = ((System.Drawing.Image)(resources.GetObject("btnIngresos.Image")));
-            this.btnIngresos.Location = new System.Drawing.Point(20, 238);
+            this.btnIngresos.Font = new System.Drawing.Font("Segoe UI", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnIngresos.Image = global::AlimentosDC.SIGEPAC.UI.Properties.Resources.icons8_shopping_bag_30;
+            this.btnIngresos.Location = new System.Drawing.Point(20, 193);
             this.btnIngresos.Name = "btnIngresos";
             this.btnIngresos.Size = new System.Drawing.Size(140, 45);
             this.btnIngresos.TabIndex = 7;
@@ -92,9 +92,9 @@
             // 
             this.btnHistorial.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnHistorial.BackColor = System.Drawing.Color.White;
-            this.btnHistorial.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnHistorial.Font = new System.Drawing.Font("Segoe UI", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnHistorial.Image = ((System.Drawing.Image)(resources.GetObject("btnHistorial.Image")));
-            this.btnHistorial.Location = new System.Drawing.Point(20, 289);
+            this.btnHistorial.Location = new System.Drawing.Point(20, 250);
             this.btnHistorial.Name = "btnHistorial";
             this.btnHistorial.Size = new System.Drawing.Size(140, 45);
             this.btnHistorial.TabIndex = 1;
@@ -108,9 +108,9 @@
             // 
             this.btnReportes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnReportes.BackColor = System.Drawing.Color.White;
-            this.btnReportes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnReportes.Font = new System.Drawing.Font("Segoe UI", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReportes.Image = ((System.Drawing.Image)(resources.GetObject("btnReportes.Image")));
-            this.btnReportes.Location = new System.Drawing.Point(20, 442);
+            this.btnReportes.Location = new System.Drawing.Point(20, 478);
             this.btnReportes.Name = "btnReportes";
             this.btnReportes.Size = new System.Drawing.Size(140, 45);
             this.btnReportes.TabIndex = 5;
@@ -125,9 +125,9 @@
             this.btnCerraSesion.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnCerraSesion.BackColor = System.Drawing.Color.White;
             this.btnCerraSesion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnCerraSesion.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerraSesion.Font = new System.Drawing.Font("Segoe UI", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnCerraSesion.Image = ((System.Drawing.Image)(resources.GetObject("btnCerraSesion.Image")));
-            this.btnCerraSesion.Location = new System.Drawing.Point(20, 493);
+            this.btnCerraSesion.Location = new System.Drawing.Point(20, 535);
             this.btnCerraSesion.Name = "btnCerraSesion";
             this.btnCerraSesion.Size = new System.Drawing.Size(140, 45);
             this.btnCerraSesion.TabIndex = 6;
@@ -152,7 +152,7 @@
             // 
             this.btnPedidos.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnPedidos.BackColor = System.Drawing.Color.White;
-            this.btnPedidos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnPedidos.Font = new System.Drawing.Font("Segoe UI", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnPedidos.Image = ((System.Drawing.Image)(resources.GetObject("btnPedidos.Image")));
             this.btnPedidos.Location = new System.Drawing.Point(20, 136);
             this.btnPedidos.Name = "btnPedidos";
@@ -168,9 +168,9 @@
             // 
             this.btnMarcas.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnMarcas.BackColor = System.Drawing.Color.White;
-            this.btnMarcas.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMarcas.Font = new System.Drawing.Font("Segoe UI", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnMarcas.Image = ((System.Drawing.Image)(resources.GetObject("btnMarcas.Image")));
-            this.btnMarcas.Location = new System.Drawing.Point(20, 391);
+            this.btnMarcas.Location = new System.Drawing.Point(20, 421);
             this.btnMarcas.Name = "btnMarcas";
             this.btnMarcas.Size = new System.Drawing.Size(140, 45);
             this.btnMarcas.TabIndex = 4;
@@ -184,13 +184,13 @@
             // 
             this.btnProductos.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnProductos.BackColor = System.Drawing.Color.White;
-            this.btnProductos.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnProductos.Font = new System.Drawing.Font("Segoe UI", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnProductos.Image = ((System.Drawing.Image)(resources.GetObject("btnProductos.Image")));
-            this.btnProductos.Location = new System.Drawing.Point(20, 187);
+            this.btnProductos.Location = new System.Drawing.Point(20, 307);
             this.btnProductos.Name = "btnProductos";
             this.btnProductos.Size = new System.Drawing.Size(140, 45);
             this.btnProductos.TabIndex = 2;
-            this.btnProductos.Text = " Productos";
+            this.btnProductos.Text = "Existencias";
             this.btnProductos.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnProductos.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnProductos.UseVisualStyleBackColor = true;
@@ -200,9 +200,9 @@
             // 
             this.btnClientes.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnClientes.BackColor = System.Drawing.Color.White;
-            this.btnClientes.Font = new System.Drawing.Font("Arial", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClientes.Font = new System.Drawing.Font("Segoe UI", 12.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnClientes.Image = ((System.Drawing.Image)(resources.GetObject("btnClientes.Image")));
-            this.btnClientes.Location = new System.Drawing.Point(20, 340);
+            this.btnClientes.Location = new System.Drawing.Point(20, 364);
             this.btnClientes.Name = "btnClientes";
             this.btnClientes.Size = new System.Drawing.Size(140, 45);
             this.btnClientes.TabIndex = 3;

@@ -30,18 +30,18 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmUsuarios));
             this.dgvListadoUsuarios = new System.Windows.Forms.DataGridView();
-            this.clmId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmApellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmNombreUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmClave = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmStatusAdmin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEliminarUsuario = new System.Windows.Forms.Button();
             this.btnEditarUsuario = new System.Windows.Forms.Button();
             this.btnNuevoUsuario = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
             this.txtBuscadorUsuarios = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
             this.btnSalir = new System.Windows.Forms.Button();
+            this.clmId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNombres = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmApellidos = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmNombreUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmClave = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmStatusAdmin = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoUsuarios)).BeginInit();
             this.SuspendLayout();
             // 
@@ -59,14 +59,80 @@
             this.clmNombreUsuario,
             this.clmClave,
             this.clmStatusAdmin});
-            this.dgvListadoUsuarios.Location = new System.Drawing.Point(23, 122);
+            this.dgvListadoUsuarios.Location = new System.Drawing.Point(26, 102);
             this.dgvListadoUsuarios.MultiSelect = false;
             this.dgvListadoUsuarios.Name = "dgvListadoUsuarios";
             this.dgvListadoUsuarios.ReadOnly = true;
             this.dgvListadoUsuarios.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListadoUsuarios.Size = new System.Drawing.Size(771, 270);
+            this.dgvListadoUsuarios.Size = new System.Drawing.Size(899, 365);
             this.dgvListadoUsuarios.TabIndex = 0;
             this.dgvListadoUsuarios.SelectionChanged += new System.EventHandler(this.dgvListadoUsuarios_SelectionChanged);
+            // 
+            // btnEliminarUsuario
+            // 
+            this.btnEliminarUsuario.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEliminarUsuario.Location = new System.Drawing.Point(655, 62);
+            this.btnEliminarUsuario.Name = "btnEliminarUsuario";
+            this.btnEliminarUsuario.Size = new System.Drawing.Size(100, 30);
+            this.btnEliminarUsuario.TabIndex = 3;
+            this.btnEliminarUsuario.Text = "Eliminar";
+            this.btnEliminarUsuario.UseVisualStyleBackColor = true;
+            this.btnEliminarUsuario.Click += new System.EventHandler(this.btnEliminarUsuario_Click);
+            // 
+            // btnEditarUsuario
+            // 
+            this.btnEditarUsuario.Enabled = false;
+            this.btnEditarUsuario.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEditarUsuario.Location = new System.Drawing.Point(537, 62);
+            this.btnEditarUsuario.Name = "btnEditarUsuario";
+            this.btnEditarUsuario.Size = new System.Drawing.Size(100, 30);
+            this.btnEditarUsuario.TabIndex = 2;
+            this.btnEditarUsuario.Text = "Editar";
+            this.btnEditarUsuario.UseVisualStyleBackColor = true;
+            this.btnEditarUsuario.Click += new System.EventHandler(this.btnEditarUsuario_Click);
+            // 
+            // btnNuevoUsuario
+            // 
+            this.btnNuevoUsuario.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNuevoUsuario.Location = new System.Drawing.Point(419, 62);
+            this.btnNuevoUsuario.Name = "btnNuevoUsuario";
+            this.btnNuevoUsuario.Size = new System.Drawing.Size(100, 30);
+            this.btnNuevoUsuario.TabIndex = 1;
+            this.btnNuevoUsuario.Text = "Nuevo";
+            this.btnNuevoUsuario.UseVisualStyleBackColor = true;
+            this.btnNuevoUsuario.Click += new System.EventHandler(this.btnNuevoUsuario_Click);
+            // 
+            // btnCerrar
+            // 
+            this.btnCerrar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnCerrar.Location = new System.Drawing.Point(823, 484);
+            this.btnCerrar.Name = "btnCerrar";
+            this.btnCerrar.Size = new System.Drawing.Size(100, 30);
+            this.btnCerrar.TabIndex = 4;
+            this.btnCerrar.Text = "Cerrar";
+            this.btnCerrar.UseVisualStyleBackColor = true;
+            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
+            // 
+            // txtBuscadorUsuarios
+            // 
+            this.txtBuscadorUsuarios.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscadorUsuarios.Location = new System.Drawing.Point(26, 63);
+            this.txtBuscadorUsuarios.Name = "txtBuscadorUsuarios";
+            this.txtBuscadorUsuarios.Size = new System.Drawing.Size(375, 27);
+            this.txtBuscadorUsuarios.TabIndex = 0;
+            this.txtBuscadorUsuarios.TextoMarcaAgua = "Buscar por nombre o nombre de usuario";
+            this.txtBuscadorUsuarios.TextChanged += new System.EventHandler(this.txtBuscadorUsuarios_TextChanged);
+            // 
+            // btnSalir
+            // 
+            this.btnSalir.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSalir.Location = new System.Drawing.Point(705, 484);
+            this.btnSalir.Name = "btnSalir";
+            this.btnSalir.Size = new System.Drawing.Size(100, 30);
+            this.btnSalir.TabIndex = 7;
+            this.btnSalir.Text = "Salir";
+            this.btnSalir.UseVisualStyleBackColor = true;
+            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
             // 
             // clmId
             // 
@@ -82,7 +148,7 @@
             this.clmNombres.HeaderText = "NOMBRES";
             this.clmNombres.Name = "clmNombres";
             this.clmNombres.ReadOnly = true;
-            this.clmNombres.Width = 160;
+            this.clmNombres.Width = 200;
             // 
             // clmApellidos
             // 
@@ -90,7 +156,7 @@
             this.clmApellidos.HeaderText = "APELLIDOS";
             this.clmApellidos.Name = "clmApellidos";
             this.clmApellidos.ReadOnly = true;
-            this.clmApellidos.Width = 160;
+            this.clmApellidos.Width = 200;
             // 
             // clmNombreUsuario
             // 
@@ -98,7 +164,7 @@
             this.clmNombreUsuario.HeaderText = "NOMBRE USUARIO";
             this.clmNombreUsuario.Name = "clmNombreUsuario";
             this.clmNombreUsuario.ReadOnly = true;
-            this.clmNombreUsuario.Width = 140;
+            this.clmNombreUsuario.Width = 150;
             // 
             // clmClave
             // 
@@ -106,7 +172,7 @@
             this.clmClave.HeaderText = "CLAVE";
             this.clmClave.Name = "clmClave";
             this.clmClave.ReadOnly = true;
-            this.clmClave.Width = 120;
+            this.clmClave.Width = 140;
             // 
             // clmStatusAdmin
             // 
@@ -115,77 +181,11 @@
             this.clmStatusAdmin.Name = "clmStatusAdmin";
             this.clmStatusAdmin.ReadOnly = true;
             // 
-            // btnEliminarUsuario
-            // 
-            this.btnEliminarUsuario.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarUsuario.Location = new System.Drawing.Point(655, 69);
-            this.btnEliminarUsuario.Name = "btnEliminarUsuario";
-            this.btnEliminarUsuario.Size = new System.Drawing.Size(100, 30);
-            this.btnEliminarUsuario.TabIndex = 3;
-            this.btnEliminarUsuario.Text = "Eliminar";
-            this.btnEliminarUsuario.UseVisualStyleBackColor = true;
-            this.btnEliminarUsuario.Click += new System.EventHandler(this.btnEliminarUsuario_Click);
-            // 
-            // btnEditarUsuario
-            // 
-            this.btnEditarUsuario.Enabled = false;
-            this.btnEditarUsuario.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarUsuario.Location = new System.Drawing.Point(516, 69);
-            this.btnEditarUsuario.Name = "btnEditarUsuario";
-            this.btnEditarUsuario.Size = new System.Drawing.Size(100, 30);
-            this.btnEditarUsuario.TabIndex = 2;
-            this.btnEditarUsuario.Text = "Editar";
-            this.btnEditarUsuario.UseVisualStyleBackColor = true;
-            this.btnEditarUsuario.Click += new System.EventHandler(this.btnEditarUsuario_Click);
-            // 
-            // btnNuevoUsuario
-            // 
-            this.btnNuevoUsuario.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoUsuario.Location = new System.Drawing.Point(380, 70);
-            this.btnNuevoUsuario.Name = "btnNuevoUsuario";
-            this.btnNuevoUsuario.Size = new System.Drawing.Size(100, 30);
-            this.btnNuevoUsuario.TabIndex = 1;
-            this.btnNuevoUsuario.Text = "Nuevo";
-            this.btnNuevoUsuario.UseVisualStyleBackColor = true;
-            this.btnNuevoUsuario.Click += new System.EventHandler(this.btnNuevoUsuario_Click);
-            // 
-            // btnCerrar
-            // 
-            this.btnCerrar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrar.Location = new System.Drawing.Point(695, 410);
-            this.btnCerrar.Name = "btnCerrar";
-            this.btnCerrar.Size = new System.Drawing.Size(100, 30);
-            this.btnCerrar.TabIndex = 4;
-            this.btnCerrar.Text = "Cerrar";
-            this.btnCerrar.UseVisualStyleBackColor = true;
-            this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
-            // 
-            // txtBuscadorUsuarios
-            // 
-            this.txtBuscadorUsuarios.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscadorUsuarios.Location = new System.Drawing.Point(23, 72);
-            this.txtBuscadorUsuarios.Name = "txtBuscadorUsuarios";
-            this.txtBuscadorUsuarios.Size = new System.Drawing.Size(322, 27);
-            this.txtBuscadorUsuarios.TabIndex = 0;
-            this.txtBuscadorUsuarios.TextoMarcaAgua = "Buscar por nombre o nombre de usuario";
-            this.txtBuscadorUsuarios.TextChanged += new System.EventHandler(this.txtBuscadorUsuarios_TextChanged);
-            // 
-            // btnSalir
-            // 
-            this.btnSalir.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(563, 410);
-            this.btnSalir.Name = "btnSalir";
-            this.btnSalir.Size = new System.Drawing.Size(100, 30);
-            this.btnSalir.TabIndex = 7;
-            this.btnSalir.Text = "Salir";
-            this.btnSalir.UseVisualStyleBackColor = true;
-            this.btnSalir.Click += new System.EventHandler(this.btnSalir_Click);
-            // 
             // FrmUsuarios
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(818, 458);
+            this.ClientSize = new System.Drawing.Size(949, 528);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnCerrar);
             this.Controls.Add(this.txtBuscadorUsuarios);
@@ -193,11 +193,14 @@
             this.Controls.Add(this.btnEditarUsuario);
             this.Controls.Add(this.btnNuevoUsuario);
             this.Controls.Add(this.dgvListadoUsuarios);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "FrmUsuarios";
+            this.Padding = new System.Windows.Forms.Padding(23, 69, 23, 23);
             this.Resizable = false;
-            this.Text = "Administrar Usuarios";
+            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Text = "Mantenimiento Usuarios";
             this.Load += new System.EventHandler(this.FrmAdministrarUsuarios_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoUsuarios)).EndInit();
             this.ResumeLayout(false);
@@ -213,12 +216,12 @@
         private System.Windows.Forms.Button btnEditarUsuario;
         private System.Windows.Forms.Button btnNuevoUsuario;
         private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Button btnSalir;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmId;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNombres;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmApellidos;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmNombreUsuario;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmClave;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmStatusAdmin;
-        private System.Windows.Forms.Button btnSalir;
     }
 }

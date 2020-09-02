@@ -28,11 +28,16 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmProductos));
             this.btnEliminarProducto = new System.Windows.Forms.Button();
             this.btnEditarProducto = new System.Windows.Forms.Button();
             this.btnNuevoProducto = new System.Windows.Forms.Button();
             this.dgvListadoProductos = new System.Windows.Forms.DataGridView();
+            this.btnCerrar = new System.Windows.Forms.Button();
+            this.btnSeleccionar = new System.Windows.Forms.Button();
+            this.btnSalir = new System.Windows.Forms.Button();
+            this.cboMostrando = new System.Windows.Forms.ComboBox();
             this.dgvId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvNombre = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvDescripcion = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -40,10 +45,6 @@
             this.dgvPrecio = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dgvStock = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.txtBuscarProductos = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
-            this.btnCerrar = new System.Windows.Forms.Button();
-            this.btnSeleccionar = new System.Windows.Forms.Button();
-            this.btnSalir = new System.Windows.Forms.Button();
-            this.cboMostrando = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoProductos)).BeginInit();
             this.SuspendLayout();
             // 
@@ -51,7 +52,8 @@
             // 
             this.btnEliminarProducto.Enabled = false;
             this.btnEliminarProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEliminarProducto.Location = new System.Drawing.Point(774, 61);
+            this.btnEliminarProducto.Location = new System.Drawing.Point(750, 56);
+            this.btnEliminarProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEliminarProducto.Name = "btnEliminarProducto";
             this.btnEliminarProducto.Size = new System.Drawing.Size(100, 30);
             this.btnEliminarProducto.TabIndex = 3;
@@ -63,7 +65,8 @@
             // 
             this.btnEditarProducto.Enabled = false;
             this.btnEditarProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEditarProducto.Location = new System.Drawing.Point(662, 61);
+            this.btnEditarProducto.Location = new System.Drawing.Point(644, 57);
+            this.btnEditarProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnEditarProducto.Name = "btnEditarProducto";
             this.btnEditarProducto.Size = new System.Drawing.Size(100, 30);
             this.btnEditarProducto.TabIndex = 2;
@@ -74,7 +77,8 @@
             // btnNuevoProducto
             // 
             this.btnNuevoProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNuevoProducto.Location = new System.Drawing.Point(549, 61);
+            this.btnNuevoProducto.Location = new System.Drawing.Point(538, 57);
+            this.btnNuevoProducto.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnNuevoProducto.Name = "btnNuevoProducto";
             this.btnNuevoProducto.Size = new System.Drawing.Size(100, 30);
             this.btnNuevoProducto.TabIndex = 1;
@@ -94,69 +98,20 @@
             this.dgvMarca,
             this.dgvPrecio,
             this.dgvStock});
-            this.dgvListadoProductos.Location = new System.Drawing.Point(23, 111);
+            this.dgvListadoProductos.Location = new System.Drawing.Point(26, 94);
+            this.dgvListadoProductos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.dgvListadoProductos.Name = "dgvListadoProductos";
             this.dgvListadoProductos.ReadOnly = true;
             this.dgvListadoProductos.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvListadoProductos.Size = new System.Drawing.Size(862, 340);
+            this.dgvListadoProductos.Size = new System.Drawing.Size(938, 377);
             this.dgvListadoProductos.TabIndex = 7;
             this.dgvListadoProductos.SelectionChanged += new System.EventHandler(this.dgvListadoProductos_SelectionChanged);
-            // 
-            // dgvId
-            // 
-            this.dgvId.HeaderText = "ID";
-            this.dgvId.Name = "dgvId";
-            this.dgvId.ReadOnly = true;
-            this.dgvId.Width = 50;
-            // 
-            // dgvNombre
-            // 
-            this.dgvNombre.HeaderText = "Nombre";
-            this.dgvNombre.Name = "dgvNombre";
-            this.dgvNombre.ReadOnly = true;
-            this.dgvNombre.Width = 174;
-            // 
-            // dgvDescripcion
-            // 
-            this.dgvDescripcion.HeaderText = "Descripción";
-            this.dgvDescripcion.Name = "dgvDescripcion";
-            this.dgvDescripcion.ReadOnly = true;
-            this.dgvDescripcion.Width = 240;
-            // 
-            // dgvMarca
-            // 
-            this.dgvMarca.HeaderText = "Marca";
-            this.dgvMarca.Name = "dgvMarca";
-            this.dgvMarca.ReadOnly = true;
-            this.dgvMarca.Width = 140;
-            // 
-            // dgvPrecio
-            // 
-            this.dgvPrecio.HeaderText = "Precio";
-            this.dgvPrecio.Name = "dgvPrecio";
-            this.dgvPrecio.ReadOnly = true;
-            this.dgvPrecio.Width = 115;
-            // 
-            // dgvStock
-            // 
-            this.dgvStock.HeaderText = "Stock";
-            this.dgvStock.Name = "dgvStock";
-            this.dgvStock.ReadOnly = true;
-            // 
-            // txtBuscarProductos
-            // 
-            this.txtBuscarProductos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBuscarProductos.Location = new System.Drawing.Point(23, 61);
-            this.txtBuscarProductos.Name = "txtBuscarProductos";
-            this.txtBuscarProductos.Size = new System.Drawing.Size(290, 27);
-            this.txtBuscarProductos.TabIndex = 0;
-            this.txtBuscarProductos.TextoMarcaAgua = "Buscar por nombre o descripción";
-            this.txtBuscarProductos.TextChanged += new System.EventHandler(this.txtBuscarProductos_TextChanged);
             // 
             // btnCerrar
             // 
             this.btnCerrar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCerrar.Location = new System.Drawing.Point(785, 469);
+            this.btnCerrar.Location = new System.Drawing.Point(864, 485);
+            this.btnCerrar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnCerrar.Name = "btnCerrar";
             this.btnCerrar.Size = new System.Drawing.Size(100, 30);
             this.btnCerrar.TabIndex = 5;
@@ -167,7 +122,8 @@
             // btnSeleccionar
             // 
             this.btnSeleccionar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSeleccionar.Location = new System.Drawing.Point(667, 469);
+            this.btnSeleccionar.Location = new System.Drawing.Point(746, 485);
+            this.btnSeleccionar.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSeleccionar.Name = "btnSeleccionar";
             this.btnSeleccionar.Size = new System.Drawing.Size(100, 30);
             this.btnSeleccionar.TabIndex = 4;
@@ -179,7 +135,8 @@
             // btnSalir
             // 
             this.btnSalir.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSalir.Location = new System.Drawing.Point(667, 469);
+            this.btnSalir.Location = new System.Drawing.Point(746, 485);
+            this.btnSalir.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnSalir.Name = "btnSalir";
             this.btnSalir.Size = new System.Drawing.Size(100, 30);
             this.btnSalir.TabIndex = 8;
@@ -193,18 +150,74 @@
             this.cboMostrando.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMostrando.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboMostrando.FormattingEnabled = true;
-            this.cboMostrando.Location = new System.Drawing.Point(326, 61);
+            this.cboMostrando.Location = new System.Drawing.Point(322, 58);
+            this.cboMostrando.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.cboMostrando.Name = "cboMostrando";
             this.cboMostrando.Size = new System.Drawing.Size(210, 28);
             this.cboMostrando.TabIndex = 9;
             this.cboMostrando.ValueMember = "Nombre";
             this.cboMostrando.SelectionChangeCommitted += new System.EventHandler(this.cboMostrando_SelectionChangeCommitted);
             // 
+            // dgvId
+            // 
+            this.dgvId.HeaderText = "ID";
+            this.dgvId.Name = "dgvId";
+            this.dgvId.ReadOnly = true;
+            this.dgvId.Width = 50;
+            // 
+            // dgvNombre
+            // 
+            this.dgvNombre.HeaderText = "NOMBRE";
+            this.dgvNombre.Name = "dgvNombre";
+            this.dgvNombre.ReadOnly = true;
+            this.dgvNombre.Width = 170;
+            // 
+            // dgvDescripcion
+            // 
+            this.dgvDescripcion.HeaderText = "DESCRIPCIÓN";
+            this.dgvDescripcion.Name = "dgvDescripcion";
+            this.dgvDescripcion.ReadOnly = true;
+            this.dgvDescripcion.Width = 250;
+            // 
+            // dgvMarca
+            // 
+            this.dgvMarca.HeaderText = "MARCA";
+            this.dgvMarca.Name = "dgvMarca";
+            this.dgvMarca.ReadOnly = true;
+            this.dgvMarca.Width = 180;
+            // 
+            // dgvPrecio
+            // 
+            this.dgvPrecio.HeaderText = "PRECIO";
+            this.dgvPrecio.Name = "dgvPrecio";
+            this.dgvPrecio.ReadOnly = true;
+            this.dgvPrecio.Width = 115;
+            // 
+            // dgvStock
+            // 
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dgvStock.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvStock.HeaderText = "STOCK";
+            this.dgvStock.Name = "dgvStock";
+            this.dgvStock.ReadOnly = true;
+            this.dgvStock.Width = 110;
+            // 
+            // txtBuscarProductos
+            // 
+            this.txtBuscarProductos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBuscarProductos.Location = new System.Drawing.Point(26, 59);
+            this.txtBuscarProductos.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.txtBuscarProductos.Name = "txtBuscarProductos";
+            this.txtBuscarProductos.Size = new System.Drawing.Size(290, 27);
+            this.txtBuscarProductos.TabIndex = 0;
+            this.txtBuscarProductos.TextoMarcaAgua = "Buscar por nombre o descripción";
+            this.txtBuscarProductos.TextChanged += new System.EventHandler(this.txtBuscarProductos_TextChanged);
+            // 
             // FrmProductos
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(908, 517);
+            this.ClientSize = new System.Drawing.Size(990, 530);
             this.Controls.Add(this.cboMostrando);
             this.Controls.Add(this.btnSalir);
             this.Controls.Add(this.btnSeleccionar);
@@ -214,9 +227,12 @@
             this.Controls.Add(this.btnEditarProducto);
             this.Controls.Add(this.btnNuevoProducto);
             this.Controls.Add(this.dgvListadoProductos);
+            this.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.MaximizeBox = false;
             this.Name = "FrmProductos";
+            this.Padding = new System.Windows.Forms.Padding(23, 69, 23, 23);
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "PRODUCTOS";
@@ -233,15 +249,15 @@
         private System.Windows.Forms.Button btnNuevoProducto;
         private System.Windows.Forms.DataGridView dgvListadoProductos;
         private TextBoxWaterMark txtBuscarProductos;
+        private System.Windows.Forms.Button btnCerrar;
+        private System.Windows.Forms.Button btnSeleccionar;
+        private System.Windows.Forms.Button btnSalir;
+        private System.Windows.Forms.ComboBox cboMostrando;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvNombre;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvDescripcion;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvMarca;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvPrecio;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvStock;
-        private System.Windows.Forms.Button btnCerrar;
-        private System.Windows.Forms.Button btnSeleccionar;
-        private System.Windows.Forms.Button btnSalir;
-        private System.Windows.Forms.ComboBox cboMostrando;
     }
 }

@@ -34,7 +34,7 @@ namespace AlimentosDC.SIGEPAC.DAL
             comando.Parameters.AddWithValue("@IdMarca", pIngreso.IdMarca);
             comando.Parameters.AddWithValue("@FechaIngreso", pIngreso.FechaIngreso);
             comando.Parameters.AddWithValue("@NumeroCCF", pIngreso.NumeroCCF);
-            comando.Parameters.AddWithValue("@Sumas", pIngreso.Sumas);
+            comando.Parameters.AddWithValue("@Sumas", (pIngreso.Sumas>0)?pIngreso.Sumas:SqlDouble.Null);
             comando.Parameters.AddWithValue("@Id", pIngreso.Id);
             return ComunDB.EjecutarComando(comando);
         }
@@ -72,9 +72,9 @@ namespace AlimentosDC.SIGEPAC.DAL
                 ingreso.Marca = reader.GetString(4);
                 ingreso.FechaIngreso = reader.GetDateTime(5);
                 ingreso.NumeroCCF = reader.GetString(6);
-                ingreso.Sumas = (double)reader.GetDecimal(7);
-                ingreso.Iva = (double)reader.GetDecimal(8);
-                ingreso.Total = (double)reader.GetDecimal(9);
+                ingreso.Sumas = (reader[7] != DBNull.Value) ? (double)reader.GetDecimal(7) : 0;
+                ingreso.Iva = (reader[8] != DBNull.Value) ? (double)reader.GetDecimal(8) : 0;
+                ingreso.Total = (reader[9] != DBNull.Value) ? (double)reader.GetDecimal(9) : 0;
                 listaIngresos.Add(ingreso);
             }
             return listaIngresos;
@@ -99,9 +99,9 @@ namespace AlimentosDC.SIGEPAC.DAL
                 ingreso.Marca = reader.GetString(4);
                 ingreso.FechaIngreso = reader.GetDateTime(5);
                 ingreso.NumeroCCF = reader.GetString(6);
-                ingreso.Sumas = (double)reader.GetDecimal(7);
-                ingreso.Iva = (double)reader.GetDecimal(8);
-                ingreso.Total = (double)reader.GetDecimal(9);
+                ingreso.Sumas = (reader[7] != DBNull.Value) ? (double)reader.GetDecimal(7) : 0;
+                ingreso.Iva = (reader[8] != DBNull.Value) ? (double)reader.GetDecimal(8) : 0;
+                ingreso.Total = (reader[9] != DBNull.Value) ? (double)reader.GetDecimal(9) : 0;
             }
             return ingreso;
         }

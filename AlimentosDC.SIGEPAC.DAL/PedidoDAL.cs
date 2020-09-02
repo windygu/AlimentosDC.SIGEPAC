@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using AlimentosDC.SIGEPAC.EN;
 using System.Data.SqlClient;
 using System.Data;
+using System.Data.SqlTypes;
 
 namespace AlimentosDC.SIGEPAC.DAL
 {
@@ -44,9 +45,9 @@ namespace AlimentosDC.SIGEPAC.DAL
             comando.Parameters.AddWithValue("@FechaEntrega", pPedido.FechaEntrega);
             comando.Parameters.AddWithValue("@DireccionEntrega", pPedido.DireccionEntrega);
             comando.Parameters.AddWithValue("@Estado", pPedido.Estado);
-            comando.Parameters.AddWithValue("@Sumas", pPedido.Sumas);
-            comando.Parameters.AddWithValue("@Iva", pPedido.Iva);
-            comando.Parameters.AddWithValue("@Total", pPedido.Total);
+            comando.Parameters.AddWithValue("@Sumas", (pPedido.Sumas>0)?pPedido.Sumas:SqlDouble.Null);
+            comando.Parameters.AddWithValue("@Iva", (pPedido.Iva>0)?pPedido.Iva:SqlDouble.Null);
+            comando.Parameters.AddWithValue("@Total", (pPedido.Total>0)?pPedido.Total:SqlDouble.Null);
             return ComunDB.EjecutarComando(comando);
         }
 
@@ -62,15 +63,15 @@ namespace AlimentosDC.SIGEPAC.DAL
         public static List<Pedido> ObtenerTodos(string pCondicion = "%", string pEstado = "%", int? idCliente = null)
         {
             string consulta = string.Concat("SELECT TOP(500) p.Id, CONCAT(c.PrimerNombre, ' ', c.SegundoNombre, ' ', c.PrimerApellido, ' ', ",
-            "c.SegundoApellido) Cliente, CONCAT(u.Nombres, u.Apellidos) Usuario, c.Dui, p.NumeroPedido, p.FechaCreacion, p.FechaEntrega, ",
-            "p.DireccionEntrega, p.Estado, p.NumeroCCF FROM pedido p JOIN Cliente c ON p.IdCliente = c.Id JOIN Usuario u ",
+            "c.SegundoApellido) Cliente, CONCAT(u.Nombres, ' ', u.Apellidos) Usuario, c.Dui, p.NumeroPedido, p.FechaCreacion, p.FechaEntrega, ",
+            "p.DireccionEntrega, p.Estado, p.NumeroCCF, p.Sumas, p.Iva, p.Total FROM pedido p JOIN Cliente c ON p.IdCliente = c.Id JOIN Usuario u ",
             "on p.IdUsuario = u.Id WHERE(p.NumeroPedido LIKE CONCAT(@pCondicion, '%') OR CONCAT(c.PrimerNombre, ' ', c.SegundoNombre, ' ', ",
             "c.PrimerApellido, ' ', c.SegundoApellido) LIKE CONCAT('%', @pCondicion, '%')) AND p.Estado LIKE @pEstado");
             if (idCliente!= null)
             {
                 consulta = string.Concat("SELECT TOP(500) p.Id, CONCAT(c.PrimerNombre, ' ', c.SegundoNombre, ' ', c.PrimerApellido, ' ', ",
             "c.SegundoApellido) Cliente, CONCAT(u.Nombres, u.Apellidos) Usuario, c.Dui, p.NumeroPedido, p.FechaCreacion, p.FechaEntrega, ",
-            "p.DireccionEntrega, p.Estado, p.NumeroCCF FROM pedido p JOIN Cliente c ON p.IdCliente = c.Id JOIN Usuario u ",
+            "p.DireccionEntrega, p.Estado, p.NumeroCCF, p.Sumas, p.Iva, p.Total FROM pedido p JOIN Cliente c ON p.IdCliente = c.Id JOIN Usuario u ",
             "on p.IdUsuario = u.Id WHERE p.IdCliente = @idCliente");
             }    
             SqlCommand comando = ComunDB.ObtenerComando();
@@ -96,6 +97,9 @@ namespace AlimentosDC.SIGEPAC.DAL
                 pedido.DireccionEntrega = reader.GetString(7);
                 pedido.Estado = reader.GetString(8);
                 pedido.NumeroCCF = reader.GetString(9);
+                pedido.Sumas = (reader[10] != DBNull.Value) ? (double)reader.GetDecimal(10) : 0;
+                pedido.Iva = (reader[11] != DBNull.Value) ? (double)reader.GetDecimal(11) : 0;
+                pedido.Total = (reader[12] != DBNull.Value) ? (double)reader.GetDecimal(12) : 0;
                 listaPedidos.Add(pedido);
             }
             return listaPedidos;
@@ -123,7 +127,7 @@ namespace AlimentosDC.SIGEPAC.DAL
         {
             string consulta = string.Concat("SELECT TOP(500) p.Id, c.Id, CONCAT(c.PrimerNombre, ' ', c.SegundoNombre, ' ', c.PrimerApellido, ' ', ",
             "c.SegundoApellido) Cliente, u.Id, CONCAT(u.Nombres, u.Apellidos) Usuario, c.Dui, p.NumeroPedido, p.FechaCreacion, p.FechaEntrega, ",
-            "p.DireccionEntrega, p.Estado, p.NumeroCCF FROM pedido p JOIN Cliente c ON p.IdCliente = c.Id JOIN Usuario u ",
+            "p.DireccionEntrega, p.Estado, p.NumeroCCF, p.Sumas, p.Iva, p.Total FROM pedido p JOIN Cliente c ON p.IdCliente = c.Id JOIN Usuario u ",
             "on p.IdUsuario = u.Id WHERE p.Id = @Id");
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
@@ -144,6 +148,9 @@ namespace AlimentosDC.SIGEPAC.DAL
                 pedido.DireccionEntrega = reader.GetString(9);
                 pedido.Estado = reader.GetString(10);
                 pedido.NumeroCCF = reader.GetString(11);
+                pedido.Sumas = (reader[12] != DBNull.Value) ? (double)reader.GetDecimal(12) : 0;
+                pedido.Iva = (reader[13] != DBNull.Value) ? (double)reader.GetDecimal(13) : 0;
+                pedido.Total = (reader[14] != DBNull.Value) ? (double)reader.GetDecimal(14) : 0;
             }
             return pedido;
         }
@@ -152,7 +159,7 @@ namespace AlimentosDC.SIGEPAC.DAL
         {
             string consulta = string.Concat("SELECT TOP(500) p.Id, c.Id, CONCAT(c.PrimerNombre, ' ', c.SegundoNombre, ' ', c.PrimerApellido, ' ', ",
             "c.SegundoApellido) Cliente, u.Id, CONCAT(u.Nombres, u.Apellidos) Usuario, c.Dui, p.NumeroPedido, p.FechaCreacion, p.FechaEntrega, ",
-            "p.DireccionEntrega, p.Estado, p.NumeroCCF FROM pedido p JOIN Cliente c ON p.IdCliente = c.Id JOIN Usuario u ",
+            "p.DireccionEntrega, p.Estado, p.NumeroCCF, p.Sumas, p.Iva, p.Total FROM pedido p JOIN Cliente c ON p.IdCliente = c.Id JOIN Usuario u ",
             "on p.IdUsuario = u.Id where p.NumeroPedido = @NumeroPedido");
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
@@ -173,6 +180,9 @@ namespace AlimentosDC.SIGEPAC.DAL
                 pedido.DireccionEntrega = reader.GetString(9);
                 pedido.Estado = reader.GetString(10);
                 pedido.NumeroCCF = reader.GetString(11);
+                pedido.Sumas = (reader[12] != DBNull.Value) ? (double)reader.GetDecimal(12) : 0;
+                pedido.Iva = (reader[13] != DBNull.Value) ? (double)reader.GetDecimal(13) : 0;
+                pedido.Total = (reader[14] != DBNull.Value) ? (double)reader.GetDecimal(14) : 0;
             }
             return pedido;
         }

@@ -285,8 +285,8 @@ namespace AlimentosDC.SIGEPAC.UI
         void GuardarPedido()
         {
             Cursor = Cursors.WaitCursor;
-            try
-            {
+        //    try
+          //  {
                 if (dgvListadoDetallesPedido.Rows.Count < 1)
                 {
                     epValidadorControles.SetError(dgvListadoDetallesPedido, "Debe agregar al menos un detalle.");
@@ -375,12 +375,12 @@ namespace AlimentosDC.SIGEPAC.UI
                         }
                     }
                 }
-           }
+       /*    }
             catch (Exception error)
             {
-                MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\nMÁS INFORMACIÓN: {error.Message}", "Error", MessageBoxButtons.OK,
-                    MessageBoxIcon.Error);
-            }
+                 MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\nMÁS INFORMACIÓN: {error.Message}", "Error", MessageBoxButtons.OK,
+                   MessageBoxIcon.Error);
+            }*/
             Cursor = Cursors.Arrow;
         }
 

@@ -48,10 +48,15 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.lblSubTotal = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.label9 = new System.Windows.Forms.Label();
+            this.lblStock = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.label10 = new System.Windows.Forms.Label();
+            this.lblPrecioUnitario = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.label7 = new System.Windows.Forms.Label();
+            this.lblDescripcion = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.label6 = new System.Windows.Forms.Label();
+            this.lblNombreProducto = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.nudCantidad = new System.Windows.Forms.NumericUpDown();
             this.btnAgregarDetalle = new System.Windows.Forms.Button();
             this.btnElegirProducto = new System.Windows.Forms.Button();
@@ -62,15 +67,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnElegirMarca = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.lblUsuario = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
-            this.lblSubTotal = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
-            this.lblStock = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
-            this.lblPrecioUnitario = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
-            this.lblDescripcion = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
-            this.lblNombreProducto = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
-            this.txtNumeroCCF = new AlimentosDC.SIGEPAC.UI.TextBoxBorderInferior();
             this.lblComentarioMarca = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
             this.lblNombreMarca = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
+            this.lblUsuario = new AlimentosDC.SIGEPAC.UI.LableBordeInferior();
+            this.txtNumeroCCF = new AlimentosDC.SIGEPAC.UI.TextBoxBorderInferior();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoDetallesIngreso)).BeginInit();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.nudCantidad)).BeginInit();
@@ -273,6 +273,14 @@
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Detalle Compra";
             // 
+            // lblSubTotal
+            // 
+            this.lblSubTotal.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSubTotal.Location = new System.Drawing.Point(435, 126);
+            this.lblSubTotal.Name = "lblSubTotal";
+            this.lblSubTotal.Size = new System.Drawing.Size(176, 19);
+            this.lblSubTotal.TabIndex = 55;
+            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -281,6 +289,14 @@
             this.label9.Size = new System.Drawing.Size(70, 19);
             this.label9.TabIndex = 54;
             this.label9.Text = "Sub-Total:";
+            // 
+            // lblStock
+            // 
+            this.lblStock.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblStock.Location = new System.Drawing.Point(561, 34);
+            this.lblStock.Name = "lblStock";
+            this.lblStock.Size = new System.Drawing.Size(205, 19);
+            this.lblStock.TabIndex = 53;
             // 
             // label10
             // 
@@ -291,6 +307,14 @@
             this.label10.TabIndex = 52;
             this.label10.Text = "Stock:";
             // 
+            // lblPrecioUnitario
+            // 
+            this.lblPrecioUnitario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblPrecioUnitario.Location = new System.Drawing.Point(116, 75);
+            this.lblPrecioUnitario.Name = "lblPrecioUnitario";
+            this.lblPrecioUnitario.Size = new System.Drawing.Size(205, 19);
+            this.lblPrecioUnitario.TabIndex = 51;
+            // 
             // label7
             // 
             this.label7.AutoSize = true;
@@ -300,6 +324,14 @@
             this.label7.TabIndex = 50;
             this.label7.Text = "Precio unitario:";
             // 
+            // lblDescripcion
+            // 
+            this.lblDescripcion.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDescripcion.Location = new System.Drawing.Point(447, 74);
+            this.lblDescripcion.Name = "lblDescripcion";
+            this.lblDescripcion.Size = new System.Drawing.Size(319, 20);
+            this.lblDescripcion.TabIndex = 49;
+            // 
             // label6
             // 
             this.label6.AutoSize = true;
@@ -308,6 +340,14 @@
             this.label6.Size = new System.Drawing.Size(82, 19);
             this.label6.TabIndex = 48;
             this.label6.Text = "Descripción:";
+            // 
+            // lblNombreProducto
+            // 
+            this.lblNombreProducto.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombreProducto.Location = new System.Drawing.Point(230, 34);
+            this.lblNombreProducto.Name = "lblNombreProducto";
+            this.lblNombreProducto.Size = new System.Drawing.Size(245, 19);
+            this.lblNombreProducto.TabIndex = 7;
             // 
             // nudCantidad
             // 
@@ -372,7 +412,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(176, 30);
+            this.label2.Location = new System.Drawing.Point(159, 30);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(62, 19);
             this.label2.TabIndex = 1;
@@ -381,7 +421,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(423, 30);
+            this.label1.Location = new System.Drawing.Point(389, 32);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(84, 19);
             this.label1.TabIndex = 0;
@@ -413,6 +453,22 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Marca";
             // 
+            // lblComentarioMarca
+            // 
+            this.lblComentarioMarca.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblComentarioMarca.Location = new System.Drawing.Point(476, 28);
+            this.lblComentarioMarca.Name = "lblComentarioMarca";
+            this.lblComentarioMarca.Size = new System.Drawing.Size(288, 20);
+            this.lblComentarioMarca.TabIndex = 6;
+            // 
+            // lblNombreMarca
+            // 
+            this.lblNombreMarca.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblNombreMarca.Location = new System.Drawing.Point(221, 27);
+            this.lblNombreMarca.Name = "lblNombreMarca";
+            this.lblNombreMarca.Size = new System.Drawing.Size(150, 20);
+            this.lblNombreMarca.TabIndex = 5;
+            // 
             // lblUsuario
             // 
             this.lblUsuario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -420,46 +476,6 @@
             this.lblUsuario.Name = "lblUsuario";
             this.lblUsuario.Size = new System.Drawing.Size(276, 19);
             this.lblUsuario.TabIndex = 76;
-            // 
-            // lblSubTotal
-            // 
-            this.lblSubTotal.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblSubTotal.Location = new System.Drawing.Point(435, 126);
-            this.lblSubTotal.Name = "lblSubTotal";
-            this.lblSubTotal.Size = new System.Drawing.Size(176, 19);
-            this.lblSubTotal.TabIndex = 55;
-            // 
-            // lblStock
-            // 
-            this.lblStock.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblStock.Location = new System.Drawing.Point(561, 34);
-            this.lblStock.Name = "lblStock";
-            this.lblStock.Size = new System.Drawing.Size(205, 19);
-            this.lblStock.TabIndex = 53;
-            // 
-            // lblPrecioUnitario
-            // 
-            this.lblPrecioUnitario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPrecioUnitario.Location = new System.Drawing.Point(116, 75);
-            this.lblPrecioUnitario.Name = "lblPrecioUnitario";
-            this.lblPrecioUnitario.Size = new System.Drawing.Size(205, 19);
-            this.lblPrecioUnitario.TabIndex = 51;
-            // 
-            // lblDescripcion
-            // 
-            this.lblDescripcion.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDescripcion.Location = new System.Drawing.Point(447, 74);
-            this.lblDescripcion.Name = "lblDescripcion";
-            this.lblDescripcion.Size = new System.Drawing.Size(319, 20);
-            this.lblDescripcion.TabIndex = 49;
-            // 
-            // lblNombreProducto
-            // 
-            this.lblNombreProducto.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreProducto.Location = new System.Drawing.Point(230, 34);
-            this.lblNombreProducto.Name = "lblNombreProducto";
-            this.lblNombreProducto.Size = new System.Drawing.Size(245, 19);
-            this.lblNombreProducto.TabIndex = 7;
             // 
             // txtNumeroCCF
             // 
@@ -472,22 +488,6 @@
             this.txtNumeroCCF.Size = new System.Drawing.Size(80, 19);
             this.txtNumeroCCF.TabIndex = 0;
             this.txtNumeroCCF.TextChanged += new System.EventHandler(this.txtNumeroCCF_TextChanged);
-            // 
-            // lblComentarioMarca
-            // 
-            this.lblComentarioMarca.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblComentarioMarca.Location = new System.Drawing.Point(509, 25);
-            this.lblComentarioMarca.Name = "lblComentarioMarca";
-            this.lblComentarioMarca.Size = new System.Drawing.Size(255, 20);
-            this.lblComentarioMarca.TabIndex = 6;
-            // 
-            // lblNombreMarca
-            // 
-            this.lblNombreMarca.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblNombreMarca.Location = new System.Drawing.Point(238, 27);
-            this.lblNombreMarca.Name = "lblNombreMarca";
-            this.lblNombreMarca.Size = new System.Drawing.Size(150, 20);
-            this.lblNombreMarca.TabIndex = 5;
             // 
             // FrmIngreso
             // 

@@ -40,14 +40,14 @@
             // 
             // lblVersion
             // 
-            this.lblVersion.AutoSize = true;
             this.lblVersion.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblVersion.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblVersion.Location = new System.Drawing.Point(44, 424);
+            this.lblVersion.Location = new System.Drawing.Point(12, 496);
             this.lblVersion.Name = "lblVersion";
-            this.lblVersion.Size = new System.Drawing.Size(54, 16);
+            this.lblVersion.Size = new System.Drawing.Size(476, 16);
             this.lblVersion.TabIndex = 1;
             this.lblVersion.Text = "Versión";
+            this.lblVersion.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timer
             // 
@@ -58,23 +58,23 @@
             // 
             this.pictureBox1.BackColor = System.Drawing.Color.Transparent;
             this.pictureBox1.Image = global::AlimentosDC.SIGEPAC.UI.Properties.Resources.Logo_Con_Nombre;
-            this.pictureBox1.Location = new System.Drawing.Point(84, 59);
+            this.pictureBox1.Location = new System.Drawing.Point(15, 62);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(340, 234);
+            this.pictureBox1.Size = new System.Drawing.Size(473, 215);
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
             // lblCopyRight
             // 
-            this.lblCopyRight.AutoSize = true;
             this.lblCopyRight.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblCopyRight.ForeColor = System.Drawing.SystemColors.Control;
-            this.lblCopyRight.Location = new System.Drawing.Point(44, 453);
+            this.lblCopyRight.Location = new System.Drawing.Point(12, 531);
             this.lblCopyRight.Name = "lblCopyRight";
-            this.lblCopyRight.Size = new System.Drawing.Size(71, 16);
+            this.lblCopyRight.Size = new System.Drawing.Size(476, 16);
             this.lblCopyRight.TabIndex = 2;
             this.lblCopyRight.Text = "CopyRight";
+            this.lblCopyRight.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // timer1
             // 
@@ -101,7 +101,6 @@
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.FrmSplashScreen_Paint);
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 

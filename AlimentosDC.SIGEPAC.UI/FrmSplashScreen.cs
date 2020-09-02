@@ -97,9 +97,9 @@ namespace AlimentosDC.SIGEPAC.UI
 
         private void FrmSplashScreen_Load(object sender, EventArgs e)
         {
-            Assembly ensambladoActual = Assembly.GetExecutingAssembly();
-            lblVersion.Text = string.Concat(ProductName, " V.", ensambladoActual.GetName().Version);
-            lblCopyRight.Text = "Copyright ©  2020";
+            //Assembly ensambladoActual = Assembly.GetExecutingAssembly();
+            lblVersion.Text = string.Concat(ProductName, " v. 1.0");
+            lblCopyRight.Text = "Todos los derechos reservados ©  2020";
         }
 
         private void timer1_Tick(object sender, EventArgs e)

@@ -41,14 +41,11 @@
             this.txtDescripcionProducto = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtPrecioProducto = new System.Windows.Forms.TextBox();
-            this.label6 = new System.Windows.Forms.Label();
             this.btnGuardarProducto = new System.Windows.Forms.Button();
             this.btnCancelarProducto = new System.Windows.Forms.Button();
             this.epValidarControles = new System.Windows.Forms.ErrorProvider(this.components);
-            this.nudStock = new System.Windows.Forms.NumericUpDown();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epValidarControles)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudStock)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -60,7 +57,7 @@
             this.groupBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.groupBox1.Location = new System.Drawing.Point(22, 67);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(518, 106);
+            this.groupBox1.Size = new System.Drawing.Size(422, 152);
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Marca";
@@ -73,7 +70,7 @@
             this.cmbMarcas.FormattingEnabled = true;
             this.cmbMarcas.Location = new System.Drawing.Point(13, 48);
             this.cmbMarcas.Name = "cmbMarcas";
-            this.cmbMarcas.Size = new System.Drawing.Size(215, 25);
+            this.cmbMarcas.Size = new System.Drawing.Size(384, 25);
             this.cmbMarcas.TabIndex = 0;
             this.cmbMarcas.ValueMember = "Id";
             this.cmbMarcas.SelectionChangeCommitted += new System.EventHandler(this.cmbMarcas_SelectionChangeCommitted);
@@ -84,9 +81,9 @@
             // 
             this.lblComentario.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.lblComentario.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblComentario.Location = new System.Drawing.Point(257, 48);
+            this.lblComentario.Location = new System.Drawing.Point(13, 106);
             this.lblComentario.Name = "lblComentario";
-            this.lblComentario.Size = new System.Drawing.Size(242, 45);
+            this.lblComentario.Size = new System.Drawing.Size(384, 25);
             this.lblComentario.TabIndex = 53;
             // 
             // label1
@@ -101,7 +98,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(254, 25);
+            this.label2.Location = new System.Drawing.Point(10, 83);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(84, 17);
             this.label2.TabIndex = 1;
@@ -111,7 +108,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(18, 190);
+            this.label3.Location = new System.Drawing.Point(18, 235);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(122, 19);
             this.label3.TabIndex = 5;
@@ -121,9 +118,9 @@
             // 
             this.txtNombreProducto.BackColor = System.Drawing.Color.White;
             this.txtNombreProducto.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNombreProducto.Location = new System.Drawing.Point(22, 212);
+            this.txtNombreProducto.Location = new System.Drawing.Point(22, 257);
             this.txtNombreProducto.Name = "txtNombreProducto";
-            this.txtNombreProducto.Size = new System.Drawing.Size(228, 25);
+            this.txtNombreProducto.Size = new System.Drawing.Size(422, 25);
             this.txtNombreProducto.TabIndex = 1;
             this.txtNombreProducto.TextChanged += new System.EventHandler(this.txtNombreProducto_TextChanged);
             // 
@@ -131,7 +128,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(18, 256);
+            this.label4.Location = new System.Drawing.Point(18, 357);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(82, 19);
             this.label4.TabIndex = 46;
@@ -141,10 +138,9 @@
             // 
             this.txtDescripcionProducto.BackColor = System.Drawing.Color.White;
             this.txtDescripcionProducto.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtDescripcionProducto.Location = new System.Drawing.Point(22, 278);
-            this.txtDescripcionProducto.Multiline = true;
+            this.txtDescripcionProducto.Location = new System.Drawing.Point(22, 379);
             this.txtDescripcionProducto.Name = "txtDescripcionProducto";
-            this.txtDescripcionProducto.Size = new System.Drawing.Size(228, 50);
+            this.txtDescripcionProducto.Size = new System.Drawing.Size(422, 25);
             this.txtDescripcionProducto.TabIndex = 3;
             this.txtDescripcionProducto.TextChanged += new System.EventHandler(this.txtDescripcionProducto_TextChanged);
             // 
@@ -152,7 +148,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label5.Location = new System.Drawing.Point(275, 190);
+            this.label5.Location = new System.Drawing.Point(18, 294);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(49, 19);
             this.label5.TabIndex = 48;
@@ -162,27 +158,17 @@
             // 
             this.txtPrecioProducto.BackColor = System.Drawing.Color.White;
             this.txtPrecioProducto.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrecioProducto.Location = new System.Drawing.Point(279, 212);
+            this.txtPrecioProducto.Location = new System.Drawing.Point(22, 316);
             this.txtPrecioProducto.MaxLength = 10;
             this.txtPrecioProducto.Name = "txtPrecioProducto";
-            this.txtPrecioProducto.Size = new System.Drawing.Size(242, 25);
+            this.txtPrecioProducto.Size = new System.Drawing.Size(422, 25);
             this.txtPrecioProducto.TabIndex = 2;
             this.txtPrecioProducto.TextChanged += new System.EventHandler(this.txtPrecioProducto_TextChanged);
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label6.Location = new System.Drawing.Point(275, 256);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(45, 19);
-            this.label6.TabIndex = 51;
-            this.label6.Text = "Stock:";
             // 
             // btnGuardarProducto
             // 
             this.btnGuardarProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGuardarProducto.Location = new System.Drawing.Point(330, 367);
+            this.btnGuardarProducto.Location = new System.Drawing.Point(232, 440);
             this.btnGuardarProducto.Name = "btnGuardarProducto";
             this.btnGuardarProducto.Size = new System.Drawing.Size(100, 30);
             this.btnGuardarProducto.TabIndex = 5;
@@ -193,7 +179,7 @@
             // btnCancelarProducto
             // 
             this.btnCancelarProducto.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnCancelarProducto.Location = new System.Drawing.Point(442, 367);
+            this.btnCancelarProducto.Location = new System.Drawing.Point(344, 440);
             this.btnCancelarProducto.Name = "btnCancelarProducto";
             this.btnCancelarProducto.Size = new System.Drawing.Size(100, 30);
             this.btnCancelarProducto.TabIndex = 6;
@@ -205,29 +191,13 @@
             // 
             this.epValidarControles.ContainerControl = this;
             // 
-            // nudStock
-            // 
-            this.nudStock.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.nudStock.Font = new System.Drawing.Font("Segoe UI", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.nudStock.Location = new System.Drawing.Point(279, 279);
-            this.nudStock.Maximum = new decimal(new int[] {
-            1000000,
-            0,
-            0,
-            0});
-            this.nudStock.Name = "nudStock";
-            this.nudStock.Size = new System.Drawing.Size(242, 25);
-            this.nudStock.TabIndex = 52;
-            // 
             // FrmProducto
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(554, 411);
-            this.Controls.Add(this.nudStock);
+            this.ClientSize = new System.Drawing.Size(470, 490);
             this.Controls.Add(this.btnCancelarProducto);
             this.Controls.Add(this.btnGuardarProducto);
-            this.Controls.Add(this.label6);
             this.Controls.Add(this.txtPrecioProducto);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.txtDescripcionProducto);
@@ -245,7 +215,6 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.epValidarControles)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.nudStock)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -261,12 +230,10 @@
         private System.Windows.Forms.TextBox txtDescripcionProducto;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.TextBox txtPrecioProducto;
-        private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Button btnGuardarProducto;
         private System.Windows.Forms.Button btnCancelarProducto;
         private System.Windows.Forms.ComboBox cmbMarcas;
         private System.Windows.Forms.ErrorProvider epValidarControles;
-        private System.Windows.Forms.NumericUpDown nudStock;
         private System.Windows.Forms.Label lblComentario;
     }
 }

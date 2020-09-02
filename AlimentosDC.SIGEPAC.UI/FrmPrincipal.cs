@@ -130,5 +130,6 @@ namespace AlimentosDC.SIGEPAC.UI
             Cursor = Cursors.Arrow;
         }
     }
-    
 }
+
+// CONTINUAR EN AGREGAR UNA FUNCIÓN DE EXPORTAR A EXCEL LOS LISTADOS DE PEDIDOS E INGRESOS

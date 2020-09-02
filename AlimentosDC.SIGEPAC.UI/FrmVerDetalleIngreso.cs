@@ -40,8 +40,8 @@ namespace AlimentosDC.SIGEPAC.UI
                     dgvListadoDetallesIngreso.Rows[i].Cells[1].Value = listadoDetalleIngreso[i].Cantidad;
                     dgvListadoDetallesIngreso.Rows[i].Cells[2].Value = listadoDetalleIngreso[i].Producto;
                     dgvListadoDetallesIngreso.Rows[i].Cells[3].Value = listadoDetalleIngreso[i].Descripcion;
-                    dgvListadoDetallesIngreso.Rows[i].Cells[4].Value = listadoDetalleIngreso[i].PrecioUnitario.ToString("C");
-                    dgvListadoDetallesIngreso.Rows[i].Cells[5].Value = listadoDetalleIngreso[i].SubTotal.ToString("C");
+                    dgvListadoDetallesIngreso.Rows[i].Cells[4].Value = listadoDetalleIngreso[i].PrecioUnitario.ToString("c");
+                    dgvListadoDetallesIngreso.Rows[i].Cells[5].Value = listadoDetalleIngreso[i].SubTotal.ToString("c");
                     Sumas += listadoDetalleIngreso[i].SubTotal;
                 }
                 lblSumas.Text = Sumas.ToString("c");
