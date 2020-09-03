@@ -116,8 +116,8 @@ namespace AlimentosDC.SIGEPAC.UI
         void GuardarCompra()
         {
             Cursor = Cursors.WaitCursor;
-            try
-            {
+          //  try
+            //{
                 if (dgvListadoDetallesIngreso.Rows.Count < 1)
                 {
                     epValidadorControles.SetError(dgvListadoDetallesIngreso, "Debe agregar al menos un detalle.");
@@ -137,7 +137,7 @@ namespace AlimentosDC.SIGEPAC.UI
                         for (int i = 0; i < listadoDetallesIngreso.Count; i++)
                         {
                             DetalleIngreso detalleIngresoARegistrar = new DetalleIngreso();
-                            detalleIngresoARegistrar.IdIngreso = IngresoBL.BuscarPorNumeroCCF(txtNumeroCCF.Text.Trim()).Id;
+                            detalleIngresoARegistrar.IdIngreso = IngresoBL.BuscarPorNumeroCCF(marca.Id, dtpFechaIngreso.Value, txtNumeroCCF.Text).Id;
                             detalleIngresoARegistrar.IdProducto = listadoDetallesIngreso[i].IdProducto;
                             detalleIngresoARegistrar.Cantidad = listadoDetallesIngreso[i].Cantidad;
                             detalleIngresoARegistrar.PrecioUnitario = listadoDetallesIngreso[i].PrecioUnitario;
@@ -191,14 +191,14 @@ namespace AlimentosDC.SIGEPAC.UI
                         }
                     }
                 }
-            }
+        /*   }
             catch (Exception error)
             {
                 MetroMessageBox.Show(this, $"¡Ha ocurrido un error!\nMÁS INFORMACIÓN: {error.Message}", "Error", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
                 Close();
-            }
-            Cursor = Cursors.Arrow;
+            }*/
+            Cursor = Cursors.Arrow; 
         }
 
         void Limpiar()

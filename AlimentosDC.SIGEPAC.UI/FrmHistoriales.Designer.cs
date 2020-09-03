@@ -28,20 +28,35 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmHistoriales));
             this.dgvListadoPedidos = new System.Windows.Forms.DataGridView();
+            this.dgvId = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvDui = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvNumeroPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvNumeroCCF = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvFechaCreacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvFechaEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvDireccionEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmSumas = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmIva = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.clmTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dgvUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEditarPedido = new System.Windows.Forms.Button();
             this.btnEliminarPedido = new System.Windows.Forms.Button();
             this.btnVerDetallePedido = new System.Windows.Forms.Button();
             this.cmbMostrando = new MetroFramework.Controls.MetroComboBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tbpPedidos = new System.Windows.Forms.TabPage();
+            this.btnExportarExcel = new System.Windows.Forms.Button();
             this.txtBuscadorPedidos = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
             this.tbpIngresos = new System.Windows.Forms.TabPage();
+            this.btnExportar = new System.Windows.Forms.Button();
             this.txtBuscadorCompras = new AlimentosDC.SIGEPAC.UI.TextBoxWaterMark();
             this.btnEditarIngreso = new System.Windows.Forms.Button();
             this.btnEliminarIngreso = new System.Windows.Forms.Button();
@@ -57,19 +72,6 @@
             this.btnVerDetalleIngreso = new System.Windows.Forms.Button();
             this.btnSalir = new System.Windows.Forms.Button();
             this.btnCerrar = new System.Windows.Forms.Button();
-            this.dgvId = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvCliente = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvDui = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvNumeroPedido = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvNumeroCCF = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvFechaCreacion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvFechaEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvDireccionEntrega = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvEstado = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmSumas = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmIva = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.clmTotal = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dgvUsuario = new System.Windows.Forms.DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.dgvListadoPedidos)).BeginInit();
             this.tabControl1.SuspendLayout();
             this.tbpPedidos.SuspendLayout();
@@ -106,6 +108,101 @@
             this.dgvListadoPedidos.Size = new System.Drawing.Size(1178, 407);
             this.dgvListadoPedidos.TabIndex = 0;
             this.dgvListadoPedidos.SelectionChanged += new System.EventHandler(this.dgvListadoPedidos_SelectionChanged);
+            // 
+            // dgvId
+            // 
+            this.dgvId.HeaderText = "ID";
+            this.dgvId.Name = "dgvId";
+            this.dgvId.ReadOnly = true;
+            this.dgvId.Width = 50;
+            // 
+            // dgvCliente
+            // 
+            this.dgvCliente.HeaderText = "CLIENTE";
+            this.dgvCliente.Name = "dgvCliente";
+            this.dgvCliente.ReadOnly = true;
+            this.dgvCliente.Width = 145;
+            // 
+            // dgvDui
+            // 
+            this.dgvDui.HeaderText = "DUI";
+            this.dgvDui.Name = "dgvDui";
+            this.dgvDui.ReadOnly = true;
+            // 
+            // dgvNumeroPedido
+            // 
+            this.dgvNumeroPedido.HeaderText = "NO. PEDIDO";
+            this.dgvNumeroPedido.Name = "dgvNumeroPedido";
+            this.dgvNumeroPedido.ReadOnly = true;
+            this.dgvNumeroPedido.Width = 50;
+            // 
+            // dgvNumeroCCF
+            // 
+            this.dgvNumeroCCF.HeaderText = "NO. CCF";
+            this.dgvNumeroCCF.Name = "dgvNumeroCCF";
+            this.dgvNumeroCCF.ReadOnly = true;
+            this.dgvNumeroCCF.Width = 50;
+            // 
+            // dgvFechaCreacion
+            // 
+            dataGridViewCellStyle1.Format = "d";
+            dataGridViewCellStyle1.NullValue = null;
+            this.dgvFechaCreacion.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dgvFechaCreacion.HeaderText = "F. CREACIÓN";
+            this.dgvFechaCreacion.Name = "dgvFechaCreacion";
+            this.dgvFechaCreacion.ReadOnly = true;
+            this.dgvFechaCreacion.Width = 80;
+            // 
+            // dgvFechaEntrega
+            // 
+            dataGridViewCellStyle2.Format = "d";
+            dataGridViewCellStyle2.NullValue = null;
+            this.dgvFechaEntrega.DefaultCellStyle = dataGridViewCellStyle2;
+            this.dgvFechaEntrega.HeaderText = "F. ENTREGA";
+            this.dgvFechaEntrega.Name = "dgvFechaEntrega";
+            this.dgvFechaEntrega.ReadOnly = true;
+            this.dgvFechaEntrega.Width = 80;
+            // 
+            // dgvDireccionEntrega
+            // 
+            this.dgvDireccionEntrega.HeaderText = "DIR.  ENTREGA";
+            this.dgvDireccionEntrega.Name = "dgvDireccionEntrega";
+            this.dgvDireccionEntrega.ReadOnly = true;
+            this.dgvDireccionEntrega.Width = 190;
+            // 
+            // dgvEstado
+            // 
+            this.dgvEstado.HeaderText = "ESTADO";
+            this.dgvEstado.Name = "dgvEstado";
+            this.dgvEstado.ReadOnly = true;
+            // 
+            // clmSumas
+            // 
+            this.clmSumas.HeaderText = "SUMAS";
+            this.clmSumas.Name = "clmSumas";
+            this.clmSumas.ReadOnly = true;
+            this.clmSumas.Width = 70;
+            // 
+            // clmIva
+            // 
+            this.clmIva.HeaderText = "IVA";
+            this.clmIva.Name = "clmIva";
+            this.clmIva.ReadOnly = true;
+            this.clmIva.Width = 70;
+            // 
+            // clmTotal
+            // 
+            this.clmTotal.HeaderText = "TOTAL";
+            this.clmTotal.Name = "clmTotal";
+            this.clmTotal.ReadOnly = true;
+            this.clmTotal.Width = 70;
+            // 
+            // dgvUsuario
+            // 
+            this.dgvUsuario.HeaderText = "USUARIO";
+            this.dgvUsuario.Name = "dgvUsuario";
+            this.dgvUsuario.ReadOnly = true;
+            this.dgvUsuario.Width = 180;
             // 
             // btnEditarPedido
             // 
@@ -176,6 +273,7 @@
             // 
             // tbpPedidos
             // 
+            this.tbpPedidos.Controls.Add(this.btnExportarExcel);
             this.tbpPedidos.Controls.Add(this.txtBuscadorPedidos);
             this.tbpPedidos.Controls.Add(this.btnEditarPedido);
             this.tbpPedidos.Controls.Add(this.btnEliminarPedido);
@@ -190,6 +288,18 @@
             this.tbpPedidos.Text = "PEDIDOS";
             this.tbpPedidos.UseVisualStyleBackColor = true;
             // 
+            // btnExportarExcel
+            // 
+            this.btnExportarExcel.Enabled = false;
+            this.btnExportarExcel.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportarExcel.Location = new System.Drawing.Point(923, 14);
+            this.btnExportarExcel.Name = "btnExportarExcel";
+            this.btnExportarExcel.Size = new System.Drawing.Size(137, 30);
+            this.btnExportarExcel.TabIndex = 5;
+            this.btnExportarExcel.Text = "Exportar a EXCEL";
+            this.btnExportarExcel.UseVisualStyleBackColor = true;
+            this.btnExportarExcel.Click += new System.EventHandler(this.btnExportarExcel_Click);
+            // 
             // txtBuscadorPedidos
             // 
             this.txtBuscadorPedidos.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -202,6 +312,7 @@
             // 
             // tbpIngresos
             // 
+            this.tbpIngresos.Controls.Add(this.btnExportar);
             this.tbpIngresos.Controls.Add(this.txtBuscadorCompras);
             this.tbpIngresos.Controls.Add(this.btnEditarIngreso);
             this.tbpIngresos.Controls.Add(this.btnEliminarIngreso);
@@ -214,6 +325,18 @@
             this.tbpIngresos.TabIndex = 1;
             this.tbpIngresos.Text = "COMPRAS";
             this.tbpIngresos.UseVisualStyleBackColor = true;
+            // 
+            // btnExportar
+            // 
+            this.btnExportar.Enabled = false;
+            this.btnExportar.Font = new System.Drawing.Font("Segoe UI", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnExportar.Location = new System.Drawing.Point(692, 14);
+            this.btnExportar.Name = "btnExportar";
+            this.btnExportar.Size = new System.Drawing.Size(137, 30);
+            this.btnExportar.TabIndex = 13;
+            this.btnExportar.Text = "Exportar a EXCEL";
+            this.btnExportar.UseVisualStyleBackColor = true;
+            this.btnExportar.Click += new System.EventHandler(this.btnExportar_Click);
             // 
             // txtBuscadorCompras
             // 
@@ -368,101 +491,6 @@
             this.btnCerrar.UseVisualStyleBackColor = true;
             this.btnCerrar.Click += new System.EventHandler(this.btnCerrar_Click);
             // 
-            // dgvId
-            // 
-            this.dgvId.HeaderText = "ID";
-            this.dgvId.Name = "dgvId";
-            this.dgvId.ReadOnly = true;
-            this.dgvId.Width = 50;
-            // 
-            // dgvCliente
-            // 
-            this.dgvCliente.HeaderText = "CLIENTE";
-            this.dgvCliente.Name = "dgvCliente";
-            this.dgvCliente.ReadOnly = true;
-            this.dgvCliente.Width = 145;
-            // 
-            // dgvDui
-            // 
-            this.dgvDui.HeaderText = "DUI";
-            this.dgvDui.Name = "dgvDui";
-            this.dgvDui.ReadOnly = true;
-            // 
-            // dgvNumeroPedido
-            // 
-            this.dgvNumeroPedido.HeaderText = "NO. PEDIDO";
-            this.dgvNumeroPedido.Name = "dgvNumeroPedido";
-            this.dgvNumeroPedido.ReadOnly = true;
-            this.dgvNumeroPedido.Width = 50;
-            // 
-            // dgvNumeroCCF
-            // 
-            this.dgvNumeroCCF.HeaderText = "NO. CCF";
-            this.dgvNumeroCCF.Name = "dgvNumeroCCF";
-            this.dgvNumeroCCF.ReadOnly = true;
-            this.dgvNumeroCCF.Width = 50;
-            // 
-            // dgvFechaCreacion
-            // 
-            dataGridViewCellStyle1.Format = "d";
-            dataGridViewCellStyle1.NullValue = null;
-            this.dgvFechaCreacion.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dgvFechaCreacion.HeaderText = "F. CREACIÓN";
-            this.dgvFechaCreacion.Name = "dgvFechaCreacion";
-            this.dgvFechaCreacion.ReadOnly = true;
-            this.dgvFechaCreacion.Width = 80;
-            // 
-            // dgvFechaEntrega
-            // 
-            dataGridViewCellStyle2.Format = "d";
-            dataGridViewCellStyle2.NullValue = null;
-            this.dgvFechaEntrega.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dgvFechaEntrega.HeaderText = "F. ENTREGA";
-            this.dgvFechaEntrega.Name = "dgvFechaEntrega";
-            this.dgvFechaEntrega.ReadOnly = true;
-            this.dgvFechaEntrega.Width = 80;
-            // 
-            // dgvDireccionEntrega
-            // 
-            this.dgvDireccionEntrega.HeaderText = "DIR.  ENTREGA";
-            this.dgvDireccionEntrega.Name = "dgvDireccionEntrega";
-            this.dgvDireccionEntrega.ReadOnly = true;
-            this.dgvDireccionEntrega.Width = 190;
-            // 
-            // dgvEstado
-            // 
-            this.dgvEstado.HeaderText = "ESTADO";
-            this.dgvEstado.Name = "dgvEstado";
-            this.dgvEstado.ReadOnly = true;
-            // 
-            // clmSumas
-            // 
-            this.clmSumas.HeaderText = "SUMAS";
-            this.clmSumas.Name = "clmSumas";
-            this.clmSumas.ReadOnly = true;
-            this.clmSumas.Width = 70;
-            // 
-            // clmIva
-            // 
-            this.clmIva.HeaderText = "IVA";
-            this.clmIva.Name = "clmIva";
-            this.clmIva.ReadOnly = true;
-            this.clmIva.Width = 70;
-            // 
-            // clmTotal
-            // 
-            this.clmTotal.HeaderText = "TOTAL";
-            this.clmTotal.Name = "clmTotal";
-            this.clmTotal.ReadOnly = true;
-            this.clmTotal.Width = 70;
-            // 
-            // dgvUsuario
-            // 
-            this.dgvUsuario.HeaderText = "USUARIO";
-            this.dgvUsuario.Name = "dgvUsuario";
-            this.dgvUsuario.ReadOnly = true;
-            this.dgvUsuario.Width = 180;
-            // 
             // FrmHistoriales
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -531,5 +559,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn clmIva;
         private System.Windows.Forms.DataGridViewTextBoxColumn clmTotal;
         private System.Windows.Forms.DataGridViewTextBoxColumn dgvUsuario;
+        private System.Windows.Forms.Button btnExportarExcel;
+        private System.Windows.Forms.Button btnExportar;
     }
 }

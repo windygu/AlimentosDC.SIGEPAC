@@ -106,13 +106,15 @@ namespace AlimentosDC.SIGEPAC.DAL
             return ingreso;
         }
 
-        public static Ingreso BuscarPorNumeroCCF(string pNumeroCCF)
+        public static Ingreso BuscarPorNumeroCCF(int pIdMarca, DateTime pFechaIngreso, string pNumeroCCF)
         {
             string consulta = string.Concat("SELECT i.Id, i.IdUsuario, CONCAT(u.Nombres, SPACE(1), u.Apellidos) Usuario, i.IdMarca, m.Nombre ",
             "Marca, i.FechaIngreso, i.NumeroCCF, i.Sumas, i.Iva, i.Total FROM Ingreso i JOIN Usuario u on i.IdUsuario = u.Id join Marca m on i.IdMarca = m.Id ",
-            "WHERE i.NumeroCCF = @NumeroCCF");
+            "WHERE i.IdMarca = @IdMarca AND i.FechaIngreso = @FechaIngreso AND i.NumeroCCF = @NumeroCCF");
             SqlCommand comando = ComunDB.ObtenerComando();
             comando.CommandText = consulta;
+            comando.Parameters.AddWithValue("@IdMarca", pIdMarca);
+            comando.Parameters.AddWithValue("@FechaIngreso", pFechaIngreso.ToShortDateString());
             comando.Parameters.AddWithValue("@NumeroCCF", pNumeroCCF);
             SqlDataReader reader = ComunDB.EjecutarComandoReader(comando);
             Ingreso ingreso = new Ingreso();

@@ -13,6 +13,7 @@ using MetroFramework;
 using MetroFramework.Forms;
 using MetroFramework.Controls;
 using System.Data.SqlClient;
+using Excel = Microsoft.Office.Interop.Excel;
 
 namespace AlimentosDC.SIGEPAC.UI
 {
@@ -124,12 +125,14 @@ namespace AlimentosDC.SIGEPAC.UI
                 btnVerDetallePedido.Enabled = true;
                 btnEditarPedido.Enabled = true;
                 btnEliminarPedido.Enabled = true;
+                btnExportarExcel.Enabled = true;
             }
             else
             {
                 btnVerDetallePedido.Enabled = false;
                 btnEditarPedido.Enabled = false;
                 btnEliminarPedido.Enabled = false;
+                btnExportarExcel.Enabled = false;
             }
         }
 
@@ -276,13 +279,64 @@ namespace AlimentosDC.SIGEPAC.UI
                 btnVerDetalleIngreso.Enabled = true;
                 btnEditarIngreso.Enabled = true;
                 btnEliminarIngreso.Enabled = true;
+                btnExportar.Enabled = true;
             }
             else
             {
                 btnVerDetalleIngreso.Enabled = false;
                 btnEditarIngreso.Enabled = false;
                 btnEliminarIngreso.Enabled = false;
+                btnExportar.Enabled = false;
             }
+        }
+
+        private void btnExportarExcel_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            ExportarExcel(dgvListadoPedidos, "\"REPORTE DE PEDIDOS\"", "n");
+            Cursor = Cursors.Arrow;
+        }
+
+        void ExportarExcel(DataGridView datagrid, string titulo, string codigoEnLetrasUltimaColumnaMasUna)
+        {
+            //SaveFileDialog dialogoGuardar = new SaveFileDialog();
+            //dialogoGuardar.Filter = "Excel (*.xls)|*.xls";
+            if (datagrid.RowCount>0)
+            {
+                var aplicacionExcel = new Excel.Application();
+                aplicacionExcel.Visible = true;
+                aplicacionExcel.Workbooks.Add();
+                Excel.Worksheet hojaTrabajo = (Excel.Worksheet)aplicacionExcel.ActiveSheet;
+                int indiceColumnaEnExcel = 1;
+                for (int i = 0; i < datagrid.ColumnCount; i++)
+                {
+                    int indiceFilaEnExcel = 5;
+                    indiceColumnaEnExcel++;
+                    hojaTrabajo.get_Range("b2", string.Concat(codigoEnLetrasUltimaColumnaMasUna, 2)).Merge(false);
+                    Excel.Range rango = hojaTrabajo.get_Range("b2", string.Concat(codigoEnLetrasUltimaColumnaMasUna, 2));
+                    rango.FormulaR1C1 = titulo;
+                    rango.Font.Bold = true;
+                    rango.Font.Size = 14;
+                    rango.HorizontalAlignment = Excel.XlHAlign.xlHAlignCenter;
+                    hojaTrabajo.Cells[4, indiceColumnaEnExcel] = datagrid.Columns[i].HeaderCell.Value.ToString();
+                    hojaTrabajo.Cells[4, indiceColumnaEnExcel].Borders.Color = Excel.XlRgbColor.rgbBlack;
+                    hojaTrabajo.Cells[4, indiceColumnaEnExcel].Font.Bold = true;
+                    for (int j = 0; j < datagrid.RowCount; j++)
+                    {
+                        hojaTrabajo.Cells[indiceFilaEnExcel, indiceColumnaEnExcel] = datagrid.Rows[j].Cells[i].Value.ToString();
+                        hojaTrabajo.Cells[indiceFilaEnExcel, indiceColumnaEnExcel].Borders.Color = Excel.XlRgbColor.rgbBlack;
+                        indiceFilaEnExcel++;
+                    }
+                    hojaTrabajo.Columns[indiceColumnaEnExcel].AutoFit();
+                }
+            }
+        }
+
+        private void btnExportar_Click(object sender, EventArgs e)
+        {
+            Cursor = Cursors.WaitCursor;
+            ExportarExcel(dgvListadoIngresos, "\"REPORTE DE INGRESOS\"", "i");
+            Cursor = Cursors.Arrow;
         }
     }
 }
