@@ -422,7 +422,7 @@ namespace AlimentosDC.SIGEPAC.UI
             {
                 epValidadorControles.SetError(nudCantidad, "");
                 lblSubTotal.Text = (producto.PrecioVenta * (float)nudCantidad.Value).ToString("c");
-                lblStock.Text = (producto.Stock + nudCantidad.Value).ToString("c");
+                lblStock.Text = (producto.Stock + nudCantidad.Value).ToString();
                 HabilitarBotonAgregarDetalle();
             }
             else if (nudCantidad.Value > 0)
